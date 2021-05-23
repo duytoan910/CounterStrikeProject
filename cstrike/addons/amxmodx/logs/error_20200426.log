@@ -1,0 +1,838 @@
+L 04/26/2020 - 02:05:08: Start of error session.
+L 04/26/2020 - 02:05:08: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 02:05:08: [HAMSANDWICH] Entity out of range (-1)
+L 04/26/2020 - 02:05:08: [AMXX] Run time error 10 (plugin "zombie_plague40.amxx") (native "ExecuteHam") - debug not enabled!
+L 04/26/2020 - 02:05:08: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 13:00:37: Start of error session.
+L 04/26/2020 - 13:00:37: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 13:00:37: Invalid player id 0
+L 04/26/2020 - 13:00:37: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 04/26/2020 - 13:00:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 04/26/2020 - 13:00:37: [AMXX]    [0] zp_addon_npc_round.sma::zp_round_started (line 68)
+L 04/26/2020 - 13:00:56: Start of error session.
+L 04/26/2020 - 13:00:56: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 13:00:56: Invalid player id 0
+L 04/26/2020 - 13:00:56: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 04/26/2020 - 13:00:56: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 04/26/2020 - 13:00:56: [AMXX]    [0] zp_addon_npc_round.sma::zp_round_started (line 68)
+L 04/26/2020 - 13:01:32: Start of error session.
+L 04/26/2020 - 13:01:32: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 13:01:32: Invalid player id 0
+L 04/26/2020 - 13:01:32: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 04/26/2020 - 13:01:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 04/26/2020 - 13:01:32: [AMXX]    [0] zp_addon_npc_round.sma::zp_round_started (line 68)
+L 04/26/2020 - 15:39:21: Start of error session.
+L 04/26/2020 - 15:39:21: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 15:39:21: [FUN] Invalid player 1
+L 04/26/2020 - 15:39:21: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 15:39:21: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 15:39:21: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 159)
+L 04/26/2020 - 15:39:21: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 688)
+L 04/26/2020 - 15:51:11: Start of error session.
+L 04/26/2020 - 15:51:11: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 15:51:11: [FUN] Invalid player 1
+L 04/26/2020 - 15:51:11: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 15:51:11: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 15:51:11: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 15:51:11: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 674)
+L 04/26/2020 - 15:52:52: Start of error session.
+L 04/26/2020 - 15:52:52: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 15:52:52: [FUN] Invalid player 1
+L 04/26/2020 - 15:52:52: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 15:52:52: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 15:52:52: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 15:52:52: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 676)
+L 04/26/2020 - 15:56:10: Start of error session.
+L 04/26/2020 - 15:56:10: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 15:56:10: [FUN] Invalid player 1
+L 04/26/2020 - 15:56:10: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 15:56:10: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 15:56:10: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 15:56:10: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 677)
+L 04/26/2020 - 15:56:47: Start of error session.
+L 04/26/2020 - 15:56:47: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 15:56:47: [FUN] Invalid player 1
+L 04/26/2020 - 15:56:47: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 15:56:47: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 15:56:47: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 15:56:47: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 677)
+L 04/26/2020 - 15:58:17: Start of error session.
+L 04/26/2020 - 15:58:17: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 15:58:17: [FUN] Invalid player 1
+L 04/26/2020 - 15:58:17: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 15:58:17: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 15:58:17: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 15:58:17: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 671)
+L 04/26/2020 - 16:01:56: Start of error session.
+L 04/26/2020 - 16:01:56: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 16:01:56: [FUN] Invalid player 1
+L 04/26/2020 - 16:01:56: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 16:01:56: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 16:01:56: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 16:01:56: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 667)
+L 04/26/2020 - 16:03:14: Start of error session.
+L 04/26/2020 - 16:03:14: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 16:03:14: [FUN] Invalid player 1
+L 04/26/2020 - 16:03:14: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 16:03:14: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 16:03:14: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 16:03:14: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 667)
+L 04/26/2020 - 16:07:08: Start of error session.
+L 04/26/2020 - 16:07:08: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 16:07:08: [FUN] Invalid player 1
+L 04/26/2020 - 16:07:08: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 16:07:08: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 16:07:08: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 155)
+L 04/26/2020 - 16:07:08: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 668)
+L 04/26/2020 - 16:09:19: Start of error session.
+L 04/26/2020 - 16:09:19: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 16:09:19: [FUN] Invalid player 1
+L 04/26/2020 - 16:09:19: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 16:09:19: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 16:09:19: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 150)
+L 04/26/2020 - 16:09:19: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 588)
+L 04/26/2020 - 17:09:00: Start of error session.
+L 04/26/2020 - 17:09:00: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:09:00: [FUN] Invalid player 1
+L 04/26/2020 - 17:09:00: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:09:00: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:09:00: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 152)
+L 04/26/2020 - 17:09:00: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 702)
+L 04/26/2020 - 17:10:11: Start of error session.
+L 04/26/2020 - 17:10:11: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:10:11: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:10:11: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:10:11: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:10:11: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 732)
+L 04/26/2020 - 17:10:11: [CSTRIKE] Invalid player 1
+L 04/26/2020 - 17:10:11: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:10:11: [AMXX] Run time error 10: native error (native "cs_set_user_bpammo")
+L 04/26/2020 - 17:10:11: [AMXX]    [0] zp_extra_speargun.sma::update_ammo (line 790)
+L 04/26/2020 - 17:10:11: [AMXX]    [1] zp_extra_speargun.sma::Get_Spear (line 154)
+L 04/26/2020 - 17:10:11: [AMXX]    [2] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 702)
+L 04/26/2020 - 17:19:19: Start of error session.
+L 04/26/2020 - 17:19:19: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:19:19: Function "Hook_Weapon" was not found
+L 04/26/2020 - 17:19:19: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:19:19: [AMXX] Run time error 19: function not found 
+L 04/26/2020 - 17:19:19: [AMXX]    [0] zp_extra_speargun.sma::plugin_init (line 100)
+L 04/26/2020 - 17:19:20: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:19:20: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:19:20: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:19:20: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 721)
+L 04/26/2020 - 17:19:20: [FUN] Invalid player 1
+L 04/26/2020 - 17:19:20: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:19:20: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:19:20: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 149)
+L 04/26/2020 - 17:19:20: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 691)
+L 04/26/2020 - 17:21:13: Start of error session.
+L 04/26/2020 - 17:21:13: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:21:13: Function "Hook_Weapon" was not found
+L 04/26/2020 - 17:21:13: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:21:13: [AMXX] Run time error 19: function not found 
+L 04/26/2020 - 17:21:13: [AMXX]    [0] zp_extra_speargun.sma::plugin_init (line 100)
+L 04/26/2020 - 17:21:14: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:21:14: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:21:14: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:21:14: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 719)
+L 04/26/2020 - 17:21:14: [FUN] Invalid player 1
+L 04/26/2020 - 17:21:14: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:21:14: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:21:14: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 149)
+L 04/26/2020 - 17:21:14: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 690)
+L 04/26/2020 - 17:25:18: Start of error session.
+L 04/26/2020 - 17:25:18: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:25:18: Function "Hook_Weapon" was not found
+L 04/26/2020 - 17:25:18: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:25:18: [AMXX] Run time error 19: function not found 
+L 04/26/2020 - 17:25:18: [AMXX]    [0] zp_extra_speargun.sma::plugin_init (line 101)
+L 04/26/2020 - 17:25:19: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:25:19: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:25:19: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:25:19: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 721)
+L 04/26/2020 - 17:25:19: [FUN] Invalid player 1
+L 04/26/2020 - 17:25:19: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:25:19: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:25:19: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 150)
+L 04/26/2020 - 17:25:19: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 692)
+L 04/26/2020 - 17:25:26: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:25:26: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:25:26: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 292)
+L 04/26/2020 - 17:25:26: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 749)
+L 04/26/2020 - 17:30:42: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:30:42: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:30:42: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 292)
+L 04/26/2020 - 17:30:42: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 749)
+L 04/26/2020 - 17:31:32: Start of error session.
+L 04/26/2020 - 17:31:32: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:31:32: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:31:32: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:31:32: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:31:32: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 718)
+L 04/26/2020 - 17:31:32: [FUN] Invalid player 1
+L 04/26/2020 - 17:31:32: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:31:32: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:31:32: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 147)
+L 04/26/2020 - 17:31:32: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 689)
+L 04/26/2020 - 17:31:57: Start of error session.
+L 04/26/2020 - 17:31:57: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:31:57: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:31:57: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:31:57: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:31:57: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 718)
+L 04/26/2020 - 17:31:57: [FUN] Invalid player 1
+L 04/26/2020 - 17:31:57: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:31:57: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:31:57: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 147)
+L 04/26/2020 - 17:31:57: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 689)
+L 04/26/2020 - 17:32:04: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:32:04: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:32:04: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 289)
+L 04/26/2020 - 17:32:04: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 746)
+L 04/26/2020 - 17:33:45: Start of error session.
+L 04/26/2020 - 17:33:45: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:33:45: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:33:45: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:33:45: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:33:45: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 642)
+L 04/26/2020 - 17:33:45: [FUN] Invalid player 1
+L 04/26/2020 - 17:33:45: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:33:45: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:33:45: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 144)
+L 04/26/2020 - 17:33:45: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 613)
+L 04/26/2020 - 17:33:46: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:33:46: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:33:46: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 286)
+L 04/26/2020 - 17:33:46: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 670)
+L 04/26/2020 - 17:33:49: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:33:49: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:33:49: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 286)
+L 04/26/2020 - 17:33:49: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 670)
+L 04/26/2020 - 17:34:03: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:34:03: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:34:03: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 286)
+L 04/26/2020 - 17:34:03: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 670)
+L 04/26/2020 - 17:35:06: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:35:06: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:35:06: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 286)
+L 04/26/2020 - 17:35:06: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 670)
+L 04/26/2020 - 17:35:20: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:35:20: [AMXX] Run time error 4: index out of bounds 
+L 04/26/2020 - 17:35:20: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 286)
+L 04/26/2020 - 17:35:20: [AMXX]    [1] zp_extra_speargun.sma::fw_Item_AddToPlayer_Post (line 670)
+L 04/26/2020 - 17:37:39: Start of error session.
+L 04/26/2020 - 17:37:39: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:37:39: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:37:39: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:37:39: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:37:39: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 637)
+L 04/26/2020 - 17:37:39: [FUN] Invalid player 1
+L 04/26/2020 - 17:37:39: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:37:39: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:37:39: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 143)
+L 04/26/2020 - 17:37:39: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 608)
+L 04/26/2020 - 17:39:23: Start of error session.
+L 04/26/2020 - 17:39:23: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:39:23: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:39:23: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:39:23: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:39:23: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 631)
+L 04/26/2020 - 17:39:23: [FUN] Invalid player 1
+L 04/26/2020 - 17:39:23: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:39:23: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:39:23: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 143)
+L 04/26/2020 - 17:39:23: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 602)
+L 04/26/2020 - 17:40:05: Start of error session.
+L 04/26/2020 - 17:40:05: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:40:05: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:40:05: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:40:05: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:40:05: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 631)
+L 04/26/2020 - 17:40:05: [FUN] Invalid player 1
+L 04/26/2020 - 17:40:05: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:40:05: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:40:05: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 143)
+L 04/26/2020 - 17:40:05: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 602)
+L 04/26/2020 - 17:42:58: Start of error session.
+L 04/26/2020 - 17:42:58: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:42:58: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:42:58: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:42:58: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:42:58: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 631)
+L 04/26/2020 - 17:42:58: [FUN] Invalid player 1
+L 04/26/2020 - 17:42:58: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:42:58: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:42:58: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 143)
+L 04/26/2020 - 17:42:58: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 602)
+L 04/26/2020 - 17:45:39: Start of error session.
+L 04/26/2020 - 17:45:39: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:45:39: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:45:39: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:45:39: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:45:39: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 633)
+L 04/26/2020 - 17:45:39: [FUN] Invalid player 1
+L 04/26/2020 - 17:45:39: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:45:39: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:45:39: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 143)
+L 04/26/2020 - 17:45:39: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 604)
+L 04/26/2020 - 17:50:39: Start of error session.
+L 04/26/2020 - 17:50:39: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:50:39: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:50:39: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:50:39: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:50:39: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 625)
+L 04/26/2020 - 17:50:39: [FUN] Invalid player 1
+L 04/26/2020 - 17:50:39: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:50:39: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:50:39: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 143)
+L 04/26/2020 - 17:50:39: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 596)
+L 04/26/2020 - 17:51:09: Start of error session.
+L 04/26/2020 - 17:51:09: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:51:09: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:51:09: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:51:09: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:51:09: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 627)
+L 04/26/2020 - 17:51:09: [FUN] Invalid player 1
+L 04/26/2020 - 17:51:09: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:51:09: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:51:09: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 144)
+L 04/26/2020 - 17:51:09: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 598)
+L 04/26/2020 - 17:55:58: Start of error session.
+L 04/26/2020 - 17:55:58: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 17:55:58: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 17:55:58: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:55:58: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 17:55:58: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 619)
+L 04/26/2020 - 17:55:58: [FUN] Invalid player 1
+L 04/26/2020 - 17:55:58: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 17:55:58: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 17:55:58: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 141)
+L 04/26/2020 - 17:55:58: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 590)
+L 04/26/2020 - 18:00:33: Start of error session.
+L 04/26/2020 - 18:00:33: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 18:00:33: [HAMSANDWICH] Invalid player 1 (not in-game)
+L 04/26/2020 - 18:00:33: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 18:00:33: [AMXX] Run time error 10: native error (native "get_pdata_cbase")
+L 04/26/2020 - 18:00:33: [AMXX]    [0] zp_extra_speargun.sma::fw_Item_Deploy_Post (line 619)
+L 04/26/2020 - 18:00:33: [FUN] Invalid player 1
+L 04/26/2020 - 18:00:33: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 18:00:33: [AMXX] Run time error 10: native error (native "give_item")
+L 04/26/2020 - 18:00:33: [AMXX]    [0] zp_extra_speargun.sma::Get_Spear (line 141)
+L 04/26/2020 - 18:00:33: [AMXX]    [1] zp_extra_speargun.sma::fw_PlayerSpawn_Post (line 590)
+L 04/26/2020 - 18:21:40: Start of error session.
+L 04/26/2020 - 18:21:40: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 18:21:40: [FAKEMETA] Invalid entity
+L 04/26/2020 - 18:21:40: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 18:21:40: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/26/2020 - 18:21:40: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 274)
+L 04/26/2020 - 18:21:43: [FAKEMETA] Invalid entity
+L 04/26/2020 - 18:21:43: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 04/26/2020 - 18:21:43: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/26/2020 - 18:21:43: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 229)
+L 04/26/2020 - 18:41:30: [FAKEMETA] Invalid entity
+L 04/26/2020 - 18:41:30: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 04/26/2020 - 18:41:30: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/26/2020 - 18:41:30: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 229)
+L 04/26/2020 - 18:46:37: [FAKEMETA] Invalid entity
+L 04/26/2020 - 18:46:37: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 04/26/2020 - 18:46:37: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/26/2020 - 18:46:37: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 229)
+L 04/26/2020 - 22:17:51: Start of error session.
+L 04/26/2020 - 22:17:51: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 22:17:51: [FAKEMETA] Invalid entity
+L 04/26/2020 - 22:17:51: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 22:17:51: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/26/2020 - 22:17:51: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 04/26/2020 - 22:28:51: Start of error session.
+L 04/26/2020 - 22:28:51: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 22:28:51: Invalid player id 98
+L 04/26/2020 - 22:28:51: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 22:28:51: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 22:46:02: Start of error session.
+L 04/26/2020 - 22:46:02: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 22:46:02: [FAKEMETA] Invalid entity
+L 04/26/2020 - 22:46:02: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/26/2020 - 22:46:02: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/26/2020 - 22:46:02: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 04/26/2020 - 23:24:26: Start of error session.
+L 04/26/2020 - 23:24:26: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 23:24:26: Invalid player id 240
+L 04/26/2020 - 23:24:26: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:26: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:26: Invalid player id 240
+L 04/26/2020 - 23:24:26: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:26: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:26: Invalid player id 240
+L 04/26/2020 - 23:24:26: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:26: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:26: Invalid player id 240
+L 04/26/2020 - 23:24:26: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:26: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:27: Invalid player id 240
+L 04/26/2020 - 23:24:27: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:27: Invalid player id 240
+L 04/26/2020 - 23:24:27: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:29: Invalid player id 220
+L 04/26/2020 - 23:24:29: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:29: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:29: Invalid player id 220
+L 04/26/2020 - 23:24:29: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:29: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:29: Invalid player id 220
+L 04/26/2020 - 23:24:29: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:29: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:30: Invalid player id 220
+L 04/26/2020 - 23:24:30: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:31: Invalid player id 220
+L 04/26/2020 - 23:24:31: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:31: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:24:31: Invalid player id 220
+L 04/26/2020 - 23:24:31: [AMXX] Run time error 10 (plugin "zp_bot_drag.amxx") (native "get_user_origin") - debug not enabled!
+L 04/26/2020 - 23:24:31: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:33: Start of error session.
+L 04/26/2020 - 23:26:33: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 23:26:33: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:33: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:33: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:33: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:35: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:35: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:36: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:36: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:36: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:37: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:37: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:37: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:37: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:37: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:37: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:38: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:26:39: [AMXX] Run time error 11 (plugin "zp_bot_drag.amxx") - debug not enabled!
+L 04/26/2020 - 23:26:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/26/2020 - 23:27:55: Start of error session.
+L 04/26/2020 - 23:27:55: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 23:27:55: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:27:55: [AMXX] Run time error 11: divide 
+L 04/26/2020 - 23:27:55: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:27:56: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:27:56: [AMXX] Run time error 11: divide 
+L 04/26/2020 - 23:27:56: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:27:56: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:27:56: [AMXX] Run time error 11: divide 
+L 04/26/2020 - 23:27:56: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:11: Start of error session.
+L 04/26/2020 - 23:48:11: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200426.log")
+L 04/26/2020 - 23:48:11: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:11: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:11: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:11: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:11: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:11: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:11: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:11: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:12: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:12: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:12: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:12: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:13: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:13: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:13: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:13: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:14: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:14: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:14: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:14: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:28: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:28: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:28: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:28: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:29: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:29: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:29: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:29: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:29: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:29: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:29: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:29: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:29: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:29: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:29: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:29: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:29: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:29: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:29: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:29: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:30: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:30: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:30: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:30: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:30: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:30: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:30: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:30: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:30: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:30: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:30: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:30: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:48:30: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:48:30: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:48:30: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:48:30: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:37: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:37: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:37: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:37: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:37: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:37: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:37: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:37: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:37: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:37: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:37: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:37: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:37: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:37: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:37: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:37: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)
+L 04/26/2020 - 23:49:38: [FAKEMETA] Invalid entity
+L 04/26/2020 - 23:49:38: [AMXX] Displaying debug trace (plugin "zp_bot_drag.amxx")
+L 04/26/2020 - 23:49:38: [AMXX] Run time error 10: native error (native "pev")
+L 04/26/2020 - 23:49:38: [AMXX]    [0] zp_bot_drag.sma::reelin_player (line 114)

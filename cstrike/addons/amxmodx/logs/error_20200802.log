@@ -1,0 +1,17 @@
+L 08/02/2020 - 11:46:08: Start of error session.
+L 08/02/2020 - 11:46:08: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200802.log")
+L 08/02/2020 - 11:46:08: [FAKEMETA] Invalid entity
+L 08/02/2020 - 11:46:08: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 08/02/2020 - 11:46:08: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 08/02/2020 - 11:46:08: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 08/02/2020 - 12:11:04: Start of error session.
+L 08/02/2020 - 12:11:04: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200802.log")
+L 08/02/2020 - 12:11:04: [HAMSANDWICH] Invalid entity 119
+L 08/02/2020 - 12:11:04: [AMXX] Run time error 10 (plugin "zombie_plague40.amxx") (native "get_pdata_cbase") - debug not enabled!
+L 08/02/2020 - 12:11:04: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 08/02/2020 - 12:11:04: [HAMSANDWICH] Invalid entity 119
+L 08/02/2020 - 12:11:04: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "get_pdata_cbase") - debug not enabled!
+L 08/02/2020 - 12:11:04: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 08/02/2020 - 12:11:04: [FAKEMETA] Invalid entity
+L 08/02/2020 - 12:11:04: [AMXX] Run time error 10 (plugin "zp_extra_balrog5.amxx") (native "pev") - debug not enabled!
+L 08/02/2020 - 12:11:04: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

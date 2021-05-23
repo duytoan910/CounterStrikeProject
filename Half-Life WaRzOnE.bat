@@ -1,0 +1,1 @@
+start hl.exe -steam -noforcemparms -noforcemaccel

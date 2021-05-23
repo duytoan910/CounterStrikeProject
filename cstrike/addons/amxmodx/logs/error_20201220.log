@@ -1,0 +1,17 @@
+L 12/20/2020 - 20:12:19: Start of error session.
+L 12/20/2020 - 20:12:19: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20201220.log")
+L 12/20/2020 - 20:12:19: [FAKEMETA] Invalid entity
+L 12/20/2020 - 20:12:19: [AMXX] Run time error 10 (plugin "zp_add_Yasuo.amxx") (native "pev") - debug not enabled!
+L 12/20/2020 - 20:12:19: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 12/20/2020 - 20:15:33: Start of error session.
+L 12/20/2020 - 20:15:33: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20201220.log")
+L 12/20/2020 - 20:15:33: [FAKEMETA] Invalid entity
+L 12/20/2020 - 20:15:33: [AMXX] Run time error 10 (plugin "zp_add_Yasuo.amxx") (native "pev") - debug not enabled!
+L 12/20/2020 - 20:15:33: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 12/20/2020 - 20:15:33: [FAKEMETA] Invalid entity
+L 12/20/2020 - 20:15:33: [AMXX] Run time error 10 (plugin "zp_add_Yasuo.amxx") (native "pev") - debug not enabled!
+L 12/20/2020 - 20:15:33: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 12/20/2020 - 20:18:20: [FAKEMETA] Invalid entity
+L 12/20/2020 - 20:18:20: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 12/20/2020 - 20:18:20: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 12/20/2020 - 20:18:20: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)

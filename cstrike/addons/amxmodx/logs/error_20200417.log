@@ -1,0 +1,4 @@
+L 04/17/2020 - 21:18:42: Start of error session.
+L 04/17/2020 - 21:18:42: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200417.log")
+L 04/17/2020 - 21:18:42: [AMXX] Run time error 4 (plugin "zp_extra_PlasmaGun.amxx") - debug not enabled!
+L 04/17/2020 - 21:18:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

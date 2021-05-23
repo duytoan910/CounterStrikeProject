@@ -1,0 +1,24 @@
+#include <amxmodx>
+#include <fakemeta>
+#include <zombieplague>
+
+/*================================================================================
+ [Plugin Customization]
+=================================================================================*/
+
+/*============================================================================*/
+
+// Class IDs
+new g_zclass_leech
+
+// Zombie Classes MUST be registered on plugin_precache
+public plugin_precache()
+{
+	register_plugin("[ZP] Default Zombie Classes", "4.3", "MeRcyLeZZ")
+	
+}
+
+// User Infected forward
+public zp_user_infected_post(id, infector, nem)
+{
+}

@@ -1,0 +1,169 @@
+L 04/27/2020 - 02:06:14: Start of error session.
+L 04/27/2020 - 02:06:14: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200427.log")
+L 04/27/2020 - 02:06:14: [HAMSANDWICH] Function fw_Weapon_PrimaryAttack not found.
+L 04/27/2020 - 02:06:14: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "RegisterHam") - debug not enabled!
+L 04/27/2020 - 02:06:14: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:16: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:16: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:16: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:16: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:16: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:16: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:16: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:16: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:16: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:16: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:16: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:16: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:17: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:17: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:18: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:18: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:18: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:18: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:18: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:18: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:18: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:18: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:18: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:18: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:18: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:18: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:19: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:19: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:19: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:19: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:19: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:19: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:19: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:19: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:19: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:19: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:19: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:19: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:20: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:20: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:20: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:20: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:20: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:20: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:20: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:20: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:20: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:20: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:20: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:20: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 02:06:24: Plugin called message_begin with an invalid message id (0).
+L 04/27/2020 - 02:06:24: [AMXX] Run time error 10 (plugin "zp_extra_thanatos7.amxx") (native "message_begin") - debug not enabled!
+L 04/27/2020 - 02:06:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/27/2020 - 21:03:35: Start of error session.
+L 04/27/2020 - 21:03:35: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200427.log")
+L 04/27/2020 - 21:03:35: [FAKEMETA] Invalid entity
+L 04/27/2020 - 21:03:35: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 04/27/2020 - 21:03:35: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/27/2020 - 21:03:35: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 229)
+L 04/27/2020 - 21:03:36: [FAKEMETA] Invalid entity
+L 04/27/2020 - 21:03:36: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/27/2020 - 21:03:36: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/27/2020 - 21:03:36: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 04/27/2020 - 21:03:36: [FAKEMETA] Invalid entity
+L 04/27/2020 - 21:03:36: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/27/2020 - 21:03:36: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/27/2020 - 21:03:36: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 04/27/2020 - 21:48:03: Start of error session.
+L 04/27/2020 - 21:48:03: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200427.log")
+L 04/27/2020 - 21:48:03: [FAKEMETA] Invalid entity
+L 04/27/2020 - 21:48:03: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 04/27/2020 - 21:48:03: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/27/2020 - 21:48:03: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)

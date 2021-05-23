@@ -1,0 +1,15 @@
+L 08/03/2020 - 13:40:49: Start of error session.
+L 08/03/2020 - 13:40:49: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200803.log")
+L 08/03/2020 - 13:40:49: [CSTRIKE] Invalid player 2
+L 08/03/2020 - 13:40:49: [AMXX] Run time error 10 (plugin "zp_add_crow7.amxx") (native "cs_set_user_zoom") - debug not enabled!
+L 08/03/2020 - 13:40:49: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 08/03/2020 - 13:40:50: [CSTRIKE] Invalid player 5
+L 08/03/2020 - 13:40:50: [AMXX] Run time error 10 (plugin "zp_add_crow7.amxx") (native "cs_set_user_zoom") - debug not enabled!
+L 08/03/2020 - 13:40:50: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 08/03/2020 - 13:40:51: [CSTRIKE] Invalid player 8
+L 08/03/2020 - 13:40:51: [AMXX] Run time error 10 (plugin "zp_add_crow7.amxx") (native "cs_set_user_zoom") - debug not enabled!
+L 08/03/2020 - 13:40:51: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 08/03/2020 - 13:41:39: [FAKEMETA] Invalid entity
+L 08/03/2020 - 13:41:39: [AMXX] Displaying debug trace (plugin "zp_addon_npc_Revenant.amxx")
+L 08/03/2020 - 13:41:39: [AMXX] Run time error 10: native error (native "pev")
+L 08/03/2020 - 13:41:39: [AMXX]    [0] zp_addon_npc_Revenant.sma::Revenant_Death2 (line 968)

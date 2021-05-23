@@ -1,0 +1,5 @@
+L 12/21/2020 - 10:57:46: Start of error session.
+L 12/21/2020 - 10:57:46: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20201221.log")
+L 12/21/2020 - 10:57:46: [FAKEMETA] Invalid entity
+L 12/21/2020 - 10:57:46: [AMXX] Run time error 10 (plugin "zp_add_Yasuo.amxx") (native "pev") - debug not enabled!
+L 12/21/2020 - 10:57:46: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

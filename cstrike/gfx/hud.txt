@@ -1,0 +1,2 @@
+g_human_win		tga_image/humanwin.tga		0	0	450	183
+g_zombie_win		tga_image/zombiewin.tga		0	0	450	183

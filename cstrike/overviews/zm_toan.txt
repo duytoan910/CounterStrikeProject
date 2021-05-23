@@ -1,0 +1,12 @@
+global 
+{
+	ZOOM	3.39
+	ORIGIN	-9.58 134.47 -529
+	ROTATED	1
+}
+
+layer 
+{
+	IMAGE	"overviews/zm_toan.bmp"
+	HEIGHT	-529
+}

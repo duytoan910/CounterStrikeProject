@@ -1,0 +1,5 @@
+L 11/25/2020 - 02:06:48: Start of error session.
+L 11/25/2020 - 02:06:48: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20201125.log")
+L 11/25/2020 - 02:06:48: [FAKEMETA] Invalid entity
+L 11/25/2020 - 02:06:48: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "pev") - debug not enabled!
+L 11/25/2020 - 02:06:48: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

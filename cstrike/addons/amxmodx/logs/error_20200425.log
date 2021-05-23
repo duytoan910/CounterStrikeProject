@@ -1,0 +1,27 @@
+L 04/25/2020 - 16:10:25: Start of error session.
+L 04/25/2020 - 16:10:25: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200425.log")
+L 04/25/2020 - 16:10:25: [FAKEMETA] Invalid entity
+L 04/25/2020 - 16:10:25: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 04/25/2020 - 16:10:25: [AMXX] Run time error 10: native error (native "pev")
+L 04/25/2020 - 16:10:25: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 108)
+L 04/25/2020 - 17:50:56: Start of error session.
+L 04/25/2020 - 17:50:56: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200425.log")
+L 04/25/2020 - 17:50:56: Function is not present (function "Play_SPR_Reload") (plugin "zp_extra_magicmg.amxx")
+L 04/25/2020 - 17:50:56: [AMXX] Run time error 10 (plugin "zp_extra_magicmg.amxx") (native "set_task") - debug not enabled!
+L 04/25/2020 - 17:50:56: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 04/25/2020 - 20:58:33: Start of error session.
+L 04/25/2020 - 20:58:33: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200425.log")
+L 04/25/2020 - 20:58:33: [FAKEMETA] Invalid entity
+L 04/25/2020 - 20:58:33: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 04/25/2020 - 20:58:33: [AMXX] Run time error 10: native error (native "pev")
+L 04/25/2020 - 20:58:33: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 102)
+L 04/25/2020 - 21:18:57: Start of error session.
+L 04/25/2020 - 21:18:57: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200425.log")
+L 04/25/2020 - 21:18:57: [FAKEMETA] Invalid entity
+L 04/25/2020 - 21:18:57: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 04/25/2020 - 21:18:57: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 04/25/2020 - 21:18:57: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 229)
+L 04/25/2020 - 21:40:55: Start of error session.
+L 04/25/2020 - 21:40:55: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20200425.log")
+L 04/25/2020 - 21:40:55: [AMXX] Run time error 4 (plugin "zp_extra_PlasmaGun.amxx") - debug not enabled!
+L 04/25/2020 - 21:40:55: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

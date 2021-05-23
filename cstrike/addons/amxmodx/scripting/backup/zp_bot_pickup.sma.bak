@@ -1,0 +1,38 @@
+#include <amxmodx>
+#include <engine>
+#include <fakemeta>
+#include <hamsandwich>
+#include <zombieplague>
+
+#define PICKUP_RANGE 200.0
+public plugin_init() 
+{
+	register_plugin("Bot auto pickup gun","1.0","Toan")
+	RegisterHam(Ham_Item_PostFrame, "weapon_knife", "PickItUp", 1)
+	RegisterHam(Ham_Item_PostFrame, "weapon_hegrenade", "PickItUp", 1)
+}
+
+public PickItUp(ent)
+{
+	if(pev_valid(ent) != 2)
+		return
+		
+	static id; id = get_pdata_cbase(ent, 41, 4)
+	if(!is_user_alive(id) || !is_user_bot(id) || get_pdata_cbase(id, 373) != ent)
+		return	
+	if(zp_get_user_zombie(id))
+		return
+	new i, Float:Origin[3], classname[32];
+	
+	pev( id , pev_origin , Origin );
+	
+	while((i = find_ent_in_sphere(i, Origin, PICKUP_RANGE)) != 0)
+	{
+		if(is_user_connected(i))continue
+		
+		pev(i,pev_classname,classname,charsmax(classname))        
+		if(!equal(classname,"weaponbox"))continue
+		fake_touch(i,id)		
+		break;
+	} 
+} 

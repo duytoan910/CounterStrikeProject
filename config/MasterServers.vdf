@@ -1,0 +1,15 @@
+"MasterServers"
+{
+	"hl1"
+	{
+		"0"
+		{
+			"addr"		"109.230.208.145:27011"
+		}
+		"1"
+		{
+			"addr"		"balkan.masterserver.me:27011"
+		}
+	}
+}
+
