@@ -11,10 +11,6 @@
 #pragma ctrlchar 				'\'
 #pragma compress 				1
 
-//**********************************************
-//* Weapon Settings.                           *
-//**********************************************
-
 // Main
 #define WEAPON_KEY				279214
 #define WEAPON_NAME 				"weapon_m3dragonm"
