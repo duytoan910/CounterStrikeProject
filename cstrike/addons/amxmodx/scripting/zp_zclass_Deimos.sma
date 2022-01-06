@@ -274,7 +274,7 @@ light_exp(ent, victim)
 	new Float:origin[3];
 	pev(ent, pev_origin, origin);	
 
-	if (is_user_alive(victim) && zp_get_user_zombie(victim)!=2)
+	if (is_user_alive(victim) && zp_get_user_zombie(victim)!=2 && !zp_get_user_survivor(victim))
 	{
 		Drop_PlayerWeapon(victim)
 		ScreenShake(victim)

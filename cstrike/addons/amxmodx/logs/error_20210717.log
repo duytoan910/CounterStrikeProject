@@ -1,0 +1,5 @@
+L 07/17/2021 - 09:23:56: Start of error session.
+L 07/17/2021 - 09:23:56: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210717.log")
+L 07/17/2021 - 09:23:56: Called dynanative into a paused plugin.
+L 07/17/2021 - 09:23:56: [AMXX] Run time error 10 (plugin "zp_extra_leap.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 07/17/2021 - 09:23:56: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

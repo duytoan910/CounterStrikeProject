@@ -226,7 +226,7 @@ public cmd_arm(id)
 			Player_SetAnimation(id, "skill1")
 			md_zb_skill(id, 0)
 			UTIL_PlayAnim( id , LongDamageAnim ) 
-			set_task(0.2, "UTIL_LongDamage", id)
+			set_task(0.1, "UTIL_LongDamage", id)
 			set_task(armtime,"reset_arm",id)
 		}
 	}	

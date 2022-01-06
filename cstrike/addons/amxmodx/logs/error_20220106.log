@@ -1,0 +1,47 @@
+L 01/06/2022 - 00:25:20: Start of error session.
+L 01/06/2022 - 00:25:20: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20220106.log")
+L 01/06/2022 - 00:25:20: [HAMSANDWICH] Function fw_TraceAttack not found.
+L 01/06/2022 - 00:25:20: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "RegisterHam") - debug not enabled!
+L 01/06/2022 - 00:25:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:22: [HAMSANDWICH] Function fw_TraceAttack not found.
+L 01/06/2022 - 00:25:22: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "RegisterHamFromEntity") - debug not enabled!
+L 01/06/2022 - 00:25:22: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/06/2022 - 00:25:27: Plugin called message_begin with an invalid message id (0).
+L 01/06/2022 - 00:25:27: [AMXX] Run time error 10 (plugin "zp_extra_m3dragon.amxx") (native "message_begin") - debug not enabled!
+L 01/06/2022 - 00:25:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

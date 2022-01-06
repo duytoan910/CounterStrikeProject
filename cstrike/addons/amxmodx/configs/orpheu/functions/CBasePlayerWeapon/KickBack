@@ -1,0 +1,37 @@
+{
+    "name"      : "KickBack",
+    "class"     : "CBasePlayerWeapon",
+    "library"   : "mod",
+    "arguments" : 
+    [
+        {
+            "type" : "float" 
+        },
+        {
+            "type" : "float" 
+        },
+        {
+            "type" : "float" 
+        },
+        {
+            "type" : "float" 
+        },
+        {
+            "type" : "float" 
+        },
+        {
+            "type" : "float" 
+        },
+        {
+            "type" : "int" 
+        } 
+    ],
+    "identifiers" : 
+    [
+        {
+            "os"    : "windows",
+            "mod"   : "cstrike",
+            "value" : 0xD94E0
+        }
+    ]
+}

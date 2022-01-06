@@ -1,0 +1,92 @@
+L 09/02/2021 - 00:15:05: Start of error session.
+L 09/02/2021 - 00:15:05: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:15:05: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:15:05: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:15:05: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:17:31: Start of error session.
+L 09/02/2021 - 00:17:31: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:17:31: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:17:31: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:17:31: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:22:35: Start of error session.
+L 09/02/2021 - 00:22:35: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:22:35: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:22:35: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:22:35: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:26:22: Start of error session.
+L 09/02/2021 - 00:26:22: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:26:22: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:26:22: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:26:22: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:26:51: Start of error session.
+L 09/02/2021 - 00:26:51: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:26:51: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:26:51: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:26:51: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:28:14: Start of error session.
+L 09/02/2021 - 00:28:14: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:28:14: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:28:14: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:28:14: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:30:04: Start of error session.
+L 09/02/2021 - 00:30:04: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:30:04: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:30:04: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:30:04: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:34:11: Start of error session.
+L 09/02/2021 - 00:34:11: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:34:11: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:34:11: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:34:11: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:34:57: Start of error session.
+L 09/02/2021 - 00:34:57: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:34:57: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:34:57: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:34:57: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:40:02: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:40:02: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:40:02: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:41:31: Start of error session.
+L 09/02/2021 - 00:41:31: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:41:31: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:41:31: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:41:31: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:42:45: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:42:45: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:42:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:47:51: Function is not present (function "bot_use_skill") (plugin "zp_zclass_spitter.amxx")
+L 09/02/2021 - 00:47:51: [AMXX] Run time error 10 (plugin "zp_zclass_spitter.amxx") (native "set_task") - debug not enabled!
+L 09/02/2021 - 00:47:51: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 00:48:23: Start of error session.
+L 09/02/2021 - 00:48:23: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 00:48:23: Function "logevent_round_start" was not found
+L 09/02/2021 - 00:48:23: [AMXX] Run time error 19 (plugin "zp_zclass_spitter.amxx") - debug not enabled!
+L 09/02/2021 - 00:48:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 09/02/2021 - 13:49:10: Start of error session.
+L 09/02/2021 - 13:49:10: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 13:49:10: [FAKEMETA] Invalid entity
+L 09/02/2021 - 13:49:10: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 09/02/2021 - 13:49:10: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 09/02/2021 - 13:49:10: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 09/02/2021 - 13:49:11: [FAKEMETA] Invalid entity
+L 09/02/2021 - 13:49:11: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 09/02/2021 - 13:49:11: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 09/02/2021 - 13:49:11: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 09/02/2021 - 13:52:34: [FAKEMETA] Invalid entity
+L 09/02/2021 - 13:52:34: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 09/02/2021 - 13:52:34: [AMXX] Run time error 10: native error (native "pev")
+L 09/02/2021 - 13:52:34: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 09/02/2021 - 16:54:22: Start of error session.
+L 09/02/2021 - 16:54:22: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210902.log")
+L 09/02/2021 - 16:54:22: [FAKEMETA] Invalid entity
+L 09/02/2021 - 16:54:22: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 09/02/2021 - 16:54:22: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 09/02/2021 - 16:54:22: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 09/02/2021 - 16:54:22: [FAKEMETA] Invalid entity
+L 09/02/2021 - 16:54:22: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 09/02/2021 - 16:54:22: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 09/02/2021 - 16:54:22: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 09/02/2021 - 17:00:41: [FAKEMETA] Invalid entity
+L 09/02/2021 - 17:00:41: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 09/02/2021 - 17:00:41: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 09/02/2021 - 17:00:41: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)

@@ -62,7 +62,7 @@ new const ENTITY_MISSILE_EXP_SOUND[][] =
 #define magicmg_SPEED 0.2
 #define magicmg_RECOIL 0.3
 #define MAGICMG_RELOAD 4.0
-#define magicmg_DAMAGE 1.0
+#define magicmg_DAMAGE 1.3
 
 const WEAPON_HIT_COUNT = 30;
 const Float: ENTITY_MISSILE_RADIUS_EX = 125.0;

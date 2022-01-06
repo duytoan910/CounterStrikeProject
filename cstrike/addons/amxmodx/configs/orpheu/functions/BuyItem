@@ -1,0 +1,22 @@
+{
+    "name"      : "BuyItem",
+    "library"   : "mod",
+    "arguments" :
+    [
+        {
+            "type"  : "CBasePlayer *"
+        },
+        {
+            "type"  : "int"
+        }
+    ],
+    "identifiers":
+    [
+        {
+            "os"    : "windows",
+            "mod"   : "cstrike",
+            "value" : 0x6B1E0
+        }
+    ]
+}
+

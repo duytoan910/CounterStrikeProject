@@ -11,7 +11,7 @@
 #define VERSION "1.0"
 #define AUTHOR "author"
 
-#define BOSS_HP 300000.0
+#define BOSS_HP 200000.0
 #define BLOODCOLOR 248
 #define FIGHT_MUSIC "zombie_plague/boss/background/Scenario_Start.mp3"
 
@@ -143,7 +143,7 @@ public fw_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType
 	fDamage[Attacker]+=Damage
 	if(fDamage[Attacker]>=100.0)
 	{
-		zp_set_user_ammo_packs(Attacker, zp_get_user_ammo_packs(Attacker)+1)
+		zp_set_user_ammo_packs(Attacker, zp_get_user_ammo_packs(Attacker)+3)
 		fDamage[Attacker] = 0.0
 	}	
 }

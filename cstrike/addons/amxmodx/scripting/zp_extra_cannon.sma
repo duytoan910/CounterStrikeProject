@@ -23,7 +23,7 @@
 #define WEAPON_MAX_CLIP				1
 #define WEAPON_DEFAULT_AMMO			30
 
-#define WEAPON_DAMAGE				random_float(30.0, 40.0) //FLOAT 
+#define WEAPON_DAMAGE				random_float(60.0, 80.0) //FLOAT 
 #define WEAPON_KNOCKBACK			2.0
 
 #define WEAPON_TIME_NEXT_IDLE 			10.0

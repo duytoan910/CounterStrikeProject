@@ -1,0 +1,13 @@
+L 08/18/2021 - 19:45:27: Start of error session.
+L 08/18/2021 - 19:45:27: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210818.log")
+L 08/18/2021 - 19:45:27: [FAKEMETA] Invalid entity
+L 08/18/2021 - 19:45:27: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 08/18/2021 - 19:45:27: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 08/18/2021 - 19:45:27: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 231)
+L 08/18/2021 - 19:48:47: [FAKEMETA] Invalid entity
+L 08/18/2021 - 19:48:47: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 08/18/2021 - 19:48:47: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 08/18/2021 - 19:48:47: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 08/18/2021 - 19:54:03: [FAKEMETA] Invalid entity
+L 08/18/2021 - 19:54:03: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "pev") - debug not enabled!
+L 08/18/2021 - 19:54:03: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

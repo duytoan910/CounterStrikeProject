@@ -260,7 +260,7 @@ public cmd_drop(id)
 { 
 	if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 		return
-	if(is_user_alive(id) && zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == idclass && !zp_get_user_nemesis(id)) 
+	if(is_user_alive(id) && zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == idclass) 
 	{
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return
@@ -323,7 +323,7 @@ public cmd_lastinv(id)
 { 
 	if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 		return
-	if(is_user_alive(id) && zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == idclass && !zp_get_user_nemesis(id)) 
+	if(is_user_alive(id) && zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == idclass) 
 	{	
 		skill_harden_handle(id) 
 	}
@@ -411,11 +411,9 @@ public fw_Killed_Post(id)
 { 
 	if(!is_user_connected(id)) 
 		return HAM_IGNORED 
-	if(!zp_get_user_zombie(id))
+	if(!zp_get_user_zombie(id)) 
 		return HAM_IGNORED 
 	if(zp_get_user_zombie_class(id) != idclass) 
-		return HAM_IGNORED 
-	if(!zp_get_user_nemesis(id)) 
 		return HAM_IGNORED 
 	
 	g_hide_corpse[id] = 1 

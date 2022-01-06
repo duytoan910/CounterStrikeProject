@@ -379,7 +379,7 @@ public explode(id, Float:End1[3])
 					continue 
 				if(pev(a, pev_takedamage) != DAMAGE_NO)
 				{
-					ExecuteHamB(Ham_TakeDamage, a, id, id, is_deadlyshot(id)?random_float(110.0-10,110.0+10)+1.5:random_float(110.0-10,110.0+10), DMG_BULLET)
+					ExecuteHamB(Ham_TakeDamage, a, id, id, is_deadlyshot(id)?random_float(510.0-10,510.0+10)+1.5:random_float(510.0-10,510.0+10), DMG_BULLET)
 				}
 			}
 		}

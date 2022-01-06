@@ -1,0 +1,11 @@
+L 08/16/2021 - 15:12:35: Start of error session.
+L 08/16/2021 - 15:12:35: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20210816.log")
+L 08/16/2021 - 15:12:35: [FAKEMETA] Invalid entity
+L 08/16/2021 - 15:12:35: [AMXX] Run time error 10 (plugin "zp_add_Yasuo.amxx") (native "pev") - debug not enabled!
+L 08/16/2021 - 15:12:35: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 08/16/2021 - 15:16:39: [CSTRIKE] Invalid player 3
+L 08/16/2021 - 15:16:39: [AMXX] Run time error 10 (plugin "zp_add_crow7.amxx") (native "cs_set_user_zoom") - debug not enabled!
+L 08/16/2021 - 15:16:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 08/16/2021 - 15:18:27: [FAKEMETA] Invalid entity
+L 08/16/2021 - 15:18:27: [AMXX] Run time error 10 (plugin "zp_add_Yasuo.amxx") (native "pev") - debug not enabled!
+L 08/16/2021 - 15:18:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
