@@ -1,0 +1,25 @@
+{
+    "name"      : "AddAccount",
+    "class"     : "CBasePlayer",
+    "library"   : "mod",
+    "arguments" :
+    [
+        {
+            "type"  : "int",
+            "info"  : "amount"
+            
+        },
+        {
+            "type"  : "bool",
+            "info"  : "bTrackChange"
+        }
+    ],
+    "identifiers":
+    [
+        {
+            "os"    : "windows",
+            "mod"   : "cstrike",
+            "value" : 0xAA180
+        }
+    ]
+}

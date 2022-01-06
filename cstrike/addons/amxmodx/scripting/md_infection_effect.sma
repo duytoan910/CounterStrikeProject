@@ -11,6 +11,7 @@
 #define EFFECT_BIK "gfx/tga_image/infection.bik"
 #define EFFECT2_TGA "gfx/tga_image/infection2.tga"
 #define SKILL_TGA "gfx/tga_image/zombie_skill.tga"
+#define SKILL_DS_TGA "gfx/tga_image/retina_damagedouble.tga"
 #define SKILL_HEAL_TGA "gfx/tga_image/zombie_skill_heal.tga"
 
 public plugin_init() 
@@ -20,6 +21,7 @@ public plugin_init()
 	md_loadimage(EFFECT2_TGA)
 	md_loadimage(SKILL_TGA)
 	md_loadimage(SKILL_HEAL_TGA)
+	md_loadimage(SKILL_DS_TGA)
 }
 
 public plugin_natives()
@@ -31,19 +33,20 @@ public ShowScreen(id, type)
 	if(!is_user_alive(id)||is_user_bot(id))
 		return
 	
-	if(type==0)
-		md_drawimage(id, 0, 0, SKILL_TGA, 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.1, 1.5, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
-	else md_drawimage(id, 0, 0, SKILL_HEAL_TGA, 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.1, 1.5, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
-	/*
-	message_begin(MSG_ONE, get_user_msgid("ScreenFade"),_, id)
-	write_short(4096 * 2)
-	write_short(floatround(4096 * 0.5))
-	write_short(0x0000)    // FADE OUT
-	write_byte(155)
-	write_byte(155)
-	write_byte(155)
-	write_byte(70)	
-	message_end()*/
+	switch(type){
+		case 0:{
+			md_drawimage(id, 0, 0, SKILL_TGA, 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.1, 1.5, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
+			
+		}
+		case 1:{
+			md_drawimage(id, 0, 0, SKILL_HEAL_TGA, 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.1, 1.5, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
+			
+		}
+		case 2:{
+			md_drawimage(id, 0, 0, SKILL_DS_TGA, 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0, 1.5, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
+			
+		}
+	}
 }
 public zp_user_humanized_post(id)
 {

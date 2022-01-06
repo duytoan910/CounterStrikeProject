@@ -1,149 +1,32 @@
-Fri Jan 08 07:58:11 2021 UTC - Module file name: C:\Program Files (x86)\Steam\gameoverlayrenderer64.dll
-Fri Jan 08 07:58:11 2021 UTC - GameID = 588430, OverlayGameID = 588430
-Fri Jan 08 07:58:11 2021 UTC - System page size: 4096
-Fri Jan 08 07:58:11 2021 UTC - Hooking SetCursorPos, GetCursorPos, ShowCursor, SetCursor, and GetCursor
-Fri Jan 08 07:58:11 2021 UTC - Game is using opengl32.dll... hooking.
-Fri Jan 08 07:58:11 2021 UTC - Modules at GameOverlayRenderer.dll attach
-Fri Jan 08 07:58:11 2021 UTC - 01: FalloutShelter.exe - (00007FF79E190000 to 00007FF79E234000)
-Fri Jan 08 07:58:11 2021 UTC - 02: ntdll.dll - (00007FFE2F700000 to 00007FFE2F8F0000)
-Fri Jan 08 07:58:11 2021 UTC - 03: KERNEL32.DLL - (00007FFE2E250000 to 00007FFE2E302000)
-Fri Jan 08 07:58:11 2021 UTC - 04: KERNELBASE.dll - (00007FFE2CCF0000 to 00007FFE2CF95000)
-Fri Jan 08 07:58:11 2021 UTC - 05: ADVAPI32.dll - (00007FFE2E310000 to 00007FFE2E3B3000)
-Fri Jan 08 07:58:11 2021 UTC - 06: msvcrt.dll - (00007FFE2DA40000 to 00007FFE2DADE000)
-Fri Jan 08 07:58:11 2021 UTC - 07: sechost.dll - (00007FFE2D880000 to 00007FFE2D917000)
-Fri Jan 08 07:58:11 2021 UTC - 08: RPCRT4.dll - (00007FFE2F240000 to 00007FFE2F360000)
-Fri Jan 08 07:58:11 2021 UTC - 09: UnityPlayer.dll - (00007FFDC8300000 to 00007FFDC9901000)
-Fri Jan 08 07:58:11 2021 UTC - 10: USER32.dll - (00007FFE2DAE0000 to 00007FFE2DC74000)
-Fri Jan 08 07:58:11 2021 UTC - 11: win32u.dll - (00007FFE2CFA0000 to 00007FFE2CFC1000)
-Fri Jan 08 07:58:11 2021 UTC - 12: GDI32.dll - (00007FFE2F210000 to 00007FFE2F236000)
-Fri Jan 08 07:58:11 2021 UTC - 13: HID.DLL - (00007FFE2B020000 to 00007FFE2B02E000)
-Fri Jan 08 07:58:11 2021 UTC - 14: gdi32full.dll - (00007FFE2CAF0000 to 00007FFE2CC86000)
-Fri Jan 08 07:58:11 2021 UTC - 15: CRYPTBASE.DLL - (00007FFE2BFC0000 to 00007FFE2BFCC000)
-Fri Jan 08 07:58:11 2021 UTC - 16: msvcp_win.dll - (00007FFE2CA50000 to 00007FFE2CAEE000)
-Fri Jan 08 07:58:11 2021 UTC - 17: bcryptPrimitives.dll - (00007FFE2C870000 to 00007FFE2C8F1000)
-Fri Jan 08 07:58:11 2021 UTC - 18: ucrtbase.dll - (00007FFE2C670000 to 00007FFE2C76A000)
-Fri Jan 08 07:58:11 2021 UTC - 19: ole32.dll - (00007FFE2E0D0000 to 00007FFE2E227000)
-Fri Jan 08 07:58:11 2021 UTC - 20: combase.dll - (00007FFE2DC80000 to 00007FFE2DFB6000)
-Fri Jan 08 07:58:11 2021 UTC - 21: SHLWAPI.dll - (00007FFE2DFC0000 to 00007FFE2E012000)
-Fri Jan 08 07:58:11 2021 UTC - 22: VERSION.dll - (00007FFE253A0000 to 00007FFE253AA000)
-Fri Jan 08 07:58:11 2021 UTC - 23: SETUPAPI.dll - (00007FFE2ECC0000 to 00007FFE2F130000)
-Fri Jan 08 07:58:11 2021 UTC - 24: cfgmgr32.dll - (00007FFE2D760000 to 00007FFE2D7AA000)
-Fri Jan 08 07:58:11 2021 UTC - 25: bcrypt.dll - (00007FFE2C840000 to 00007FFE2C866000)
-Fri Jan 08 07:58:11 2021 UTC - 26: SHELL32.dll - (00007FFE2E5D0000 to 00007FFE2ECB7000)
-Fri Jan 08 07:58:11 2021 UTC - 27: shcore.dll - (00007FFE2F360000 to 00007FFE2F409000)
-Fri Jan 08 07:58:11 2021 UTC - 28: windows.storage.dll - (00007FFE2CFD0000 to 00007FFE2D751000)
-Fri Jan 08 07:58:11 2021 UTC - 29: profapi.dll - (00007FFE2C640000 to 00007FFE2C663000)
-Fri Jan 08 07:58:11 2021 UTC - 30: powrprof.dll - (00007FFE2C5B0000 to 00007FFE2C5FA000)
-Fri Jan 08 07:58:11 2021 UTC - 31: UMPDC.dll - (00007FFE2C5A0000 to 00007FFE2C5B0000)
-Fri Jan 08 07:58:11 2021 UTC - 32: kernel.appcore.dll - (00007FFE2C620000 to 00007FFE2C631000)
-Fri Jan 08 07:58:11 2021 UTC - 33: cryptsp.dll - (00007FFE2C820000 to 00007FFE2C837000)
-Fri Jan 08 07:58:11 2021 UTC - 34: WS2_32.dll - (00007FFE2F1A0000 to 00007FFE2F20F000)
-Fri Jan 08 07:58:11 2021 UTC - 35: OLEAUT32.dll - (00007FFE2D7B0000 to 00007FFE2D875000)
-Fri Jan 08 07:58:11 2021 UTC - 36: IMM32.dll - (00007FFE2E020000 to 00007FFE2E04E000)
-Fri Jan 08 07:58:11 2021 UTC - 37: WINMM.dll - (00007FFE2A0C0000 to 00007FFE2A0E4000)
-Fri Jan 08 07:58:11 2021 UTC - 38: OPENGL32.dll - (00007FFE05920000 to 00007FFE05A76000)
-Fri Jan 08 07:58:11 2021 UTC - 39: DNSAPI.dll - (00007FFE2BB40000 to 00007FFE2BC0B000)
-Fri Jan 08 07:58:11 2021 UTC - 40: IPHLPAPI.DLL - (00007FFE2BB00000 to 00007FFE2BB3A000)
-Fri Jan 08 07:58:11 2021 UTC - 41: NSI.dll - (00007FFE2F130000 to 00007FFE2F138000)
-Fri Jan 08 07:58:11 2021 UTC - 42: WINMMBASE.dll - (00007FFE29D20000 to 00007FFE29D4D000)
-Fri Jan 08 07:58:11 2021 UTC - 43: GLU32.dll - (00007FFE23D60000 to 00007FFE23D8C000)
-Fri Jan 08 07:58:11 2021 UTC - 44: WINHTTP.dll - (00007FFE1FAA0000 to 00007FFE1FB90000)
-Fri Jan 08 07:58:11 2021 UTC - 45: dxcore.dll - (00007FFE2B1E0000 to 00007FFE2B200000)
-Fri Jan 08 07:58:11 2021 UTC - 46: gameoverlayrenderer64.dll - (00007FFDF2240000 to 00007FFDF2429000)
-Fri Jan 08 07:58:11 2021 UTC - 47: PSAPI.DLL - (00007FFE2DA30000 to 00007FFE2DA38000)
-Fri Jan 08 07:58:11 2021 UTC - ----------------------------
-Fri Jan 08 07:58:11 2021 UTC - Game is using dxgi (dx10/dx11), preparing to hook.
-Fri Jan 08 07:58:11 2021 UTC - hookCreateDXGIFactory1 called
-Fri Jan 08 07:58:11 2021 UTC - Hooking vtable for factory
-Fri Jan 08 07:58:11 2021 UTC - DXGIFactory2_CreateSwapChain already hooked via IDXGIFactory or IDXGIFactory1
-Fri Jan 08 07:58:11 2021 UTC - hookCreateDXGIFactory called
-Fri Jan 08 07:58:11 2021 UTC - Hooking vtable for factory
-Fri Jan 08 07:58:11 2021 UTC - DXGIFactory_CreateSwapChain already hooked via IDXGIFactory1 or IDXGIFactory2
-Fri Jan 08 07:58:11 2021 UTC - DXGIFactory2_CreateSwapChain already hooked via IDXGIFactory or IDXGIFactory1
-Fri Jan 08 07:58:11 2021 UTC - Creating IWrapWbemLocator
-Fri Jan 08 07:58:11 2021 UTC - CoCreateInstance hook created WbemLocator interface 0000019E3B383520
-Fri Jan 08 07:58:11 2021 UTC - IWrapWbemLocator 0000019E3B383520 deleting
-Fri Jan 08 07:58:11 2021 UTC - Initializing Audio...
-Fri Jan 08 07:58:11 2021 UTC - IAudioClient_Initialize - SUCCEEDED
-Fri Jan 08 07:58:11 2021 UTC - Audio client initialized: 0x0000019E429553C0
-Fri Jan 08 07:58:11 2021 UTC - Device:
-Fri Jan 08 07:58:11 2021 UTC - Audio client mix format:
-Fri Jan 08 07:58:11 2021 UTC - 	format: 65534
-Fri Jan 08 07:58:11 2021 UTC - 	channels: 2
-Fri Jan 08 07:58:11 2021 UTC - 	samples/sec: 48000
-Fri Jan 08 07:58:11 2021 UTC - 	bytes/sec: 192000
-Fri Jan 08 07:58:11 2021 UTC - 	alignment: 4
-Fri Jan 08 07:58:11 2021 UTC - 	bits/sample: 16
-Fri Jan 08 07:58:11 2021 UTC - 	channel mask: 0x3
-Fri Jan 08 07:58:11 2021 UTC - 	data format: {00000001-0000-0010-8000-00AA00389B71}
-Fri Jan 08 07:58:11 2021 UTC - Audio hooked
-Fri Jan 08 07:58:11 2021 UTC - Audio client started: 0x0000019E429553C0, 1
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputEnable Version 13
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputGetBatteryInformation Version 13
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputGetCapabilities Version 13
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputGetDSoundAudioDeviceGuids Version 13
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputGetKeystroke Version 13
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputGetState Version 13
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputGetStateEX Version 13
-Fri Jan 08 07:58:12 2021 UTC - XInput Hooked XInputSetState Version 13
-Fri Jan 08 07:58:12 2021 UTC - Registering HWND 0000000001730606 for device notifications
-Fri Jan 08 07:58:12 2021 UTC - hookCreateDXGIFactory called
-Fri Jan 08 07:58:12 2021 UTC - Hooking vtable for factory
-Fri Jan 08 07:58:12 2021 UTC - DXGIFactory_CreateSwapChain already hooked via IDXGIFactory1 or IDXGIFactory2
-Fri Jan 08 07:58:12 2021 UTC - DXGIFactory2_CreateSwapChain already hooked via IDXGIFactory or IDXGIFactory1
-Fri Jan 08 07:58:12 2021 UTC - IWrapDXGIFactory2::IDXGIFactory2_CreateSwapChainForHWND called
-Fri Jan 08 07:58:12 2021 UTC - Hooking vtable for swap chain
-Fri Jan 08 07:58:12 2021 UTC - Trying to detour d3d11 device
-Fri Jan 08 07:58:12 2021 UTC - Hooking vtable for device
-Fri Jan 08 07:58:12 2021 UTC - Tracking new device: 3b37e288
-Fri Jan 08 07:58:12 2021 UTC - Tracking new swap chain: 42fbe670 (with device: 3b37e288)
-Fri Jan 08 07:58:12 2021 UTC - Creating D3D11 renderer
-Fri Jan 08 07:58:12 2021 UTC - Hooking vtable for swap chain1
-Fri Jan 08 07:58:12 2021 UTC - Releasing all resources for device: 0000019E3B37E288
-Fri Jan 08 07:58:12 2021 UTC - Releasing all resources for device: 0000019E3B37E288
-Fri Jan 08 07:58:12 2021 UTC - Registering HWND 0000000001730606 for device notifications
-Fri Jan 08 07:58:12 2021 UTC - Trying to setup input hook...
-Fri Jan 08 07:58:12 2021 UTC - Set input hook...
-Fri Jan 08 07:58:12 2021 UTC - Creating IWrapWbemLocator
-Fri Jan 08 07:58:12 2021 UTC - CoCreateInstance hook created WbemLocator interface 0000019E498D6FB0
-Fri Jan 08 07:58:12 2021 UTC - IWrapWbemLocator 0000019E498D6FB0 deleting
-Fri Jan 08 07:58:14 2021 UTC - Releasing all resources for device: 0000019E3B37E288
-Fri Jan 08 07:58:14 2021 UTC - Detaching input hook...
-Fri Jan 08 07:58:18 2021 UTC - Releasing all resources for device: 0000019E3B37E288
-Fri Jan 08 07:58:18 2021 UTC - Releasing all resources for device: 0000019E3B37E288
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Found a hooked function in now unloaded module, removing from map.
-Fri Jan 08 07:58:18 2021 UTC - Releasing all resources for device: 0000019E3B37E288
-Fri Jan 08 07:58:18 2021 UTC - DeleteD3D11RendererForSwapChain called for: 0000019E42FBE670
-Fri Jan 08 07:58:18 2021 UTC - Releasing all resources for device: 0000019E3B37E288
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Fri Jan 08 10:08:30 2021 UTC - Releasing all resources for device: 000002223B88B898
-Fri Jan 08 10:08:30 2021 UTC - Detaching input hook...
-Fri Jan 08 10:08:30 2021 UTC - DeleteD3D11RendererForSwapChain called for: 000002223BC00870
-Fri Jan 08 10:08:30 2021 UTC - Releasing all resources for device: 000002223B88B898
-Fri Jan 08 10:08:31 2021 UTC - GameOverlayRenderer.dll detaching
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
-Fri Jan 08 10:08:31 2021 UTC - Aborting UnhookFunc because pRealFunctionAddr is null
+Wed Jan 05 14:28:03 2022 UTC - Module file name: C:\Program Files (x86)\Steam\gameoverlayrenderer.dll
+Wed Jan 05 14:28:03 2022 UTC - GameID = 1819570, OverlayGameID = 1819570
+Wed Jan 05 14:28:03 2022 UTC - System page size: 4096
+Wed Jan 05 14:28:03 2022 UTC - Hooking SetCursorPos, GetCursorPos, ShowCursor, SetCursor, and GetCursor
+Wed Jan 05 14:28:03 2022 UTC - Modules at GameOverlayRenderer.dll attach
+Wed Jan 05 14:28:03 2022 UTC - 01: UnityCrashHandler32.exe - (000E0000 to 001EB000)
+Wed Jan 05 14:28:03 2022 UTC - 02: ntdll.dll - (77540000 to 776E3000)
+Wed Jan 05 14:28:03 2022 UTC - 03: KERNEL32.DLL - (75B00000 to 75BF0000)
+Wed Jan 05 14:28:03 2022 UTC - 04: KERNELBASE.dll - (75C20000 to 75E34000)
+Wed Jan 05 14:28:03 2022 UTC - 05: apphelp.dll - (724C0000 to 7255F000)
+Wed Jan 05 14:28:03 2022 UTC - 06: USER32.dll - (75520000 to 756C0000)
+Wed Jan 05 14:28:03 2022 UTC - 07: win32u.dll - (77080000 to 77098000)
+Wed Jan 05 14:28:03 2022 UTC - 08: GDI32.dll - (77340000 to 77364000)
+Wed Jan 05 14:28:03 2022 UTC - 09: gdi32full.dll - (77450000 to 7752E000)
+Wed Jan 05 14:28:03 2022 UTC - 10: msvcp_win.dll - (770A0000 to 7711B000)
+Wed Jan 05 14:28:03 2022 UTC - 11: ucrtbase.dll - (75400000 to 75520000)
+Wed Jan 05 14:28:03 2022 UTC - 12: SHELL32.dll - (760B0000 to 76666000)
+Wed Jan 05 14:28:03 2022 UTC - 13: ole32.dll - (77250000 to 77333000)
+Wed Jan 05 14:28:03 2022 UTC - 14: RPCRT4.dll - (76D40000 to 76DFF000)
+Wed Jan 05 14:28:03 2022 UTC - 15: combase.dll - (766D0000 to 76951000)
+Wed Jan 05 14:28:03 2022 UTC - 16: PSAPI.DLL - (77070000 to 77076000)
+Wed Jan 05 14:28:03 2022 UTC - 17: ADVAPI32.dll - (77180000 to 771FA000)
+Wed Jan 05 14:28:03 2022 UTC - 18: msvcrt.dll - (76A10000 to 76ACF000)
+Wed Jan 05 14:28:03 2022 UTC - 19: sechost.dll - (76E00000 to 76E75000)
+Wed Jan 05 14:28:03 2022 UTC - 20: VERSION.dll - (74F00000 to 74F08000)
+Wed Jan 05 14:28:03 2022 UTC - 21: WININET.dll - (6FB50000 to 6FFA6000)
+Wed Jan 05 14:28:03 2022 UTC - 22: IMM32.DLL - (75BF0000 to 75C15000)
+Wed Jan 05 14:28:03 2022 UTC - 23: gameoverlayrenderer.dll - (5C0B0000 to 5C239000)
+Wed Jan 05 14:28:03 2022 UTC - 24: OLEAUT32.dll - (76CA0000 to 76D36000)
+Wed Jan 05 14:28:03 2022 UTC - 25: WINMM.dll - (6FFB0000 to 6FFD8000)
+Wed Jan 05 14:28:03 2022 UTC - ----------------------------
+Wed Jan 05 14:28:03 2022 UTC - GameOverlayRenderer.dll detaching

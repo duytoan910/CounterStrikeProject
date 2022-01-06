@@ -1,0 +1,13 @@
+{
+    "name"      : "Smoke3_C",
+    "class"     : "CGrenade",
+    "library"   : "mod",
+    "identifiers":
+    [
+        {
+            "os"    : "windows",
+            "mod"   : "cstrike",
+            "value" : 0x893E0
+        }
+    ]
+}

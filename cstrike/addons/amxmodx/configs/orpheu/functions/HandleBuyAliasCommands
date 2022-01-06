@@ -1,0 +1,26 @@
+{
+    "name"      : "HandleBuyAliasCommands",
+    "library"   : "mod",
+    "arguments" :
+    [
+        {
+            "type"  : "CBasePlayer *"
+        },
+        {
+            "type"  : "char *"
+        }
+    ],
+    "return" :
+    {
+        "type" : "int"
+    },
+    "identifiers":
+    [
+        {
+            "os"    : "windows",
+            "mod"   : "cstrike",
+            "value" : 0x6CFE0
+        }
+    ]
+}
+

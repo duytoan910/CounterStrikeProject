@@ -1,0 +1,23 @@
+{
+    "name"      : "CanPlayerBuy",
+    "class"     : "CBasePlayer",
+    "library"   : "mod",
+    "arguments" :
+    [
+        {
+            "type"  : "bool"
+        }
+    ],
+    "return" :
+    {
+        "type" : "bool",
+    },
+    "identifiers":
+    [
+        {
+            "os"    : "windows",
+            "mod"   : "cstrike",
+            "value" : 0xAC930
+        }
+    ]
+}

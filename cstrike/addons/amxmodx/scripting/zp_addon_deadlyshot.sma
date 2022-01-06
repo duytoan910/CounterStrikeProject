@@ -231,6 +231,8 @@ public make_ds_spr(id)
 	write_byte(255)
 	message_end()
 	
+	md_zb_skill(id,2)
+	
 	set_task(0.1, "make_ds_spr", id+TASK_DEADLYSHOT_ICON)
 }
 public remove_deadlyshot_icon(id)

@@ -1,1 +1,1 @@
-start hl.exe -steam -noforcemparms -noforcemaccel
+start hlds.exe -steam -noforcemparms -noforcemaccel

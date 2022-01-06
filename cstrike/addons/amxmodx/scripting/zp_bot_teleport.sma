@@ -62,7 +62,7 @@ public zp_user_humanized_post(id)
 	if (get_cvar_num("bot_stop")==1)
 		return;
 		
-	if(is_user_bot(id))
+	if(is_user_bot(id) && !zp_get_user_survivor(id))
 		ActivateTeleport(id)
 }
 public zp_round_ended()
@@ -185,6 +185,3 @@ public ActivateTeleport(id)
 	teled[id] = false
 	return FMRES_HANDLED
 }
-/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
-*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1033\\ f0\\ fs16 \n\\ par }
-*/

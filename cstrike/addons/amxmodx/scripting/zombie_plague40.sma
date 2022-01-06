@@ -2637,7 +2637,11 @@ public fw_SetModel(entity, const model[])
 		if (equal(classname, "weaponbox"))
 		{
 			// They get automatically removed when thinking
-			set_pev(entity, pev_nextthink, get_gametime() + get_pcvar_float(cvar_removedropped))
+			
+			new removeTime = get_pcvar_float(cvar_removedropped)
+			if(g_survround || g_swarmround || g_npcround)
+				removeTime = 5
+			set_pev(entity, pev_nextthink, get_gametime() + removeTime)
 			return;
 		}
 	}
@@ -3765,7 +3769,7 @@ public get_weapon(id)
 {
 	//fm_strip_user_weapons(id)
 	if(!is_user_bot(id))dinfinity(id)
-	jaydagger(id)
+	summonknife(id)
 	
 	// Give the new weapon and full ammo
 	switch(random_num(1,25))
@@ -7477,7 +7481,7 @@ public bot_buy_extras_anti(const args[])
 	static temp, i, wname[32]
 	temp = random_num((EXTRA_WEAPONS_STARTID)+g_item_human_count, g_extraitem_i - 1)	
 	
-	jaydagger(id)
+	summonknife(id)
 	
 	for (i = 0; i < ArraySize(g_additional_items); i++)
 	{

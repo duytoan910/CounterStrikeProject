@@ -2,6 +2,22 @@
 {
 	"favorites"
 	{
+		"0"
+		{
+			"name"		"Ga` 3 Mie^n` + CQV | Public 1 | Go Pro"
+			"address"	"103.130.212.46:28015"
+			"lastplayed"	"1626977202"
+			"appID"		"10"
+		}
+
+		"1"
+		{
+			"name"		"Ha Noi || CS16.TOP || Zombie Survivor"
+			"address"	"103.68.69.82:27025"
+			"lastplayed"	"1626977235"
+			"appID"		"0"
+		}
+
 	}
 
 	"history"
@@ -35,6 +51,38 @@
 			"name"		"192.168.1.41:27015"
 			"address"	"192.168.1.41:27015"
 			"lastplayed"	"1618040869"
+			"appID"		"0"
+		}
+
+		"4"
+		{
+			"name"		"103.130.212.46:28015"
+			"address"	"103.130.212.46:28015"
+			"lastplayed"	"1626977217"
+			"appID"		"0"
+		}
+
+		"5"
+		{
+			"name"		"103.68.69.82:27025"
+			"address"	"103.68.69.82:27025"
+			"lastplayed"	"1626977268"
+			"appID"		"0"
+		}
+
+		"6"
+		{
+			"name"		"26.39.88.23:27015"
+			"address"	"26.39.88.23:27015"
+			"lastplayed"	"1627120007"
+			"appID"		"0"
+		}
+
+		"7"
+		{
+			"name"		"192.168.1.147:27015"
+			"address"	"192.168.1.147:27015"
+			"lastplayed"	"1636424423"
 			"appID"		"0"
 		}
 

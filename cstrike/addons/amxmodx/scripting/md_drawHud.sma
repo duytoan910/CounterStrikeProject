@@ -44,13 +44,13 @@ new const Model[][] = {
 	"terror",
 	"tank_zombi_host", "deimos_zombi_host", "heavy_zombi_host", "heal_zombi_host",
 	"boomer_zombi_origin","stamper_zombi_origin", "witch_zombi_origin",
-	"resident_zombi_host","pc_zombi_host","china_zombi_origin"
+	"resident_zombi_host","pc_zombi_host","china_zombi_origin","SpitterL4D2","buffclass19s2tr"
 }
 new const Portrait[][] = {
 	"terror",
 	"normalzombie_host", "deimoszombie_host", "heavyzombie_host", "healzombie_host",
 	"boomerzombie","stamperzombie","witchzombie",
-	"residentzombie_host","pczombie_host", "chinazombie"
+	"residentzombie_host","pczombie_host", "chinazombie","SpitterL4D2","hud_buffclass19s2tr"
 }
 
 public plugin_init()

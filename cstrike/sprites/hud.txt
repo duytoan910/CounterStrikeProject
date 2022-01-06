@@ -150,8 +150,12 @@ d_zbs64knife			640 640hud41	172	208	48	16
 d_cannon_6			640 640hud6	172	160	48	16
 d_at15hw			640 at15hw	0	90	48	16
 d_m3dragonm			640 640hud44	172	144	48	16
+d_m3dragon			640 640hud43	172	0	48	16
 d_petrolboomer			640 640hud13	172	192	48	16
 d_speargun			640 640hud12	172	192	48	16
+d_gungnir			640 640hud44	172	48	48	16
+d_gunkata			640 640hud42	172	208	48	16
+d_summonknife			640 640hud44	172	160	48	16
 
 d_dot				640 cross	1	63	1	1
 d_crosshair			640 cross	0	0	128	128
@@ -195,10 +199,13 @@ s_thanatos5			640 640hud125	0	90	170	45
 s_thanatos7			640 640hud117	0	90	170	45
 s_at15hw			640 at15hw	0	0	170	45
 s_m3dragonm			640 640hud188	0	90	170	45
+s_m3dragon			640 640hud177	0	45	170	45
 s_petrolboomer			640 640hud108	0	180	170	45
 s_speargun			640 640hud103	0	90	170	45
-
-
+s_gungnir			640 640hud185	0	135	170	45
+s_gungnirex			640 640hud185	0	135	170	45
+s_gunkata			640 640hud176	0	135	170	45
+s_summonknife		640	640hud163	0	180	170	45
 
 
 
