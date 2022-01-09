@@ -295,7 +295,7 @@ public fw_PlaybackEvent(flags, invoker, eventid, Float:delay, Float:origin[3], F
 				if(pev(a, pev_takedamage) != DAMAGE_NO)
 				{
 					new Float:dmg;
-					dmg += 55.0
+					dmg += 45.0
 					dmg = random_float(dmg-10.0, dmg+10.0)
 					dmg *= DAMAGE
 					Stock_BloodEffect(Target)

@@ -19,7 +19,7 @@
 #define weapon_basedon "weapon_m3"
 
 #define DAMAGE_A 1.3
-#define DAMAGE_B 195.0
+#define DAMAGE_B 170.0
 #define CLIP 30
 #define BPAMMO 240
 #define SPEED_A 0.34

@@ -413,7 +413,7 @@ public fw_Weapon_PrimaryAttack_Post(Ent)
 	pev(id, pev_punchangle, Push)
 	xs_vec_sub(Push, g_Recoil[id], Push)
 	
-	xs_vec_mul_scalar(Push, 0.08, Push)
+	xs_vec_mul_scalar(Push, 0.02, Push)
 	xs_vec_add(Push, g_Recoil[id], Push)
 	set_pev(id, pev_punchangle, Push)
 	

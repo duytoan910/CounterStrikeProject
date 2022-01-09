@@ -12,7 +12,7 @@ new const PLUGIN_AUTHOR[] = "NiHiLaNTh"
 new bool:force_tele[32]
 new Float:user_time[32]
 
-#define TELE_TIME 10.0
+#define TELE_TIME 5.0
 
 new allowtele,teled[33]
 

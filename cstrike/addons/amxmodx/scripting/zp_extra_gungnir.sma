@@ -82,12 +82,12 @@ new const EXP_MODELS_EX[][] =
 #define RECOIL 0.5
 #define RELOAD_TIME 2.03
 
-#define ELECTRO_DAMAGE 90.0
+#define ELECTRO_DAMAGE 120.0
 #define ELECTRO_RANGE 300.0
 #define ELECTRO_KNOCKBACK 150.0 // the velocity of victim when got damage
 
 // base damage
-#define WDAMG_PLASMA 655.0
+#define WDAMG_PLASMA 855.0
 #define WDAMG_CHARGE 2567.0
 #define WDAMG_BEAM 175.0
 

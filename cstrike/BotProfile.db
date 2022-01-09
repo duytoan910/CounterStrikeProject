@@ -123,8 +123,8 @@ End
 
 // skill templates
 Template Elite
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	AttackDelay = 0.01
 	Cost = 4
@@ -133,8 +133,8 @@ Template Elite
 End
 
 Template Expert
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	AttackDelay = 0.01
 	Cost = 4
@@ -143,8 +143,8 @@ Template Expert
 End
 
 Template VeryHard
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	AttackDelay = 0.01
 	Cost = 4
@@ -153,8 +153,8 @@ Template VeryHard
 End
 
 Template Hard
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	AttackDelay = 0.01
 	Cost = 4
@@ -163,8 +163,8 @@ Template Hard
 End
 
 Template Tough
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	Cost = 4
 	Difficulty = EXPERT
@@ -172,8 +172,8 @@ Template Tough
 End
 
 Template Normal
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	AttackDelay = 0.01
 	Cost = 4
@@ -182,8 +182,8 @@ Template Normal
 End
 
 Template Fair
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	AttackDelay = 0.01
 	Cost = 4
@@ -192,8 +192,8 @@ Template Fair
 End
 
 Template Easy
-	Skill = 300
-	Aggression = 500
+	Skill = 100
+	Aggression = 100
 	ReactionTime = 0.01
 	AttackDelay = 0.01
 	Cost = 4
