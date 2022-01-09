@@ -2639,8 +2639,10 @@ public fw_SetModel(entity, const model[])
 			// They get automatically removed when thinking
 			
 			new removeTime = get_pcvar_float(cvar_removedropped)
-			if(g_survround || g_swarmround || g_npcround)
+			
+			if(g_survround || g_swarmround || g_npcround){
 				removeTime = 5
+			}
 			set_pev(entity, pev_nextthink, get_gametime() + removeTime)
 			return;
 		}
@@ -2899,7 +2901,7 @@ public fw_CmdStart(id, handle)
 	
 	// This logic looks kinda weird, but it should work in theory...
 	// p = g_zombie[id], q = g_survivor[id], r = g_cached_customflash
-	// ¬(p v q v (¬p ^ r)) <==> ¬p ^ ¬q ^ (p v ¬r)
+	// ï¿½(p v q v (ï¿½p ^ r)) <==> ï¿½p ^ ï¿½q ^ (p v ï¿½r)
 	if (!g_zombie[id] && !g_survivor[id] && (g_zombie[id] || !g_cached_customflash))
 		return;
 	
@@ -3769,7 +3771,7 @@ public get_weapon(id)
 {
 	//fm_strip_user_weapons(id)
 	if(!is_user_bot(id))dinfinity(id)
-	summonknife(id)
+	jaydagger(id)
 	
 	// Give the new weapon and full ammo
 	switch(random_num(1,25))
@@ -7481,7 +7483,7 @@ public bot_buy_extras_anti(const args[])
 	static temp, i, wname[32]
 	temp = random_num((EXTRA_WEAPONS_STARTID)+g_item_human_count, g_extraitem_i - 1)	
 	
-	summonknife(id)
+	jaydagger(id)
 	
 	for (i = 0; i < ArraySize(g_additional_items); i++)
 	{

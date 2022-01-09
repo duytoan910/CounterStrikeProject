@@ -6,6 +6,7 @@
 #include <cstrike>
 #include <fun>
 #include <zombieplague>
+#include <toan>
 
 #define PLUGIN "[CSO] Thanatos-7"
 #define VERSION "1.0"
@@ -204,13 +205,15 @@ public Update_SpecialAmmo(id, Ammo, On)
 	static AmmoSprites[33]
 	format(AmmoSprites, sizeof(AmmoSprites), "number_%d", Ammo)
 
-	message_begin(MSG_ONE_UNRELIABLE, g_MsgStatusIcon, {0,0,0}, id)
-	write_byte(On)
-	write_string(AmmoSprites)
-	write_byte(42) // red 
-	write_byte(212) // green 
-	write_byte(255) // blue 
-	message_end()
+	// message_begin(MSG_ONE_UNRELIABLE, g_MsgStatusIcon, {0,0,0}, id)
+	// write_byte(On)
+	// write_string(AmmoSprites)
+	// write_byte(42) // red 
+	// write_byte(212) // green 
+	// write_byte(255) // blue 
+	// message_end()
+
+	nav_set_special_ammo(id, On)
 }
 
 public fw_SetModel(entity, model[])

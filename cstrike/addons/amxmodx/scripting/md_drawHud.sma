@@ -14,7 +14,7 @@
 
 #define get_user_model(%1,%2,%3) engfunc( EngFunc_InfoKeyValue, engfunc( EngFunc_GetInfoKeyBuffer, %1 ), "model", %2, %3 )
 
-new g_bitHudFlags
+new g_bitHudFlags,	g_number[33]
 new bool:Set_Potrait[33]
 
 new size[33][2]
@@ -50,7 +50,7 @@ new const Portrait[][] = {
 	"terror",
 	"normalzombie_host", "deimoszombie_host", "heavyzombie_host", "healzombie_host",
 	"boomerzombie","stamperzombie","witchzombie",
-	"residentzombie_host","pczombie_host", "chinazombie","SpitterL4D2","hud_buffclass19s2tr"
+	"residentzombie_host","pczombie_host", "chinazombie","SpitterL4D2","buffclass19s2tr"
 }
 
 public plugin_init()
@@ -58,7 +58,7 @@ public plugin_init()
 	register_plugin(PLUGIN, VERSION, AUTHOR)	
 	register_event("Health", "Event_Health", "be")	
 	register_event("Damage", "Event_Damage", "be")
-	register_event("CurWeapon", "Event_CurWeapon", "be")
+	register_event("CurWeapon", "Event_CurWeapon", "be", "1=1")
 	
 	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
 	RegisterHam(Ham_Killed, "player", "Player_Killed", 1); 
@@ -83,6 +83,7 @@ public md_init()
 	md_initfont(13, "calibrifzy4jw", 40, FS_ANTIALIAS | FS_OUTLINE, FW_EXTRABOLD)
 	md_initfont(14, "calibrifzy4jw", 40, FS_ANTIALIAS | FS_OUTLINE, FW_EXTRABOLD)
 	md_initfont(15, "calibrifzy4jw", 40, FS_ANTIALIAS | FS_OUTLINE, FW_EXTRABOLD)
+	md_initfont(22, "calibrifzy4jw", 40, FS_ANTIALIAS | FS_OUTLINE, FW_EXTRABOLD)
 	
 	static i, szDir[60]
 	for(i=0;i<sizeof(hud);i++)
@@ -97,6 +98,11 @@ public plugin_natives()
 {
 	register_native("nav_set_portrait","set_model_portrait", 1)
 	register_native("nav_reset_money","reset_money", 1)
+	register_native("nav_set_special_ammo",	"set_special_ammo", 1)
+}
+public set_special_ammo(id, val){
+	g_number[id] = val
+	Draw_Special_Ammo(id)
 }
 public reset_money(id)
 {
@@ -157,8 +163,8 @@ public Event_CurWeapon(id)
 		size[id][0] += 9
 		size[id][1] += 9
 	}
-	Draw_CrossHair(id,size[id][0],size[id][1])			
-			
+	Draw_CrossHair(id,size[id][0],size[id][1])	
+
 	message_begin(MSG_ONE, get_user_msgid("CurWeapon"), {0,0,0}, id) 
 	write_byte(1) 
 	write_byte(CSW_KNIFE) 
@@ -229,6 +235,21 @@ public Draw_Ammo(id)
 	}else format(szAmmo, charsmax(szAmmo), "")
 	md_drawtext(id, 15, szAmmo, 0.035, NumY, 0, 0, 255, 255, 255, 255, 0.0, 0.0, 0.0, ALIGN_BOTTOM|ALIGN_RIGHT)
 }
+public Draw_Special_Ammo(id)
+{
+	if (!is_user_alive(id) || is_user_bot(id))
+		return
+
+	new szAmmo[2];
+	if(g_number[id] != 0){
+		format(szAmmo, charsmax(szAmmo), "%d",	g_number[id])
+		md_drawtext(id, 22, szAmmo, 0.035, 0.055, 0, 0, 42, 212, 255, 255, 0.0, 0.0, 0.0, ALIGN_BOTTOM|ALIGN_RIGHT)
+
+		emit_sound(id, CHAN_ITEM, "items/9mmclip1.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)
+	}else{
+		md_removedrawing(id, 0, 22)
+	}
+}
 public Draw_WPN(id)
 {
 	if (!is_user_alive(id) || is_user_bot(id))
@@ -241,8 +262,8 @@ public Draw_WPN(id)
 	strtok(tmpR, tmpL, charsmax(tmpL), tmpR, charsmax(tmpR),'.')
 	if(!zp_get_user_zombie(id)) format(tmpL, charsmax(tmpL), "s_%s", tmpL)
 	else format(tmpL, charsmax(tmpL), "s_%s", "zombieknife")
-	md_drawsprite(id, 0, 1, "weapon_selection_new", 0.005, 0.1, 0, 0, 255, 255, 255, 255, 0.0, 0.0, 0.0, SPR_ADDITIVE, ALIGN_RIGHT|ALIGN_BOTTOM, 170, 45)
-	md_drawsprite(id, 1, 1, tmpL, 0.005, 0.1, 0, 0, 255, 255, 255, 255, 0.0, 0.0, 0.0, SPR_ADDITIVE, ALIGN_RIGHT|ALIGN_BOTTOM)
+	md_drawsprite(id, 0, 1, "weapon_selection_new", 0.005, 0.11, 0, 0, 255, 255, 255, 255, 0.0, 0.0, 0.0, SPR_ADDITIVE, ALIGN_RIGHT|ALIGN_BOTTOM, 170, 45)
+	md_drawsprite(id, 1, 1, tmpL, 0.005, 0.11, 0, 0, 255, 255, 255, 255, 0.0, 0.0, 0.0, SPR_ADDITIVE, ALIGN_RIGHT|ALIGN_BOTTOM)
 }
 public Draw_Money(id)
 {

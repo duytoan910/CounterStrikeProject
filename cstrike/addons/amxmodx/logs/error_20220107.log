@@ -1,0 +1,1290 @@
+L 01/07/2022 - 23:44:32: Start of error session.
+L 01/07/2022 - 23:44:32: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20220107.log")
+L 01/07/2022 - 23:44:32: Invalid player id 1611496
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1611836
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612176
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612516
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612856
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1613196
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1613536
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1613876
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1614216
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1614556
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1614896
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1615236
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1615576
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1615916
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1611496
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1611836
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612176
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612516
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612856
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1613196
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1613536
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1613876
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1614216
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1614556
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1614896
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1615236
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1615576
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1615916
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1611496
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1611836
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612176
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612516
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:32: Invalid player id 1612856
+L 01/07/2022 - 23:44:32: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:32: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:32: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613196
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613536
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613876
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1614216
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1614556
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1614896
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1615236
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1615576
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1615916
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1611496
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1611836
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1612176
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1612516
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1612856
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613196
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613536
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613876
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1614216
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1614556
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1614896
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1615236
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1615576
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1615916
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1611496
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1611836
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1612176
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1612516
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1612856
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613196
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613536
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1613876
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:33: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:33: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:33: Invalid player id 1614216
+L 01/07/2022 - 23:44:33: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1614556
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1614896
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1615236
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1615576
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1615916
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1611496
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1611836
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1612176
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1612516
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1612856
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1613196
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1613536
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1613876
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1614216
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1614556
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1614896
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1615236
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1615576
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1615916
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1611496
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1611836
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1612176
+L 01/07/2022 - 23:44:34: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:34: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:34: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:34: Invalid player id 1612516
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1612856
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1613196
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1613536
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1613876
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1614216
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1614556
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1614896
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1615236
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1615576
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1615916
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1611496
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1611836
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1612176
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1612516
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1612856
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1613196
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1613536
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1613876
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1614216
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1614556
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1614896
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1615236
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1615576
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1615916
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1611496
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1611836
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1612176
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1612516
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:35: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:35: Invalid player id 1612856
+L 01/07/2022 - 23:44:35: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:35: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613196
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613536
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613876
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1614216
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1614556
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1614896
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1615236
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1615576
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1615916
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1611496
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1611836
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1612176
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1612516
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1612856
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613196
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613536
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613876
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1614216
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1614556
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1614896
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1615236
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1615576
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1615916
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1611496
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1611836
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1612176
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1612516
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1612856
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613196
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613536
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1613876
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:36: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:36: Invalid player id 1614216
+L 01/07/2022 - 23:44:36: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:36: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1614556
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1614896
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1615236
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1615576
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1615916
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1611496
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1611836
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1612176
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1612516
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1612856
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1613196
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1613536
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1613876
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1614216
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1614556
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1614896
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1615236
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1615576
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1615916
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1611496
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1611836
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1612176
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1612516
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1612856
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1613196
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1613536
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1613876
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:37: Invalid player id 1614216
+L 01/07/2022 - 23:44:37: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:37: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:37: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614556
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614896
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1615236
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1615576
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1615916
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1611496
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1611836
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1612176
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1612516
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1612856
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1613196
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1613536
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1613876
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614216
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614556
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614896
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1615236
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1615576
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1615916
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1611496
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1611836
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1612176
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1612516
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1612856
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1613196
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1613536
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1613876
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614216
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614556
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:38: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:38: Invalid player id 1614896
+L 01/07/2022 - 23:44:38: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:38: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615236
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615576
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615916
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1611496
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1611836
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1612176
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1612516
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1612856
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1613196
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1613536
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1613876
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1614216
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1614556
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1614896
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615236
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615576
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615916
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1611496
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1611836
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1612176
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1612516
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1612856
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1613196
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1613536
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1613876
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1614216
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1614556
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1614896
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615236
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615576
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1615916
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1611496
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:39: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:39: Invalid player id 1611836
+L 01/07/2022 - 23:44:39: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:39: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1612176
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1612516
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1612856
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1613196
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1613536
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1613876
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1614216
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1614556
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1614896
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1615236
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1615576
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1615916
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1611496
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1611836
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1612176
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1612516
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1612856
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1613196
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1613536
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1613876
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1614216
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1614556
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1614896
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1615236
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1615576
+L 01/07/2022 - 23:44:40: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:40: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:40: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:40: Invalid player id 1615916
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1611496
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1611836
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1612176
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1612516
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1612856
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1613196
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1613536
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1613876
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1614216
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1614556
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1614896
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1615236
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1615576
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1615916
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1611496
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1611836
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1612176
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1612516
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1612856
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1613196
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1613536
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1613876
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1614216
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1614556
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1614896
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1615236
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1615576
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1615916
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1611496
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1611836
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:41: Invalid player id 1612176
+L 01/07/2022 - 23:44:41: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:41: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:41: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1612516
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1612856
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1613196
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1613536
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1613876
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1614216
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1614556
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1614896
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1615236
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1615576
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1615916
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1611496
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1611836
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1612176
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1612516
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1612856
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1613196
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1613536
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1613876
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1614216
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1614556
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1614896
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1615236
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1615576
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)
+L 01/07/2022 - 23:44:42: Invalid player id 1615916
+L 01/07/2022 - 23:44:42: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 01/07/2022 - 23:44:42: [AMXX] Run time error 10: native error (native "get_user_origin")
+L 01/07/2022 - 23:44:42: [AMXX]    [0] zp_extra_kronos12.sma::fw_AddToFullPack (line 785)

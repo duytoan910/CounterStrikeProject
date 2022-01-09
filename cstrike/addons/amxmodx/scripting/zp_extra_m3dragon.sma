@@ -3,8 +3,9 @@
 #include <hamsandwich>
 #include <engine>
 #include <zombieplague>
+#include <toan>
 
-#define PLUGIN 					"[ZP] Extra: CSO Weapon M3 Big Shark"
+#define PLUGIN 					"[ZP] Extra: CSO Weapon M3 Big Dragon"
 #define VERSION 				"1.0"
 #define AUTHOR 					"TemplateAuthor:KORD_12.7:WeaponAuthor:PaXaN-ZOMBIE"
 
@@ -13,49 +14,51 @@
 
 // Main
 #define WEAPON_KEY				279214
-#define WEAPON_NAME 				"weapon_m3dragonm"
+#define WEAPON_NAME 				"weapon_m3dragon"
 
 #define WEAPON_REFERANCE			"weapon_xm1014"
 #define WEAPON_MAX_CLIP				10
 #define WEAPON_DEFAULT_AMMO			200
-#define WEAPON_HIT_TO_ACTIVE			8 //32 hit on player for active B mode (Shark)
+#define WEAPON_HIT_TO_ACTIVE			8 //32 hit on player for active B mode (Dragon)
 
 #define WEAPON_TIME_NEXT_IDLE 			15.0
 #define WEAPON_TIME_NEXT_ATTACK 		1.0
 #define WEAPON_TIME_DELAY_DEPLOY 		1.0
 
-#define WEAPON_MULTIPLIER_DAMAGE  	  	1.5
+#define WEAPON_MULTIPLIER_DAMAGE  	  	2.0
 
 //MissileAttack
-#define WEAPON_RADIUS_EXP			200.0
+#define WEAPON_RADIUS_EXP			150.0
 #define WEAPON_DAMAGE_EXP			500.0
 
-//SharkAttack
-#define WEAPON_RADIUS_EXP2			90.0
-#define WEAPON_DAMAGE_EXP2			240.0
+//DragonAttack
+#define WEAPON_RADIUS_EXP2			100.0
+#define WEAPON_DAMAGE_EXP2			140.0
 
-#define ZP_ITEM_NAME				"M3 Big Shark" 
+#define ZP_ITEM_NAME				"M3 Black Dragon" 
 #define ZP_ITEM_COST				3000
 
 // Models
-#define MODEL_WORLD				"models/w_m3dragonm.mdl"
-#define MODEL_VIEW				"models/v_m3dragonm.mdl"
-#define MODEL_PLAYER				"models/p_m3dragonm.mdl"
+#define MODEL_WORLD				"models/w_m3dragon.mdl"
+#define MODEL_VIEW				"models/v_m3dragon.mdl"
+#define MODEL_PLAYER				"models/p_m3dragon.mdl"
 
-#define SHARKMODEL				"models/m3dragonm_effect.mdl"
-#define MISSILEMODEL				"sprites/ef_m3water.spr"
+#define SHARKMODEL				"models/m3dragon_effect.mdl"
+#define MISSILEMODEL				"models/ef_fireball2.mdl"
+
+#define WATERMODEL				"models/ef_m3dragonm_sign.mdl"
 
 // Sounds
-#define SOUND_FIRE				"weapons/m3dragonm-1_1.wav"
-#define SOUND_FIRE2				"weapons/m3dragonm-2.wav"
-#define SOUND_FIRE3				"weapons/m3dragonm-2.wav"
-#define SOUND_EXPLODE				"weapons/m3dragonm_shark_fx.wav"
+#define SOUND_FIRE				"weapons/m3dragon-1_1.wav"
+#define SOUND_FIRE2				"weapons/m3dragon-2.wav"
+#define SOUND_FIRE3				"weapons/m3dragon-2.wav"
+#define SOUND_EXPLODE				"weapons/explode3.wav"
 #define SOUND_DRAGONFX				"weapons/m3dragon_dragon_fx.wav"
-#define SOUND_FLAME_LOOP			"weapons/m3dragonm_gas_loop.wav"
+#define SOUND_FLAME_LOOP			"weapons/m3dragon_fire_loop.wav"
 
 // Sprites
-#define WEAPON_SPR_FLAME			"sprites/m3dragonm_smoke.spr"
-#define WEAPON_SPR_FLAME2			"sprites/m3dragonm_smoke2.spr"
+#define WEAPON_SPR_FLAME			"sprites/m3dragon_flame.spr"
+#define WEAPON_SPR_FLAME2			"sprites/m3dragon_flame2.spr"
 
 // Animation
 #define ANIM_EXTENSION				"shotgun"
@@ -76,13 +79,8 @@ enum
 	ANIM_INSERT_B,
 	ANIM_AFTER_RELOAD_B,
 	ANIM_BEFOR_RELOAD_B,
-	ANIM_DRAW_B,
-	ANIM_SHOOT3
+	ANIM_DRAW_B
 };
-
-//**********************************************
-//* Some macroses.                             *
-//**********************************************
 
 #define Sprite_SetScale(%0,%1) 			set_pev(%0, pev_scale, %1)
 #define Sprite_SetFramerate(%0,%1) 		set_pev(%0, pev_framerate, %1)
@@ -119,10 +117,6 @@ enum
 #define BitSet(%0,%1) 				(%0 |= (1 << (%1 - 1)))
 #define BitClear(%0,%1) 			(%0 &= ~(1 << (%1 - 1)))
 #define BitCheck(%0,%1) 			(%0 & (1 << (%1 - 1)))
-
-//**********************************************
-//* PvData Offsets.                            *
-//**********************************************
 
 // Linux extra offsets
 #define extra_offset_weapon			4
@@ -161,19 +155,15 @@ new g_bitIsConnected;
 #define IsValidPev(%0) 				(pev_valid(%0) == 2)
 
 //EnitityClassName
-#define MUZZLE_CLASSNAME_LEFT			"SmokeSharkleft"
-#define MUZZLE_CLASSNAME_RIGHT			"SmokeSharkright"
-#define DRAGON_CLASSNAME			"SharClass"
-#define MISSILE_CLASSNAME			"SharkMissileClass"
-#define MUZZLE_CLASSNAME2			"MuzzleBigShark"
-#define WATER_CLASSNAME				"WaterClassShark"
+#define MUZZLE_CLASSNAME_LEFT			"SmokeDragonleft"
+#define MUZZLE_CLASSNAME_RIGHT			"SmokeDragonright"
+#define DRAGON_CLASSNAME			"DragonClass"
+#define MISSILE_CLASSNAME			"DragonMissileClass"
+#define MUZZLE_CLASSNAME2			"MuzzleBigDragon"
+#define WATER_CLASSNAME				"WateClassDragon"
 
-#define WATERMODEL				"models/ef_m3dragonm_sign.mdl"
-
-//**********************************************
-//* Let's code our weapon.                     *
-//**********************************************
-new iBlood[4];
+new iBlood[2];
+new g_Fire_SprId;
 
 Weapon_OnPrecache()
 {
@@ -198,8 +188,7 @@ Weapon_OnPrecache()
 
 	iBlood[0] = PRECACHE_MODEL("sprites/bloodspray.spr");
 	iBlood[1] = PRECACHE_MODEL("sprites/blood.spr");
-	iBlood[2] = PRECACHE_MODEL("sprites/ef_m3waterbomb.spr");
-	iBlood[3] = PRECACHE_MODEL("sprites/ef_m3dragonm_water.spr");
+	g_Fire_SprId = engfunc(EngFunc_PrecacheModel, "sprites/zerogxplode.spr")
 }
 
 Weapon_OnSpawn(const iItem)
@@ -235,8 +224,9 @@ Weapon_OnDeploy(const iItem, const iPlayer, const iClip, const iAmmoPrimary, con
 	{
 		case 1:
 		{
-			MuzzleFlash(iPlayer, WEAPON_SPR_FLAME, MUZZLE_CLASSNAME_LEFT, 0.08, 1.0, 2, 0.0, 255.0);
+			MuzzleFlash(iPlayer, WEAPON_SPR_FLAME2, MUZZLE_CLASSNAME_LEFT, 0.08, 1.0, 4, 29.0, 255.0);
 			MuzzleFlash(iPlayer, WEAPON_SPR_FLAME, MUZZLE_CLASSNAME_RIGHT, 0.08, 1.0, 3, 29.0, 255.0);
+			nav_set_special_ammo(iPlayer, 1)
 		}
 	}
 }
@@ -416,7 +406,7 @@ Weapon_OnPrimaryAttack(const iItem, const iPlayer, const iClip, const iAmmoPrima
 
 	Punchangle(iPlayer, .iVecx = -2.5, .iVecy = 0.0, .iVecz = 0.0);
 
-	Weapon_SendAnim(iPlayer, iState  ? ANIM_SHOOT3:ANIM_SHOOT);
+	Weapon_SendAnim(iPlayer, iState  ? ANIM_SHOOT_B:ANIM_SHOOT);
 	
 	switch (iState)
 	{
@@ -461,20 +451,23 @@ Weapon_OnPrimaryAttack(const iItem, const iPlayer, const iClip, const iAmmoPrima
 			
 			Punchangle(iPlayer, .iVecx = -3.5, .iVecy = 0.0, .iVecz = 0.0);
 			new Float:vecEnd[3];GetWeaponPosition(iPlayer, 4096.0, 0.0, 0.0, vecEnd);
-			new Float:vecSrc[3];GetWeaponPosition(iPlayer, 10.0, 0.0, 0.0, vecSrc);
+			new Float:vecSrc[3];GetWeaponPosition(iPlayer, 50.0, 0.0, 0.0, vecSrc);
 			
 			Spawn2(iPlayer, vecSrc, vecEnd);
 			
 			SET_SHOOTS(iItem, 0);
+			
+			nav_set_special_ammo(iPlayer, 0)
 			engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE2, 0.9, ATTN_NORM, 0, PITCH_NORM);		
 		}else{
-			MuzzleFlash(iPlayer, WEAPON_SPR_FLAME, MUZZLE_CLASSNAME_LEFT, 0.08, 1.0, 2, 0.0, 255.0);
+			MuzzleFlash(iPlayer, WEAPON_SPR_FLAME2, MUZZLE_CLASSNAME_LEFT, 0.08, 1.0, 4, 29.0, 255.0);
 			MuzzleFlash(iPlayer, WEAPON_SPR_FLAME, MUZZLE_CLASSNAME_RIGHT, 0.08, 1.0, 3, 29.0, 255.0);
 			
 			Weapon_SendAnim(iPlayer, ANIM_SHOOT2);
 			
 			SET_STATE(iItem, 1);
 			SET_SHOOTS(iItem, 0);
+			nav_set_special_ammo(iPlayer, 1)
 		}
 	}
 }
@@ -511,7 +504,7 @@ Weapon_OnSecondaryAttack(const iItem, const iPlayer, const iClip, const iAmmoPri
 	SET_STATE(iItem, 0);
 	
 	new Float:vecEnd[3];GetWeaponPosition(iPlayer, 4096.0, 0.0, 0.0, vecEnd);
-	new Float:vecSrc[3];GetWeaponPosition(iPlayer, 10.0, 0.0, 0.0, vecSrc);
+	new Float:vecSrc[3];GetWeaponPosition(iPlayer, 50.0, 0.0, 0.0, vecSrc);
 	
 	Spawn2(iPlayer, vecSrc, vecEnd);
 
@@ -527,11 +520,6 @@ Weapon_ReloadEnd(const iItem, const iPlayer, const iState)
 	
 	set_pdata_int(iItem, m_fInSpecialReload, 0, extra_offset_weapon);
 }
-
-//*********************************************************************
-//*           Don't modify the code below this line unless            *
-//*          	 you know _exactly_ what you are doing!!!             *
-//*********************************************************************
 
 #define MSGID_WEAPONLIST 78
 
@@ -622,17 +610,12 @@ public Message_DeathMsg(msg_id, msg_dest, id)
 	{
 		if (IsValidPev(iActiveItem) && IsCustomItem(iActiveItem))
 		{
-			set_msg_arg_string(4, "m3dragonm")
+			set_msg_arg_string(4, "m3dragon")
 		}
 	}
 	
 	return PLUGIN_CONTINUE
 }
-
-//**********************************************
-//* Block client weapon.                       *
-//**********************************************
-
 
 public FakeMeta_UpdateClientData_Post(const iPlayer, const iSendWeapons, const CD_Handle)
 {
@@ -647,11 +630,6 @@ public FakeMeta_UpdateClientData_Post(const iPlayer, const iSendWeapons, const C
 	
 	return FMRES_IGNORED;
 }
-
-//**********************************************
-//* Item (weapon) hooks.                       *
-//**********************************************
-
 	#define _call.%0(%1,%2) \
 									\
 	Weapon_On%0							\
@@ -750,7 +728,6 @@ public HamHook_Item_PostFrame(const iItem)
 		
 	return HAM_IGNORED;
 }
-new Touched[33][33];
 public HamHook_Think(const iEntity)
 {
 	if (!pev_valid(iEntity))
@@ -762,7 +739,7 @@ public HamHook_Think(const iEntity)
 	
 	static iAttacker;iAttacker=pev(iEntity, pev_owner);
 	
-	static Float:OriginEnt[3];pev(iEntity, pev_origin, OriginEnt);
+	new Float:OriginEnt[3];pev(iEntity, pev_origin, OriginEnt);
 	
 	if (equal(iClassname, MUZZLE_CLASSNAME_LEFT))
 	{	
@@ -771,12 +748,13 @@ public HamHook_Think(const iEntity)
 		if (!IsValidPev(iItem) || !IsCustomItem(iItem) || !GET_STATE(iItem) || pev(iAttacker, pev_deadflag) == DAMAGE_YES || zp_get_user_zombie(iAttacker))
 		{
 			set_pev(iEntity, pev_flags, pev(iEntity, pev_flags) | FL_KILLME);
+			nav_set_special_ammo(iAttacker, 0)
 			return HAM_SUPERCEDE;
 		}
 		
 		static Float:flFrame;
 
-		if (flFrame >= 29.0)flFrame=0.0;
+		if (flFrame >= 19.0)flFrame=0.0;
 		
 		flFrame+=random_float(0.4, 0.5);
 		
@@ -787,7 +765,7 @@ public HamHook_Think(const iEntity)
 		set_pev(iEntity, pev_renderamt, iAmt);
 	
 		set_pev(iEntity, pev_frame, flFrame);	
-		set_pev(iEntity, pev_nextthink, get_gametime() + 0.015);
+		set_pev(iEntity, pev_nextthink, get_gametime() + 0.01);
 	}
 	else if (equal(iClassname, MUZZLE_CLASSNAME_RIGHT))
 	{	
@@ -796,12 +774,13 @@ public HamHook_Think(const iEntity)
 		if (!IsValidPev(iItem) || !IsCustomItem(iItem) || !GET_STATE(iItem) || pev(iAttacker, pev_deadflag) == DAMAGE_YES || zp_get_user_zombie(iAttacker))
 		{
 			set_pev(iEntity, pev_flags, pev(iEntity, pev_flags) | FL_KILLME);
+			nav_set_special_ammo(iAttacker, 0)
 			return HAM_SUPERCEDE;
 		}
 		
 		static Float:flFrame;
 
-		if (flFrame >= 59.0)flFrame=30.0;
+		if (flFrame >= 19.0)flFrame=0.0;
 		
 		flFrame+=random_float(0.4, 0.5);
 		
@@ -828,7 +807,6 @@ public HamHook_Think(const iEntity)
 			set_pev(iEntity, pev_flags, pev(iEntity, pev_flags) | FL_KILLME);
 			
 			set_pev(iEntity, pev_fuser3, 0.0);
-	
 			Spawn(pev(iEntity, pev_owner), OriginEnt);
 			
 			return HAM_SUPERCEDE;
@@ -852,8 +830,6 @@ public HamHook_Think(const iEntity)
 		{
 			set_pev(iEntity, pev_flags, pev(iEntity, pev_flags) | FL_KILLME);
 			set_pev(iEntity, pev_fuser2, 0.0);
-			for(new i=0;i<get_maxplayers();i++)			
-				Touched[pev(iEntity, pev_owner)][i] = false;
 			
 			return HAM_IGNORED;
 		}
@@ -868,27 +844,54 @@ public HamHook_Think(const iEntity)
 			{
 				if (is_user_connected(pNull) && zp_get_user_zombie(pNull))
 				{
-					new Float:vOrigin[3], Float:dist, Float:damage;pev(pNull, pev_origin, vOrigin);
+					new Float:vOrigin[3], Float:damage;pev(pNull, pev_origin, vOrigin);
 									
 					Create_Blood(vOrigin, iBlood[0], iBlood[1], 76, 10);
-					if(!Touched[pev(iEntity, pev_owner)][pNull])
-					{
-						static Float:iVelo[3];pev(pNull, pev_velocity, iVelo);iVelo[0] = 0.0;iVelo[1] = 0.0;iVelo[2] += 450.0;
-						set_pev(pNull, pev_velocity, iVelo);						
-						Touched[pev(iEntity, pev_owner)][pNull] = true;
-					}
-					dist = get_distance_f(OriginEnt, vOrigin);damage = WEAPON_DAMAGE_EXP2 - (WEAPON_DAMAGE_EXP2/WEAPON_DAMAGE_EXP2) * dist;
+					damage = WEAPON_DAMAGE_EXP2;
 					if (damage > 0.0)
 					{
+						damage = random_float(damage-5.0, damage+5.0)
 						ExecuteHamB(Ham_TakeDamage, pNull, iEntity, iAttacker, is_deadlyshot(iAttacker)?damage*1.5:damage, DMG_BULLET);
 					}
-					
+
+					static Float:iVelo[3];pev(pNull, pev_velocity, iVelo);iVelo[0] = 0.0;iVelo[1] = 0.0;iVelo[2] += 200.0;
+					set_pev(pNull, pev_velocity, iVelo);	
+
 					set_pdata_float(pNull, m_flVelocityModifier, 1.0,  extra_offset_player);
 				}
 			}
 		}
+		OriginEnt[2] += (WEAPON_RADIUS_EXP2 * 2) - 10
+		while((pNull = fm_find_ent_in_sphere(pNull, OriginEnt, WEAPON_RADIUS_EXP2 * 0.75 )) != 0)
+		{	
+			new Float:vOrigin[3];pev(pNull, pev_origin, vOrigin);
+			
+			if (IsValidPev(pNull) && pev(pNull, pev_takedamage) != DAMAGE_NO && pev(pNull, pev_solid) != SOLID_NOT)
+			{
+				if (is_user_connected(pNull) && zp_get_user_zombie(pNull))
+				{
+					new Float:vOrigin[3], Float:damage;pev(pNull, pev_origin, vOrigin);
+									
+					Create_Blood(vOrigin, iBlood[0], iBlood[1], 76, 10);
+					damage = WEAPON_DAMAGE_EXP2;
+					if (damage > 0.0)
+					{
+						damage = random_float(damage-40.0, damage-20.0)
+						ExecuteHamB(Ham_TakeDamage, pNull, iEntity, iAttacker, is_deadlyshot(iAttacker)?damage*1.5:damage, DMG_BULLET);
+					}
+				}
+			}
+		}
 		
-		set_pev(iEntity, pev_nextthink, get_gametime() + 0.2);
+		static Float:Alpha;pev(iEntity, pev_renderamt, Alpha)
+		static Float:Life;pev(iEntity, pev_fuser2, Life)
+		if(Life - get_gametime() <= 0.4){
+			if((Alpha - 51.0) <= 0.0)
+				set_pev(iEntity, pev_renderamt, 0.0 )
+			else
+				set_pev(iEntity, pev_renderamt, Alpha - 51.0 )
+		}
+		set_pev(iEntity, pev_nextthink, get_gametime() + 0.1);
 	}
 	else if (equal(iClassname, WATER_CLASSNAME))
 	{
@@ -936,21 +939,26 @@ public HamHook_Touch(const iEntity, const iOther)
 		engfunc(EngFunc_DropToFloor, iEntity);
 		
 		set_pev(iEntity, pev_iuser1, 1);
-		set_pev(iEntity, pev_fuser3, get_gametime() + 1.0);
-
-		message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
-		write_byte(TE_EXPLOSION);
-		engfunc(EngFunc_WriteCoord, OriginEnt[0]);
-		engfunc(EngFunc_WriteCoord, OriginEnt[1]);
-		engfunc(EngFunc_WriteCoord, OriginEnt[2] + 50.0);
-		write_short(iBlood[2]);
-		write_byte(20);
-		write_byte(15);
-		write_byte(TE_EXPLFLAG_NOSOUND |TE_EXPLFLAG_NOPARTICLES|TE_EXPLFLAG_NODLIGHTS);
-		message_end();
+		set_pev(iEntity, pev_fuser3, get_gametime() + 0.4);
 		
 		new pNull = FM_NULLENT;
 	
+		static TE_FLAG
+		
+		TE_FLAG |= TE_EXPLFLAG_NOSOUND
+		TE_FLAG |= TE_EXPLFLAG_NOPARTICLES
+		
+		message_begin(MSG_BROADCAST, SVC_TEMPENTITY)
+		write_byte(TE_EXPLOSION)
+		engfunc(EngFunc_WriteCoord, OriginEnt[0])
+		engfunc(EngFunc_WriteCoord, OriginEnt[1])
+		engfunc(EngFunc_WriteCoord, OriginEnt[2]+15.0)
+		write_short(g_Fire_SprId)
+		write_byte(35)
+		write_byte(15)
+		write_byte(TE_FLAG)
+		message_end()
+
 		while((pNull = fm_find_ent_in_sphere(pNull, OriginEnt, WEAPON_RADIUS_EXP)) != 0)
 		{	
 			new Float:vOrigin[3];pev(pNull, pev_origin, vOrigin);
@@ -980,10 +988,6 @@ public HamHook_Touch(const iEntity, const iOther)
 	}
 	return HAM_IGNORED;
 }
-
-//**********************************************
-//* Fire Bullets.                              *
-//**********************************************
 
 CallOrigFireBullets3(const iItem, const iPlayer)
 {
@@ -1165,7 +1169,7 @@ stock Spawn2(const iPlayer, const Float:iVec[3], const Float:vecEnd[3])
 		set_pev(pEntity, pev_solid, SOLID_TRIGGER);
 		set_pev(pEntity, pev_gravity, 0.01);
 		
-		set_pev(pEntity, pev_scale, 0.1);
+		set_pev(pEntity, pev_scale, 2.0);
 
 		set_pev(pEntity, pev_mins, Float:{-1.0, -1.0, -1.0});
 		set_pev(pEntity, pev_maxs, Float:{1.0, 1.0, 1.0});
@@ -1174,12 +1178,12 @@ stock Spawn2(const iPlayer, const Float:iVec[3], const Float:vecEnd[3])
 		
 		set_pev(pEntity, pev_nextthink, get_gametime() + 0.01);
 		
-		new Float:Velocity[3];Get_Speed_Vector(iVec, vecEnd, 2000.0, Velocity);
+		new Float:Velocity[3];Get_Speed_Vector(iVec, vecEnd, 1500.0, Velocity);
 		set_pev(pEntity, pev_velocity, Velocity);
 	}
 }
 
-stock Spawn(const iPlayer, const Float:iVec[3])
+stock Spawn(const iPlayer, Float:iVec[3])
 {
 	static iszAllocStringCached;
 	static pEntity;
@@ -1188,7 +1192,6 @@ stock Spawn(const iPlayer, const Float:iVec[3])
 	{
 		pEntity = engfunc(EngFunc_CreateNamedEntity, iszAllocStringCached);
 	}
-		
 	if (pev_valid(pEntity))
 	{
 		new Float:Angles[3];
@@ -1201,95 +1204,58 @@ stock Spawn(const iPlayer, const Float:iVec[3])
 		SET_MODEL(pEntity, SHARKMODEL);
 		SET_ORIGIN(pEntity, iVec);
 
+		set_pev(pEntity, pev_rendermode, kRenderTransAdd)
+		set_pev(pEntity, pev_renderamt, 240.0)
 		set_pev(pEntity, pev_classname, DRAGON_CLASSNAME);
 		set_pev(pEntity, pev_solid, SOLID_NOT);
 
 		//SET_SIZE(pEntity, Float:{-55.0, -55.0, -100.0}, Float:{55.0, 55.0, 300.0});
 		
-		set_pev(pEntity, pev_framerate, 0.7);
+		set_pev(pEntity, pev_framerate, 1.0);
 		set_pev(pEntity, pev_sequence, 0);
 		set_pev(pEntity, pev_animtime, get_gametime());
 
 		set_pev(pEntity, pev_fuser2, get_gametime() + 3.0);
 
 		set_pev(pEntity, pev_nextthink, get_gametime() + 0.1);
+
+		set_task(0.5, "playSound", pEntity)
 	}
 	
-	static iszAllocStringCached2;
-	static pEntity2;
+	// static iszAllocStringCached2;
+	// static pEntity2;
 
-	if (iszAllocStringCached2 || (iszAllocStringCached2 = engfunc(EngFunc_AllocString, "info_target")))
-	{
-		pEntity2 = engfunc(EngFunc_CreateNamedEntity, iszAllocStringCached2);
-	}
+	// if (iszAllocStringCached2 || (iszAllocStringCached2 = engfunc(EngFunc_AllocString, "info_target")))
+	// {
+	// 	pEntity2 = engfunc(EngFunc_CreateNamedEntity, iszAllocStringCached2);
+	// }
 		
-	if (pev_valid(pEntity2))
-	{
-		set_pev(pEntity2, pev_movetype, MOVETYPE_TOSS);
-		set_pev(pEntity2, pev_owner, iPlayer);
+	// if (pev_valid(pEntity2))
+	// {
+	// 	set_pev(pEntity2, pev_movetype, MOVETYPE_TOSS);
+	// 	set_pev(pEntity2, pev_owner, iPlayer);
 			
-		SET_MODEL(pEntity2, WATERMODEL);
-		SET_ORIGIN(pEntity2, iVec);
+	// 	SET_MODEL(pEntity2, WATERMODEL);
+	// 	SET_ORIGIN(pEntity2, iVec);
 
-		set_pev(pEntity2, pev_classname, WATER_CLASSNAME);
-		set_pev(pEntity2, pev_solid, SOLID_NOT);
+	// 	set_pev(pEntity2, pev_classname, WATER_CLASSNAME);
+	// 	set_pev(pEntity2, pev_solid, SOLID_NOT);
 
-		//SET_SIZE(pEntity, Float:{-100.0, -100.0, -100.0}, Float:{100.0, 100.0, 300.0});
+	// 	//SET_SIZE(pEntity, Float:{-100.0, -100.0, -100.0}, Float:{100.0, 100.0, 300.0});
 		
-		set_pev(pEntity2, pev_framerate, 1.0);
-		set_pev(pEntity2, pev_sequence, 0);
-		set_pev(pEntity2, pev_animtime, get_gametime());
+	// 	set_pev(pEntity2, pev_framerate, 1.0);
+	// 	set_pev(pEntity2, pev_sequence, 0);
+	// 	set_pev(pEntity2, pev_animtime, get_gametime());
 
-		set_pev(pEntity2, pev_fuser4, get_gametime() + 3.5);
+	// 	set_pev(pEntity2, pev_fuser4, get_gametime() + 3.5);
 
-		set_pev(pEntity2, pev_nextthink, get_gametime() + 0.1);
-	}
-	
-	message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
-	write_byte(TE_EXPLOSION);
-	engfunc(EngFunc_WriteCoord, iVec[0]);
-	engfunc(EngFunc_WriteCoord, iVec[1] - 60.0);
-	engfunc(EngFunc_WriteCoord, iVec[2] + 50.0);
-	write_short(iBlood[3]);
-	write_byte(10);
-	write_byte(16);
-	write_byte(TE_EXPLFLAG_NOSOUND |TE_EXPLFLAG_NOPARTICLES|TE_EXPLFLAG_NODLIGHTS);
-	message_end();
-	
-	message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
-	write_byte(TE_EXPLOSION);
-	engfunc(EngFunc_WriteCoord, iVec[0]);
-	engfunc(EngFunc_WriteCoord, iVec[1] + 60.0);
-	engfunc(EngFunc_WriteCoord, iVec[2] + 45.0);
-	write_short(iBlood[3]);
-	write_byte(10);
-	write_byte(17);
-	write_byte(TE_EXPLFLAG_NOSOUND |TE_EXPLFLAG_NOPARTICLES|TE_EXPLFLAG_NODLIGHTS);
-	message_end();
-	
-	message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
-	write_byte(TE_EXPLOSION);
-	engfunc(EngFunc_WriteCoord, iVec[0]);
-	engfunc(EngFunc_WriteCoord, iVec[1] - 20.0);
-	engfunc(EngFunc_WriteCoord, iVec[2] + 55.0);
-	write_short(iBlood[3]);
-	write_byte(10);
-	write_byte(18);
-	write_byte(TE_EXPLFLAG_NOSOUND |TE_EXPLFLAG_NOPARTICLES|TE_EXPLFLAG_NODLIGHTS);
-	message_end();
-	
-	message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
-	write_byte(TE_EXPLOSION);
-	engfunc(EngFunc_WriteCoord, iVec[0]);
-	engfunc(EngFunc_WriteCoord, iVec[1] + 20.0);
-	engfunc(EngFunc_WriteCoord, iVec[2] + 50.0);
-	write_short(iBlood[3]);
-	write_byte(10);
-	write_byte(15);
-	write_byte(TE_EXPLFLAG_NOSOUND |TE_EXPLFLAG_NOPARTICLES|TE_EXPLFLAG_NODLIGHTS);
-	message_end();
+	// 	set_pev(pEntity2, pev_nextthink, get_gametime() + 0.1);
+	// }
 }
-
+public playSound(ent)
+{
+		emit_sound(ent, CHAN_WEAPON, SOUND_DRAGONFX, 1.0, ATTN_NORM, 0, PITCH_NORM)
+}
 stock Sprite_SetTransparency(const iSprite, const iRendermode, const Float: vecColor[3], const Float: flAmt, const iFx = kRenderFxNone)
 {
 	set_pev(iSprite, pev_rendermode, iRendermode);
@@ -1338,43 +1304,6 @@ stock MuzzleFlash(const iPlayer, const szMuzzleSprite[], const iClass[], const F
 
 	set_pev(iSprite, pev_nextthink, get_gametime() + 0.01);
 	
-	return iSprite;
-}
-
-stock Weapon_MuzzleFlash(const iPlayer, const szMuzzleSprite[], const Float: flScale, const Float: flFramerate, const Float: vecColor[3], const Float: flBrightness)
-{
-	if (global_get(glb_maxEntities) - engfunc(EngFunc_NumberOfEntities) < 100)
-	{
-		return FM_NULLENT;
-	}
-	
-	static iSprite, iszAllocStringCached;
-	if (iszAllocStringCached || (iszAllocStringCached = engfunc(EngFunc_AllocString, "env_sprite")))
-	{
-		iSprite = engfunc(EngFunc_CreateNamedEntity, iszAllocStringCached);
-	}
-	
-	if (!IsValidPev(iSprite))
-	{
-		return FM_NULLENT;
-	}
-	
-	set_pev(iSprite, pev_model, szMuzzleSprite);
-	set_pev(iSprite, pev_spawnflags, SF_SPRITE_ONCE);
-	
-	set_pev(iSprite, pev_classname, MUZZLE_CLASSNAME2);
-	set_pev(iSprite, pev_impulse, g_iszMuzzleKey);
-	set_pev(iSprite, pev_owner, iPlayer);
-	
-	set_pev(iSprite, pev_aiment, iPlayer);
-	set_pev(iSprite, pev_body, 1);
-	
-	Sprite_SetTransparency(iSprite, kRenderTransAdd, vecColor, flBrightness);
-	Sprite_SetFramerate(iSprite, flFramerate);
-	Sprite_SetScale(iSprite, flScale);
-	
-	MDLL_Spawn(iSprite);
-
 	return iSprite;
 }
 
@@ -1501,10 +1430,6 @@ bool: CheckItem(const iItem, &iPlayer)
 	return true;
 }
 
-//**********************************************
-//* Weapon list update.                        *
-//**********************************************
-
 public HamHook_Item_AddToPlayer(const iItem, const iPlayer)
 {
 	switch(pev(iItem, pev_impulse))
@@ -1517,10 +1442,6 @@ public HamHook_Item_AddToPlayer(const iItem, const iPlayer)
 	
 	return HAM_IGNORED;
 }
-//**********************************************
-//* Weaponbox world model.                     *
-//**********************************************
-
 public HamHook_Weaponbox_Spawn_Post(const iWeaponBox)
 {
 	if (IsValidPev(iWeaponBox))
@@ -1559,10 +1480,6 @@ public FakeMeta_SetModel(const iEntity) <WeaponBox: Enabled>
 
 public FakeMeta_SetModel()	</* Empty statement */>	{ /*  Fallback  */ return FMRES_IGNORED; }
 public FakeMeta_SetModel() 	< WeaponBox: Disabled >	{ /* Do nothing */ return FMRES_IGNORED; }
-
-//**********************************************
-//* Ammo Inventory.                            *
-//**********************************************
 
 PrimaryAmmoIndex(const iItem)
 {

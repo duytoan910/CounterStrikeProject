@@ -5,7 +5,6 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <fun>
-#include <maths>
 #include <zombieplague>
 
 #define PLUGIN "[CSO] Weapon: Petrol Boomer"

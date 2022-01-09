@@ -1,4 +1,0 @@
-3
-weapon			640 ZA/640hud88	0	90	170	45
-weapon_s		640 ZA/640hud88	0	135	170	45
-ammo			640 ZA/640hud3	222	88	24	24

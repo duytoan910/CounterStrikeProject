@@ -1,0 +1,77 @@
+L 01/08/2022 - 18:49:09: Start of error session.
+L 01/08/2022 - 18:49:09: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20220108.log")
+L 01/08/2022 - 18:49:09: [FAKEMETA] Invalid entity
+L 01/08/2022 - 18:49:09: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 01/08/2022 - 18:49:09: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 01/08/2022 - 18:49:09: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 230)
+L 01/08/2022 - 22:51:13: Start of error session.
+L 01/08/2022 - 22:51:13: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20220108.log")
+L 01/08/2022 - 22:51:13: [FAKEMETA] Invalid entity
+L 01/08/2022 - 22:51:13: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
+L 01/08/2022 - 22:51:13: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 01/08/2022 - 22:51:13: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)
+L 01/08/2022 - 22:51:16: [FAKEMETA] Invalid entity
+L 01/08/2022 - 22:51:16: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 01/08/2022 - 22:51:16: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 01/08/2022 - 22:51:16: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 230)
+L 01/08/2022 - 23:23:47: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:23:47: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:23:47: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:23:47: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:23:47: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:23:47: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:23:47: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:23:47: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:23:49: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:23:49: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:23:49: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:23:49: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:23:49: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:23:49: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:23:49: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:23:49: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:23:50: [HAMSANDWICH] Invalid entity (123)
+L 01/08/2022 - 23:23:50: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "ExecuteHam") - debug not enabled!
+L 01/08/2022 - 23:23:50: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/08/2022 - 23:23:50: [HAMSANDWICH] Invalid entity (123)
+L 01/08/2022 - 23:23:50: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "ExecuteHam") - debug not enabled!
+L 01/08/2022 - 23:23:50: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/08/2022 - 23:24:07: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:24:07: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:24:07: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:24:07: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:24:07: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:24:07: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:24:07: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:24:07: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:24:08: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:24:08: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:24:08: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:24:08: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:24:08: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:24:08: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:24:09: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:24:09: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:24:09: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:24:09: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:24:09: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:24:09: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:24:09: [FAKEMETA] Invalid entity
+L 01/08/2022 - 23:24:09: [AMXX] Displaying debug trace (plugin "zp_addon_npc_round.amxx")
+L 01/08/2022 - 23:24:09: [AMXX] Run time error 10: native error (native "pev")
+L 01/08/2022 - 23:24:09: [AMXX]    [0] zp_addon_npc_round.sma::fw_TraceAttack (line 133)
+L 01/08/2022 - 23:24:09: [HAMSANDWICH] Invalid entity (123)
+L 01/08/2022 - 23:24:09: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "ExecuteHam") - debug not enabled!
+L 01/08/2022 - 23:24:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/08/2022 - 23:24:09: [HAMSANDWICH] Invalid entity (123)
+L 01/08/2022 - 23:24:09: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "ExecuteHam") - debug not enabled!
+L 01/08/2022 - 23:24:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/08/2022 - 23:24:09: [HAMSANDWICH] Invalid entity (123)
+L 01/08/2022 - 23:24:09: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "ExecuteHam") - debug not enabled!
+L 01/08/2022 - 23:24:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/08/2022 - 23:24:09: [HAMSANDWICH] Invalid entity (123)
+L 01/08/2022 - 23:24:09: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "ExecuteHam") - debug not enabled!
+L 01/08/2022 - 23:24:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 01/08/2022 - 23:24:10: [HAMSANDWICH] Invalid entity (123)
+L 01/08/2022 - 23:24:10: [AMXX] Run time error 10 (plugin "zp_zclass_stamper.amxx") (native "ExecuteHam") - debug not enabled!
+L 01/08/2022 - 23:24:10: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

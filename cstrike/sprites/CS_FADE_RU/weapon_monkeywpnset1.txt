@@ -1,4 +1,0 @@
-3
-weapon			640 CS_FADE_RU/640hud105	0	90	170	45
-weapon_s		640 CS_FADE_RU/640hud105	0	135	170	45
-ammo			640 CS_FADE_RU/640hud7	72	72	24	24

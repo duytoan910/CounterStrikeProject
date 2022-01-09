@@ -6,6 +6,7 @@
 #include <cstrike>
 #include <fun>
 #include <zombieplague>
+#include <toan>
 
 #define PLUGIN "[CSO] Thanatos-5"
 #define VERSION "1.0"
@@ -98,6 +99,7 @@ public plugin_init()
 	RegisterHam(Ham_Weapon_Reload, weapon_thanatos5, "fw_Weapon_Reload")
 	RegisterHam(Ham_Weapon_Reload, weapon_thanatos5, "fw_Weapon_Reload_Post", 1)	
 	RegisterHam(Ham_Weapon_WeaponIdle, weapon_thanatos5, "fw_Weapon_WeaponIdle_Post", 1)	
+	RegisterHam(Ham_Item_Holster, weapon_thanatos5, "HolsterPost", 1)
 	
 	RegisterHam(Ham_TraceAttack, "worldspawn", "fw_TraceAttack_World")
 	RegisterHam(Ham_TraceAttack, "player", "fw_TraceAttack_Player")	
@@ -293,13 +295,15 @@ public Update_SpecialAmmo(id, Ammo, On)
 		case 6..10: { Color[0] = 200; Color[1] = 0; Color[2] = 0; }
 	}
 	
-	message_begin(MSG_ONE_UNRELIABLE, g_MsgStatusIcon, {0,0,0}, id)
-	write_byte(On)
-	write_string(AmmoSprites)
-	write_byte(Color[0]) // red
-	write_byte(Color[1]) // green
-	write_byte(Color[2]) // blue
-	message_end()
+	// message_begin(MSG_ONE_UNRELIABLE, g_MsgStatusIcon, {0,0,0}, id)
+	// write_byte(On)
+	// write_string(AmmoSprites)
+	// write_byte(Color[0]) // red
+	// write_byte(Color[1]) // green
+	// write_byte(Color[2]) // blue
+	// message_end()
+	
+	nav_set_special_ammo(id, On)
 }
 
 public fw_SetModel(entity, model[])
@@ -513,10 +517,26 @@ public fw_Item_Deploy_Post(Ent)
 	set_pev(Id, pev_viewmodel2, V_MODEL)
 	set_pev(Id, pev_weaponmodel2, P_MODEL)
 	
-	if(Get_BitVar(g_GrenadeMode, Id)) Set_WeaponAnim(Id, ANIM_DRAW_B)
-	else Set_WeaponAnim(Id, ANIM_DRAW_A)
+	if(Get_BitVar(g_GrenadeMode, Id)) {
+		Set_WeaponAnim(Id, ANIM_DRAW_B)
+		Update_SpecialAmmo(Id, 1, 1)
+	}
+	else {
+		Set_WeaponAnim(Id, ANIM_DRAW_A)
+		Update_SpecialAmmo(Id, 1, 0)
+	}
 }
 
+public HolsterPost(wpn)
+{
+	static id
+	id = get_pdata_cbase(wpn, 41, 4)
+	if(!Get_BitVar(g_Had_Thanatos5, id))
+		return HAM_IGNORED	
+		
+	Update_SpecialAmmo(id, 1, 0)	
+	return HAM_IGNORED	
+}
 public fw_Item_AddToPlayer_Post(Ent, id)
 {
 	if(!pev_valid(Ent))

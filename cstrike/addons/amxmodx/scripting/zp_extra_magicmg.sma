@@ -6,6 +6,7 @@
 #include <cstrike>
 #include <zombieplague>
 #include <metadrawer>
+#include <toan>
 
 #define PLUGIN "Balrog-XI"
 #define VERSION "2.0"
@@ -732,13 +733,15 @@ public fw_PlaybackEvent(flags, invoker, eventid, Float:delay, Float:origin[3], F
 
 stock UTIL_StatusIcon(id, iUpdateMode)
 {
-	message_begin(MSG_ONE, get_user_msgid("StatusIcon"), { 0, 0, 0 }, id);
-	write_byte(iUpdateMode ? 1 : 0);
-	write_string("number_1"); 
-	write_byte(219);
-	write_byte(48); 
-	write_byte(130);
-	message_end();
+	// message_begin(MSG_ONE, get_user_msgid("StatusIcon"), { 0, 0, 0 }, id);
+	// write_byte(iUpdateMode ? 1 : 0);
+	// write_string("number_1"); 
+	// write_byte(219);
+	// write_byte(48); 
+	// write_byte(130);
+	// message_end();
+
+	nav_set_special_ammo(id, iUpdateMode ? 1 : 0)
 }
 
 stock UTIL_ScreenFade(id, iDuration, iHoldTime, iFlags, iRed, iGreen, iBlue, iAlpha, iReliable = 0)
