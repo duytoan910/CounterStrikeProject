@@ -6,6 +6,7 @@
 #include <cstrike>
 #include <fun>
 #include <maths>
+#include <zombieplague>
 
 #define PLUGIN "[CSO] Weapon: Petrol Boomer"
 #define VERSION "1.0"
@@ -14,22 +15,23 @@
 #define CSW_PETROLBOOMER CSW_M249
 #define weapon_petrolboomer "weapon_m249"
 
-#define MAGAZINE 20
+#define MAGAZINE 200
 #define MOLOTOV_SPEED 750.0
 
 #define WEAPON_ANIMEXT "rifle"
 #define WEAPON_OLDWMODEL "models/w_m249.mdl"
 #define WEAPON_SECRETCODE 1972014
 
-#define DAMAGE_EXPLOSION 200 // 500 for Zombie
-#define DAMAGE_BURN 20 // 100 for Zombie
-#define DAMAGE_RADIUS 100.0
+#define DAMAGE_EXPLOSION 250.0 // 500 for Zombie
+#define DAMAGE_BURN 4.0 // 100 for Zombie
+#define DAMAGE_RADIUS 70.0
 
 #define TIME_DRAW 0.75
-#define TIME_RELOAD 4.0
+#define TIME_RELOAD 4.7
 
 #define FIRE_CLASSNAME "petrolfire"
 #define FIRE2_CLASSNAME "smallfire"
+#define FLAME_FAKE_CLASSNAME "ToanFakeFlame"
 #define MOLOTOV_CLASSNAME "molotov"
 
 #define MODEL_V "models/v_petrolboomer.mdl"
@@ -47,14 +49,9 @@ new const WeaponSounds[6][] =
 	"weapons/petrolboomer_draw_empty.wav"
 }
 
-new const WeaponResources[6][] = 
+new const WeaponResources[][] = 
 {
-	"sprites/flame.spr",
-	"sprites/640hud13_2.spr",
-	"sprites/640hud108_2.spr",
-	"sprites/640hud109_2.spr",
-	"sprites/scope_grenade.spr",
-	"sprites/weapon_petrolboomer.txt"
+	"sprites/flame2.spr"
 }
 
 enum
@@ -67,50 +64,34 @@ enum
 	ANIM_IDLE_EMPTY
 }
 
-enum
-{
-	TEAM_T = 1,
-	TEAM_CT
-}
-
 // MACROS
 #define Get_BitVar(%1,%2) (%1 & (1 << (%2 & 31)))
 #define Set_BitVar(%1,%2) %1 |= (1 << (%2 & 31))
 #define UnSet_BitVar(%1,%2) %1 &= ~(1 << (%2 & 31))
 
-new g_Had_PB
-new g_Molotov[33], g_FireEnt[33], g_InTempingAttack
-new g_MsgCurWeapon, g_MsgAmmoX, g_MsgWeaponList
-new g_ExpSprId, g_MaxPlayers, spr_trail
+new g_Had_PB, g_id
+new g_ExpSprId, spr_trail
+new g_Reloading[33]
+new g_wpnID[33]
 
 public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
-	
-	register_event("CurWeapon", "Event_CurWeapon", "be", "1=1")
-	
+	register_message(get_user_msgid("DeathMsg"), "Message_DeathMsg")
 	register_forward(FM_SetModel, "fw_SetModel")
 	register_forward(FM_UpdateClientData, "fw_UpdateClientData_Post", 1)
-	register_forward(FM_CmdStart, "fw_CmdStart")	
-	register_forward(FM_EmitSound, "fw_EmitSound")
-	register_forward(FM_TraceLine, "fw_TraceLine")
-	register_forward(FM_TraceHull, "fw_TraceHull")			
+	register_forward(FM_CmdStart, "fw_CmdStart")			
 	
-	register_think(FIRE_CLASSNAME, "fw_FireThink")
 	register_think(FIRE2_CLASSNAME, "fw_Fire2Think")
+	register_think(FLAME_FAKE_CLASSNAME, "FlameFakeThink")
 	register_touch(MOLOTOV_CLASSNAME, "*", "fw_Touch_Molotov")
+	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
 	
 	RegisterHam(Ham_Item_AddToPlayer, weapon_petrolboomer, "fw_Item_AddToPlayer_Post", 1)
 	RegisterHam(Ham_Item_Deploy, weapon_petrolboomer, "fw_Item_Deploy_Post", 1)
-	RegisterHam(Ham_Weapon_WeaponIdle, weapon_petrolboomer, "fw_Weapon_WeaponIdle_Post", 1)
+	RegisterHam(Ham_Weapon_Reload, weapon_petrolboomer, "fw_Item_Reload");
 	
-	g_MsgCurWeapon = get_user_msgid("CurWeapon")
-	g_MsgAmmoX = get_user_msgid("AmmoX")
-	g_MsgWeaponList = get_user_msgid("WeaponList")
-	
-	g_MaxPlayers = get_maxplayers()
-
-	register_clcmd("say /get", "Get_PB")
+	g_id = zp_register_extra_item("Petrol Boomer", 3000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()
@@ -124,58 +105,42 @@ public plugin_precache()
 		precache_sound(WeaponSounds[i])
 	for(new i = 0; i < sizeof(WeaponResources); i++)
 	{
-		if(i == 5) precache_generic(WeaponResources[i])
-		else precache_model(WeaponResources[i])
+		precache_model(WeaponResources[i])
 	}
 	
 	g_ExpSprId = precache_model("sprites/zerogxplode.spr")
 	spr_trail = engfunc(EngFunc_PrecacheModel, "sprites/laserbeam.spr")
 }
 
+public zp_extra_item_selected(id, ItemID)
+{
+	if(ItemID == g_id)
+	{
+		drop_weapons(id, 1)
+		Get_PB(id)
+	}
+}
 public Get_PB(id)
 {
 	Set_BitVar(g_Had_PB, id)
-	g_Molotov[id] = MAGAZINE
 	
-	give_item(id, weapon_petrolboomer)
-	UpdateAmmo(id, CSW_PETROLBOOMER, 3, -1, g_Molotov[id])
+	new iWep2 = give_item(id, weapon_petrolboomer)
+	if( iWep2 > 0 )
+	{
+		cs_set_weapon_ammo(iWep2, 1)
+		cs_set_user_bpammo (id, CSW_PETROLBOOMER, MAGAZINE)
+		set_pdata_float(id, 83, 1.0, 5)
+	}	
 }
 
+public Player_Spawn(id)
+{
+	UnSet_BitVar(g_Had_PB, id)
+}
 public Remove_PB(id)
 {
 	UnSet_BitVar(g_Had_PB, id)
-	g_Molotov[id] = 0
 }
-
-public UpdateAmmo(id, CSWID, AmmoID, Ammo, BpAmmo)
-{
-	message_begin(MSG_ONE_UNRELIABLE, g_MsgCurWeapon, _, id)
-	write_byte(1)
-	write_byte(CSWID)
-	write_byte(Ammo)
-	message_end()
-	
-	message_begin(MSG_ONE_UNRELIABLE, g_MsgAmmoX, _, id)
-	write_byte(AmmoID)
-	write_byte(BpAmmo)
-	message_end()
-	
-	cs_set_user_bpammo(id, CSWID, BpAmmo)
-}
-
-public Event_CurWeapon(id)
-{
-	static CSWID; CSWID = read_data(2)
-	if(CSWID != CSW_PETROLBOOMER) 
-	{
-		if(pev_valid(g_FireEnt[id])) set_pev(g_FireEnt[id], pev_renderamt, 0.0)
-		return
-	}
-	if(!Get_BitVar(g_Had_PB, id)) return
-	
-	UpdateAmmo(id, CSW_PETROLBOOMER, 3, -1, g_Molotov[id])
-}
-
 public fw_SetModel(entity, model[])
 {
 	if(!pev_valid(entity))
@@ -200,7 +165,7 @@ public fw_SetModel(entity, model[])
 		if(Get_BitVar(g_Had_PB, id))
 		{
 			set_pev(weapon, pev_impulse, WEAPON_SECRETCODE)
-			set_pev(weapon, pev_iuser1, g_Molotov[id])
+			set_pev(weapon, pev_iuser1, MAGAZINE)
 			
 			engfunc(EngFunc_SetModel, entity, MODEL_W)
 			Remove_PB(id)
@@ -232,253 +197,43 @@ public fw_CmdStart(id, uc_handle, seed)
 	{
 		CurButton &= ~IN_ATTACK
 		set_uc(uc_handle, UC_Buttons, CurButton)
-		
-		PetrolBoomer_AttackHandle(id)
+		if(!g_Reloading[id])
+			PetrolBoomer_AttackHandle(id)
 	}
-	
 	return 
-}
-
-public fw_EmitSound(id, channel, const sample[], Float:volume, Float:attn, flags, pitch)
-{
-	if(!is_user_connected(id))
-		return FMRES_IGNORED
-	if(!Get_BitVar(g_InTempingAttack, id))
-		return FMRES_IGNORED
-		
-	if(sample[8] == 'k' && sample[9] == 'n' && sample[10] == 'i')
-	{
-		if(sample[14] == 's' && sample[15] == 'l' && sample[16] == 'a')
-			return FMRES_SUPERCEDE
-		if (sample[14] == 'h' && sample[15] == 'i' && sample[16] == 't')
-		{
-			if (sample[17] == 'w')  return FMRES_SUPERCEDE
-			else  return FMRES_SUPERCEDE
-		}
-		if (sample[14] == 's' && sample[15] == 't' && sample[16] == 'a')
-			return FMRES_SUPERCEDE;
-	}
-	
-	return FMRES_IGNORED
-}
-
-public fw_TraceLine(Float:vector_start[3], Float:vector_end[3], ignored_monster, id, handle)
-{
-	if(!is_user_alive(id))
-		return FMRES_IGNORED	
-	if(!Get_BitVar(g_InTempingAttack, id))
-		return FMRES_IGNORED
-	
-	static Float:vecStart[3], Float:vecEnd[3], Float:v_angle[3], Float:v_forward[3], Float:view_ofs[3], Float:fOrigin[3]
-	
-	pev(id, pev_origin, fOrigin)
-	pev(id, pev_view_ofs, view_ofs)
-	xs_vec_add(fOrigin, view_ofs, vecStart)
-	pev(id, pev_v_angle, v_angle)
-	
-	engfunc(EngFunc_MakeVectors, v_angle)
-	get_global_vector(GL_v_forward, v_forward)
-
-	xs_vec_mul_scalar(v_forward, 0.0, v_forward)
-	xs_vec_add(vecStart, v_forward, vecEnd)
-	
-	engfunc(EngFunc_TraceLine, vecStart, vecEnd, ignored_monster, id, handle)
-	
-	return FMRES_SUPERCEDE
-}
-
-public fw_TraceHull(Float:vector_start[3], Float:vector_end[3], ignored_monster, hull, id, handle)
-{
-	if(!is_user_alive(id))
-		return FMRES_IGNORED	
-	if(!Get_BitVar(g_InTempingAttack, id))
-		return FMRES_IGNORED
-	
-	static Float:vecStart[3], Float:vecEnd[3], Float:v_angle[3], Float:v_forward[3], Float:view_ofs[3], Float:fOrigin[3]
-	
-	pev(id, pev_origin, fOrigin)
-	pev(id, pev_view_ofs, view_ofs)
-	xs_vec_add(fOrigin, view_ofs, vecStart)
-	pev(id, pev_v_angle, v_angle)
-	
-	engfunc(EngFunc_MakeVectors, v_angle)
-	get_global_vector(GL_v_forward, v_forward)
-	
-	xs_vec_mul_scalar(v_forward, 0.0, v_forward)
-	xs_vec_add(vecStart, v_forward, vecEnd)
-	
-	engfunc(EngFunc_TraceHull, vecStart, vecEnd, ignored_monster, hull, id, handle)
-	
-	return FMRES_SUPERCEDE
-}
-
-public fw_Touch_Molotov(Ent, Id)
-{
-	if(!pev_valid(Ent))
-		return
-	if(pev(Ent, pev_movetype) == MOVETYPE_NONE)
-		return
-		
-	// Remove Ent
-	set_pev(Ent, pev_movetype, MOVETYPE_NONE)
-	set_pev(Ent, pev_solid, SOLID_NOT)
-	
-	engfunc(EngFunc_SetModel, Ent, "")
-	emit_sound(Ent, CHAN_BODY, WeaponSounds[1], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
-	
-	Create_GroundFire(Ent)
-	set_task(1.5, "Remove_Entity", Ent)	
-	
-	if(is_user_alive(Id)) // Wall
-	{ // Player
-		static Attacker; Attacker = pev(Ent, pev_iuser1)
-		if(!is_user_connected(Attacker) || Attacker == Id)
-		{
-			engfunc(EngFunc_RemoveEntity, Ent)
-			return
-		}
-		
-		if(cs_get_user_team(Id) == Get_ArrowTeam(Ent))
-			return
-			
-		ExecuteHamB(Ham_TakeDamage, Id, 0, pev(Ent, pev_owner), float(DAMAGE_EXPLOSION), DMG_BLAST)
-	}
-}
-
-public Create_GroundFire(Ent)
-{
-	static Float:Origin[3]; pev(Ent, pev_origin, Origin)
-	
-	message_begin(MSG_BROADCAST ,SVC_TEMPENTITY)
-	write_byte(TE_EXPLOSION)
-	engfunc(EngFunc_WriteCoord, Origin[0])
-	engfunc(EngFunc_WriteCoord, Origin[1])
-	engfunc(EngFunc_WriteCoord, Origin[2])
-	write_short(g_ExpSprId)	// sprite index
-	write_byte(30)	// scale in 0.1's
-	write_byte(30)	// framerate
-	write_byte(0)	// flags
-	message_end()
-	
-	// Put decal on "world" (a wall)
-	message_begin(MSG_BROADCAST, SVC_TEMPENTITY)
-	write_byte(TE_WORLDDECAL)
-	engfunc(EngFunc_WriteCoord, Origin[0])
-	engfunc(EngFunc_WriteCoord, Origin[1])
-	engfunc(EngFunc_WriteCoord, Origin[2])
-	write_byte(random_num(46, 48))
-	message_end()	
-	
-	static Float:FireOrigin[12][3]
-	
-	get_position(Ent, 64.0, 0.0, 0.0, FireOrigin[0])
-	get_position(Ent, 0.0, 0.0, 0.0, FireOrigin[1])
-	get_position(Ent, -64.0, 0.0, 0.0, FireOrigin[2])
-	
-	get_position(Ent, 32.0, 16.0, 0.0, FireOrigin[3])
-	get_position(Ent, 0.0, 32.0, 0.0, FireOrigin[4])
-	get_position(Ent, -32.0, 16.0, 0.0, FireOrigin[5])
-	
-	get_position(Ent, 16.0, -16.0, 0.0, FireOrigin[6])
-	get_position(Ent, 0.0, -32.0, 0.0, FireOrigin[7])
-	get_position(Ent, -16.0, -16.0, 0.0, FireOrigin[8])
-	
-	get_position(Ent, 8.0, -16.0, 0.0, FireOrigin[9])
-	get_position(Ent, 0.0, -32.0, 0.0, FireOrigin[10])
-	get_position(Ent, -8.0, -16.0, 0.0, FireOrigin[11])	
-	
-	for(new i = 0; i < 12; i++)
-		Create_SmallFire(FireOrigin[i], Ent)
-}
-
-public Create_SmallFire(Float:Origin[3], Master)
-{
-	static Ent; Ent = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
-	if(!pev_valid(Ent)) return
-
-	// Set info for ent
-	set_pev(Ent, pev_movetype, MOVETYPE_PUSHSTEP)
-	set_pev(Ent, pev_rendermode, kRenderTransAdd)
-	set_pev(Ent, pev_renderamt, 100.0)
-	set_pev(Ent, pev_scale, random_float(0.75, 1.75))
-	set_pev(Ent, pev_nextthink, get_gametime() + 0.05)
-	
-	set_pev(Ent, pev_classname, FIRE2_CLASSNAME)
-	engfunc(EngFunc_SetModel, Ent, WeaponResources[0])
-	
-	set_pev(Ent, pev_mins, Float:{-16.0, -16.0, -6.0})
-	set_pev(Ent, pev_maxs, Float:{16.0, 16.0, 36.0})
-	
-	set_pev(Ent, pev_origin, Origin)
-	set_pev(Ent, pev_iuser2, pev(Master, pev_iuser2))
-	
-	set_pev(Ent, pev_gravity, 1.0)
-	set_pev(Ent, pev_solid, SOLID_TRIGGER)
-	set_pev(Ent, pev_frame, 0.0)
-	
-	set_pev(Ent, pev_fuser1, get_gametime() + 10.0)
-}
-
-public Remove_Entity(Ent)
-{
-	if(pev_valid(Ent)) remove_entity(Ent)
 }
 
 public PetrolBoomer_AttackHandle(id)
 {
 	if(get_pdata_float(id, 83, 5) > 0.0)
 		return
-	if(!g_Molotov[id])
-	{
-		set_pdata_float(id, 83, 1.0, 5)
-		Set_Weapon_Anim(id, ANIM_IDLE_EMPTY)
-		
-		return
-	}
-		
-	g_Molotov[id]--
-	UpdateAmmo(id, CSW_PETROLBOOMER, 3, -1, g_Molotov[id])
 
-	Create_FakeAttack(id)
-	
 	Set_Weapon_Anim(id, ANIM_SHOOT)
-	set_task(0.5, "ReloadAnim", id)
-	
+	set_task(1.0, "ReloadAnim", id)
+		
 	emit_sound(id, CHAN_WEAPON, WeaponSounds[0], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
-	
-	if(pev_valid(g_FireEnt[id])) set_pev(g_FireEnt[id], pev_renderamt, 0.0)
-	
 	Create_Molotov(id)
 	Make_Push(id)
 	
+	g_Reloading[id] = true;
+	
 	Set_Player_NextAttack(id, TIME_RELOAD)
 	Set_Weapon_TimeIdle(id, CSW_PETROLBOOMER, TIME_RELOAD)
+	set_pdata_int(g_wpnID[id], 51, 0, 4)
+	set_task(TIME_RELOAD, "DoneReload", id)
+	
 }
-
+public DoneReload(id)
+{
+	g_Reloading[id] = false;
+	set_pdata_int(g_wpnID[id], 51, 1, 4)
+}
 public ReloadAnim(id)
 {
+	if(get_user_weapon(id) != CSW_PETROLBOOMER || !Get_BitVar(g_Had_PB, id))
+		return
 	Set_Weapon_Anim(id, ANIM_RELOAD)
 }
-
-public Create_FakeAttack(id)
-{
-	static Ent; Ent = fm_get_user_weapon_entity(id, CSW_KNIFE)
-	if(!pev_valid(Ent)) return
-	
-	Set_BitVar(g_InTempingAttack, id)
-	ExecuteHamB(Ham_Weapon_PrimaryAttack, Ent)
-	
-	// Set Real Attack Anim
-	static iAnimDesired,  szAnimation[64]
-
-	formatex(szAnimation, charsmax(szAnimation), (pev(id, pev_flags) & FL_DUCKING) ? "crouch_shoot_%s" : "ref_shoot_%s", WEAPON_ANIMEXT)
-	if((iAnimDesired = lookup_sequence(id, szAnimation)) == -1)
-		iAnimDesired = 0
-	
-	set_pev(id, pev_sequence, iAnimDesired)
-	UnSet_BitVar(g_InTempingAttack, id)
-}
-
 public Make_Push(id)
 {
 	static Float:VirtualVec[3]
@@ -493,7 +248,10 @@ public Create_Molotov(id)
 {
 	static Float:StartOrigin[3], Float:EndOrigin[3], Float:Angles[3]
 	
-	get_position(id, 48.0, 8.0, 5.0, StartOrigin)
+	if(!is_user_bot(id))
+		get_position(id, 48.0, 8.0, 5.0, StartOrigin)
+	else get_position(id, 48.0, 0.0, 5.0, StartOrigin)
+	
 	get_position(id, 1024.0, 0.0, 0.0, EndOrigin)
 	pev(id, pev_v_angle, Angles)
 	
@@ -502,9 +260,8 @@ public Create_Molotov(id)
 	static Molotov; Molotov = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
 	if(!pev_valid(Molotov)) return
 	
-	set_pev(Molotov, pev_movetype, MOVETYPE_PUSHSTEP)
+	set_pev(Molotov, pev_movetype, is_user_bot(id)?MOVETYPE_FLY:MOVETYPE_TOSS)
 	set_pev(Molotov, pev_iuser1, id) // Better than pev_owner
-	set_pev(Molotov, pev_iuser2, Get_SpecialTeam(id, cs_get_user_team(id)))
 	set_pev(Molotov, pev_iuser3, 0)
 	set_pev(Molotov, pev_iuser4, 0)
 	
@@ -518,11 +275,6 @@ public Create_Molotov(id)
 	set_pev(Molotov, pev_solid, SOLID_BBOX)
 	
 	set_pev(Molotov, pev_nextthink, get_gametime() + 0.1)
-	set_pev(g_FireEnt[id], pev_iuser3, 1)
-	
-	set_pev(g_FireEnt[id], pev_movetype, MOVETYPE_FOLLOW)
-	set_pev(g_FireEnt[id], pev_aiment, Molotov)
-	set_pev(g_FireEnt[id], pev_renderamt, 100.0)
 	
 	static Float:Velocity[3]
 	get_speed_vector(StartOrigin, EndOrigin, MOLOTOV_SPEED, Velocity)
@@ -542,105 +294,234 @@ public Create_Molotov(id)
 	message_end();
 }
 
-public Get_SpecialTeam(Ent, CsTeams:Team)
+public fw_Touch_Molotov(Ent, Id)
 {
-	if(Team == CS_TEAM_T) return TEAM_T
-	else if(Team == CS_TEAM_CT) return TEAM_CT
-	
-	return 0
-}
-
-public fw_FireThink(iEnt)
-{
-	if(!pev_valid(iEnt)) 
+	if(!pev_valid(Ent))
 		return
-	
-	static Owner; Owner = pev(iEnt, pev_owner)
-	if(!is_user_alive(Owner)) 
-	{
-		set_pev(iEnt, pev_renderamt, 100.0)
+	if(pev(Ent, pev_movetype) == MOVETYPE_NONE)
 		return
-	}
-	
-	static Float:fFrame; pev(iEnt, pev_frame, fFrame)
-
-	fFrame += random_float(0.5, 1.0)
-	if(fFrame >= 14.0) fFrame = 0.0
-
-	set_pev(iEnt, pev_frame, fFrame)
-	set_pev(iEnt, pev_nextthink, halflife_time() + 0.05)
-	
-	if(!pev(iEnt, pev_iuser3))
-	{
-		static Float:Origin[3]
-		get_position(Owner, 48.0, 8.0, 5.0, Origin)
 		
-		set_pev(iEnt, pev_origin, Origin)
+	static Float:Origin[3], Attacker; Attacker = pev(Ent, pev_iuser1)
+	pev(Ent, pev_origin, Origin)
+
+	static a = FM_NULLENT
+	while((a = find_ent_in_sphere(a, Origin, DAMAGE_RADIUS+50.0)) != 0)
+	{
+		if (Attacker == a)
+			continue 
+		if(!is_user_alive(a))
+			continue	
+		if(!zp_get_user_zombie(a))
+			continue	
+		if(pev(a, pev_takedamage) != DAMAGE_NO)
+		{
+			ExecuteHamB(Ham_TakeDamage, a, Attacker, Attacker, is_deadlyshot(Attacker)?random_float(DAMAGE_EXPLOSION-10.0,DAMAGE_EXPLOSION+10.0)*1.5:random_float(DAMAGE_EXPLOSION-10.0,DAMAGE_EXPLOSION+10.0), DMG_BULLET);
+		}
+	}
+	
+	// Remove Ent
+	set_pev(Ent, pev_movetype, MOVETYPE_NONE)
+	set_pev(Ent, pev_solid, SOLID_NOT)
+	engfunc(EngFunc_SetModel, Ent, "")
+	
+	emit_sound(Ent, CHAN_WEAPON, WeaponSounds[1], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
+	
+	Create_GroundFire(Ent)
+	set_task(1.5, "Remove_Entity", Ent)
+}
+
+public Create_GroundFire(Ent)
+{
+	static Float:Origin[3]; pev(Ent, pev_origin, Origin)
+	
+	message_begin(MSG_BROADCAST ,SVC_TEMPENTITY)
+	write_byte(TE_EXPLOSION)
+	engfunc(EngFunc_WriteCoord, Origin[0])
+	engfunc(EngFunc_WriteCoord, Origin[1])
+	engfunc(EngFunc_WriteCoord, Origin[2])
+	write_short(g_ExpSprId)	// sprite index
+	write_byte(30)	// scale in 0.1's
+	write_byte(30)	// framerate
+	write_byte(TE_EXPLFLAG_NODLIGHTS|TE_EXPLFLAG_NOPARTICLES)	// flags
+	message_end()
+	
+	static Float:Ori[3],Float:FireOrigin[9][3]
+	pev(Ent, pev_origin, Ori)
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 0.0, 0.0, FireOrigin[0])
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 90.0, 0.0, FireOrigin[1])
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 180.0, 0.0, FireOrigin[2])
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 270.0, 0.0, FireOrigin[3])
+	
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 315.0, 0.0, FireOrigin[4])
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 45.0, 0.0, FireOrigin[5])
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 135.0, 0.0, FireOrigin[6])
+	get_spherical_coord(Ori, random_float(40.0, 60.0), 225.0, 0.0, FireOrigin[7])
+	get_spherical_coord(Ori, 0.0, 0.0, 0.0, FireOrigin[8])
+	for(new i = 0; i < 9; i++)
+	{	
+		FireOrigin[i][2] += 20.0	
+		Create_SmallFire(FireOrigin[i], Ent)
 	}
 }
 
+public Remove_Entity(Ent)
+{
+	if(pev_valid(Ent)) remove_entity(Ent)
+}
 public fw_Fire2Think(iEnt)
 {
 	if(!pev_valid(iEnt)) 
 		return
 	
 	static Float:fFrame; pev(iEnt, pev_frame, fFrame)
-
-	fFrame += random_float(0.5, 1.0)
-	if(fFrame >= 14.0) fFrame = 0.0
-
-	set_pev(iEnt, pev_frame, fFrame)
-	set_pev(iEnt, pev_nextthink, halflife_time() + 0.05)
 	
-	static NewHealth
-	if(get_gametime() - 1.0 > pev(iEnt, pev_fuser2))
-	{
-		for(new i = 0; i < g_MaxPlayers; i++)
-		{
-			if(!is_user_alive(i))
-				continue
-			if(entity_range(iEnt, i) > DAMAGE_RADIUS)
-				continue
-			if(cs_get_user_team(i) == Get_ArrowTeam(iEnt))
-				continue
+	fFrame += 1.0
+	if(fFrame >= 16.0) 
+		fFrame = 0.0
 
-			NewHealth = get_user_health(i) - (DAMAGE_BURN / 5)
-			set_user_health(i, NewHealth)
-		}
-		
+	new Float:time_1; 
+	pev(iEnt, pev_fuser2, time_1)
+	
+	static Float:Alpha
+	pev(iEnt, pev_renderamt, Alpha)
+	if(time_1 + random_float(0.2, 0.4) <= get_gametime()) 
+	{
+		if(Alpha>40)
+			Create_Fake_Flame(iEnt)
 		set_pev(iEnt, pev_fuser2, get_gametime())
-	}	
+	}else{
+		time_1 += 0.03
+		set_pev(iEnt, pev_fuser2, time_1)
+	}
+	set_pev(iEnt, pev_frame, fFrame)
 	
 	if(get_gametime() >= pev(iEnt, pev_fuser1))
 	{
-		remove_entity(iEnt)
-	}
+		Alpha-=15.0
+		if(Alpha<=0)
+		{	
+			remove_entity(iEnt)
+			return;
+		}
+		set_pev(iEnt, pev_renderamt, Alpha)
+		set_pev(iEnt, pev_nextthink, get_gametime() + 0.1)
+		return;
+	}	
+	
+	static Attacker; Attacker = pev(iEnt, pev_iuser1)
+	static Float:Origin[3]
+	pev(iEnt, pev_origin, Origin)
+	
+	set_pev(iEnt, pev_nextthink, get_gametime() + 0.1)
+	
+	if(!zp_get_user_zombie(Attacker))
+		Stock_DamageRadius(Attacker, Origin, DAMAGE_RADIUS, is_deadlyshot(Attacker)?DAMAGE_BURN*1.5:DAMAGE_BURN, DMG_BULLET)
+	else remove_entity(iEnt)
 }
+public Create_SmallFire(Float:Origin[3], Master)
+{
+	static Ent; Ent = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
+	if(!pev_valid(Ent)) return
 
+	// Set info for ent
+	set_pev(Ent, pev_movetype, MOVETYPE_PUSHSTEP)
+	set_pev(Ent, pev_rendermode, kRenderTransAdd)
+	set_pev(Ent, pev_renderamt, 180.0)
+	set_pev(Ent, pev_scale, random_float(0.6,0.7))
+	set_pev(Ent, pev_nextthink, get_gametime() + 0.05)
+	
+	set_pev(Ent, pev_classname, FIRE2_CLASSNAME)
+	engfunc(EngFunc_SetModel, Ent, WeaponResources[0])
+	set_pev(Ent, pev_fuser2, get_gametime())
+	
+	set_pev(Ent, pev_maxs, Float:{16.0, 16.0, 115.0})
+	set_pev(Ent, pev_mins, Float:{-16.0, -16.0, -25.0})
+	
+	set_pev(Ent, pev_origin, Origin)
+	
+	set_pev(Ent, pev_gravity, 1.0)
+	set_pev(Ent, pev_solid, SOLID_NOT)
+	set_pev(Ent, pev_frame, 0.0)
+	set_pev(Ent, pev_iuser1, pev(Master, pev_iuser1))
+	set_pev(Ent, pev_fuser1, get_gametime() + 7.0)
+}
+public Create_Fake_Flame(ent)
+{
+	new Float:Origin[3];
+	pev(ent, pev_origin, Origin)
+	
+	static Scale,Ent; Ent = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
+	if(!pev_valid(Ent)) return
+	
+	pev(ent, pev_scale, Scale)
+	
+	// Set info for ent
+	set_pev(Ent, pev_movetype, MOVETYPE_NOCLIP)
+	set_pev(Ent, pev_solid, SOLID_NOT)
+	set_pev(Ent, pev_rendermode, kRenderTransAdd)
+	set_pev(Ent, pev_renderamt, 100.0)
+	
+	set_pev(Ent, pev_scale, random_float(0.6,0.7))
+	set_pev(Ent, pev_owner, ent)
+	
+	set_pev(Ent, pev_classname, FLAME_FAKE_CLASSNAME)
+	engfunc(EngFunc_SetModel, Ent, WeaponResources[0])
+	
+	set_pev(Ent, pev_nextthink, get_gametime() + 0.1)
+	
+	Origin[2] +=1.0
+	set_pev(Ent, pev_maxs, Float:{16.0, 16.0, 1.0})
+	set_pev(Ent, pev_mins, Float:{-16.0, -16.0, -1.0})
+	set_pev(Ent, pev_origin, Origin)
+	
+	new Vel[3]
+	Vel[0] += random_float(-35.0, 35.0)
+	Vel[1] += random_float(-35.0, 35.0)
+	Vel[2] += random_float(25.0, 30.0)
+	set_pev(Ent, pev_velocity, Vel)
+}
+public FlameFakeThink(iEnt)
+{
+	if(!pev_valid(iEnt)) 
+		return;
+	
+	if(pev(iEnt, pev_flags) & FL_KILLME) 
+		return;
+		
+	new Owner = pev(iEnt, pev_owner);
+	
+	static Float:fFrame, Float:Alpha, Float:Scale; 
+	pev(iEnt, pev_frame, fFrame)	
+	pev(iEnt, pev_scale, Scale)	
+	pev(iEnt, pev_renderamt, Alpha)
+	
+	fFrame += 1.0
+	Scale -= 0.02
+	
+	if(fFrame >= 16.0 || Alpha<=0.0 || Scale <= 0.0) 
+		set_pev(iEnt, pev_flags, pev(iEnt, pev_flags) | FL_KILLME)
+		
+	set_pev(iEnt, pev_frame, fFrame)
+	set_pev(iEnt, pev_scale, Scale)
+	if(pev_valid(Owner))
+	{		
+		if(pev(Owner, pev_renderamt)<=25.0)
+			Alpha -= 10.0
+		else Alpha -= 0.5
+		set_pev(iEnt, pev_renderamt, Alpha)
+		set_pev(iEnt, pev_nextthink, get_gametime() + 0.1)
+	}
+	else set_pev(iEnt, pev_nextthink, get_gametime() + 0.07)
+}
 public fw_Item_AddToPlayer_Post(Ent, Id)
 {
 	if(pev(Ent, pev_impulse) == WEAPON_SECRETCODE)
 	{
 		Set_BitVar(g_Had_PB, Id)
-		
-		g_Molotov[Id] = pev(Ent, pev_iuser1)
-		UpdateAmmo(Id, CSW_PETROLBOOMER, 3, -1, g_Molotov[Id])
-		
+		cs_set_user_bpammo(Id, CSW_PETROLBOOMER, MAGAZINE)
 		set_pev(Ent, pev_impulse, 0)
 	}			
-	
-	message_begin(MSG_ONE_UNRELIABLE, g_MsgWeaponList, _, Id)
-	write_string((Get_BitVar(g_Had_PB, Id) ? "weapon_petrolboomer" : weapon_petrolboomer))
-	write_byte(3)
-	write_byte(200)
-	write_byte(-1)
-	write_byte(-1)
-	write_byte(0)
-	write_byte(4)
-	write_byte(CSW_PETROLBOOMER)
-	write_byte(0)
-	message_end()
-}
+}	
 
 public fw_Item_Deploy_Post(Ent)
 {
@@ -650,89 +531,68 @@ public fw_Item_Deploy_Post(Ent)
 	static Id; Id = get_pdata_cbase(Ent, 41, 4)
 	if(!Get_BitVar(g_Had_PB, Id))
 		return
-		
+	g_wpnID[Id] = Ent	
 	set_pev(Id, pev_viewmodel2, MODEL_V)
 	set_pev(Id, pev_weaponmodel2, MODEL_P)
 	
-	set_pdata_string(Id, (492) * 4, WEAPON_ANIMEXT, -1 , 20)
+	//set_pdata_string(Id, (492) * 4, WEAPON_ANIMEXT, -1 , 20)
 	
 	Set_Weapon_TimeIdle(Id, CSW_PETROLBOOMER, TIME_DRAW + 0.5)
 	Set_Player_NextAttack(Id, TIME_DRAW)
-	
-	Set_Weapon_Anim(Id, g_Molotov[Id] ? ANIM_DRAW : ANIM_DRAW_EMPTY)
-	UpdateAmmo(Id, CSW_PETROLBOOMER, 3, -1, g_Molotov[Id])
-	
-	if(!pev_valid(g_FireEnt[Id])) // Create
-	{
-		static Ent; Ent = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
-		if(!pev_valid(Ent)) return
-		
-		g_FireEnt[Id] = Ent
-		
-		static Float:Origin[3], Float:Angles[3]
-		engfunc(EngFunc_GetAttachment, Id, 0, Origin, Angles)
-		
-		// Set info for ent
-		set_pev(Ent, pev_movetype, MOVETYPE_FLY)
-		set_pev(Ent, pev_rendermode, kRenderTransAdd)
-		set_pev(Ent, pev_renderamt, 0.0)
-		set_pev(Ent, pev_scale, 0.25)
-		set_pev(Ent, pev_nextthink, get_gametime() + 0.05)
-		
-		set_pev(Ent, pev_classname, FIRE_CLASSNAME)
-		engfunc(EngFunc_SetModel, Ent, WeaponResources[0])
-		
-		set_pev(Ent, pev_mins, Float:{-1.0, -1.0, -1.0})
-		set_pev(Ent, pev_maxs, Float:{1.0, 1.0, 1.0})
-		
-		set_pev(Ent, pev_origin, Origin)
-		
-		set_pev(Ent, pev_gravity, 0.01)
-		set_pev(Ent, pev_solid, SOLID_NOT)
-		set_pev(Ent, pev_frame, 0.0)
-		set_pev(Ent, pev_owner, Id)
-	} else { // Activate
-		static Ent; Ent = g_FireEnt[Id]
-		set_pev(Ent, pev_renderamt, 0.0)
-	}
+	Set_Weapon_Anim(Id, ANIM_DRAW)
 }
-
-public fw_Weapon_WeaponIdle_Post(Ent)
+public fw_Item_Reload(weapon_entity) 
 {
-	if(!pev_valid(Ent))
-		return
+	new id = pev(weapon_entity, pev_owner)
+	if (!is_user_connected(id))
+		return HAM_IGNORED;
 		
-	static Id; Id = get_pdata_cbase(Ent, 41, 4)
-	if(!Get_BitVar(g_Had_PB, Id))
-		return
-		
-	if(get_pdata_float(Ent, 48, 4) <= 0.1) 
+	if(!Get_BitVar(g_Had_PB, id))
+		return HAM_IGNORED
+	
+	return HAM_SUPERCEDE
+}
+new Float:Damage[33]
+stock Stock_DamageRadius(iPlayer, Float:vOrigin[3], Float:fRadius, Float:fDamage, iDamageType = DMG_BULLET)
+{
+	new iVictim = FM_NULLENT
+	while((iVictim = find_ent_in_sphere(iVictim, vOrigin, fRadius)) != 0) 
 	{
-		Set_Weapon_Anim(Id, g_Molotov[Id] ? ANIM_IDLE : ANIM_IDLE_EMPTY)
-		set_pdata_float(Ent, 48, 20.0, 4)
+		if(iVictim == iPlayer) continue
+		if(pev(iVictim, pev_takedamage) == DAMAGE_NO) continue
+		if(pev(iVictim, pev_spawnflags) & SF_BREAK_TRIGGER_ONLY) continue
+		if(!is_user_alive(iVictim))continue
+		if(!zp_get_user_zombie(iVictim)) continue
 		
-		if(pev_valid(g_FireEnt[Id])) 
-		{
-			set_pev(g_FireEnt[Id], pev_iuser3, 0)
-			set_pev(g_FireEnt[Id], pev_movetype, MOVETYPE_FLY)
-			set_pev(g_FireEnt[Id], pev_aiment, 0)
+		//ExecuteHamB(Ham_TakeDamage, iVictim, iEnt, iPlayer, fDamage, iDamageType)
+		
+		new Float:multi
+		if(is_user_bot(iPlayer))
+			multi=get_cvar_float("zp_human_damage_reward")*2
+		else multi = get_cvar_float("zp_human_damage_reward")
+		
+		static health
+		health = pev(iVictim, pev_health)
+		
+		if (health - floatround(fDamage, floatround_ceil) > 0)
+		{	
+			fm_set_user_health(iVictim, health - floatround(fDamage, floatround_ceil))
+			Damage[iPlayer]+=fDamage
 			
-			if(g_Molotov[Id]) set_pev(g_FireEnt[Id], pev_renderamt, 100.0)
-			else set_pev(g_FireEnt[Id], pev_renderamt, 0.0)
 		}
+		else ExecuteHam(Ham_TakeDamage, iVictim, iPlayer, iPlayer, 10.0, iDamageType)
+		
+		if(Damage[iPlayer]>= 20.0)
+		{
+			zp_set_user_ammo_packs(iPlayer, zp_get_user_ammo_packs(iPlayer) + floatround(Damage[iPlayer] * multi))
+			Damage[iPlayer]=0.0
+		}
+		message_begin(MSG_ONE_UNRELIABLE, get_user_msgid("Money"), _, iPlayer);
+		write_long(zp_get_user_ammo_packs(iPlayer));
+		write_byte(1);
+		message_end();
 	}
-	
-	return
 }
-
-public CsTeams:Get_ArrowTeam(Ent)
-{
-	if(pev(Ent, pev_iuser2) == TEAM_T) return CS_TEAM_T
-	else if(pev(Ent, pev_iuser2) == TEAM_CT) return CS_TEAM_CT
-	
-	return CS_TEAM_UNASSIGNED
-}
-
 stock get_speed_vector(const Float:origin1[3],const Float:origin2[3],Float:speed, Float:new_velocity[3])
 {
 	new_velocity[0] = origin2[0] - origin1[0]
@@ -789,4 +649,55 @@ stock get_position(id,Float:forw, Float:right, Float:up, Float:vStart[])
 	vStart[0] = vOrigin[0] + vForward[0] * forw + vRight[0] * right + vUp[0] * up
 	vStart[1] = vOrigin[1] + vForward[1] * forw + vRight[1] * right + vUp[1] * up
 	vStart[2] = vOrigin[2] + vForward[2] * forw + vRight[2] * right + vUp[2] * up
+}
+
+get_spherical_coord(const Float:ent_origin[3], Float:redius, Float:level_angle, Float:vertical_angle, Float:origin[3])
+{
+	new Float:length
+	length  = redius * floatcos(vertical_angle, degrees)
+	origin[0] = ent_origin[0] + length * floatcos(level_angle, degrees)
+	origin[1] = ent_origin[1] + length * floatsin(level_angle, degrees)
+	origin[2] = ent_origin[2] + redius * floatsin(vertical_angle, degrees)
+}
+
+const PRIMARY_WEAPONS_BIT_SUM = 
+(1<<CSW_SCOUT)|(1<<CSW_XM1014)|(1<<CSW_MAC10)|(1<<CSW_AUG)|(1<<CSW_UMP45)|(1<<CSW_SG550)|(1<<CSW_GALIL)|(1<<CSW_FAMAS)|(1<<CSW_AWP)|(1<<
+CSW_MP5NAVY)|(1<<CSW_M249)|(1<<CSW_M3)|(1<<CSW_M4A1)|(1<<CSW_TMP)|(1<<CSW_G3SG1)|(1<<CSW_SG552)|(1<<CSW_AK47)|(1<<CSW_P90)
+stock drop_weapons(id, dropwhat)
+{
+     static weapons[32], num, i, weaponid
+     num = 0
+     get_user_weapons(id, weapons, num)
+     
+     for (i = 0; i < num; i++)
+     {
+          weaponid = weapons[i]
+          
+          if (dropwhat == 1 && ((1<<weaponid) & PRIMARY_WEAPONS_BIT_SUM))
+          {
+               static wname[32]
+               get_weaponname(weaponid, wname, sizeof wname - 1)
+               engclient_cmd(id, "drop", wname)
+          }
+     }
+}
+
+public Message_DeathMsg(msg_id, msg_dest, id)
+{
+	static szTruncatedWeapon[33], iAttacker, iVictim
+        
+	get_msg_arg_string(4, szTruncatedWeapon, charsmax(szTruncatedWeapon))
+        
+	iAttacker = get_msg_arg_int(1)
+	iVictim = get_msg_arg_int(2)
+        
+	if(!is_user_connected(iAttacker) || iAttacker == iVictim) return PLUGIN_CONTINUE
+        
+	if(get_user_weapon(iAttacker) == CSW_PETROLBOOMER)
+	{
+		if(Get_BitVar(g_Had_PB, iAttacker))
+			set_msg_arg_string(4, "petrolboomer")
+	}
+                
+	return PLUGIN_CONTINUE
 }

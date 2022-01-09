@@ -150,6 +150,7 @@ public client_putinserver(id)
 public do_register(id)
 {
 	RegisterHamFromEntity(Ham_TraceAttack, id, "fw_TraceAttack")
+	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
 }
 
 public fw_PrecacheEvent_Post(type, const name[])
@@ -320,7 +321,7 @@ public fw_PlaybackEvent(flags, invoker, eventid, Float:delay, Float:origin[3], F
 				g_SpecialAmmo[invoker]++
 				update_specialammo(invoker, g_SpecialAmmo[invoker], 1)
 				
-				emit_sound(invoker, CHAN_ITEM, WeaponSounds[4], 1.0, ATTN_NORM, 0, PITCH_NORM)				
+				emit_sound(invoker, CHAN_WEAPON, WeaponSounds[4], 1.0, ATTN_NORM, 0, PITCH_NORM)				
 			}
 		}
 		set_weapon_anim(invoker, B11_ANIM_SHOOT)
@@ -578,7 +579,7 @@ public Check_RadiusDamage(id)
 		DamageMulti = entity_range(id, i) / float(RADIUS)
 		DmgMulti -= DamageMulti
 		
-		ExecuteHamB(Ham_TakeDamage, i, id, id, float(FIRE_DAMAGE)+random_float(-15.0,15.0), DMG_BULLET)
+		ExecuteHamB(Ham_TakeDamage, i, id, id, is_deadlyshot(id)?random_float(FIRE_DAMAGE-15.0,FIRE_DAMAGE+15.0)*1.5:random_float(FIRE_DAMAGE-15.0,FIRE_DAMAGE+15.0), DMG_BULLET)
 	}
 }
 

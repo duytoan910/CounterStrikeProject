@@ -65,7 +65,7 @@ public plugin_init()
 	
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage")
 	RegisterHam(Ham_TraceAttack, "worldspawn", "TraceAttack", 1)
-	RegisterHam(Ham_TraceAttack, "player", "TraceAttack")
+	RegisterHam(Ham_TraceAttack, "player", "TraceAttack", 1)
 	
 	RegisterHam(Ham_Item_AddToPlayer, weapon_buffawp, "AddToPlayer")
 	
@@ -106,6 +106,7 @@ public Do_RegisterHamBot(id)
 {
 	RegisterHamFromEntity(Ham_TakeDamage, id, "fw_TakeDamage")
 	RegisterHamFromEntity(Ham_TraceAttack, id, "TraceAttack")
+	RegisterHamFromEntity(Ham_Spawn, id, "Player_Spawn")
 }
 public zp_extra_item_selected(id, itemid)
 {

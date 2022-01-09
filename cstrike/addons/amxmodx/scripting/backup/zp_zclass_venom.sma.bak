@@ -258,6 +258,8 @@ fw_Spawn_Post(id)
 // ================================== Skill: Heal =================================== 
 public cmd_drop(id) 
 { 
+	if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
+		return
 	if(is_user_alive(id) && zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == idclass) 
 	{
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
@@ -270,36 +272,14 @@ public skill_heal_handle(id)
 { 
 	if(g_can_heal[id]) 
 	{ 
-		// check health 
-		new start_health = zp_get_zombie_maxhealth(id) 
-		if(get_user_health(id) >= start_health)  
-			return PLUGIN_CONTINUE 
-		
 		// set health 
-		new Float:health, health_up, health_set, new_health 
+		new health
 		
-		health = float(get_user_health(id)) 
+		health = get_user_health(id)
 		
-		health_up = heal_amount 
-		
-		health_set = floatround(health + health_up) 
-		new_health = min(start_health, health_set) 
-		
-		fm_set_user_health(id, new_health) 
+		fm_set_user_health(id, health + heal_amount) 
 		g_current_time[id] = 0 
-		
-		// Make a screen fade  
-		message_begin(MSG_ONE_UNRELIABLE, get_user_msgid("ScreenFade"), _, id) 
-		write_short(4096*5)
-		write_short(floatround(4096*0.5))
-		write_short(0x0000) // fade type 
-		write_byte(0) // red 
-		write_byte(255) // green 
-		write_byte(0) // blue 
-		write_byte(70) // alpha 
-		message_end() 
-		
-		client_print(id, print_center, "Healed...")           
+		md_zb_skill(id, 1)		      
 		
 		// effect 
 		PlaySound(id, zombie_sound_heal) 
@@ -344,9 +324,7 @@ public cmd_lastinv(id)
 	if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 		return
 	if(is_user_alive(id) && zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == idclass) 
-	{
-		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
-			return		
+	{	
 		skill_harden_handle(id) 
 	}
 } 
@@ -362,8 +340,7 @@ public skill_harden_handle(id)
 		emit_sound(id, CHAN_ITEM, harden_sound, 1.0, ATTN_NORM, 0, PITCH_NORM) 
 		//fm_set_user_rendering(id, kRenderFxGlowShell, 255, 0, 0, kRenderNormal, 16) 
 		
-		g_can_harden[id] = 0 
-		g_hardening[id] = 1 
+		md_zb_skill(id, 0)
 		g_current_time2[id] = 0 
 		
 		set_task(harden_time, "stop_harden", id+TASK_H_TIME_REMOVE) 

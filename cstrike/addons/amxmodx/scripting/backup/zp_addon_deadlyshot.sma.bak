@@ -8,7 +8,7 @@
 #define TASK_REMOVE_DEADLYSHOT 839483
 #define TASK_DEADLYSHOT_ICON 534534
 
-#define DS_TIME 10.0
+#define DS_TIME 15.0
 
 new using_item[33]
 new waiting[33]

@@ -23,8 +23,8 @@
 #define WEAPON_MAX_CLIP				1
 #define WEAPON_DEFAULT_AMMO			30
 
-#define WEAPON_DAMAGE				random_float(40.0, 50.0) //FLOAT 
-#define WEAPON_KNOCKBACK			2.5
+#define WEAPON_DAMAGE				random_float(30.0, 40.0) //FLOAT 
+#define WEAPON_KNOCKBACK			2.0
 
 #define WEAPON_TIME_NEXT_IDLE 			10.0
 #define WEAPON_TIME_DELAY_DEPLOY 		1.4
@@ -476,7 +476,7 @@ public FakeMeta_Touch(const iEnt, const iOther)
 	
 	return FMRES_IGNORED;
 }
-
+new Float:Damage[33]
 public FakeMeta_Think(const iEnt)
 {
 	if (!pev_valid(iEnt))
@@ -516,7 +516,7 @@ public FakeMeta_Think(const iEnt)
 		set_pev(iEnt, pev_scale, iScale);
 		set_pev(iEnt, pev_frame, iFrame);
 		
-		static Float:vecOrigin[3]; 
+		static Float:fDamage, Float:vecOrigin[3]; 
 		pev(iEnt, pev_origin, vecOrigin)
 		new iOwner,iVictim;
 		iOwner = pev(iEnt, pev_owner);
@@ -534,7 +534,29 @@ public FakeMeta_Think(const iEnt)
 				set_pdata_int(iVictim, 75, HIT_GENERIC, 5);
 				//zp_set_user_ammo_packs(iOwner, zp_get_user_ammo_packs(iOwner)-3)
 			}	
-			ExecuteHamB(Ham_TakeDamage, iVictim, iOwner, iOwner, is_deadlyshot(iOwner)?random_float(WEAPON_DAMAGE-20,WEAPON_DAMAGE-10)+1.5:random_float(WEAPON_DAMAGE-20,WEAPON_DAMAGE-10), DMG_BULLET|DMG_NEVERGIB);
+			fDamage = is_deadlyshot(iOwner)?random_float(WEAPON_DAMAGE-20,WEAPON_DAMAGE-10)+1.5:random_float(WEAPON_DAMAGE-20,WEAPON_DAMAGE-10)
+			
+			new Float:multi
+			if(is_user_bot(iOwner))
+				multi=get_cvar_float("zp_human_damage_reward")*2
+			else multi = get_cvar_float("zp_human_damage_reward")
+			
+			static health
+			health = pev(iVictim, pev_health)
+			
+			if (health - floatround(fDamage, floatround_ceil) > 0)
+			{	
+				fm_set_user_health(iVictim, health - floatround(fDamage, floatround_ceil))
+				Damage[iOwner]+=fDamage
+				
+			}
+			else ExecuteHam(Ham_TakeDamage, iVictim, iOwner, iOwner, 10.0, DMG_BULLET)
+			
+			if(Damage[iOwner]>= 100.0)
+			{
+				zp_set_user_ammo_packs(iOwner, zp_get_user_ammo_packs(iOwner) + floatround(Damage[iOwner] * multi * 0.5))
+				Damage[iOwner]=0.0
+			}
 		}		
 		set_pev(iEnt, pev_nextthink, get_gametime() + 0.04);
 	}

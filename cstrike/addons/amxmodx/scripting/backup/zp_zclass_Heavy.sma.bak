@@ -46,7 +46,6 @@ new iClass;
 new Float:fMins[3], Float:fMaxs[3];
 new iSkillStat[33], Float:fNextCanUse[33], iTrapTotal[33];
 new isTraped[33],cvar_debug
-
 public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR);
@@ -170,6 +169,8 @@ public UseSkill(id)
 	if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 		return
 		
+	md_zb_skill(id, 0)
+		
 	new Float:fCurTime;
 	global_get(glb_time, fCurTime);
 	
@@ -181,16 +182,6 @@ public UseSkill(id)
 	new iEnt = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
 	if (!iEnt) return;
 
-	message_begin(MSG_ONE, get_user_msgid("ScreenFade"),_, id)
-	write_short(4096 * 2)
-	write_short(floatround(4096 * 0.5))
-	write_short(0x0000)    // FADE OUT
-	write_byte(155)
-	write_byte(155)
-	write_byte(155)
-	write_byte(70)
-	message_end()
-	
 	set_pev(iEnt, pev_classname, "zombie_trap");
 	set_pev(iEnt, pev_solid, SOLID_TRIGGER);
 	set_pev(iEnt, pev_movetype, MOVETYPE_TOSS);

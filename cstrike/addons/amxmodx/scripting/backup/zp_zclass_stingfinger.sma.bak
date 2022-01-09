@@ -70,7 +70,6 @@ new g_stinger_sound[FINGER_SOUNDS][FINGER_MAX_STRING] =
 new class_sting,g_coldown[33],g_coldownheal[33]
 new g_bot,cvar_debug
 
-  
 public plugin_init() 
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR) ;
@@ -208,6 +207,7 @@ public UTIL_Heal(id)
 		emit_sound(id, CHAN_WEAPON, g_stinger_sound[SKILL2], 1.0, ATTN_NORM, 0, PITCH_LOW)
 		
 		set_pev(id, pev_health, float(pev(id,pev_health)+2000));
+		md_zb_skill(id, 1)
 	}
 	return FMRES_IGNORED 
 }
@@ -224,7 +224,9 @@ public cmd_arm(id)
 			g_coldown[id]=1
 			//set_uc(UC_Handle, UC_Buttons, IN_ATTACK2)
 			Player_SetAnimation(id, "skill1")
-			set_task(0.1, "UTIL_LongDamage", id)
+			md_zb_skill(id, 0)
+			UTIL_PlayAnim( id , LongDamageAnim ) 
+			set_task(0.2, "UTIL_LongDamage", id)
 			set_task(armtime,"reset_arm",id)
 		}
 	}	
@@ -235,13 +237,9 @@ public UTIL_LongDamage(id)
 		return FMRES_IGNORED
 	
 	if(zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
-	{
-		
-		UTIL_PlayAnim( id , LongDamageAnim ) 
-		
+	{		
 		emit_sound(id, CHAN_WEAPON, g_stinger_sound[SKILL1], 1.0, ATTN_NORM, 0, PITCH_LOW)
-		
-				
+					
 		set_pdata_float(id , 83, 1.0 , 5) 
 		
 		Skill(id) 

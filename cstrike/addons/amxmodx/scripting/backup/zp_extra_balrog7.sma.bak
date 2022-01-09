@@ -140,6 +140,7 @@ public do_register(id)
 {
 	RegisterHamFromEntity(Ham_TakeDamage, id, "fw_TakeDamage")
 	RegisterHamFromEntity(Ham_TraceAttack, id, "fw_TraceAttack")
+	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
 }
 
 public fw_PrecacheEvent_Post(type, const name[])
@@ -236,7 +237,7 @@ public CmdStart(id, uc_handle, seed)
 		{
 			g_balrog7_zoom[id] = 1
 			cs_set_user_zoom(id, CS_SET_AUGSG552_ZOOM, 1)
-			emit_sound(id, CHAN_ITEM, "weapons/zoom.wav", 0.20, 2.40, 0, 100)
+			emit_sound(id, CHAN_WEAPON, "weapons/zoom.wav", 0.20, 2.40, 0, 100)
 		}
 		else if(szWeapID == CSW_BALROG7 && g_has_balrog7[id] && g_balrog7_zoom[id])
 		{
@@ -293,7 +294,7 @@ public fw_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType
 		return HAM_IGNORED
 		
 	new Float:flEnd[3]	
-
+	get_tr2(ptr, TR_vecEndPos, flEnd)
 	if(!is_user_alive(Ent))
 	{
 		navtive_bullet_effect(Attacker, Ent, ptr)
@@ -374,7 +375,7 @@ public explode(id, Float:End1[3])
 			set_pev(ent, pev_frame, 0.0)
 			set_pev(ent, pev_scale, 0.08)
 			
-			emit_sound(ent, CHAN_ITEM, EXP_SOUND[random_num(0,2)], 1.0, ATTN_NORM, 0, PITCH_NORM)				
+			emit_sound(ent, CHAN_WEAPON, EXP_SOUND[random_num(0,2)], 1.0, ATTN_NORM, 0, PITCH_NORM)				
 			
 			// Alive...
 			new a = FM_NULLENT

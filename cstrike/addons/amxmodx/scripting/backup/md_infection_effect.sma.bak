@@ -52,11 +52,9 @@ public zp_user_humanized_post(id)
 }
 public zp_user_infected_post(id, infector)
 {
+	if(is_user_bot(id)) return
 	if(infector)
 		md_playbink(id, 1, EFFECT_BIK, 0.2, 0.3, 1, 1, 255, 255, 255, 255, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
 	md_drawimage(id, 0, 0, EFFECT2_TGA, 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.1, 1.0, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
 }
 
-/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
-*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1033\\ f0\\ fs16 \n\\ par }
-*/

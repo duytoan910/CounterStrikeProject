@@ -1,5 +1,5 @@
 #include <amxmodx>
-#include <fakemeta>
+#include <fakemeta_util>
 #include <hamsandwich>
 #include <zombieplague>
 
@@ -29,6 +29,7 @@ enum
 	CVAR_ON, // Cvar On/Off el plugin
 	CVAR_MODO // Cvar para elegir el modo
 }
+#define TASK_GLOW 21398
 
 new g_maxplayers // Variable para almacenar la cantidad de jugadores que pueden entrar al server
 const m_LastHitGroup = 75 // Constante para detectar el headshot
@@ -42,7 +43,7 @@ public plugin_init()
 	g_item = zp_register_extra_item(g_item_name, g_item_cost, ZP_TEAM_ZOMBIE) // Registramos el item extra
 	
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage") // Hookeamos el evento de damage
-	RegisterHam(Ham_Killed, "player", "fw_PlayerKilled") // Registramos el evento cuando un jugador muere
+	//RegisterHam(Ham_Killed, "player", "fw_PlayerKilled") // Registramos el evento cuando un jugador muere
 	
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0") // Evento donde empieza la ronda
 	
@@ -129,18 +130,10 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 		if(get_pdata_int(victim, m_LastHitGroup) == HIT_HEAD)
 		{
 			// Colored Aura
-			message_begin(MSG_PVS, SVC_TEMPENTITY, origin)
-			write_byte(TE_DLIGHT) // TE id
-			write_coord(origin[0]) // x
-			write_coord(origin[1]) // y
-			write_coord(origin[2]) // z
-			write_byte(5) // radius
-			write_byte(255) // r
-			write_byte(255) // g
-			write_byte(255) // b
-			write_byte(1) // life
-			write_byte(0) // decay rate
-			message_end()
+			
+			fm_set_rendering(victim, kRenderFxGlowShell, 200, 200, 200, kRenderNormal , 5)
+			if(task_exists(victim+TASK_GLOW))remove_task(victim+TASK_GLOW)
+			set_task(0.5, "Reset_Glow", victim+TASK_GLOW)			
 			return HAM_SUPERCEDE // Que no dañe a la victima
 		}
 			
@@ -148,4 +141,9 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 	}
 	
 	return HAM_IGNORED // Returnamos el forward
+}
+public Reset_Glow(id)
+{
+	id-=TASK_GLOW
+	fm_set_rendering(id)	
 }

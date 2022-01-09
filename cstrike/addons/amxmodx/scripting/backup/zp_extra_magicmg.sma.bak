@@ -5,6 +5,7 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <zombieplague>
+#include <metadrawer>
 
 #define PLUGIN "Balrog-XI"
 #define VERSION "2.0"
@@ -31,6 +32,14 @@ new const ENTITY_MISSILE_EXP_SPRITE[][] =
 	"sprites/ef_magicmgexplo.spr",
 	"sprites/ef_magicmgexplo2.spr"
 };
+new const ENTITY_SPRITE[][] =
+{
+	"sprites/ef_magicmgdraw.spr",
+	"sprites/ef_magicmgidle.spr",
+	"sprites/ef_magicmgreloadstart.spr",
+	"sprites/ef_magicmgreloadcharge.spr",
+	"sprites/ef_magicmgshoot2.spr"
+};
 new const WEAPON_SOUND_READY[] = 	"weapons/magicmg_alarm.wav";
 new const ENTITY_MISSILE_EXP_SOUND[][] =
 {
@@ -55,13 +64,16 @@ new const ENTITY_MISSILE_EXP_SOUND[][] =
 #define MAGICMG_RELOAD 4.0
 #define magicmg_DAMAGE 1.0
 
-const WEAPON_HIT_COUNT = 40;
+const WEAPON_HIT_COUNT = 30;
 const Float: ENTITY_MISSILE_RADIUS_EX = 125.0;
 const Float: ENTITY_MISSILE_RADIUS = 75.0;
 
 #define ENTITY_MISSILE_DAMAGE		random_float(100.0, 150.0)
 #define ENTITY_MISSILE_DAMAGE_EX	random_float(1500.0, 2000.0)
 #define ATTACHMENT_CLASSNAME "magicmg_missile"
+
+#define TASK_IDLE  4194
+#define TASK_RELOAD  4195
 
 // OFFSET
 const PDATA_SAFE = 2
@@ -106,6 +118,7 @@ public plugin_init()
 	
 	RegisterHam(Ham_Item_AddToPlayer, weapon_magicmg, "fw_Item_AddToPlayer_Post", 1)
 	
+	RegisterHam(Ham_Item_Deploy, weapon_magicmg, "fw_Item_Deploy")
 	RegisterHam(Ham_Item_Deploy, weapon_magicmg, "fw_Item_Deploy_Post", 1)
 	RegisterHam(Ham_Weapon_Reload, weapon_magicmg, "Reload7")
 	RegisterHam(Ham_Weapon_Reload, weapon_magicmg, "Reload_Post7", 1)
@@ -124,6 +137,10 @@ public plugin_init()
 	register_touch(ATTACHMENT_CLASSNAME, "*", "CSprite__Touch_Post")
 	
 	g_magicmg = zp_register_extra_item(magicmg_NAME, magicmg_COST, ZP_TEAM_HUMAN)
+	
+	static i;
+	for(i=0;i<sizeof(ENTITY_SPRITE);i++)
+		md_loadsprite(ENTITY_SPRITE[i])
 }
 
 public plugin_precache()
@@ -135,10 +152,8 @@ public plugin_precache()
 	static i;
 	for(i=0;i<sizeof(ENTITY_MISSILE_EXP_SPRITE);i++)
 		g_exp_spr[i] = engfunc(EngFunc_PrecacheModel, ENTITY_MISSILE_EXP_SPRITE[i])
-		
 	for(i=0;i<sizeof(ENTITY_MISSILE_SPRITE);i++)
 		g_spr[i] = engfunc(EngFunc_PrecacheModel, ENTITY_MISSILE_SPRITE[i])	
-		
 	for(i=0;i<sizeof(WEAPON_SOUND_FIRE);i++)
 		engfunc(EngFunc_PrecacheSound, WEAPON_SOUND_FIRE[i])
 	for(i=0;i<sizeof(ENTITY_MISSILE_EXP_SOUND);i++)
@@ -163,6 +178,7 @@ public do_register(id)
 {
 	RegisterHamFromEntity(Ham_TakeDamage, id, "fw_TakeDamage")
 	RegisterHamFromEntity(Ham_TraceAttack, id, "fw_TraceAttack")
+	RegisterHamFromEntity(Ham_Spawn, id, "Player_Spawn")
 }
 
 public fw_PrecacheEvent_Post(type, const name[])
@@ -189,9 +205,15 @@ public Get_magicmg(id)
 
 public Remove_magicmg(id)
 {
-	g_had_magicmg[id] = 0
-	g_old_weapon[id] = 0
-	UTIL_StatusIcon(id, 0);
+	if(g_had_magicmg[id])
+	{
+		g_had_magicmg[id] = 0
+		g_old_weapon[id] = 0
+		UTIL_StatusIcon(id, 0);
+		md_removedrawing(id, 2, 4)
+		remove_task(id+TASK_IDLE)
+		remove_task(id+TASK_RELOAD)
+	}
 }
 public zp_user_infected_post(id) 
 {
@@ -323,6 +345,8 @@ public HAM_PrimaryAttack_Post(wpn)
 			{
 				if(HitCount[id] >= WEAPON_HIT_COUNT)
 				{
+					remove_task(id+TASK_IDLE)
+					remove_task(id+TASK_RELOAD)
 					set_weapon_anim(id, ANIM_SHOOT_2)
 					set_task(1.0,"Missile2",id)
 					
@@ -340,26 +364,10 @@ public CreateMissile(id, iMissileType)
 	static Ent; Ent = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
 	if(!pev_valid(Ent)) return
 
-	new Float: AttachO[3]; pev(id, pev_origin, AttachO);
-	new Float: vecOrigin[3]; pev(id, pev_origin, vecOrigin);
-	new Float: vecAngles[3]; pev(id, pev_v_angle, vecAngles);
-	/*
-	new Float: vecForward[3]; angle_vector(vecAngles, ANGLEVECTOR_FORWARD, vecForward);
-	new Float: vecRight[3]; angle_vector(vecAngles, ANGLEVECTOR_RIGHT, vecRight);
-	new Float: vecUp[3]; angle_vector(vecAngles, ANGLEVECTOR_UP, vecUp);
-	new Float: vecVelocity[3]; xs_vec_copy(vecForward, vecVelocity);
-	new Float: vecViewOfs[3]; pev(id, pev_view_ofs, vecViewOfs);
-	*/
-	engfunc(EngFunc_GetAttachment, id, 0, vecOrigin,vecAngles)
-	//vecOrigin[2]-=20.0
-	
-	/*xs_vec_add(vecOrigin, vecViewOfs, vecOrigin);
-	xs_vec_mul_scalar(vecForward, 25.0, vecForward);
-	xs_vec_mul_scalar(vecRight, random_float(-10.0, 10.0), vecRight);
-	xs_vec_mul_scalar(vecUp, random_float(-10.0, 10.0), vecUp);
-	xs_vec_add(vecOrigin, vecForward, vecOrigin);
-	xs_vec_add(vecOrigin, vecRight, vecOrigin);
-	xs_vec_add(vecOrigin, vecUp, vecOrigin);*/
+	new Float: AttachO[3];	
+	if(!iMissileType)
+		get_position(id, 10.0, 2.0, -8.0, AttachO)
+	else get_position(id, 10.0, 0.0, 0.0, AttachO)
 	
 	// Set info for ent
 	set_pev(Ent, pev_movetype, MOVETYPE_FLY)
@@ -372,7 +380,7 @@ public CreateMissile(id, iMissileType)
 	engfunc(EngFunc_SetModel, Ent, ENTITY_MISSILE_SPRITE[iMissileType])
 	set_pev(Ent, pev_mins, Float:{-1.5, -1.5, -1.5})
 	set_pev(Ent, pev_maxs, Float:{1.5, 1.5, 1.5})
-	set_pev(Ent, pev_origin, iMissileType?AttachO:vecOrigin)
+	set_pev(Ent, pev_origin, AttachO)
 	set_pev(Ent, pev_gravity, 0.01)
 	set_pev(Ent, pev_solid, SOLID_BBOX)
 	set_pev(Ent, pev_frame, 0.0)
@@ -421,7 +429,7 @@ public CSprite__Touch_Post(iEntity, iTouch)
 
 	new iMissileType = pev(iEntity, pev_iuser3);
 
-	emit_sound(iEntity, CHAN_ITEM, ENTITY_MISSILE_EXP_SOUND[iMissileType], VOL_NORM, ATTN_NORM, 0, PITCH_NORM);
+	emit_sound(iEntity, CHAN_WEAPON, ENTITY_MISSILE_EXP_SOUND[iMissileType], VOL_NORM, ATTN_NORM, 0, PITCH_NORM);
 
 	engfunc(EngFunc_MessageBegin, MSG_PAS, SVC_TEMPENTITY, vecOrigin, 0);
 	write_byte(TE_EXPLOSION); // TE
@@ -483,9 +491,9 @@ CWeapon__CheckHitCount(id)
 	if(HitCount[id] == WEAPON_HIT_COUNT)
 	{
 		UTIL_StatusIcon(id, 1);
-		UTIL_ScreenFade(id, (1<<10) * 2, (1<<10) * 2, 0x0000, 219, 48, 130, 70);
+		UTIL_ScreenFade(id, (1<<10) * 1, (1<<10) * 1, 0x0000, 219, 48, 130, 70);
 
-		emit_sound(id, CHAN_ITEM, WEAPON_SOUND_READY, VOL_NORM, ATTN_NORM, 0, PITCH_NORM);
+		emit_sound(id, CHAN_WEAPON, WEAPON_SOUND_READY, VOL_NORM, ATTN_NORM, 0, PITCH_NORM);
 	}
 
 	HitCount[id]++
@@ -501,9 +509,14 @@ public fw_CmdStart(id, uc_handle, seed)
 		if(HitCount[id] >= WEAPON_HIT_COUNT)
 		{
 			set_weapon_anim(id, ANIM_SHOOT_2)
+			
+			remove_task(id+TASK_IDLE)
+			remove_task(id+TASK_RELOAD)
+			md_playsprite(id, 4, ENTITY_SPRITE[4], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 25, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+			
 			set_task(1.0,"Missile2",id)
 			
-			set_pdata_float(id, 83, 2.0)	
+			set_pdata_float(id, 83, 2.0)				
 			
 			UTIL_StatusIcon(id, 0)
 			HitCount[id]=0
@@ -513,6 +526,19 @@ public fw_CmdStart(id, uc_handle, seed)
 public Missile2(id)
 {		
 	CreateMissile(id, 1);
+}
+public fw_Item_Deploy(ent)
+{
+	static id; id = fm_cs_get_weapon_ent_owner(ent)
+	if (!pev_valid(id))
+		return
+
+	if(!g_had_magicmg[id])
+		return
+		
+	remove_task(id+TASK_IDLE)
+	remove_task(id+TASK_RELOAD)
+	md_playsprite(id, 4, ENTITY_SPRITE[0], 0.0, 0.0, 0, 0, 255, 255, 255, 255, SPR_ADDITIVE, 35, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
 }
 public fw_Item_Deploy_Post(ent)
 {
@@ -530,7 +556,6 @@ public fw_Item_Deploy_Post(ent)
 	
 	UTIL_StatusIcon(id, HitCount[id] >= WEAPON_HIT_COUNT ? 1 : 0);
 }
-
 public fw_Item_PostFrame(Ent)
 {
 	if(!pev_valid(Ent))
@@ -594,17 +619,40 @@ public Reload_Post7(wpn)
 	if (g_clip[id] == -1)
 		return HAM_IGNORED
 		
+	remove_task(id+TASK_IDLE)
+	remove_task(id+TASK_RELOAD)
 	set_weapon_anim(id, ANIM_RELOAD)
 	
 	set_pdata_float(wpn, 48, MAGICMG_RELOAD, 4)
 	set_pdata_float(id, 83, MAGICMG_RELOAD, 5)
-
+	
 	set_pdata_int(wpn, 51, g_clip[id], 4)
 	set_pdata_int(wpn, 54, 1, 4)
-
+	
+	set_task(0.5, "Play_SPR_Reload1", id+TASK_RELOAD)
+	
 	return HAM_IGNORED
 }
-
+public Play_SPR_Reload1(id)
+{
+	id -= TASK_RELOAD
+	if(!is_user_alive(id) || zp_get_user_zombie(id) || !g_had_magicmg[id] || get_user_weapon(id) != CSW_MAGICMG)
+		return
+		
+	remove_task(id+TASK_IDLE)
+	md_playsprite(id, 4, ENTITY_SPRITE[2], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+	
+	set_task(2.0, "Play_SPR_Reload2", id+TASK_RELOAD)
+}
+public Play_SPR_Reload2(id)
+{
+	id -= TASK_RELOAD
+	if(!is_user_alive(id) || zp_get_user_zombie(id) || !g_had_magicmg[id] || get_user_weapon(id) != CSW_MAGICMG)
+		return
+		
+	md_playsprite(id, 4, ENTITY_SPRITE[3], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+	
+}
 public fw_WeaponIdle(iItem)
 {
 	new id = get_pdata_cbase(iItem, 41, 4)
@@ -621,13 +669,25 @@ public fw_WeaponIdle(iItem)
 	if(get_pdata_float(iItem, 48, 4) <= 0.25)
 	{
 		if(iIdleAnim)
+		{	
 			set_weapon_anim(id, ANIM_IDLE2);
+			set_task(0.7, "Play_SPR_Idle2", id+TASK_IDLE)
+		}
 		else set_weapon_anim(id, ANIM_IDLE);
 		set_pdata_float(iItem, 48, iIdleAnim?3.0:60.0, 4)
 		
 		return HAM_SUPERCEDE;
 	}	
 	return HAM_SUPERCEDE;
+}
+public Play_SPR_Idle2(id)
+{
+	id-=TASK_IDLE
+	if(!is_user_alive(id) || zp_get_user_zombie(id) || !g_had_magicmg[id] || get_user_weapon(id) != CSW_MAGICMG)
+		return
+		
+	remove_task(id+TASK_RELOAD)
+	md_playsprite(id, 4, ENTITY_SPRITE[1], 0.5, 0.5, 1, 1, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+440)
 }
 public HolsterPost(wpn)
 {
@@ -637,6 +697,9 @@ public HolsterPost(wpn)
 		return;
 		
 	UTIL_StatusIcon(id, 0);	
+	md_removedrawing(id, 2, 4)
+	remove_task(id+TASK_IDLE)
+	remove_task(id+TASK_RELOAD)
 }
 public fw_UpdateClientData_Post(id, sendweapons, cd_handle)
 {
@@ -656,6 +719,8 @@ public fw_PlaybackEvent(flags, invoker, eventid, Float:delay, Float:origin[3], F
 	{
 		engfunc(EngFunc_PlaybackEvent, flags | FEV_HOSTONLY, invoker, eventid, delay, origin, angles, fparam1, fparam2, iParam1, iParam2, bParam1, bParam2)	
 
+		remove_task(invoker+TASK_IDLE)
+		remove_task(invoker+TASK_RELOAD)
 		set_weapon_anim(invoker, random_num(ANIM_SHOOT,ANIM_SHOOT2))
 		emit_sound(invoker, CHAN_WEAPON, WEAPON_SOUND_FIRE[0], 1.0, ATTN_NORM, 0, PITCH_LOW)	
 
@@ -751,6 +816,28 @@ stock drop_weapons(id, dropwhat)
 			cs_set_user_bpammo(id, weaponid, 0)
 		}
 	}
+}
+stock get_position(ent, Float:forw, Float:right, Float:up, Float:vStart[])
+{
+	if(!pev_valid(ent))
+		return
+		
+	static Float:vOrigin[3], Float:vAngle[3], Float:vForward[3], Float:vRight[3], Float:vUp[3]
+	
+	pev(ent, pev_origin, vOrigin)
+	pev(ent, pev_view_ofs,vUp) //for player
+	xs_vec_add(vOrigin,vUp,vOrigin)
+	pev(ent, pev_angles, vAngle) // if normal entity ,use pev_angles
+	
+	vAngle[0] = 0.0
+	
+	angle_vector(vAngle,ANGLEVECTOR_FORWARD,vForward) //or use EngFunc_AngleVectors
+	angle_vector(vAngle,ANGLEVECTOR_RIGHT,vRight)
+	angle_vector(vAngle,ANGLEVECTOR_UP,vUp)
+	
+	vStart[0] = vOrigin[0] + vForward[0] * forw + vRight[0] * right + vUp[0] * up
+	vStart[1] = vOrigin[1] + vForward[1] * forw + vRight[1] * right + vUp[1] * up
+	vStart[2] = vOrigin[2] + vForward[2] * forw + vRight[2] * right + vUp[2] * up
 }
 public Message_DeathMsg(msg_id, msg_dest, id)
 {

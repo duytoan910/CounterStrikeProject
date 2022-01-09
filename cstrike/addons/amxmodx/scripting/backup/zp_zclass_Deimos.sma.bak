@@ -209,6 +209,8 @@ public Use_Skill(id)
 	set_player_nextattack(id, 0.5)
 	PlayEmitSound(id, sound_skill_start)
 	Player_SetAnimation(id, "skill")
+	md_zb_skill(id, 0)
+		
 	if (task_exists(id+TASK_ATTACK)) remove_task(id+TASK_ATTACK)
 	set_task(0.5, "launch_light", id+TASK_ATTACK)
 }
@@ -269,13 +271,12 @@ light_exp(ent, victim)
 {	
 	new attacker = pev(ent, pev_owner)
 	
-	static Float:origin[3];
+	new Float:origin[3];
 	pev(ent, pev_origin, origin);	
 
 	if (is_user_alive(victim) && zp_get_user_zombie(victim)!=2)
 	{
-		if(!Drop(victim, 1)) Drop(victim, 2)
-		
+		Drop_PlayerWeapon(victim)
 		ScreenShake(victim)
 		
 		/*
@@ -395,24 +396,29 @@ stock Stock_Get_Postion(id,Float:forw,Float:right,Float:up,Float:vStart[])
 	vStart[1] = vOrigin[1] + vForward[1] * forw + vRight[1] * right + vUp[1] * up
 	vStart[2] = vOrigin[2] + vForward[2] * forw + vRight[2] * right + vUp[2] * up
 }
-stock Drop(id, slot)
+
+const WPN_NOT_DROP = ((1<<2)|(1<<CSW_HEGRENADE)|(1<<CSW_SMOKEGRENADE)|(1<<CSW_FLASHBANG)|(1<<CSW_KNIFE)|(1<<CSW_C4))
+public Drop_PlayerWeapon(id)
 {
-	new item = get_pdata_cbase(id, m_rgpPlayerItems + slot)
-	new droped = 0
-
-	while (item > 0)
-	{
-		static classname[24]
-		pev(item, pev_classname, classname, charsmax(classname))
-		engclient_cmd(id, "drop", classname)
-		droped = 1
-
-		item = get_pdata_cbase(item, m_pNext)
-	}
-
-	set_pdata_cbase(id, m_rgpPlayerItems, -1)
+	static wpn, wpnname[32]
 	
-	return droped
+	if(!id)
+	{
+		for(new i = 0; i < get_maxplayers(); i++)
+		{
+			if(!is_user_alive(i)) continue
+			
+			wpn = get_user_weapon(i)
+			if(!(WPN_NOT_DROP & (1<<wpn)) && get_weaponname(wpn, wpnname, charsmax(wpnname)))
+				engclient_cmd(i, "drop", wpnname)
+		}
+	} else {
+		if(!is_user_alive(id)) return
+		
+		wpn = get_user_weapon(id)
+		if(!(WPN_NOT_DROP & (1<<wpn)) && get_weaponname(wpn, wpnname, charsmax(wpnname)))
+			engclient_cmd(id, "drop", wpnname)
+	}
 }
 stock ScreenShake(id, amplitude = 18, duration = 5, frequency = 28)
 {

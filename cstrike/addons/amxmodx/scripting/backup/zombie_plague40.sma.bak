@@ -3906,7 +3906,7 @@ buy_extra_item(id, itemid, ignorecost = 0)
 					case 11..15:crow7(id)
 					case 16..20:crow11(id)
 					case 21..25:at15hw(id)
-				}			
+				}	
 			}*/
 			zp_colored_print(id, "^x04[ZP]^x01 %L", id, "NOT_ENOUGH_AMMO")
 			return;
@@ -5091,18 +5091,12 @@ make_a_zombie(mode, id)
 		// Turn player into a nemesis
 		zombieme(id, 0, 1, 0, 0)
 		
-		static Origin[3];
 		// Turn the remaining players into zombies
 		for (id = 1; id <= g_maxplayers; id++)
 		{
 			// Not alive
 			if (!g_isalive[id])
 				continue;	
-			
-			// Turn into a zombie
-			get_user_origin(id, Origin)
-			Origin[2] = -2300;
-			set_user_origin(id, Origin)
 			
 			// First zombie/nemesis
 			if (g_zombie[id])
@@ -7629,13 +7623,6 @@ respawn_player_manually(id)
 	
 	// Respawning a player has never been so easy
 	ExecuteHamB(Ham_CS_RoundRespawn, id)
-
-	if(!g_npcround)
-		return;
-	static Origin[3];
-	get_user_origin(id, Origin)
-	Origin[2] = -2300;
-	set_user_origin(id, Origin)	
 }
 
 // Check Round Task -check that we still have both zombies and humans on a round-

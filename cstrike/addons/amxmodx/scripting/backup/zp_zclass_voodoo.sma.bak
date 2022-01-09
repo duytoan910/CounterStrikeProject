@@ -129,7 +129,7 @@ public cmd_makeskill(id) {
 			if(is_user_alive(i)
 			//&& i!=id
 			&& zp_get_user_zombie(i)
-			&& entity_range(id, i) < 300.0) 
+			&& entity_range(id, i) < 200.0) 
 			{
 				cmd_heal(i);
 				set_task(10.0,"asd",id)

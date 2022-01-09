@@ -1211,8 +1211,10 @@ stock ScreenFade(id, active, red, green, blue, alpha)
 		write_byte(140) // alpha
 		message_end()
 		
-		md_removedrawing(id, 1, 100)
-		md_removedrawing(id, 1, 101)
+		if(!is_user_bot(id)){
+			md_removedrawing(id, 1, 100)
+			md_removedrawing(id, 1, 101)
+		}
 	} else {
 		message_begin(MSG_ONE, get_user_msgid( "ScreenFade"), _, id)
 		write_short((1<<12)*2) // duration
@@ -1224,8 +1226,10 @@ stock ScreenFade(id, active, red, green, blue, alpha)
 		write_byte(alpha) // alpha
 		message_end()
 
-		md_drawimage(id, 100, 0, hud[0], 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.0, 0.0, 0.0)
-		md_drawimage(id, 101, 0, hud[1], 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.0, 0.0, 0.0)
+		if(!is_user_bot(id)){
+			md_drawimage(id, 100, 0, hud[0], 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.0, 0.0, 0.0)
+			md_drawimage(id, 101, 0, hud[1], 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.0, 0.0, 0.0)
+		}
 	}
 }
 public Stock_Fake_KnockBack(id, iVic, Float:iKb)

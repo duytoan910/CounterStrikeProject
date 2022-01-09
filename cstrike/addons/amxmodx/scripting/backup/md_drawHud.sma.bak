@@ -71,6 +71,7 @@ public plugin_init()
 	set_msg_block(get_user_msgid("AmmoPickup"), BLOCK_SET)
 	set_msg_block(get_user_msgid("WeapPickup"), BLOCK_SET)
 	set_msg_block(get_user_msgid("ItemPickup"), BLOCK_SET)
+	
 	md_init()
 }
 public md_init()
@@ -267,8 +268,8 @@ public Draw_HP_AP(id)
 }
 public Draw_BG(id)
 {
-	if(!is_user_alive(id) || is_user_bot(id))
-		return;
+	if (!is_user_alive(id) || is_user_bot(id))
+		return
 
 	md_drawimage(id, 11, 0, hud[0], 0.0, 0.0, 0, 0, 255, 255, 255, 255, 0.0, 0.0, 0.0, ALIGN_BOTTOM)
 	md_drawimage(id, 12, 0, hud[1], 0.0, 0.0, 0, 0, 255, 255, 255, 255, 0.0, 0.0, 0.0, ALIGN_BOTTOM|ALIGN_RIGHT)
