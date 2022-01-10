@@ -17,8 +17,6 @@
 #define W_MODEL "models/w_balrog7.mdl"
 
 #define V_MODELB "models/v_balrog7b.mdl"
-#define P_MODELB "models/p_balrog7b.mdl"
-#define W_MODELB "models/w_balrog7b.mdl"
 
 #define Fire_Sound "weapons/balrog7-1.wav"
 
@@ -110,8 +108,6 @@ public plugin_precache()
 	engfunc(EngFunc_PrecacheModel, P_MODEL)
 	engfunc(EngFunc_PrecacheModel, W_MODEL)
 	engfunc(EngFunc_PrecacheModel, V_MODELB)
-	engfunc(EngFunc_PrecacheModel, P_MODELB)
-	engfunc(EngFunc_PrecacheModel, W_MODELB)
 	
 	engfunc(EngFunc_PrecacheSound, Fire_Sound)
 	
@@ -419,7 +415,7 @@ public fw_SetModel(entity, model[])
 		{
 			set_pev(weapon, pev_impulse, WEAPON_SECRETCODE)
 			set_pev(weapon, pev_iuser4, g_skin[id])
-			engfunc(EngFunc_SetModel, entity, g_skin[id]?W_MODELB:W_MODEL)
+			engfunc(EngFunc_SetModel, entity, W_MODEL)
 			
 			Remove_balrog7(id)
 			
@@ -440,7 +436,7 @@ public fw_Item_Deploy_Post(ent)
 		return
 	
 	set_pev(id, pev_viewmodel2, g_skin[id]?V_MODELB:V_MODEL)
-	set_pev(id, pev_weaponmodel2, g_skin[id]?P_MODELB:P_MODEL)
+	set_pev(id, pev_weaponmodel2, P_MODEL)
 	
 	set_weapon_anim(id, 4)
 }

@@ -172,6 +172,7 @@ s_infinityex2		640 640hud42	0	180	170	45
 s_zbs64knife		640 640hud161	0	180	170	45
 s_hegrenade			640 640hud3		0	45	170	45
 s_cannon_6			640 640hud69	0	0	170	45
+s_cannon_6b			640 640hud69	0	0	170	45
 s_wondercannon		640 640hud193	0	90	170	45
 s_m32venom			640 640hud177	0	90	170	45
 s_magicmg			640 640hud189	0	0	170	45

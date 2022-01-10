@@ -163,7 +163,7 @@ public Draw_Round(id)
 	if (!is_user_alive(id) || is_user_bot(id))
 		return	
 		
-	static MaxRound=33
+	static MaxRound=24
 	static zp_hm_win_str[3], zp_zb_win_str[3], zp_round_str[6]	
 	if(zp_round<10)
 		format(zp_round_str, charsmax(zp_round_str), "0%d/%d", zp_round, MaxRound)

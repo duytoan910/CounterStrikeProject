@@ -11,11 +11,6 @@
 
 #pragma ctrlchar 				'\'
 #pragma compress 				1
-
-//**********************************************
-//* Weapon Settings.                           *
-//**********************************************
-
 // Main
 #define WEAPON_NAME 				"weapon_cannon"
 #define WEAPON_REFERANCE			"weapon_m249"
@@ -34,10 +29,12 @@
 
 // Models
 #define MODEL_WORLD 				"models/w_cannon_6.mdl"
-#define MODEL_VIEW				"models/v_cannon_6.mdl"
+#define MODEL_VIEW					"models/v_cannon_6.mdl"
+#define MODEL_VIEWB					"models/v_cannon_6b.mdl"
 #define MODEL_PLAYER				"models/p_cannon_6.mdl"
 
 #define MODEL_BALL				"sprites/flame_puff01.spr"
+#define MODEL_BALLB				"sprites/flame_puff01_blue.spr"
 
 // Sounds
 #define SOUND_FIRE				"weapons/cannon-1.wav"
@@ -52,10 +49,6 @@ ANIM_IDLE_A,
 ANIM_SHOOT_A, 
 ANIM_DRAW_A,
 };
-
-//**********************************************
-//* Some macroses.                             *
-//**********************************************
 
 #define MDLL_Spawn(%0)				dllfunc(DLLFunc_Spawn, %0)
 #define MDLL_Touch(%0,%1)			dllfunc(DLLFunc_Touch, %0, %1)
@@ -78,10 +71,6 @@ ANIM_DRAW_A,
 #define BitSet(%0,%1) 				(%0 |= (1 << (%1 - 1)))
 #define BitClear(%0,%1) 			(%0 &= ~(1 << (%1 - 1)))
 #define BitCheck(%0,%1) 			(%0 & (1 << (%1 - 1)))
-
-//**********************************************
-//* PvData Offsets.                            *
-//**********************************************
 
 // Linux extra offsets
 #define extra_offset_weapon			4
@@ -119,15 +108,12 @@ new g_bitIsConnected;
 
 #define BALL_CLASSNAME				"FireCannon"
 
-//**********************************************
-//* Let's code our weapon.                     *
-//********************************************** 
-
 new iBlood[4];
 
 Weapon_OnPrecache()
 {
 	PRECACHE_MODEL(MODEL_VIEW);
+	PRECACHE_MODEL(MODEL_VIEWB);
 	PRECACHE_MODEL(MODEL_WORLD);
 	PRECACHE_MODEL(MODEL_PLAYER);
 	
@@ -136,6 +122,7 @@ Weapon_OnPrecache()
 	iBlood[0] = PRECACHE_MODEL("sprites/bloodspray.spr");
 	iBlood[1] = PRECACHE_MODEL("sprites/blood.spr");
 	iBlood[2] = PRECACHE_MODEL(MODEL_BALL);
+	iBlood[3] = PRECACHE_MODEL(MODEL_BALLB);
 	
 	precache_sound("weapons/cannon_draw.wav")
 	precache_sound("weapons/cannon_reload.wav")
@@ -152,7 +139,8 @@ Weapon_OnDeploy(const iItem, const iPlayer, const iClip, const iAmmoPrimary)
 	#pragma unused iClip, iAmmoPrimary
 	
 	static iszViewModel;
-	if (iszViewModel || (iszViewModel = engfunc(EngFunc_AllocString, MODEL_VIEW)))
+
+	if (iszViewModel || (iszViewModel = engfunc(EngFunc_AllocString, pev(iItem, pev_iuser4)?MODEL_VIEWB:MODEL_VIEW)))
 	{
 		set_pev_string(iPlayer, pev_viewmodel2, iszViewModel);
 	}
@@ -169,7 +157,7 @@ Weapon_OnDeploy(const iItem, const iPlayer, const iClip, const iAmmoPrimary)
 	set_pdata_float(iItem, m_flTimeWeaponIdle, WEAPON_TIME_DELAY_DEPLOY, extra_offset_weapon);
 	set_pdata_float(iPlayer, m_flNextAttack, WEAPON_TIME_DELAY_DEPLOY, extra_offset_player);
 
-	Weapon_DefaultDeploy(iPlayer, MODEL_VIEW, MODEL_PLAYER, ANIM_DRAW_A, ANIM_EXTENSION);
+	Weapon_DefaultDeploy(iPlayer, pev(iItem, pev_iuser4)?MODEL_VIEWB:MODEL_VIEW, MODEL_PLAYER, ANIM_DRAW_A, ANIM_EXTENSION);
 }
 
 Weapon_OnHolster(const iItem, const iPlayer, const iClip, const iAmmoPrimary)
@@ -237,7 +225,7 @@ Weapon_OnShoot(const iItem, const iPlayer, bool:iType)
 	{
 		case false:
 		{
-			Weapon_OnSpawnFlame(iPlayer);
+			Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
 			
 			set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
 			set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
@@ -256,7 +244,7 @@ Weapon_OnShoot(const iItem, const iPlayer, bool:iType)
 		}
 		case true:
 		{
-			Weapon_OnSpawnFlame(iPlayer);
+			Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
 			
 			set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
 			set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
@@ -275,17 +263,19 @@ Weapon_OnShoot(const iItem, const iPlayer, bool:iType)
 	}
 }
 
-Weapon_OnSpawnFlame(const iPlayer)
+Weapon_OnSpawnFlame(const iPlayer, skin)
 {
-	for(new i = 0; i < 5; i++)
+	new pEntity;
+	new Float:EndOrigin[7][3], Float:Origin[3], Float:iAngle[3];pev(iPlayer, pev_origin, Origin);Get_Position(iPlayer, 5.0, 0.0, 0.0, Origin);
+	Get_Position(iPlayer, 512.0, -150.0, -5.0, EndOrigin[0]);
+	Get_Position(iPlayer, 512.0, -100.0, -5.0, EndOrigin[1]);
+	Get_Position(iPlayer, 512.0, -50.0, 5.0, EndOrigin[2]);
+	Get_Position(iPlayer, 512.0, 0.0, 0.0, EndOrigin[3]);
+	Get_Position(iPlayer, 512.0, 50.0, -5.0, EndOrigin[4]);
+	Get_Position(iPlayer, 512.0, 100.0, 5.0, EndOrigin[5]);
+	Get_Position(iPlayer, 512.0, 150.0, 5.0, EndOrigin[6]);
+	for(new i = 0; i < 7; i++)
 	{
-		new pEntity;
-		new Float:EndOrigin[5][3], Float:Origin[3], Float:iAngle[3];pev(iPlayer, pev_origin, Origin);Get_Position(iPlayer, 5.0, 0.0, 0.0, Origin);
-		Get_Position(iPlayer, 512.0, -80.0, -5.0, EndOrigin[0]);
-		Get_Position(iPlayer, 512.0, -40.0, 5.0, EndOrigin[1]);
-		Get_Position(iPlayer, 512.0, 0.0, 0.0, EndOrigin[2]);
-		Get_Position(iPlayer, 512.0, 40.0, -5.0, EndOrigin[3]);
-		Get_Position(iPlayer, 512.0, 80.0, 5.0, EndOrigin[4]);
 					
 		static iszAllocStringCached;
 		if (iszAllocStringCached || (iszAllocStringCached = engfunc(EngFunc_AllocString, "info_target")))
@@ -300,7 +290,7 @@ Weapon_OnSpawnFlame(const iPlayer)
 			set_pev(pEntity, pev_movetype, MOVETYPE_TOSS);
 			set_pev(pEntity, pev_owner, iPlayer);
 						
-			SET_MODEL(pEntity, MODEL_BALL);
+			SET_MODEL(pEntity, skin?MODEL_BALLB:MODEL_BALL);
 			SET_ORIGIN(pEntity, Origin);
 				
 			set_pev(pEntity, pev_classname, BALL_CLASSNAME);
@@ -317,15 +307,10 @@ Weapon_OnSpawnFlame(const iPlayer)
 			set_pev(pEntity, pev_velocity, iVelocity);
 			
 			set_pev(pEntity, pev_rendermode, kRenderTransAdd)
-			set_pev(pEntity, pev_renderamt, 100.0)
+			set_pev(pEntity, pev_renderamt, 200.0)
 		}
 	}
 }
-
-//********************************************************************
-//*           Don't modify the code below this line unless            *
-//*          	 you know _exactly_ what you are doing!!!             *
-//*********************************************************************
 
 new g_iItemID;
 new g_iszWeaponKey;
@@ -413,10 +398,6 @@ public Message_DeathMsg(msg_id, msg_dest, id)
 	
 	return PLUGIN_CONTINUE
 }
-//**********************************************
-//* Block client weapon.                       *
-//**********************************************
-
 public FakeMeta_UpdateClientData_Post(const iPlayer, const iSendWeapons, const CD_Handle)
 {
 	static iActiveItem;iActiveItem = get_pdata_cbase(iPlayer, m_pActiveItem, extra_offset_player);
@@ -521,7 +502,7 @@ public FakeMeta_Think(const iEnt)
 		new iOwner,iVictim;
 		iOwner = pev(iEnt, pev_owner);
 		
-		while((iVictim = engfunc(EngFunc_FindEntityInSphere, iVictim, vecOrigin, 50.0)) > 0)
+		while((iVictim = engfunc(EngFunc_FindEntityInSphere, iVictim, vecOrigin, 40.0)) > 0)
 		{
 			if(pev(iVictim, pev_takedamage) == DAMAGE_NO) continue;
 			if(is_user_alive(iVictim))
@@ -563,10 +544,6 @@ public FakeMeta_Think(const iEnt)
 
 	return FMRES_IGNORED;
 }
-
-//**********************************************
-//* Item (weapon) hooks.                       *
-//**********************************************
 
 	#define _call.%0(%1,%2) \
 									\
@@ -657,10 +634,6 @@ public HamHook_Item_PostFrame(const iItem)
 	return HAM_IGNORED;
 }		
 
-//**********************************************
-//* Create and check our custom weapon.        *
-//**********************************************
-
 Weapon_Create(const Float: vecOrigin[3] = {0.0, 0.0, 0.0}, const Float: vecAngles[3] = {0.0, 0.0, 0.0})
 {
 	new iWeapon;
@@ -676,6 +649,9 @@ Weapon_Create(const Float: vecOrigin[3] = {0.0, 0.0, 0.0}, const Float: vecAngle
 		return FM_NULLENT;
 	}
 	
+	new num = random_num(0,1);
+
+	set_pev(iWeapon, pev_iuser4, num)
 	MDLL_Spawn(iWeapon);
 	SET_ORIGIN(iWeapon, vecOrigin);
 	
@@ -704,7 +680,7 @@ public Weapon_Give(const iPlayer)
 		
 		set_pev(iWeapon, pev_spawnflags, pev(iWeapon, pev_spawnflags) | SF_NORESPAWN);
 		MDLL_Touch(iWeapon, iPlayer);
-		
+
 		SetAmmoInventory(iPlayer, PrimaryAmmoIndex(iWeapon), WEAPON_DEFAULT_AMMO);
 		
 		return iWeapon;
@@ -920,10 +896,6 @@ bool: CheckItem(const iItem, &iPlayer)
 	return true;
 }
 
-//**********************************************
-//* Weapon list update.                        *
-//**********************************************
-
 public HamHook_Item_AddToPlayer(const iItem, const iPlayer)
 {
 	if (!IsValidPev(iItem) || !IsValidPev(iPlayer))
@@ -931,15 +903,10 @@ public HamHook_Item_AddToPlayer(const iItem, const iPlayer)
 		return HAM_IGNORED;
 	}
 	
-	
 	SetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem), pev(iItem, pev_iuser2));
 	
 	return HAM_IGNORED;
 }
-
-//**********************************************
-//* Weaponbox world model.                     *
-//**********************************************
 
 public HamHook_Weaponbox_Spawn_Post(const iWeaponBox)
 {
@@ -979,10 +946,6 @@ public FakeMeta_SetModel(const iEntity) <WeaponBox: Enabled>
 
 public FakeMeta_SetModel()	</* Empty statement */>	{ /*  Fallback  */ return FMRES_IGNORED; }
 public FakeMeta_SetModel() 	< WeaponBox: Disabled >	{ /* Do nothing */ return FMRES_IGNORED; }
-
-//**********************************************
-//* Ammo Inventory.                            *
-//**********************************************
 
 PrimaryAmmoIndex(const iItem)
 {

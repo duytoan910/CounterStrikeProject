@@ -28,7 +28,7 @@
 #define BUFFAWP_CLIP 20
 #define BUFFAWP_AMMO 200
 #define BUFFAWP_RECOIL 1.0
-#define BUFFAWP_DAMAGE 4.3
+#define BUFFAWP_DAMAGE 4.0
 #define CHARGE_EXPRADIUS 60.0
 
 #define m_iClip				51

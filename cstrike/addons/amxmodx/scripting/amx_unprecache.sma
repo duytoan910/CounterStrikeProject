@@ -57,7 +57,6 @@ new const UnPrecache_SoundList[125][] =
 	"events/enemy_died.wav",
 	"events/friend_died.wav",
 	"events/task_complete.wav",
-	
 	"weapons/ak47_clipout.wav",
 	"weapons/ak47_clipin.wav",
 	"weapons/ak47_boltpull.wav",

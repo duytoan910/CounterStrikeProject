@@ -1082,7 +1082,7 @@ public plugin_init()
 	RegisterHam(Ham_Use, "func_tanklaser", "fw_UseStationary_Post", 1)
 	RegisterHam(Ham_Use, "func_pushable", "fw_UsePushable")
 	RegisterHam(Ham_Touch, "weaponbox", "fw_TouchWeapon")
-	//RegisterHam(Ham_Touch, "armoury_entity", "fw_TouchWeapon")
+	RegisterHam(Ham_Touch, "armoury_entity", "fw_TouchWeapon")
 	RegisterHam(Ham_Touch, "weapon_shield", "fw_TouchWeapon")
 
 	RegisterHam(Ham_AddPlayerItem, "player", "fw_AddPlayerItem")
@@ -2643,8 +2643,14 @@ public fw_SetModel(entity, const model[])
 			if(g_survround || g_swarmround || g_npcround){
 				removeTime = 5
 			}
-			set_pev(entity, pev_nextthink, get_gametime() + removeTime)
-			return;
+			new owner;owner = pev(entity, pev_owner)
+			if(g_zombie[owner]){
+				set_pev(entity, pev_nextthink, get_gametime() + 0.1)
+				return;
+			}else{
+				set_pev(entity, pev_nextthink, get_gametime() + removeTime)
+				return;
+			}
 		}
 	}
 	// Narrow down our matches a bit

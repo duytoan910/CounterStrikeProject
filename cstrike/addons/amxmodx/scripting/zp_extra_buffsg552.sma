@@ -34,7 +34,6 @@
 
 #define V_MODEL_6 "models/v_buffsg552_6.mdl"
 #define P_MODEL_6 "models/p_buffsg552_6.mdl"
-#define W_MODEL_6 "models/w_buffsg552_6.mdl"
 
 #define FIRE_SOUND "weapons/buffsg552-1.wav"
 #define EFFECT_TGA "gfx/tga_image/Freeze.tga"
@@ -91,7 +90,6 @@ public plugin_precache()
 	precache_model(W_MODEL)
 	precache_model(V_MODEL_6)
 	precache_model(P_MODEL_6)
-	precache_model(W_MODEL_6)
 
 	precache_sound(FIRE_SOUND)
 	precache_sound("zombie_plague/impalehit.wav")
@@ -211,7 +209,7 @@ public fw_SetModel(entity, model[])
 			g_has_sg552buff[iOwner] = false
 			
 			set_pev(iStoredSVDID, pev_iuser4, g_skin[iOwner])
-			entity_set_model(entity, g_skin[iOwner]?W_MODEL_6:W_MODEL)
+			entity_set_model(entity, W_MODEL)
 			return FMRES_SUPERCEDE;
 		}
 	}

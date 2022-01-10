@@ -41,16 +41,18 @@ new const hud[][] = {
 }
 
 new const Model[][] = {
-	"terror",
+	"terror","buffclass19s2tr",
 	"tank_zombi_host", "deimos_zombi_host", "heavy_zombi_host", "heal_zombi_host",
 	"boomer_zombi_origin","stamper_zombi_origin", "witch_zombi_origin",
-	"resident_zombi_host","pc_zombi_host","china_zombi_origin","SpitterL4D2","buffclass19s2tr"
+	"resident_zombi_host","pc_zombi_host","china_zombi_origin","SpitterL4D2",
+	"deimos2_zombi_origin"
 }
 new const Portrait[][] = {
-	"terror",
+	"terror","buffclass19s2tr",
 	"normalzombie_host", "deimoszombie_host", "heavyzombie_host", "healzombie_host",
 	"boomerzombie","stamperzombie","witchzombie",
-	"residentzombie_host","pczombie_host", "chinazombie","SpitterL4D2","buffclass19s2tr"
+	"residentzombie_host","pczombie_host", "chinazombie","SpitterL4D2",
+	"deimos2zombie"
 }
 
 public plugin_init()

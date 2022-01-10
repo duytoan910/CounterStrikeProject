@@ -29,37 +29,15 @@
 #define S_MODEL "models/thanatos3_knife.mdl"
 #define S_MODEL2 "models/thanatos3_wind.mdl"
 
-new const WeaponSounds[29][] =
+new const WeaponSounds[][] =
 {
-	"weapons/thanatos3-1.wav",
-	"weapons/thanatos3_fly_shoot.wav",
-	"weapons/thanatos3_fly_w2.wav",
-	"weapons/thanatos3_fly_w3.wav",
-	"weapons/thanatos3_ilde_w1.wav",
-	"weapons/thanatos3_ilde_w2.wav",
-	"weapons/thanatos3_ilde_w3.wav",
-	"weapons/thanatos3_draw.wav",
-	"weapons/thanatos3_draw_w1.wav",
-	"weapons/thanatos3_draw_w2.wav",
-	"weapons/thanatos3_draw_w3.wav",
-	"weapons/thanatos3_boltpull.wav",
-	"weapons/thanatos3_clipin.wav",
-	"weapons/thanatos3_clipout.wav",
-	"weapons/thanatos3_knife_hit1.wav",
-	"weapons/thanatos3_knife_hit2.wav",
-	"weapons/thanatos3_knife_swish.wav",
-	"weapons/thanatos3_metal1.wav",
-	"weapons/thanatos3_metal2.wav",
-	"weapons/thanatos3_reload_w1.wav",
-	"weapons/thanatos3_reload_w2.wav",
-	"weapons/thanatos3_reload_w3.wav",
-	"weapons/thanatos3_spread_w1.wav",
-	"weapons/thanatos3_spread_w2.wav",
-	"weapons/thanatos3_spread_w3.wav",
-	"weapons/thanatos3_stone1.wav",
-	"weapons/thanatos3_stone2.wav",
-	"weapons/thanatos3_wood1.wav",
-	"weapons/thanatos3_wood2.wav"
+	"weapons/thanatos3-1.wav", //0
+	"weapons/thanatos3_fly_shoot.wav", //1
+	"weapons/thanatos3_knife_hit1.wav", //14
+	"weapons/thanatos3_knife_hit2.wav", //15
+	"weapons/thanatos3_knife_swish.wav", //16
+	"weapons/thanatos3_stone1.wav", //25
+	"weapons/thanatos3_stone2.wav" //26
 }
 
 enum
@@ -461,7 +439,7 @@ public Create_Scythe(id, Float:Start[3], Float:End[3], Float:Speed)
 	set_pev(Ent, pev_sequence, 0)
 	
 	// Sound
-	emit_sound(Ent, CHAN_WEAPON, WeaponSounds[16], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
+	emit_sound(Ent, CHAN_WEAPON, WeaponSounds[4], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
 }
 
 public fw_Scythe_Think(Ent)
@@ -494,7 +472,7 @@ public fw_Scythe_Think(Ent)
 		
 		if(get_gametime() - 0.75 > Time2)
 		{
-			emit_sound(Ent, CHAN_WEAPON, WeaponSounds[16], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
+			emit_sound(Ent, CHAN_WEAPON, WeaponSounds[4], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
 			set_pev(Ent, pev_fuser2, get_gametime())
 		}
 		pev(Target, pev_origin, Origin)
@@ -557,7 +535,7 @@ public fw_Scythe_Touch(Ent, id)
 		Make_BulletHole(Owner, Origin, float(DAMAGE))
 		
 		// Sound
-		emit_sound(Ent, CHAN_WEAPON, WeaponSounds[random_num(25, 28)], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
+		emit_sound(Ent, CHAN_WEAPON, WeaponSounds[random_num(5, 6)], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
 	} else {
 		if(!zp_get_user_zombie(id))
 			return
@@ -583,7 +561,7 @@ public fw_Scythe_Touch(Ent, id)
 			set_pev(Ent, pev_sequence, 0)
 			
 			// Sound
-			emit_sound(id, CHAN_WEAPON, WeaponSounds[random_num(14, 15)], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
+			emit_sound(id, CHAN_WEAPON, WeaponSounds[random_num(2, 3)], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
 		}
 	}
 }

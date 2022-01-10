@@ -19,7 +19,7 @@
 	{
 		"ControlName"		"HTML"
 		"fieldName"		"Message"
-		"xpos"		"70"
+		"xpos"		"5"
 		"ypos"		"116"
 		"wide"		"480"
 		"tall"		"240"
@@ -33,7 +33,7 @@
 	{
 		"ControlName"		"Button"
 		"fieldName"		"ok"
-		"xpos"		"70"
+		"xpos"		"5"
 		"ypos"		"364"
 		"wide"		"128"
 		"tall"		"20"
@@ -53,7 +53,7 @@
 	{
 		"ControlName"		"Label"
 		"fieldName"		"serverName"
-		"xpos"		"70"
+		"xpos"		"5"
 		"ypos"		"22"
 		"wide"		"500"
 		"tall"		"48"

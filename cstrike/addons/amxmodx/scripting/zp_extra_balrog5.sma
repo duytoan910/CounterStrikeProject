@@ -20,8 +20,6 @@ new balrog5_P_MODEL[64] = "models/p_balrog5.mdl"
 new balrog5_W_MODEL[64] = "models/w_balrog5.mdl"
 
 new balrog5_V_MODELB[64] = "models/v_balrog5b.mdl"
-new balrog5_P_MODELB[64] = "models/p_balrog5b.mdl"
-new balrog5_W_MODELB[64] = "models/w_balrog5b.mdl"
 
 new g_itemid_balrog5
 new g_has_balrog5[33]
@@ -66,8 +64,6 @@ public plugin_precache()
 	precache_model(balrog5_P_MODEL)
 	precache_model(balrog5_W_MODEL)
 	precache_model(balrog5_V_MODELB)
-	precache_model(balrog5_P_MODELB)
-	precache_model(balrog5_W_MODELB)
 	
 	precache_sound(Fire_snd)
 	spritebalrog=precache_model("sprites/balrog5stack.spr")
@@ -125,7 +121,7 @@ public fw_SetModel(entity, model[])
 		{
 			set_pev(weapon, pev_impulse, WEAPONKEY)
 			set_pev(weapon, pev_iuser4, g_skin[id])
-			engfunc(EngFunc_SetModel, entity, g_skin[id]?balrog5_W_MODELB:balrog5_W_MODEL)
+			engfunc(EngFunc_SetModel, entity, balrog5_W_MODEL)
 			
 			g_has_balrog5[id] = false
 			
@@ -194,7 +190,7 @@ switch (weaponid)
 		if(g_has_balrog5[id])
 		{
 			set_pev(id, pev_viewmodel2, g_skin[id]?balrog5_V_MODELB:balrog5_V_MODEL)
-			set_pev(id, pev_weaponmodel2, g_skin[id]?balrog5_P_MODELB:balrog5_P_MODEL)
+			set_pev(id, pev_weaponmodel2, balrog5_P_MODEL)
 		}
 	}
 }

@@ -19,7 +19,7 @@
 #define weapon_basedon "weapon_m3"
 
 #define DAMAGE_A 1.3
-#define DAMAGE_B 170.0
+#define DAMAGE_B 250.0
 #define CLIP 30
 #define BPAMMO 240
 #define SPEED_A 0.34
@@ -29,7 +29,7 @@
 #define	RESULT_HIT_NONE 			0
 #define	RESULT_HIT_PLAYER			1
 #define	RESULT_HIT_WORLD			2
-#define MAX_SHOOT 15
+#define MAX_SHOOT 10
 #define RANGE 1096.0
 #define ANGLE 180.0
 #define KNOCKBACK 2.5
@@ -623,7 +623,7 @@ public Activate_System(id)
 	Set_BitVar(g_System, id)
 	UnSet_BitVar(Max_Shoot, id)
 	
-	set_task(5.0, "Deactivate_System_Stage01", id+TASK_RESET)
+	set_task(8.0, "Deactivate_System_Stage01", id+TASK_RESET)
 	ScreenFade(id, 1, 246, 155, 0, 50)
 	set_fov(id, 75)
 }

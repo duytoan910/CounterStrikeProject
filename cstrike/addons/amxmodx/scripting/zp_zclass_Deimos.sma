@@ -33,12 +33,14 @@ enum (+= 100)
 {
 	TASK_WAIT = 2000,
 	TASK_ATTACK,
-	TASK_USE_SKILL
+	TASK_USE_SKILL,
+	TASK_USE_ANIM
 }
 // IDs inside tasks
 #define ID_WAIT (taskid - TASK_WAIT)
 #define ID_ATTACK (taskid - TASK_ATTACK)
 #define ID_USE_SKILL (taskid - TASK_USE_SKILL)
+#define ID_USE_ANIM (taskid - TASK_USE_ANIM)
 
 const m_flTimeWeaponIdle = 48
 const m_flNextAttack = 83
@@ -163,19 +165,55 @@ reset_value_player(id)
 	g_wait[id] = 0
 	g_useskill[id] = 0
 }
-
+new g_setAnim[33]
 public fw_PlayerPostThink(id)
 {
-	if(!is_user_alive(id) || !is_user_bot(id))
+	if(!is_user_alive(id))
 		return PLUGIN_HANDLED
 	
-	new enemy, body
-	get_user_aiming(id, enemy, body)
-	if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
+	if (zp_get_user_zombie_class(id) == idclass)
 	{
-		use_skill(id)
+		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == idclass) && !zp_get_user_nemesis(id)){
+			new button = pev(id, pev_button)
+			if(IsCurrentSpeedHigherThan(id, 200.0)){
+				if (!(button & IN_DUCK || button & IN_JUMP || button & IN_BACK) && !g_setAnim[id])
+				{
+					g_setAnim[id] = true
+					Player_SetAnimation(id, "ref_aim_knife_run")
+					set_task(1.9, "unlockAnim", id+TASK_USE_ANIM)
+				}else if((button & IN_DUCK || button & IN_JUMP || button & IN_BACK)){
+					Player_SetAnimation(id, "ref_aim_knife_walk")
+					if (task_exists(id+TASK_USE_ANIM)){
+						g_setAnim[id] = false
+						remove_task(id+TASK_USE_ANIM)
+					}
+				}
+			}else{
+				if((button & IN_FORWARD || button & IN_LEFT || button & IN_RIGHT || button & IN_BACK)){
+					Player_SetAnimation(id, "ref_aim_knife_walk")
+					if (task_exists(id+TASK_USE_ANIM)){
+						g_setAnim[id] = false
+						remove_task(id+TASK_USE_ANIM)
+					}
+				}
+			}
+		}
+	}
+
+	
+	if(is_user_bot(id)){
+		new enemy, body
+		get_user_aiming(id, enemy, body)
+		if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
+		{
+			use_skill(id)
+		}
 	}
 	return PLUGIN_CONTINUE
+}
+public unlockAnim(taskid){
+	new id = ID_USE_ANIM;
+	g_setAnim[id] = false
 }
 // #################### USE SKILL PUBLIC ####################
 public use_skill(id)
@@ -487,3 +525,14 @@ stock Player_SetAnimation(const iPlayer, const szAnim[])
 	set_pdata_int(iPlayer, m_IdealActivity, ACT_RANGE_ATTACK1, 5);   
 	set_pdata_float(iPlayer, m_flLastAttackTime, flGametime , 5);
 }
+
+stock IsCurrentSpeedHigherThan(id, Float:fValue)
+{
+    new Float:fVecVelocity[3]
+    entity_get_vector(id, EV_VEC_velocity, fVecVelocity)
+    
+    if(vector_length(fVecVelocity) > fValue)
+        return true
+    
+    return false
+} 

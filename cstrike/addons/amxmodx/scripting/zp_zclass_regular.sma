@@ -172,7 +172,7 @@ public bot_use_skill(taskid)
 
 public useabilityone(id)
 {
-	if (is_user_alive(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !g_wait[id])
+	if (is_user_alive(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !g_wait[id] && g_skill_used[id] != 1)
 	{
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return	

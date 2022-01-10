@@ -13,23 +13,20 @@
 enum _:ModelType
 {
 	MODEL_P = 0,
-	MODEL_P2 = 3,
-	MODEL_V = 6,
-	MODEL_W = 9
+	MODEL_P2 = 2,
+	MODEL_V = 4,
+	MODEL_W = 6
 }
 
 new const WeaponModels[][] =
 {
 	"models/p_sgdrill.mdl",
-	"models/p_sgdrill_6.mdl",
 	"models/p_sgdrillgold.mdl",
 	
 	"models/p_sgdrill_slash.mdl",
-	"models/p_sgdrill_6_slash.mdl",
 	"models/p_sgdrillgold_slash.mdl",
 	
 	"models/v_sgdrill.mdl",
-	"models/v_sgdrill_6.mdl",
 	"models/v_sgdrillgold.mdl",
 	
 	"models/w_sgdrill.mdl"
@@ -183,7 +180,7 @@ public client_disconnect(id)
 
 public zp_extra_item_selected(i, d) 
 {
-	if(d == g_Sgd) Get_Base(i, random_num(0,2))
+	if(d == g_Sgd) Get_Base(i, random_num(0,1))
 }
 
 public zp_user_infected_post(i) Remove_Base(i)

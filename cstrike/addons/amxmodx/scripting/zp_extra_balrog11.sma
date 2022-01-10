@@ -15,8 +15,6 @@
 #define P_MODEL "models/p_balrog11.mdl"
 #define W_MODEL "models/w_balrog11.mdl"
 #define V_MODELB "models/v_balrog11b.mdl"
-#define P_MODELB "models/p_balrog11b.mdl"
-#define W_MODELB "models/w_balrog11b.mdl"
 
 #define CSW_BALROG11 CSW_XM1014
 #define weapon_balrog11 "weapon_xm1014"
@@ -126,8 +124,6 @@ public plugin_precache()
 	engfunc(EngFunc_PrecacheModel, P_MODEL)
 	engfunc(EngFunc_PrecacheModel, W_MODEL)
 	engfunc(EngFunc_PrecacheModel, V_MODELB)
-	engfunc(EngFunc_PrecacheModel, P_MODELB)
-	engfunc(EngFunc_PrecacheModel, W_MODELB)
 	
 	new i
 	for(i = 0; i < sizeof(WeaponSounds); i++)
@@ -268,7 +264,7 @@ public fw_SetModel(entity, model[])
 			set_pev(weapon, pev_impulse, WEAPON_SECRETCODE)
 			set_pev(weapon, pev_iuser4, g_SpecialAmmo[id])			
 			set_pev(weapon, pev_iuser3, g_skin[id])
-			engfunc(EngFunc_SetModel, entity, g_skin[id]?W_MODELB:W_MODEL)
+			engfunc(EngFunc_SetModel, entity, W_MODEL)
 			
 			Remove_Balrog11(id)
 			
@@ -496,7 +492,7 @@ public fw_Item_Deploy_Post(ent)
 		return
 		
 	set_pev(id, pev_viewmodel2, g_skin[id]?V_MODELB:V_MODEL)
-	set_pev(id, pev_weaponmodel2, g_skin[id]?P_MODELB:P_MODEL)
+	set_pev(id, pev_weaponmodel2, P_MODEL)
 }
 
 public update_ammo(id)

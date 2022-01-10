@@ -39,15 +39,15 @@ ANIM_CHARGE_LOOP
 
 new const SOUND_FIRE[][] = 
 {
-"weapons/gungnir_shoot_loop.wav",
-"weapons/gungnir_shoot_end.wav",
-"weapons/gungnir_shoot_b.wav",
-"weapons/gungnir_charge_shoot1.wav",
+        "weapons/gungnir_shoot_loop.wav",
+        "weapons/gungnir_shoot_end.wav",
+        "weapons/gungnir_shoot_b.wav",
+        "weapons/gungnir_charge_shoot1.wav",
 
-// exps
-"weapons/gungnir_shoot_b_exp.wav",
-"weapons/gungnir_charge_shoot_exp.wav",
-"weapons/gungnir_charge_shoot_exp2.wav"
+        // exps
+        "weapons/gungnir_shoot_b_exp.wav",
+        "weapons/gungnir_charge_shoot_exp.wav",
+        "weapons/gungnir_charge_shoot_exp2.wav"
 }
 
 new const EXP_MODELS[][] = 
@@ -84,7 +84,7 @@ new const EXP_MODELS_EX[][] =
 
 #define ELECTRO_DAMAGE 120.0
 #define ELECTRO_RANGE 300.0
-#define ELECTRO_KNOCKBACK 150.0 // the velocity of victim when got damage
+#define ELECTRO_KNOCKBACK 0.0 // the velocity of victim when got damage
 
 // base damage
 #define WDAMG_PLASMA 855.0
@@ -443,8 +443,7 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
         }
 
         if (
-	(!(iButton & IN_ATTACK2) && 0 < iCharge < 3) ||
-	(is_user_bot(id) && isModeA[id] == true && !(iButton & IN_ATTACK))
+	(!(iButton & IN_ATTACK2) && 0 < iCharge < 3) || (is_user_bot(id) && isModeA[id] == true && !(iButton & IN_ATTACK))
 	) {
                 if (is_user_bot(id)) {
                         iCharge = random_num(1, 4)
@@ -581,7 +580,7 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
                         message_end()
 
                         new k
-                        for (k = 0; k < 5; k++) {
+                        for (k = 0; k < 8; k++) {
                                 while ((pEntity = engfunc(EngFunc_FindEntityInSphere, pEntity, fOrigin, ELECTRO_RANGE)) != 0) {
 					if (pev(pEntity, pev_takedamage) == DAMAGE_NO) continue
 					if (is_user_connected(pEntity) && pEntity != id)

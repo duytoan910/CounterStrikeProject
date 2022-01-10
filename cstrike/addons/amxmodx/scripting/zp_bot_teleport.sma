@@ -105,6 +105,9 @@ public fm_pthink(id)
 	if (!is_user_bot(id))
 		return FMRES_IGNORED
 		
+	if(!AvailMap)
+		return FMRES_IGNORED
+
 	new button = pev(id, pev_button)
 	if (button & IN_MOVELEFT || button & IN_MOVERIGHT || button & IN_FORWARD || button & IN_BACK || button & IN_JUMP)
 		force_tele[id] = false

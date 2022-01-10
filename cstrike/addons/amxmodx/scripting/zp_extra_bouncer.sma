@@ -33,7 +33,7 @@
 #define BPAMMO 200
 #define BOUNCETIME 5
 #define SPEED 1200
-#define DAMAGE 80
+#define DAMAGE 70
 
 #define RELOAD_TIME 0.2
 #define RELOAD_ANIMATION_TIME RELOAD_TIME+0.2

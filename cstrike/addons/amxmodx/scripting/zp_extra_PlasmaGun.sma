@@ -20,8 +20,6 @@
 #define W_MODEL "models/w_plasmagun.mdl"
 
 #define V_MODEL_6 "models/v_plasmagun_6.mdl"
-#define P_MODEL_6 "models/p_plasmagun_6.mdl"
-#define W_MODEL_6 "models/w_plasmagun_6.mdl"
 
 new const WeaponSounds[2][] =
 {
@@ -134,8 +132,6 @@ public plugin_precache()
 	engfunc(EngFunc_PrecacheModel, P_MODEL)
 	engfunc(EngFunc_PrecacheModel, W_MODEL)
 	engfunc(EngFunc_PrecacheModel, V_MODEL_6)
-	engfunc(EngFunc_PrecacheModel, P_MODEL_6)
-	engfunc(EngFunc_PrecacheModel, W_MODEL_6)
 	
 	new i
 	for(i = 0; i < sizeof(WeaponSounds); i++)
@@ -188,7 +184,7 @@ public Get_Plasma(id)
 	if( iWep2 > 0 )
 	{
 		set_pev(id, pev_viewmodel2, g_skin[id]?V_MODEL_6:V_MODEL)
-		set_pev(id, pev_weaponmodel2, g_skin[id]?P_MODEL_6:P_MODEL)
+		set_pev(id, pev_weaponmodel2, P_MODEL)
 		
 		set_pdata_string(id, (492) * 4, WEAPON_ANIMEXT, -1 , 20)
 		
@@ -342,7 +338,7 @@ public fw_SetModel(entity, model[])
 			
 			set_pev(weapon, pev_impulse, WEAPON_SECRETCODE)
 			set_pev(weapon, pev_iuser4, g_skin[iOwner])
-			engfunc(EngFunc_SetModel, entity, g_skin[iOwner]?W_MODEL_6:W_MODEL)
+			engfunc(EngFunc_SetModel, entity, W_MODEL)
 			
 			return FMRES_SUPERCEDE
 		}
@@ -426,7 +422,7 @@ public fw_Item_Deploy_Post(Ent)
 		return
 		
 	set_pev(id, pev_viewmodel2, g_skin[id]?V_MODEL_6:V_MODEL)
-	set_pev(id, pev_weaponmodel2, g_skin[id]?P_MODEL_6:P_MODEL)
+	set_pev(id, pev_weaponmodel2, P_MODEL)
 	
 	set_pdata_string(id, (492) * 4, WEAPON_ANIMEXT, -1 , 20)
 	
@@ -518,7 +514,7 @@ public fw_Item_AddToPlayer_Post(Ent, id)
 public AddToPlayer_Delay(id)
 {
 	set_pev(id, pev_viewmodel2, g_skin[id]?V_MODEL_6:V_MODEL)
-	set_pev(id, pev_weaponmodel2, g_skin[id]?P_MODEL_6:P_MODEL)
+	set_pev(id, pev_weaponmodel2, P_MODEL)
 	
 	//set_pdata_float(id, 83, 0.1, 5)
 	Set_Weapon_Anim(id ,2)
