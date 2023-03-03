@@ -1,1 +1,1 @@
-start hlds.exe -steam -noforcemparms -noforcemaccel
+start hl.exe -steam -noforcemparms -noforcemaccel -refresh 60
