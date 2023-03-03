@@ -66,3 +66,44 @@ L 03/03/2023 - 12:56:57: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" b
 L 03/03/2023 - 12:59:07: -------- Mapchange to zm_toan --------
 L 03/03/2023 - 12:59:17: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
 L 03/03/2023 - 12:59:21: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:30:11: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:30:12: An error occurred in plugin_natives. This is dangerous!
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zombie_plague40.amxx" failed to load: Plugin uses an unknown function (name "nav_reset_money") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_regular.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_spitter.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_Deimos.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_Ganymede.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_stingfinger.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_banshee.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_voodoo.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_venom.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_zclass_Heavy.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_addon_healing_skill.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_addon_deadlyshot.amxx" failed to load: Plugin uses an unknown function (name "md_zb_skill") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_extra_m3dragon.amxx" failed to load: Plugin uses an unknown function (name "nav_set_special_ammo") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_extra_magicmg.amxx" failed to load: Plugin uses an unknown function (name "nav_set_special_ammo") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_extra_thanatos5.amxx" failed to load: Plugin uses an unknown function (name "nav_set_special_ammo") - check your modules.ini.
+L 03/03/2023 - 13:30:12: [AMXX] Plugin "zp_extra_thanatos7.amxx" failed to load: Plugin uses an unknown function (name "nav_set_special_ammo") - check your modules.ini.
+L 03/03/2023 - 13:30:24: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:30:27: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:31:04: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:31:07: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:31:09: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:31:40: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:31:44: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:31:46: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:32:11: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:32:16: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:32:17: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:32:47: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:32:49: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:32:50: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:35:43: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:35:48: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:35:50: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:37:31: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:37:39: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:37:43: [admin.amxx] Login: "Toan<1><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:38:15: -------- Mapchange to zm_toan --------
+L 03/03/2023 - 13:38:17: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")
+L 03/03/2023 - 13:38:18: [admin.amxx] Login: "Toan<15><STEAM_0:0:1802165859><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstu") (address "loopback")

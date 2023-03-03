@@ -298,3 +298,140 @@ L 03/03/2023 - 13:03:19: [FAKEMETA] Invalid entity
 L 03/03/2023 - 13:03:19: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
 L 03/03/2023 - 13:03:19: [AMXX] Run time error 10: native error (native "set_pdata_int")
 L 03/03/2023 - 13:03:19: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 230)
+L 03/03/2023 - 13:30:12: Start of error session.
+L 03/03/2023 - 13:30:12: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:30:12: Function "do_fade" was not found
+L 03/03/2023 - 13:30:12: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:30:12: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:12: [AMXX] Run time error -1 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:30:23: Could not find function "message_screenfade"
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_no_hs.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_knockback_bomb.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_leap.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_cannon.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_wondercannon.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_gungnir.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_laserfist.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Displaying debug trace (plugin "zp_extra_buffsg552ex.amxx")
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10: native error (native "zp_register_extra_item")
+L 03/03/2023 - 13:30:23: [AMXX]    [0] zp_extra_buffsg552ex.sma::plugin_init (line 78)
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Displaying debug trace (plugin "zp_extra_kronos12.amxx")
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10: native error (native "zp_register_extra_item")
+L 03/03/2023 - 13:30:23: [AMXX]    [0] zp_extra_kronos12.sma::plugin_init (line 115)
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_m32.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10: native error (native "zp_register_extra_item")
+L 03/03/2023 - 13:30:23: [AMXX]    [0] zp_extra_petrolboomer.sma::plugin_init (line 94)
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_buffawp.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_buffsg552.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_PlasmaGun.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_bouncer.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_sgdrill.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_m134.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_balrog7.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_balrog11.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_janus5.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:23: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:23: [AMXX] Run time error 10 (plugin "zp_extra_janus7.amxx") (native "zp_register_extra_item") - debug not enabled!
+L 03/03/2023 - 13:30:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:27: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:27: [AMXX] Run time error 10 (plugin "zp_addon_evolution_z.amxx") (native "zp_get_user_zombie") - debug not enabled!
+L 03/03/2023 - 13:30:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:27: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:27: [AMXX] Run time error 10 (plugin "zp_bot_teleport.amxx") (native "zp_get_user_nemesis") - debug not enabled!
+L 03/03/2023 - 13:30:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:27: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:27: [AMXX] Run time error 10 (plugin "zp_bot_no_attack.amxx") (native "zp_has_round_started") - debug not enabled!
+L 03/03/2023 - 13:30:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:27: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:27: [AMXX] Run time error 10 (plugin "zp_addon_team_semiclip.amxx") (native "zp_get_user_zombie") - debug not enabled!
+L 03/03/2023 - 13:30:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:28: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:28: [AMXX] Run time error 10 (plugin "zp_bot_zombie_protect.amxx") (native "zp_get_user_zombie") - debug not enabled!
+L 03/03/2023 - 13:30:28: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:29: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:29: [AMXX] Run time error 10 (plugin "zp_addon_evolution.amxx") (native "zp_get_user_zombie") - debug not enabled!
+L 03/03/2023 - 13:30:29: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:29: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:29: [AMXX] Run time error 10 (plugin "zp_addon_cf_damage.amxx") (native "zp_get_user_zombie") - debug not enabled!
+L 03/03/2023 - 13:30:29: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:30: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:30: [AMXX] Run time error 10 (plugin "zp_addon_givenade.amxx") (native "zp_get_user_zombie") - debug not enabled!
+L 03/03/2023 - 13:30:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:30:32: Called dynanative into a paused plugin.
+L 03/03/2023 - 13:30:32: [AMXX] Run time error 10 (plugin "zp_addon_aim_info.amxx") (native "zp_get_user_zombie") - debug not enabled!
+L 03/03/2023 - 13:30:32: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:31:07: Start of error session.
+L 03/03/2023 - 13:31:07: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:31:07: Could not find function "message_screenfade"
+L 03/03/2023 - 13:31:07: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:31:07: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:31:44: Start of error session.
+L 03/03/2023 - 13:31:44: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:31:44: Could not find function "message_screenfade"
+L 03/03/2023 - 13:31:44: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:31:44: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:32:15: Start of error session.
+L 03/03/2023 - 13:32:15: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:32:15: Could not find function "message_screenfade"
+L 03/03/2023 - 13:32:15: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:32:15: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:32:48: Start of error session.
+L 03/03/2023 - 13:32:48: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:32:48: Could not find function "message_screenfade"
+L 03/03/2023 - 13:32:48: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:32:48: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:35:48: Start of error session.
+L 03/03/2023 - 13:35:48: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:35:48: Could not find function "message_screenfade"
+L 03/03/2023 - 13:35:48: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:35:48: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:37:38: Start of error session.
+L 03/03/2023 - 13:37:38: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:37:38: Could not find function "message_screenfade"
+L 03/03/2023 - 13:37:38: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:37:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 13:38:16: Start of error session.
+L 03/03/2023 - 13:38:16: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 13:38:16: Could not find function "message_screenfade"
+L 03/03/2023 - 13:38:16: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 13:38:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
