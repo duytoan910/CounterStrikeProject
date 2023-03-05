@@ -12,7 +12,6 @@ public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR)	
 	g_msgScreenFade = get_user_msgid("ScreenFade");
-	register_message(g_msgScreenFade, "message_screenfade")
 }
 
 public plugin_natives()
@@ -20,18 +19,46 @@ public plugin_natives()
 	register_native("md_zb_skill","do_fade", 1)
 	register_native("nav_set_special_ammo","do_nothing", 1)
 	register_native("nav_reset_money","do_nothing", 1)
+	register_native("md_drawimage", "md_drawimage_nav", 1)
 }
 
-
+public md_drawimage_nav(id, channel, isDefined, const imageName[], Float:x, Float:y, centerX, centerY, r, g, b, a, Float:fadeInTime, Float:FadeOutTime, Float:holdTime, align, customWidth, customHeight){
+	
+}
 public do_nothing(id){}
-public do_fade(id){
+public do_fade(id,type){	
+/*
+	if(!is_user_alive(id)||is_user_bot(id))
+		return
+	new r,g,b; 
+	switch(type){
+		case 0:{
+			r = 155
+			g = 60
+			b = 60
+		}
+		case 1:{
+			r = 100
+			g = 255
+			b = 100
+		}
+		case 2:{
+			r = 105
+			g = 105
+			b = 105
+		}
+	}
 	message_begin(MSG_ONE_UNRELIABLE, g_msgScreenFade, _, id)
 	write_short(UNIT_SECOND) // duration
-	write_short(3) // hold time
+	write_short(2) // hold time
 	write_short(FFADE_IN) // fade type
-	write_byte(255) // r
-	write_byte(100) // g
-	write_byte(100) // b
-	write_byte (255) // alpha
+	write_byte(r) // r
+	write_byte(g) // g
+	write_byte(b) // b
+	write_byte(70) // alpha
 	message_end()
+	*/
 }
+/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
+*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1066\\ f0\\ fs16 \n\\ par }
+*/

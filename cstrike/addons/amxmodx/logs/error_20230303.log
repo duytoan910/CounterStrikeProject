@@ -435,3 +435,22 @@ L 03/03/2023 - 13:38:16: Info (map "zm_toan") (file "addons/amxmodx/logs/error_2
 L 03/03/2023 - 13:38:16: Could not find function "message_screenfade"
 L 03/03/2023 - 13:38:16: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
 L 03/03/2023 - 13:38:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 16:22:21: Start of error session.
+L 03/03/2023 - 16:22:21: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 16:22:21: Could not find function "message_screenfade"
+L 03/03/2023 - 16:22:21: [AMXX] Run time error 19 (plugin "md_unload.amxx") - debug not enabled!
+L 03/03/2023 - 16:22:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 16:25:40: Start of error session.
+L 03/03/2023 - 16:25:40: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20230303.log")
+L 03/03/2023 - 16:25:40: [FAKEMETA] Invalid entity
+L 03/03/2023 - 16:25:40: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 03/03/2023 - 16:25:40: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 03/03/2023 - 16:25:40: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 230)
+L 03/03/2023 - 16:25:43: [FAKEMETA] Invalid entity
+L 03/03/2023 - 16:25:43: [AMXX] Displaying debug trace (plugin "zp_extra_petrolboomer.amxx")
+L 03/03/2023 - 16:25:43: [AMXX] Run time error 10: native error (native "set_pdata_int")
+L 03/03/2023 - 16:25:43: [AMXX]    [0] zp_extra_petrolboomer.sma::DoneReload (line 230)
+L 03/03/2023 - 16:31:02: [AMXX] Run time error 4 (plugin "zp_extra_gungnir.amxx") - debug not enabled!
+L 03/03/2023 - 16:31:02: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 03/03/2023 - 16:31:08: [AMXX] Run time error 4 (plugin "zp_extra_gungnir.amxx") - debug not enabled!
+L 03/03/2023 - 16:31:08: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

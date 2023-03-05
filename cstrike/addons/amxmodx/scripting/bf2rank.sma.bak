@@ -515,11 +515,7 @@ public zp_user_infected_post( victim, killer, nemesis){
 	if ( killer < 1 || killer > gMaxPlayers ) return;
 
 	knifekills[killer]++;
-	if(is_user_bot(killer)){
-		totalkills[killer]+=3
-	}else{
-		totalkills[killer]++
-	}
+	totalkills[killer]++;
 
 	check_badges(victim);
 

@@ -22,7 +22,7 @@ public plugin_init()
 public on_damage(id)
 {	
 	static attacker; attacker = get_user_attacker(id)
-	if(is_user_connected(attacker))
+	if(is_user_connected(attacker) && !is_user_bot(attacker))
 	{
 		//client_print(attacker, print_chat,"Hit!")
 		//md_drawimage(attacker, 100, 0, g_hitmark, 0.5, 0.5, 1, 1, 255, 255, 255, 255, 0.0, 0.0, 0.2, ALIGN_NORMAL)

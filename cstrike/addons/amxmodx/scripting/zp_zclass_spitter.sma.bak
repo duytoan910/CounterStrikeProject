@@ -67,7 +67,7 @@ enum (+= 100)
 /*============================================================================*/
 
 // Class IDs
-new g_zclass, cvar_debug, spr_trail,g_ExpSprId, cvar_optimize
+new g_zclass, cvar_debug, spr_trail,g_ExpSprId
 
 // Main Vars
 new g_SPIT_wait[33]
@@ -88,7 +88,6 @@ public plugin_init()
 	register_forward(FM_PlayerPostThink, "fw_PlayerPostThink" , 1)
 	
 	cvar_debug = register_cvar("zp_bot_skill_debug", "0")
-	cvar_optimize = register_cvar("zp_optimize", "0")
 	
 	// Client Cmd
 	register_clcmd("drop", "cmd_SPIT")
@@ -318,12 +317,9 @@ public fw_Fire2Think(iEnt)
 	pev(iEnt, pev_renderamt, Alpha)
 	if(time_1 + random_float(0.2, 0.4) <= get_gametime()) 
 	{
-		if(Alpha>40){
-			if(!get_pcvar_num(cvar_optimize))
-				Create_Fake_Flame(iEnt)
-		}else{
-			set_pev(iEnt, pev_fuser2, get_gametime())
-		}
+		if(Alpha>40)
+			Create_Fake_Flame(iEnt)
+		set_pev(iEnt, pev_fuser2, get_gametime())
 	}else{
 		time_1 += 0.03
 		set_pev(iEnt, pev_fuser2, time_1)
@@ -352,6 +348,7 @@ public fw_Fire2Think(iEnt)
 	if(zp_get_user_zombie(Attacker))
 	{
 		Stock_DamageRadius(Attacker, Origin, DAMAGE_RADIUS, DAMAGE_BURN, DMG_BULLET)
+		
 	}
 	else remove_entity(iEnt)
 }
