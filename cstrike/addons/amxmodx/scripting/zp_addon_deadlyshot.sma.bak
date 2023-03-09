@@ -149,6 +149,10 @@ public DO_DS(id)
 	set_hudmessage(0, 255, 0, -1.0, 0.3, 0, 15.0, 2.0)	
 	ShowSyncHudMsg(id, sync_hud1, "Deadly Shot - Actived")
 
+	message_begin(MSG_ONE_UNRELIABLE, g_iBarTime, .player=id)
+	write_short(floatround(DS_TIME))
+	message_end() 
+
 	make_deadlyshoot_icon(id)		
 }
 public fw_traceattack(victim, attacker, Float:damage, direction[3], traceresult, dmgbits)
@@ -227,9 +231,7 @@ public make_ds_spr(id)
 	write_byte(255)
 	message_end()
 	
-	if(!is_user_bot(id)){
-		md_zb_skill(id,2)
-	}
+	md_zb_skill(id,2)
 	
 	set_task(0.1, "make_ds_spr", id+TASK_DEADLYSHOT_ICON)
 }

@@ -26,7 +26,7 @@ public md_drawimage_nav(id, channel, isDefined, const imageName[], Float:x, Floa
 	
 }
 public do_nothing(id){}
-public do_fade(id,type){	
+public do_fade(id, type){	
 /*
 	if(!is_user_alive(id)||is_user_bot(id))
 		return
@@ -59,6 +59,3 @@ public do_fade(id,type){
 	message_end()
 	*/
 }
-/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
-*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1066\\ f0\\ fs16 \n\\ par }
-*/
