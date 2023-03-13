@@ -802,7 +802,7 @@ public void_buff(id, Entity, iState)
 			}
 		}
 		
-		if(dist > MAXDIST && iState){
+		else if(dist > MAXDIST && iState){
 			if(iState) {
 				if(!EventCheck){
 					set_weapon_anim(id, ANIM_SCANNING_OFF)

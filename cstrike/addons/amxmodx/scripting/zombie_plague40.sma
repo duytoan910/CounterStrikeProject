@@ -2160,30 +2160,24 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 	write_byte(random_num(15,25))
 	message_end()
 	
-	if(g_isbot[attacker])
+	if(g_isbot[victim])
 	{
-		switch(random(5))
+		new szChatMethod[9]
+		copy(szChatMethod, 8, "say");
+		static Name[64]; get_user_name(attacker, Name, sizeof(Name))
+		switch(random_num(1,30))
 		{
-			case 5:
+			case 1..10:
 			{
-				new szChatMethod[9]
-				copy(szChatMethod, 8, "say");
-				static Name[64]; get_user_name(attacker, Name, sizeof(Name))
-				switch(random_num(1,30))
-				{
-					case 1..10:
-					{
-						engclient_cmd(victim,"say", "Why u do that,",Name)
-					}
-					case 11..20:
-					{
-						engclient_cmd(victim,"say", "I fuck'in hate u",Name)
-					}
-					case 21..30:
-					{
-						engclient_cmd(victim,"say", "I'll kill u",Name)
-					}
-				}							
+				engclient_cmd(victim,"say", "Why u do that,",Name)
+			}
+			case 11..20:
+			{
+				engclient_cmd(victim,"say", "I fuck'in hate u",Name)
+			}
+			case 21..30:
+			{
+				engclient_cmd(victim,"say", "I'll kill u",Name)
 			}
 		}
 	}	

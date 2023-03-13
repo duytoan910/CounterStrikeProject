@@ -1082,7 +1082,7 @@ public plugin_init()
 	RegisterHam(Ham_Use, "func_tanklaser", "fw_UseStationary_Post", 1)
 	RegisterHam(Ham_Use, "func_pushable", "fw_UsePushable")
 	RegisterHam(Ham_Touch, "weaponbox", "fw_TouchWeapon")
-	//RegisterHam(Ham_Touch, "armoury_entity", "fw_TouchWeapon")
+	RegisterHam(Ham_Touch, "armoury_entity", "fw_TouchWeapon")
 	RegisterHam(Ham_Touch, "weapon_shield", "fw_TouchWeapon")
 
 	RegisterHam(Ham_AddPlayerItem, "player", "fw_AddPlayerItem")
@@ -2637,8 +2637,20 @@ public fw_SetModel(entity, const model[])
 		if (equal(classname, "weaponbox"))
 		{
 			// They get automatically removed when thinking
-			set_pev(entity, pev_nextthink, get_gametime() + get_pcvar_float(cvar_removedropped))
-			return;
+			
+			new removeTime = get_pcvar_float(cvar_removedropped)
+			
+			if(g_survround || g_swarmround || g_npcround){
+				removeTime = 5
+			}
+			new owner;owner = pev(entity, pev_owner)
+			if(g_zombie[owner]){
+				set_pev(entity, pev_nextthink, get_gametime() + 0.1)
+				return;
+			}else{
+				set_pev(entity, pev_nextthink, get_gametime() + removeTime)
+				return;
+			}
 		}
 	}
 	// Narrow down our matches a bit
@@ -2895,7 +2907,7 @@ public fw_CmdStart(id, handle)
 	
 	// This logic looks kinda weird, but it should work in theory...
 	// p = g_zombie[id], q = g_survivor[id], r = g_cached_customflash
-	// ¬(p v q v (¬p ^ r)) <==> ¬p ^ ¬q ^ (p v ¬r)
+	// ï¿½(p v q v (ï¿½p ^ r)) <==> ï¿½p ^ ï¿½q ^ (p v ï¿½r)
 	if (!g_zombie[id] && !g_survivor[id] && (g_zombie[id] || !g_cached_customflash))
 		return;
 	
@@ -3897,7 +3909,7 @@ buy_extra_item(id, itemid, ignorecost = 0)
 		// Check that we have enough ammo packs
 		if (g_ammopacks[id] < ArrayGetCell(g_extraitem_cost, itemid))
 		{
-			/*if(g_isbot[id])
+			if(g_isbot[id])
 			{
 				switch(random_num(1,25))
 				{
@@ -3907,7 +3919,7 @@ buy_extra_item(id, itemid, ignorecost = 0)
 					case 16..20:crow11(id)
 					case 21..25:at15hw(id)
 				}	
-			}*/
+			}
 			zp_colored_print(id, "^x04[ZP]^x01 %L", id, "NOT_ENOUGH_AMMO")
 			return;
 		}

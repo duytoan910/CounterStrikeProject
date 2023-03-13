@@ -387,6 +387,7 @@ native zp_register_zombie_class(const name[], const info[], const model[], const
  */
 native zp_get_extra_item_id(const name[])
 
+native zp_get_extra_item_length()
 /**
  * Returns a zombie class' ID.
  *

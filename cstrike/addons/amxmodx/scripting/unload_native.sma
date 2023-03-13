@@ -20,12 +20,19 @@ public plugin_natives()
 	register_native("nav_set_special_ammo","do_nothing", 1)
 	register_native("nav_reset_money","do_nothing", 1)
 	register_native("md_drawimage", "md_drawimage_nav", 1)
+	register_native("md_removedrawing", "do_nothing", 1)
+	register_native("md_loadimage", "do_nothing", 1)
+	register_native("md_loadsprite", "do_nothing", 1)
+	register_native("md_playsprite", "do_nothing", 1)
+	register_native("is_deadlyshot", "do_nothing", 1)
 }
 
 public md_drawimage_nav(id, channel, isDefined, const imageName[], Float:x, Float:y, centerX, centerY, r, g, b, a, Float:fadeInTime, Float:FadeOutTime, Float:holdTime, align, customWidth, customHeight){
 	
 }
-public do_nothing(id){}
+public do_nothing(id){
+	return false;
+}
 public do_fade(id, type){	
 /*
 	if(!is_user_alive(id)||is_user_bot(id))

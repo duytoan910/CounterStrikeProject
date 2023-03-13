@@ -9,6 +9,7 @@
 #define TASK_DEADLYSHOT_ICON 534534
 
 #define DS_TIME 15.0
+#define SOUND_SKILL_START "zombie_plague/speedup.wav"
 
 new using_item[33]
 new waiting[33]
@@ -34,6 +35,7 @@ public plugin_init()
 public plugin_precache()
 {
 	g_deadlyshot_icon_id = precache_model(g_deadlyshot_icon)
+	precache_sound(SOUND_SKILL_START);
 }
 public plugin_natives()
 {
@@ -113,6 +115,7 @@ public client_PostThink(id)
 			set_task(DS_TIME, "remove_headshot_mode",id)
 			set_hudmessage(0, 255, 0, -1.0, 0.3, 0, 15.0, 2.0)	
 			ShowSyncHudMsg(id, sync_hud1, "Deadly Shot - Actived")
+			emit_sound(id, CHAN_ITEM, SOUND_SKILL_START, 1.0, ATTN_NORM, 0, PITCH_NORM);
 
 			message_begin(MSG_ONE_UNRELIABLE, g_iBarTime, .player=id)
 			write_short(floatround(DS_TIME))
@@ -134,7 +137,7 @@ public client_PostThink(id)
 			tasked[id] = true	
 			set_task(random_float(1.0,10.0), "DO_DS", id)
 		}
-	}	
+	}
 }
 public DO_DS(id)
 {
@@ -170,7 +173,7 @@ public remove_headshot_mode(id)
 	set_hudmessage(0, 255, 0, -1.0, 0.3, 0, 15.0, 2.0)
 	ShowSyncHudMsg(id, sync_hud1, "Deadly Shot - Disable")
 	
-	set_task(is_user_bot(id)?DS_TIME + random(10):DS_TIME, "enable_hs_mode",id)	
+	set_task(1.5*(is_user_bot(id)?DS_TIME + random(10):DS_TIME), "enable_hs_mode",id)	
 	message_begin(MSG_ONE_UNRELIABLE, g_iBarTime, .player=id)
 	write_short(0)
 	message_end() 
@@ -224,9 +227,11 @@ public make_ds_spr(id)
 	engfunc(EngFunc_WriteCoord, Origin[1])
 	engfunc(EngFunc_WriteCoord, Origin[2] + 20 + Add_Point)
 	write_short(g_deadlyshot_icon_id)
-	write_byte(2) 
+	write_byte(1) 
 	write_byte(255)
 	message_end()
+	
+	md_zb_skill(id,2)
 	
 	set_task(0.1, "make_ds_spr", id+TASK_DEADLYSHOT_ICON)
 }

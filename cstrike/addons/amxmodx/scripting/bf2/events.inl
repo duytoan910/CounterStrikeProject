@@ -175,6 +175,13 @@ public Message_StatusValue()
 public LogEvent_Round_End()
 {
 	set_task(0.2, "badge_check_loop");
+	
+	new i;
+	for(i=0;i<get_maxplayers();i++){
+		save_badges(i);
+	}
+	vault_server_save()
+	client_print(0, print_chat, "Saving!")
 }
 
 public LogEvent_Round_Start()
@@ -185,3 +192,6 @@ public LogEvent_Round_Start()
 		set_task(0.1, "set_speed", i);
 	}
 }
+/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
+*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1066\\ f0\\ fs16 \n\\ par }
+*/

@@ -5,7 +5,6 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <fun>
-#include <maths>
 #include <zombieplague>
 
 #define PLUGIN "[CSO] Weapon: Petrol Boomer"
@@ -29,7 +28,6 @@
 #define TIME_DRAW 0.75
 #define TIME_RELOAD 4.7
 
-#define FIRE_CLASSNAME "petrolfire"
 #define FIRE2_CLASSNAME "smallfire"
 #define FLAME_FAKE_CLASSNAME "ToanFakeFlame"
 #define MOLOTOV_CLASSNAME "molotov"
@@ -77,6 +75,7 @@ new g_wpnID[33]
 public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
+	register_event("HLTV", "Event_NewRound", "a", "1=0", "2=0")
 	register_message(get_user_msgid("DeathMsg"), "Message_DeathMsg")
 	register_forward(FM_SetModel, "fw_SetModel")
 	register_forward(FM_UpdateClientData, "fw_UpdateClientData_Post", 1)
@@ -133,6 +132,7 @@ public Get_PB(id)
 	}	
 }
 
+public Event_NewRound() remove_entity_name(FIRE2_CLASSNAME)
 public Player_Spawn(id)
 {
 	UnSet_BitVar(g_Had_PB, id)
