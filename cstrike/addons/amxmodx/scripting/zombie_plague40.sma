@@ -533,7 +533,7 @@ new g_cached_customflash, g_cached_zombiesilent, g_cached_leapzombies, g_cached_
 g_cached_leapsurvivor, Float:g_cached_leapzombiescooldown, Float:g_cached_leapnemesiscooldown,
 Float:g_cached_leapsurvivorcooldown, Float:g_cached_buytime
 
-new m_iBlood[2],g_item_human_count, g_msgStatusIcon;
+new m_iBlood[2],g_item_human_count;
 
 /*================================================================================
  [Natives, Precache and Init]
@@ -1228,7 +1228,6 @@ public plugin_init()
 	g_msgSayText = get_user_msgid("SayText")
 	g_msgCurWeapon = get_user_msgid("CurWeapon")
 	g_MsgMoney = get_user_msgid("Money")
-	g_msgStatusIcon = get_user_msgid("StatusIcon");
 	
 	// Message hooks
 	register_message(g_msgCurWeapon, "message_cur_weapon")
@@ -1246,8 +1245,7 @@ public plugin_init()
 	register_message(get_user_msgid("SendAudio"), "message_sendaudio")
 	register_message(get_user_msgid("TeamScore"), "message_teamscore")
 	register_message(g_msgTeamInfo, "message_teaminfo")
-	register_message(g_msgStatusIcon, "msgStatusIcon");
-	
+
 	// CVARS - General Purpose
 	cvar_warmup = register_cvar("zp_delay", "10")
 	cvar_lighting = register_cvar("zp_lighting", "a")
@@ -1983,6 +1981,33 @@ public fw_PlayerSpawn_Post(id)
 	weapon_ent = fm_cs_get_current_weapon_ent(id)
 	if (pev_valid(weapon_ent)) replace_weapon_models(id, cs_get_weapon_id(weapon_ent))
 	
+	if (!g_isbot[id])
+	{
+		// Give Zombies Night Vision?
+		if (get_pcvar_num(cvar_nvggive))
+		{
+			g_nvision[id] = true
+			
+			if (!g_isbot[id])
+			{
+				// Turn on Night Vision automatically?
+				if (get_pcvar_num(cvar_nvggive) == 1)
+				{
+					g_nvisionenabled[id] = false
+					
+					// Custom nvg?
+					if (get_pcvar_num(cvar_customnvg))
+					{
+						//remove_task(id+TASK_NVISION)
+						//set_task(0.1, "set_user_nvision", id+TASK_NVISION, _, _, "b")
+					}
+					else
+						set_user_gnvision(id, 1)
+				}
+			}
+		}
+	}
+
 	loadmoney(id)
 	// Last Zombie Check
 	fnCheckLastZombie()
@@ -3352,7 +3377,7 @@ public show_menu_buy1(taskid)
 	if (get_pcvar_num(cvar_randweapons) || g_isbot[id])
 	{
 		buy_primary_weapon(id)
-		menu_buy2(id, random_num(0, ArraySize(g_secondary_items) - 1))
+		//menu_buy2(id, random_num(0, ArraySize(g_secondary_items) - 1))
 		return;
 	}
 	
@@ -3360,7 +3385,7 @@ public show_menu_buy1(taskid)
 	if (WPN_AUTO_ON && taskid > g_maxplayers)
 	{
 		buy_primary_weapon(id)
-		menu_buy2(id, WPN_AUTO_SEC)
+		//menu_buy2(id, WPN_AUTO_SEC)
 		return;
 	}
 	
@@ -3420,7 +3445,7 @@ show_menu_buy2(id)
 }
 
 // Extra Items Menu
-show_menu_extras(id)
+public show_menu_extras(id)
 {
 	// Player dead?
 	if (!g_isalive[id])
@@ -5628,7 +5653,7 @@ make_a_zombie(mode, id)
 		{
 			if (!bought[i])
 			{
-				set_task(random_float(1.0,5.0),"bot_buy_extras",i)
+				set_task(random_float(1.0,5.0),"bot_buy_extras",i+TASK_SPAWN)
 				g_ammopacks[i] += random(500)+1000
 			}
 		}			
@@ -5956,6 +5981,8 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 	// Remove CS nightvision if player owns one (bugfix)
 	if (cs_get_user_nvg(id))
 	{
+		g_nvision[id] = false
+		g_nvisionenabled[id] = false
 		cs_set_user_nvg(id, 0)
 		if (get_pcvar_num(cvar_customnvg)) remove_task(id+TASK_NVISION)
 		else if (g_nvisionenabled[id]) set_user_gnvision(id, 0)
@@ -6127,7 +6154,7 @@ humanme(id, survivor, silentmode)
 	g_firstzombie[id] = false
 	g_canbuy[id] = true
 	g_buytime[id] = get_gametime()
-	
+
 	// Remove survivor's aura (bugfix)
 	set_pev(id, pev_effects, pev(id, pev_effects) &~ EF_BRIGHTLIGHT)
 	
@@ -6137,14 +6164,6 @@ humanme(id, survivor, silentmode)
 	
 	// Reset burning duration counter (bugfix)
 	g_burning_duration[id] = 0
-	
-	// Remove CS nightvision if player owns one (bugfix)
-	if (cs_get_user_nvg(id))
-	{
-		cs_set_user_nvg(id, 0)
-		if (get_pcvar_num(cvar_customnvg)) remove_task(id+TASK_NVISION)
-		else if (g_nvisionenabled[id]) set_user_gnvision(id, 0)
-	}
 	
 	// Drop previous weapons
 	drop_weapons(id, 1)
@@ -6372,13 +6391,13 @@ humanme(id, survivor, silentmode)
 	}
 	
 	// Disable nightvision when turning into human/survivor (bugfix)
-	if (g_nvision[id])
-	{
-		if (get_pcvar_num(cvar_customnvg)) remove_task(id+TASK_NVISION)
-		else if (g_nvisionenabled[id]) set_user_gnvision(id, 0)
-		g_nvision[id] = false
-		g_nvisionenabled[id] = false
-	}
+	// if (g_nvision[id])
+	// {
+	// 	if (get_pcvar_num(cvar_customnvg)) remove_task(id+TASK_NVISION)
+	// 	else if (g_nvisionenabled[id]) set_user_gnvision(id, 0)
+	// 	g_nvision[id] = false
+	// 	g_nvisionenabled[id] = false
+	// }
 	
 	// Post user humanize forward
 	ExecuteForward(g_fwUserHumanized_post, g_fwDummyResult, id, survivor)
@@ -7696,8 +7715,10 @@ public extras_list(id)
 	client_print(id, print_chat, "End ID: %i",g_extraitem_i - 1)
 }
 // Bots automatically buy extra items
-public bot_buy_extras(id)
+public bot_buy_extras(taskid)
 {
+	new id = ID_SPAWN;
+
 	if(g_zombie[id] || !g_isalive[id])
 		return;
 		
@@ -11607,17 +11628,3 @@ stock set_player_light (id, const LightStyle [])
 	write_string (LightStyle)
 	message_end ()
 }
-public msgStatusIcon(msgid, msgdest, id)
-{
-	static szIcon[8];
-	get_msg_arg_string(2, szIcon, 7);
-	
-	if(equal(szIcon, "buyzone") && get_msg_arg_int(1))
-	{
-		set_pdata_int(id, 235, get_pdata_int(id, 235) & ~(1<<0));
-		return PLUGIN_HANDLED;
-	}
-	
-	return PLUGIN_CONTINUE;
-} 
-
