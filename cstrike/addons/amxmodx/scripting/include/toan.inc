@@ -14,3 +14,6 @@ native crow11(id)
 native nav_set_portrait(id)
 native nav_set_special_ammo(id, val)
 native Array:zp_get_extra_item_list()
+
+native md_zb_skill(id, type)
+native is_deadlyshot(id)
