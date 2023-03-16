@@ -28,7 +28,7 @@ new const WEAPON_CLASSNAME[][] = { "", "weapon_p228", "", "weapon_scout", "weapo
 
 new const zclass_name[] = { "Undertaker" }
 new const zclass_info[] = { " " }
-new const zclass_model[] = { "stamper_zombi_origin" }
+new const zclass_model[] = { "stamper_zombi_host", "stamper_zombi_origin" }
 new const zclass_clawmodel[] = { "v_knife_undertaker.mdl" }
 new const zclass_health = 3200
 new const zclass_speed = 280

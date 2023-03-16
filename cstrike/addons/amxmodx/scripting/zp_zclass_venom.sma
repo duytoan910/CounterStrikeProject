@@ -25,7 +25,7 @@ TASK_USE_SKILL
 // Zombie Attributes 
 new const zclass_name[] = "Venom Guard" // name 
 new const zclass_info[] = " " // description 
-new const zclass_model[] = "boomer_zombi_origin" // model 
+new const zclass_model[] = {"boomer_zombi_host","boomer_zombi_origin"} // model 
 new const zclass_clawmodel[] = "v_knife_boomer_zombi.mdl" // claw model 
 const zclass_health = 3500 // health 
 const zclass_speed = 280 // speed 

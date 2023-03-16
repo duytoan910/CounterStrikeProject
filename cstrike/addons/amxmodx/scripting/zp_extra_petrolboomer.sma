@@ -21,12 +21,12 @@
 #define WEAPON_OLDWMODEL "models/w_m249.mdl"
 #define WEAPON_SECRETCODE 1972014
 
-#define DAMAGE_EXPLOSION 250.0 // 500 for Zombie
-#define DAMAGE_BURN 4.0 // 100 for Zombie
+#define DAMAGE_EXPLOSION 650.0 // 500 for Zombie
+#define DAMAGE_BURN 5.0 // 100 for Zombie
 #define DAMAGE_RADIUS 70.0
 
 #define TIME_DRAW 0.75
-#define TIME_RELOAD 4.7
+#define TIME_RELOAD 4.2
 
 #define FIRE2_CLASSNAME "smallfire"
 #define FLAME_FAKE_CLASSNAME "ToanFakeFlame"

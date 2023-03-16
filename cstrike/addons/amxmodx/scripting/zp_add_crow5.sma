@@ -30,7 +30,7 @@
 #define CROW5_CLIP 50
 #define CROW5_AMMO 200
 #define CROW5_RECOIL 1.0
-#define CROW5_DAMAGE 1.0
+#define CROW5_DAMAGE 1.2
 
 native navtive_bullet_effect(id, ent, ptr)
 

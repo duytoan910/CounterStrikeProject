@@ -12,7 +12,7 @@ new const AUTHOR[] =  "m4m3ts"
 
 new const zclass_name[] = "Sting Finger" // name 
 new const zclass_info[] = " " // description 
-new const zclass_model[] = "resident_zombi_host" // model 
+new const zclass_model[] = {"resident_zombi_host","resident_zombi_origin"} // model 
 new const zclass_clawmodel[] = "v_knife_resident_zombi.mdl" // claw model 
 const zclass_health = 3200 // health 
 const zclass_speed = 280 // speed 

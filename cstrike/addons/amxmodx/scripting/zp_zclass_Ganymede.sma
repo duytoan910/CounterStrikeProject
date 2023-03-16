@@ -30,15 +30,15 @@ enum (+= 100)
 // Zombie Attributes
 new const zclass_name[] = "Ganymede"
 new const zclass_info[] = ""
-new const zclass_model[] = "deimos2_zombi_origin" // model
+new const zclass_model[] = {"deimos2_zombi_host","deimos2_zombi_origin"} // model
 new const zclass_clawmodel[] = "v_knife_deimos2_zombi.mdl" // claw model
 const zclass_health = 3400 // health
-const zclass_speed = 270 // speed
-const Float:zclass_gravity = 0.9 // gravity
-const Float:zclass_knockback =  0.55 // knockback
+const zclass_speed = 280 // speed
+const Float:zclass_gravity = 0.8 // gravity
+const Float:zclass_knockback =  1.45 // knockback
 
 new Float:g_fastspeed = 250.0 // sprint speed 340
-new Float:g_normspeed = 270.0 // norm speed. must be as zclass_speed
+new Float:g_normspeed = 280.0 // norm speed. must be as zclass_speed
 new Float:g_skill_wait = 5.0 // cooldown time
 new Float:g_skill_length = 5.0 // time of sprint
 new const sound_china_sprint[] = "zombie_plague/china_spd.wav" //sprint sound

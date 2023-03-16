@@ -1,7 +1,3 @@
-/*================================================================================
- [Plugin Customization]
-=================================================================================*/
-
 // All customization settings have been moved
 // to external files to allow easier editing
 new const ZP_CUSTOMIZATION_FILE[] = "zombieplague.ini"
@@ -9,7 +5,7 @@ new const ZP_EXTRAITEMS_FILE[] = "zp_extraitems.ini"
 new const ZP_ZOMBIECLASSES_FILE[] = "zp_zombieclasses.ini"
 
 // Limiters for stuff not worth making dynamic arrays out of (increase if needed)
-const MAX_CSDM_SPAWNS = 64
+const MAX_CSDM_SPAWNS = 128
 const MAX_STATS_SAVED = 64
 
 /*================================================================================
@@ -32,7 +28,7 @@ const MAX_STATS_SAVED = 64
 =================================================================================*/
 
 // Plugin Version
-new const PLUGIN_VERSION[] = "Unlimited"
+new const PLUGIN_VERSION[] = "4.3"
 
 // Customization file sections
 enum
@@ -179,9 +175,8 @@ const Float:HUD_INFECT_X = 0.05
 const Float:HUD_INFECT_Y = 0.45
 const Float:HUD_SPECT_X = 0.6
 const Float:HUD_SPECT_Y = 0.8
-
 const Float:HUD_STATS_X = 0.015
-const Float:HUD_STATS_Y = 0.25
+const Float:HUD_STATS_Y = 0.27
 
 // CS Player PData Offsets (win32)
 const OFFSET_PAINSHOCK = 108 // ConnorMcLeod
@@ -387,7 +382,6 @@ new g_infbombcounter, g_antidotecounter, g_madnesscounter // to limit buying som
 new g_arrays_created // to prevent stuff from being registered before initializing arrays
 new g_lastplayerleaving // flag for whenever a player leaves and another takes his place
 new g_switchingteam // flag for whenever a player's team change emessage is sent
-new defaultindex
 
 // Message IDs vars
 new g_msgScoreInfo, g_msgNVGToggle, g_msgScoreAttrib, g_msgAmmoPickup, g_msgScreenFade,
@@ -543,7 +537,6 @@ public plugin_natives()
 	register_native("zp_get_user_ammo_packs", "native_get_user_ammo_packs", 1)
 	register_native("zp_set_user_ammo_packs", "native_set_user_ammo_packs", 1)
 	register_native("zp_get_zombie_maxhealth", "native_get_zombie_maxhealth", 1)
-	register_native("zp_set_zombie_maxhealth", "native_set_zombie_maxhealth", 1)	
 	register_native("zp_get_user_batteries", "native_get_user_batteries", 1)
 	register_native("zp_set_user_batteries", "native_set_user_batteries", 1)
 	register_native("zp_get_user_nightvision", "native_get_user_nightvision", 1)
@@ -554,6 +547,7 @@ public plugin_natives()
 	register_native("zp_make_user_survivor", "native_make_user_survivor", 1)
 	register_native("zp_respawn_user", "native_respawn_user", 1)
 	register_native("zp_force_buy_extra_item", "native_force_buy_extra_item", 1)
+	register_native("zp_set_zombie_maxhealth", "native_set_zombie_maxhealth", 1)
 	
 	// Round natives
 	register_native("zp_has_round_started", "native_has_round_started", 1)
@@ -769,7 +763,7 @@ public plugin_precache()
 	g_glassSpr = engfunc(EngFunc_PrecacheModel, sprite_grenade_glass)
 	m_iBlood[0] = precache_model("sprites/blood.spr")
 	m_iBlood[1] = precache_model("sprites/bloodspray.spr")
-	
+
 	// Custom sounds
 	for (i = 0; i < ArraySize(sound_win_zombies); i++)
 	{
@@ -1037,8 +1031,6 @@ public plugin_precache()
 	if (g_ambience_rain) engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_rain"))
 	if (g_ambience_snow) engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_snow"))
 	
-	defaultindex = precache_model("models/player/terror/terror.mdl")
-	
 	// Prevent some entities from spawning
 	g_fwSpawn = register_forward(FM_Spawn, "fw_Spawn")
 	
@@ -1089,9 +1081,6 @@ public plugin_init()
 	
 	for (new i = 1; i < sizeof WEAPONENTNAMES; i++)
 		if (WEAPONENTNAMES[i][0]) RegisterHam(Ham_Item_Deploy, WEAPONENTNAMES[i], "fw_Item_Deploy_Post", 1)
-		
-	for (new i = 1; i < sizeof WEAPONENTNAMES; i++)
-		if (WEAPONENTNAMES[i][0]) RegisterHam(Ham_Item_AddToPlayer, WEAPONENTNAMES[i], "fw_Item_AddToPlayer", 1)
 	
 	// FM Forwards
 	register_forward(FM_ClientDisconnect, "fw_ClientDisconnect")
@@ -1221,10 +1210,10 @@ public plugin_init()
 	cvar_extraweapons = register_cvar("zp_extra_weapons", "1")
 	cvar_extranvision = register_cvar("zp_extra_nvision", "1")
 	cvar_extraantidote = register_cvar("zp_extra_antidote", "1")
-	cvar_antidotelimit = register_cvar("zp_extra_antidote_limit", "5")
+	cvar_antidotelimit = register_cvar("zp_extra_antidote_limit", "999")
 	cvar_extramadness = register_cvar("zp_extra_madness", "1")
 	cvar_madnesslimit = register_cvar("zp_extra_madness_limit", "999")
-	cvar_madnessduration = register_cvar("zp_extra_madness_duration", "3.0")
+	cvar_madnessduration = register_cvar("zp_extra_madness_duration", "5.0")
 	cvar_extrainfbomb = register_cvar("zp_extra_infbomb", "1")
 	cvar_infbomblimit = register_cvar("zp_extra_infbomb_limit", "999")
 	
@@ -1272,7 +1261,7 @@ public plugin_init()
 	cvar_leapsurvivorforce = register_cvar("zp_leap_survivor_force", "500")
 	cvar_leapsurvivorheight = register_cvar("zp_leap_survivor_height", "300")
 	cvar_leapsurvivorcooldown = register_cvar("zp_leap_survivor_cooldown", "5.0")
-
+	
 	// CVARS - Humans
 	cvar_humanhp = register_cvar("zp_human_health", "100")
 	cvar_humanlasthp = register_cvar("zp_human_last_extrahp", "0")
@@ -1282,7 +1271,7 @@ public plugin_init()
 	cvar_infammo = register_cvar("zp_human_unlimited_ammo", "0")
 	cvar_ammodamage = register_cvar("zp_human_damage_reward", "500")
 	cvar_fragskill = register_cvar("zp_human_frags_for_kill", "1")
-
+	
 	// CVARS - Custom Grenades
 	cvar_firegrenades = register_cvar("zp_fire_grenades", "1")
 	cvar_fireduration = register_cvar("zp_fire_duration", "10")
@@ -1540,12 +1529,12 @@ public logevent_round_end()
 	remove_task(TASK_MAKEZOMBIE)
 	
 	// Stop ambience sounds
-	if ((g_ambience_sounds[AMBIENCE_SOUNDS_NEMESIS] 
-	&& g_nemround) || (g_ambience_sounds[AMBIENCE_SOUNDS_SURVIVOR] 
-	&& g_survround) || (g_ambience_sounds[AMBIENCE_SOUNDS_SWARM] 
-	&& g_swarmround) || (g_ambience_sounds[AMBIENCE_SOUNDS_PLAGUE] 
-	&& g_plagueround) || (g_ambience_sounds[AMBIENCE_SOUNDS_INFECTION] 
-	&& !g_nemround && !g_survround && !g_swarmround && !g_plagueround))
+	if ((g_ambience_sounds[AMBIENCE_SOUNDS_NEMESIS] && g_nemround) 
+	|| (g_ambience_sounds[AMBIENCE_SOUNDS_SURVIVOR] && g_survround) 
+	|| (g_ambience_sounds[AMBIENCE_SOUNDS_SWARM] && g_swarmround) 
+	|| (g_ambience_sounds[AMBIENCE_SOUNDS_PLAGUE] && g_plagueround) 
+	|| (g_ambience_sounds[AMBIENCE_SOUNDS_INFECTION] && !g_nemround 
+	&& !g_survround && !g_swarmround && !g_plagueround))
 	{
 		remove_task(TASK_AMBIENCESOUNDS)
 		ambience_sound_stop()
@@ -1590,8 +1579,11 @@ public logevent_round_end()
 		
 		// Play win sound
 		ArrayGetString(sound_win_no_one, random_num(0, ArraySize(sound_win_no_one) - 1), sound, charsmax(sound))
-		PlaySound(sound)*/
-				
+		PlaySound(sound)
+		
+		// Round end forward
+		ExecuteForward(g_fwRoundEnd, g_fwDummyResult, ZP_TEAM_NO_ONE);
+		*/
 		if(g_npcround)
 		{
 			// Zombie team wins
@@ -1753,6 +1745,7 @@ public fw_PlayerSpawn_Post(id)
 		zombieme(id, 0, 0, 0, 0) // make him zombie right away
 		return;
 	}
+	
 	// Reset player vars
 	reset_vars(id, 0)
 	
@@ -1801,14 +1794,12 @@ public fw_PlayerSpawn_Post(id)
 			iRand = random_num(0, ArraySize(model_admin_human) - 1)
 			ArrayGetString(model_admin_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 			if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_admin_human, iRand))
-			//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 		}
 		else
 		{
 			iRand = random_num(0, ArraySize(model_human) - 1)
 			ArrayGetString(model_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 			if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_human, iRand))
-			//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 		}
 		
 		// Set model on player model entity
@@ -1837,7 +1828,6 @@ public fw_PlayerSpawn_Post(id)
 				iRand = random_num(0, size - 1)
 				ArrayGetString(model_admin_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 				if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_admin_human, iRand))
-				//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 			}
 		}
 		else
@@ -1854,7 +1844,6 @@ public fw_PlayerSpawn_Post(id)
 				iRand = random_num(0, size - 1)
 				ArrayGetString(model_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 				if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_human, iRand))
-				//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 			}
 		}
 		
@@ -1873,7 +1862,7 @@ public fw_PlayerSpawn_Post(id)
 		fm_set_rendering(id)
 	}
 	remove_task(id+TASK_BOT_BUY_Z)
-	
+
 	if(g_isbot[id])
 	{
 		g_zombieclassnext[id] = random_num(0, g_zclass_i - 1)
@@ -1886,8 +1875,6 @@ public fw_PlayerSpawn_Post(id)
 		fm_strip_user_weapons(id)
 		fm_give_item(id, "weapon_knife")		
 	}
-	
-	//nav_set_portrait(id)
 	
 	// Enable spawn protection for humans spawning mid-round
 	if (!g_newround && get_pcvar_float(cvar_spawnprotection) > 0.0)
@@ -1910,15 +1897,10 @@ public fw_PlayerSpawn_Post(id)
 	static weapon_ent
 	weapon_ent = fm_cs_get_current_weapon_ent(id)
 	if (pev_valid(weapon_ent)) replace_weapon_models(id, cs_get_weapon_id(weapon_ent))
-
-	loadmoney(id)
 	
+	loadmoney(id)
 	// Last Zombie Check
 	fnCheckLastZombie()
-}
-public Get_Snark(id)
-{
-	//Snark(id)
 }
 
 // Ham Player Killed Forward
@@ -2013,7 +1995,6 @@ public fw_PlayerKilled(victim, attacker, shouldgib)
 		g_ammopacks[attacker] += get_pcvar_num(cvar_ammoinfect)
 		loadmoney(attacker)
 	}
-	
 	// Human killed zombie, add up the extra frags for kill
 	if (!g_zombie[attacker] && get_pcvar_num(cvar_fragskill) > 1)
 	{
@@ -2021,7 +2002,6 @@ public fw_PlayerKilled(victim, attacker, shouldgib)
 		//g_ammopacks[attacker]+=500
 		loadmoney(attacker)		
 	}
-	
 	// Zombie killed human, add up the extra frags for kill
 	if (g_zombie[attacker] && get_pcvar_num(cvar_fragsinfect) > 1)
 		UpdateFrags(attacker, victim, get_pcvar_num(cvar_fragsinfect) - 1, 0, 0)
@@ -2095,7 +2075,9 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 		
 		return HAM_IGNORED;
 	}
-
+	
+	// Attacker is zombie...
+	
 	// Prevent infection/damage by HE grenade (bugfix)
 	if (damage_type & DMG_HEGRENADE && g_zombie[attacker])
 		return HAM_SUPERCEDE;
@@ -2339,12 +2321,12 @@ public fw_TouchWeapon(weapon, id)
 	// Not a player
 	if (!is_user_valid_connected(id))
 		return HAM_IGNORED;
-		
+	
 	// Dont pickup weapons if zombie or survivor (+PODBot MM fix)
 	if (g_zombie[id] || g_survivor[id])
-		return HAM_SUPERCEDE;		
-
-	return HAM_IGNORED;	
+		return HAM_SUPERCEDE;
+	
+	return HAM_IGNORED;
 }
 
 // Ham Weapon Pickup Forward
@@ -2354,22 +2336,19 @@ public fw_AddPlayerItem(id, weapon_ent)
 	static extra_ammo
 	extra_ammo = pev(weapon_ent, PEV_ADDITIONAL_AMMO)
 	
-	static weaponid
-	weaponid = cs_get_weapon_id(weapon_ent)
-	
-	// Add to player's bpammo
-	ExecuteHamB(Ham_GiveAmmo, id, extra_ammo, AMMOTYPE[weaponid], MAXBPAMMO[weaponid])
-	set_pev(weapon_ent, PEV_ADDITIONAL_AMMO, 0)
+	// If present
+	if (extra_ammo)
+	{
+		// Get weapon's id
+		static weaponid
+		weaponid = cs_get_weapon_id(weapon_ent)
+		
+		// Add to player's bpammo
+		ExecuteHamB(Ham_GiveAmmo, id, extra_ammo, AMMOTYPE[weaponid], MAXBPAMMO[weaponid])
+		set_pev(weapon_ent, PEV_ADDITIONAL_AMMO, 0)
+	}
 }
-public fw_Item_AddToPlayer(weapon_ent, id)
-{
-	// Get weapon's id
-	static weaponid
-	weaponid = cs_get_weapon_id(weapon_ent)
-	
-	// Add to player's bpammo
-	ExecuteHamB(Ham_GiveAmmo, id, 200, AMMOTYPE[weaponid], MAXBPAMMO[weaponid])
-}
+
 // Ham Weapon Deploy Forward
 public fw_Item_Deploy_Post(weapon_ent)
 {
@@ -2573,7 +2552,6 @@ public fw_EmitSound(id, channel, const sample[], Float:volume, Float:attn, flags
 		return FMRES_SUPERCEDE;
 	}
 	
-	//nav_set_portrait(id)
 	return FMRES_IGNORED;
 }
 
@@ -2613,6 +2591,7 @@ public fw_GetGameDescription()
 	
 	return FMRES_SUPERCEDE;
 }
+
 // Forward Set Model
 public fw_SetModel(entity, const model[])
 {
@@ -2624,18 +2603,23 @@ public fw_SetModel(entity, const model[])
 	if (get_pcvar_float(cvar_removedropped) > 0.0)
 	{
 		// Get entity's classname
-		static classname[10]
-		pev(entity, pev_classname, classname, charsmax(classname))
+		static classname[10];
+		pev(entity, pev_classname, classname, charsmax(classname));
 		
 		// Check if it's a weapon box
 		if (equal(classname, "weaponbox"))
 		{
 			// They get automatically removed when thinking
+			new Float:removeTime = get_pcvar_float(cvar_removedropped);
 			
-			new removeTime = get_pcvar_float(cvar_removedropped)
-			
-			if(g_survround || g_swarmround || g_npcround){
-				removeTime = 5
+			if(g_survround){
+				removeTime = 5.0
+			}
+			if(g_swarmround){
+				removeTime = 5.0
+			}
+			if(g_npcround){
+				removeTime = 5.0
 			}
 			new owner;owner = pev(entity, pev_owner)
 			if(g_zombie[owner]){
@@ -3060,7 +3044,7 @@ public clcmd_sayunstuck(id)
 }
 
 // Nightvision toggle
-public clcmd_nightvision (id)
+public clcmd_nightvision(id)
 {
 	if (g_nvision [id])
 	{
@@ -3143,6 +3127,7 @@ public clcmd_buyammo(id)
 	// Deduce ammo packs, play clip purchase sound, and notify player
 	g_ammopacks[id]--
 	loadmoney(id)
+	emit_sound(id, CHAN_ITEM, sound_buyammo, 1.0, ATTN_NORM, 0, PITCH_NORM)
 	zp_colored_print(id, "^x04[ZP]^x01 %L", id, "AMMO_BOUGHT")
 	
 	return PLUGIN_HANDLED;
@@ -3294,13 +3279,13 @@ show_menu_buy2(id)
 
 // Extra Items Menu
 public show_menu_extras(id)
-{		
+{
 	static menuid, menu[128], item, team, buffer[32]
 	
 	// Title
 	formatex(menu, charsmax(menu), "%L [%L]\r", id, "MENU_EXTRA_TITLE", id, g_zombie[id] ? g_nemesis[id] ? "CLASS_NEMESIS" : "CLASS_ZOMBIE" : g_survivor[id] ? "CLASS_SURVIVOR" : "CLASS_HUMAN")
 	menuid = menu_create(menu, "menu_extras")
-
+	
 	// Item List
 	for (item = 0; item < g_extraitem_i; item++)
 	{
@@ -3728,7 +3713,6 @@ public menu_buy1(id, key)
 		return PLUGIN_HANDLED;
 	}
 	
-	
 	// Store selected weapon id
 	WPN_AUTO_PRI = WPN_SELECTION
 	
@@ -3740,6 +3724,7 @@ public menu_buy1(id, key)
 	
 	return PLUGIN_HANDLED;
 }
+
 // Buy Primary Weapon
 buy_primary_weapon(id)
 {
@@ -3748,6 +3733,7 @@ buy_primary_weapon(id)
 	drop_weapons(id, 2)
 	
 	// Strip off from weapons
+	fm_strip_user_weapons(id)
 	fm_strip_user_weapons(id)
 	
 	/*
@@ -3763,7 +3749,7 @@ buy_primary_weapon(id)
 	}
 	*/
 	get_weapon(id)
-	
+
 	// Weapons bought
 	g_canbuy[id] = false
 }
@@ -3777,7 +3763,7 @@ public get_weapon(id)
 	switch(random_num(1,25))
 	{
 		case 1..5:crow3(id)
-		case 6..10:crow5(id)
+		case 6..10:hk416(id)
 		case 11..15:crow7(id)
 		case 16..20:crow11(id)
 		case 21..25:at15hw(id)
@@ -3785,14 +3771,16 @@ public get_weapon(id)
 	
 	static wname[32]
 	
+	
 	// Give additional items
 	static i
 	for (i = 0; i < ArraySize(g_additional_items); i++)
 	{
 		ArrayGetString(g_additional_items, i, wname, charsmax(wname))
-		fm_give_item(id, wname )
+		fm_give_item(id, wname)
 	}
 }
+
 // Buy Menu 2
 public menu_buy2(id, key)
 {	
@@ -3877,7 +3865,7 @@ buy_extra_item(id, itemid, ignorecost = 0)
 		zp_colored_print(id, "^x04[ZP]^x01 %L", id, "CMD_NOT")
 		return;
 	}
-
+	
 	// Check for unavailable items
 	if ((itemid == EXTRA_NVISION && !get_pcvar_num(cvar_extranvision))
 	|| (itemid == EXTRA_ANTIDOTE && (!get_pcvar_num(cvar_extraantidote) || g_antidotecounter >= get_pcvar_num(cvar_antidotelimit)))
@@ -3896,19 +3884,19 @@ buy_extra_item(id, itemid, ignorecost = 0)
 		zp_colored_print(id, "^x04[ZP]^x01 %L", id, "CMD_NOT_CANTUSE")
 		return;
 	}
-
+	
 	// Ignore item's cost?
 	if (!ignorecost)
 	{
 		// Check that we have enough ammo packs
 		if (g_ammopacks[id] < ArrayGetCell(g_extraitem_cost, itemid))
-		{
+		{			
 			if(g_isbot[id])
 			{
 				switch(random_num(1,25))
 				{
 					case 1..5:crow3(id)
-					case 6..10:crow5(id)
+					case 6..10:hk416(id)
 					case 11..15:crow7(id)
 					case 16..20:crow11(id)
 					case 21..25:at15hw(id)
@@ -4045,7 +4033,7 @@ buy_extra_item(id, itemid, ignorecost = 0)
 					g_ammopacks[id] += ArrayGetCell(g_extraitem_cost, itemid)
 					loadmoney(id)
 				}
-				
+
 			}
 		}
 	}
@@ -4961,7 +4949,7 @@ make_a_zombie(mode, id)
 	}
 	
 	// Round started!
-	g_newround = false	
+	g_newround = false
 	
 	// Set up some common vars
 	static forward_id, sound[64], iZombies, iMaxZombies
@@ -5032,7 +5020,7 @@ make_a_zombie(mode, id)
 			// Dead or already a zombie
 			if (!g_isalive[id] || g_zombie[id])
 				continue;
-				
+			
 			if (!g_isbot[id])
 				continue;
 				
@@ -5168,21 +5156,6 @@ make_a_zombie(mode, id)
 			// Turn into a zombie
 			zombieme(id, 0, 0, 1, 0)
 		}
-		for (id = 1; id <= g_maxplayers; id++)
-		{
-			// Not alive
-			if (!g_isalive[id])
-				continue;
-			
-			// Not a Terrorist
-			if (fm_cs_get_user_team(id) != FM_CS_TEAM_CT)
-				continue;
-			
-			if(fm_cs_get_user_team(id)==FM_CS_TEAM_CT)
-			{
-				fm_set_user_health(id,floatround(get_pcvar_num(cvar_humanhp)*0.07))
-			}
-		}
 		
 		// Play swarm sound
 		ArrayGetString(sound_swarm, random_num(0, ArraySize(sound_swarm) - 1), sound, charsmax(sound))
@@ -5197,6 +5170,64 @@ make_a_zombie(mode, id)
 		
 		// Round start forward
 		ExecuteForward(g_fwRoundStart, g_fwDummyResult, MODE_SWARM, 0);
+	}
+	else if ((mode == MODE_NONE && (!get_pcvar_num(cvar_preventconsecutive) || g_lastmode != MODE_MULTI) && random_num(1, get_pcvar_num(cvar_multichance)) == get_pcvar_num(cvar_multi) && floatround(iPlayersnum*get_pcvar_float(cvar_multiratio), floatround_ceil) >= 2 && floatround(iPlayersnum*get_pcvar_float(cvar_multiratio), floatround_ceil) < iPlayersnum && iPlayersnum >= get_pcvar_num(cvar_multiminplayers)) || mode == MODE_MULTI)
+	{
+		// Multi Infection Mode
+		g_lastmode = MODE_MULTI
+		
+		// iMaxZombies is rounded up, in case there aren't enough players
+		iMaxZombies = floatround(iPlayersnum*get_pcvar_float(cvar_multiratio), floatround_ceil)
+		iZombies = 0
+		
+		// Randomly turn iMaxZombies players into zombies
+		while (iZombies < iMaxZombies)
+		{
+			// Keep looping through all players
+			if (++id > g_maxplayers) id = 1
+			
+			// Dead or already a zombie
+			if (!g_isalive[id] || g_zombie[id])
+				continue;
+			
+			// Random chance
+			if (random_num(0, 1))
+			{
+				// Turn into a zombie
+				zombieme(id, 0, 0, 1, 0)
+				iZombies++
+			}
+		}
+		
+		// Turn the remaining players into humans
+		for (id = 1; id <= g_maxplayers; id++)
+		{
+			// Only those of them who aren't zombies
+			if (!g_isalive[id] || g_zombie[id])
+				continue;
+			
+			// Switch to CT
+			if (fm_cs_get_user_team(id) != FM_CS_TEAM_CT) // need to change team?
+			{
+				remove_task(id+TASK_TEAM)
+				fm_cs_set_user_team(id, FM_CS_TEAM_CT)
+				fm_user_team_update(id)
+			}
+		}
+		
+		// Play multi infection sound
+		ArrayGetString(sound_multi, random_num(0, ArraySize(sound_multi) - 1), sound, charsmax(sound))
+		PlaySound(sound);
+		
+		// Show Multi Infection HUD notice
+		set_hudmessage(200, 50, 0, HUD_EVENT_X, HUD_EVENT_Y, 1, 0.0, 5.0, 1.0, 1.0, -1)
+		ShowSyncHudMsg(0, g_MsgSync, "%L", LANG_PLAYER, "NOTICE_MULTI")
+		
+		// Mode fully started!
+		g_modestarted = true
+		
+		// Round start forward
+		ExecuteForward(g_fwRoundStart, g_fwDummyResult, MODE_MULTI, 0);
 	}
 	else if ((mode == MODE_NONE && (!get_pcvar_num(cvar_preventconsecutive) || g_lastmode != MODE_PLAGUE) && random_num(1, get_pcvar_num(cvar_plaguechance)) == get_pcvar_num(cvar_plague) && floatround((iPlayersnum-(get_pcvar_num(cvar_plaguenemnum)+get_pcvar_num(cvar_plaguesurvnum)))*get_pcvar_float(cvar_plagueratio), floatround_ceil) >= 1
 	&& iPlayersnum-(get_pcvar_num(cvar_plaguesurvnum)+get_pcvar_num(cvar_plaguenemnum)+floatround((iPlayersnum-(get_pcvar_num(cvar_plaguenemnum)+get_pcvar_num(cvar_plaguesurvnum)))*get_pcvar_float(cvar_plagueratio), floatround_ceil)) >= 1 && iPlayersnum >= get_pcvar_num(cvar_plagueminplayers)) || mode == MODE_PLAGUE)
@@ -5271,13 +5302,13 @@ make_a_zombie(mode, id)
 				iZombies++
 			}
 		}
+		
 		// Turn the remaining players into humans
 		for (id = 1; id <= g_maxplayers; id++)
 		{
 			// Only those of them who arent zombies or survivor
 			if (!g_isalive[id] || g_zombie[id] || g_survivor[id])
 				continue;
-				
 			
 			// Switch to CT
 			if (fm_cs_get_user_team(id) != FM_CS_TEAM_CT) // need to change team?
@@ -5388,7 +5419,7 @@ make_a_zombie(mode, id)
 		remove_task(TASK_AMBIENCESOUNDS)
 		set_task(2.0, "ambience_sound_effects", TASK_AMBIENCESOUNDS)
 	}	
-	
+
 	static i
 	for(i=0;i<get_maxplayers();i++)
 	{
@@ -5401,7 +5432,7 @@ make_a_zombie(mode, id)
 			if (!bought[i])
 			{
 				set_task(random_float(1.0,5.0),"bot_buy_extras",i)
-				g_ammopacks[i] += random_num(-random(100)+1000,random(100)+1000)
+				g_ammopacks[i] += random_num(-(random(100)+1000),random(100)+1000)
 			}
 		}			
 	}	
@@ -5409,7 +5440,7 @@ make_a_zombie(mode, id)
 
 // Zombie Me Function (player id, infector, turn into a nemesis, silent mode, deathmsg and rewards)
 zombieme(id, infector, nemesis, silentmode, rewards)
-{	
+{
 	// User infect attempt forward
 	ExecuteForward(g_fwUserInfect_attempt, g_fwDummyResult, id, infector, nemesis)
 	
@@ -5418,14 +5449,14 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 	// BUGFIX: only allow after a mode has started, to prevent blocking first zombie e.g.
 	if (g_fwDummyResult >= ZP_PLUGIN_HANDLED && g_modestarted && fnGetZombies() > g_lastplayerleaving)
 		return;
-		
+	
 	// Pre user infect forward
 	ExecuteForward(g_fwUserInfected_pre, g_fwDummyResult, id, infector, nemesis)
-		
+	
 	// Show zombie class menu if they haven't chosen any (e.g. just connected)
 	if (g_zombieclassnext[id] == ZCLASS_NONE && get_pcvar_num(cvar_zclasses))
 		set_task(0.2, "show_menu_zclass", id)
-		
+	
 	// Set selected zombie class
 	g_zombieclass[id] = g_zombieclassnext[id]
 	
@@ -5438,7 +5469,7 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 	
 	// If no class selected yet, use the first (default) one
 	if (g_zombieclass[id] == ZCLASS_NONE) g_zombieclass[id] = 0
-
+	
 	bought[id]=false
 	
 	// Way to go...
@@ -5447,7 +5478,7 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 	g_survivor[id] = false
 	g_firstzombie[id] = false
 	
-	
+
 	// Remove survivor's aura (bugfix)
 	set_pev(id, pev_effects, pev(id, pev_effects) &~ EF_BRIGHTLIGHT)
 	
@@ -5524,14 +5555,14 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 			// Infection sound
 			ArrayGetString(zombie_infect, random_num(0, ArraySize(zombie_infect) - 1), sound, charsmax(sound))
 			emit_sound(id, CHAN_VOICE, sound, 1.0, ATTN_NORM, 0, PITCH_NORM)
-			/*
+			
 			// Show Infection HUD notice
 			set_hudmessage(255, 0, 0, HUD_INFECT_X, HUD_INFECT_Y, 0, 0.0, 5.0, 1.0, 1.0, -1)
 			
 			if (infector) // infected by someone?
 				ShowSyncHudMsg(0, g_MsgSync, "%L", LANG_PLAYER, "NOTICE_INFECT2", g_playername[id], g_playername[infector])
 			else
-				ShowSyncHudMsg(0, g_MsgSync, "%L", LANG_PLAYER, "NOTICE_INFECT", g_playername[id])*/
+				ShowSyncHudMsg(0, g_MsgSync, "%L", LANG_PLAYER, "NOTICE_INFECT", g_playername[id])
 		}
 	}
 	else
@@ -5552,7 +5583,7 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 	
 	if (is_user_bot(id))
 	{
-		set_task(random_float(20.0,40.0), "bot_buy_z", id+TASK_BOT_BUY_Z)
+		set_task(random_float(10.0,40.0), "bot_buy_z", id+TASK_BOT_BUY_Z)
 		//set_task(random_float(2.0,3.0), "bot_buy_z", id+TASK_BOT_BUY_Z)
 	}
 	
@@ -5767,7 +5798,6 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 	
 	// Post user infect forward
 	ExecuteForward(g_fwUserInfected_post, g_fwDummyResult, id, infector, nemesis)
-	
 	if(!infector)
 	{
 		switch(random_num(1,30))
@@ -5785,9 +5815,7 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 				engclient_cmd(id,"say", "Dang it!")
 			}
 		}		
-	}
-	//nav_set_portrait(id)
-	
+	}	
 	// Last Zombie Check
 	fnCheckLastZombie()
 }
@@ -5864,7 +5892,7 @@ humanme(id, survivor, silentmode)
 	remove_task(id+TASK_BURN)
 	remove_task(id+TASK_NVISION)
 	g_Nightvision [id] = false
-	//off (id)
+	off (id)
 	
 	// Reset some vars
 	g_zombie[id] = false
@@ -5874,7 +5902,7 @@ humanme(id, survivor, silentmode)
 	g_canbuy[id] = true
 	g_nvision[id] = false
 	g_nvisionenabled[id] = false
-	
+
 	// Give Zombies Night Vision?
 	if (get_pcvar_num(cvar_nvggive))
 	{
@@ -5961,6 +5989,7 @@ humanme(id, survivor, silentmode)
 		// Set gravity, unless frozen
 		if (!g_frozen[id]) set_pev(id, pev_gravity, get_pcvar_float(cvar_humangravity))
 		
+		
 		// Silent mode = no HUD messages, no antidote sound
 		if (!silentmode)
 		{
@@ -6006,7 +6035,6 @@ humanme(id, survivor, silentmode)
 			iRand = random_num(0, ArraySize(model_survivor) - 1)
 			ArrayGetString(model_survivor, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 			if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_survivor, iRand))
-			//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 		}
 		else
 		{
@@ -6015,14 +6043,12 @@ humanme(id, survivor, silentmode)
 				iRand = random_num(0, ArraySize(model_admin_human) - 1)
 				ArrayGetString(model_admin_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 				if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_admin_human, iRand))
-				//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 			}
 			else
 			{
 				iRand = random_num(0, ArraySize(model_human) - 1)
 				ArrayGetString(model_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 				if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_human, iRand))
-				//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 			}
 		}
 		
@@ -6058,7 +6084,6 @@ humanme(id, survivor, silentmode)
 				iRand = random_num(0, size - 1)
 				ArrayGetString(model_survivor, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 				if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_survivor, iRand))
-				//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 			}
 		}
 		else
@@ -6077,7 +6102,6 @@ humanme(id, survivor, silentmode)
 					iRand = random_num(0, size - 1)
 					ArrayGetString(model_admin_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 					if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_admin_human, iRand))
-					//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 				}
 			}
 			else
@@ -6094,7 +6118,6 @@ humanme(id, survivor, silentmode)
 					iRand = random_num(0, size - 1)
 					ArrayGetString(model_human, iRand, g_playermodel[id], charsmax(g_playermodel[]))
 					if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, ArrayGetCell(g_modelindex_human, iRand))
-					//if (g_set_modelindex_offset) fm_cs_set_user_model_index(id, defaultindex)
 				}
 			}
 		}
@@ -6137,8 +6160,6 @@ humanme(id, survivor, silentmode)
 	
 	remove_task(id+TASK_BOT_BUY_Z)
 	remove_task(id)
-	
-	//nav_set_portrait(id)
 	
 	// Last Zombie Check
 	fnCheckLastZombie()
@@ -7438,9 +7459,10 @@ public extras_list(id)
 		ArrayGetString(g_extraitem_name, i, item_name, charsmax(item_name))
 		ArrayGetString(g_extraitem_cost, i, item_name, charsmax(item_cost))
 		
-		client_print(id, print_chat, "[%i] Name: %s, Price: %s",i,item_name,item_cost)
+		client_print(id, print_chat, "[%i] Name: %s, Price: %i",i,item_name,item_cost)
 	}
 	client_print(id, print_chat, "Start ID: %i",(EXTRA_WEAPONS_STARTID)+g_item_human_count)
+	client_print(id, print_chat, "End ID: %i",g_extraitem_i - 1)
 }
 // Bots automatically buy extra items
 public bot_buy_extras(id)
@@ -7454,7 +7476,7 @@ public bot_buy_extras(id)
 	buy_extra_item(id, temp,0)
 				
 	if(is_user_bot(id))
-	{
+	{ 
 		if (user_has_weapon(id, CSW_HEGRENADE))
 		{
 			set_task(random_float(1.0,5.0), "ThrowGrenade", id)
@@ -7479,7 +7501,6 @@ public bot_buy_extras_anti(const args[])
 	if(g_zombie[id] || !g_isalive[id])
 		return;
 	
-	client_print(id, print_chat, "Buy!")
 	static temp, i, wname[32]
 	temp = random_num((EXTRA_WEAPONS_STARTID)+g_item_human_count, g_extraitem_i - 1)	
 	
@@ -7497,13 +7518,14 @@ public bot_buy_extras_anti(const args[])
 			set_task(random_float(1.0,10.0), "ThrowGrenade", id)
 		}
 	}	
-	buy_extra_item(id, temp,0)
+	buy_extra_item(id, temp, 1)
 	bought[id]=true
 }
 public ThrowGrenade(id)
 {
 	if(g_zombie[id] || !g_isalive[id])
 		return;
+
 	engclient_cmd(id,"weapon_hegrenade")
 	ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));		
 }
@@ -7551,7 +7573,8 @@ balance_teams()
 		fm_cs_set_user_team(id, FM_CS_TEAM_CT)
 		team[id] = FM_CS_TEAM_CT
 	}
-	//Then randomly set half of the players to Terrorists
+	
+	// Then randomly set half of the players to Terrorists
 	while (iTerrors < iMaxTerrors)
 	{
 		// Keep looping through all players
@@ -8368,7 +8391,6 @@ replace_weapon_models(id, weaponid)
 		}
 	}
 	
-	////nav_set_portrait(id)
 	// Update model on weaponmodel ent
 	if (g_handle_models_on_separate_ent) fm_set_weaponmodel_ent(id)
 }
@@ -8449,9 +8471,14 @@ public ShowHUD(taskid)
 	}
 	
 	// Format classname
-	static class[32]	
+	static class[32], red, green, blue
+	
 	if (g_zombie[id]) // zombies
-	{		
+	{
+		red = 200
+		green = 250
+		blue = 0
+		
 		if (g_nemesis[id])
 			formatex(class, charsmax(class), "%L", ID_SHOWHUD, "CLASS_NEMESIS")
 		else
@@ -8459,6 +8486,10 @@ public ShowHUD(taskid)
 	}
 	else // humans
 	{
+		red = 0
+		green = 0
+		blue = 255
+		
 		if (g_survivor[id])
 			formatex(class, charsmax(class), "%L", ID_SHOWHUD, "CLASS_SURVIVOR")
 		else
@@ -8475,8 +8506,8 @@ public ShowHUD(taskid)
 	else
 	{
 		// Show health, class and ammo packs
-		//set_hudmessage(255, 255, 255, HUD_STATS_X, HUD_STATS_Y, 0, 6.0, 1.1, 0.0, 0.0, -1)
-		//ShowSyncHudMsg(ID_SHOWHUD, g_MsgSync2, "[%L: %d] ^n[%L %s] ^n[%L %d]", id, "ZOMBIE_ATTRIB1", pev(ID_SHOWHUD, pev_health), ID_SHOWHUD, "CLASS_CLASS", class, ID_SHOWHUD, "AMMO_PACKS1", g_ammopacks[ID_SHOWHUD])
+		set_hudmessage(255, 255, 255, HUD_STATS_X, HUD_STATS_Y, 0, 6.0, 1.1, 0.0, 0.0, -1)
+		ShowSyncHudMsg(ID_SHOWHUD, g_MsgSync2, "[%L: %d] ^n[%L %s] ^n[%L %d]", id, "ZOMBIE_ATTRIB1", pev(ID_SHOWHUD, pev_health), ID_SHOWHUD, "CLASS_CLASS", class, ID_SHOWHUD, "AMMO_PACKS1", g_ammopacks[ID_SHOWHUD])
 	}
 }
 
@@ -9215,7 +9246,6 @@ public native_get_user_ammo_packs(id)
 public native_set_user_ammo_packs(id, amount)
 {
 	g_ammopacks[id] = amount;
-	loadmoney(id)
 }
 
 // Native: zp_get_zombie_maxhealth
@@ -9803,7 +9833,6 @@ public native_get_zombie_class_id(const name[])
 	return -1;
 }
 
-
 /*================================================================================
  [Custom Messages]
 =================================================================================*/
@@ -9842,7 +9871,7 @@ public set_user_nvision (taskid)
 	}
 	message_end ()
 	
-	//set_player_light (ID_NVISION, "")
+	set_player_light (ID_NVISION, "z")
 }
 public off (id)
 {
@@ -9875,8 +9904,10 @@ public off (id)
 	}
 	
 	message_end ()
-	
-	//set_player_light (id, "")
+	static lighting[2]
+	get_pcvar_string(cvar_lighting, lighting, charsmax(lighting))
+	strtolower(lighting)
+	set_player_light (id, lighting)
 }
 // Game Nightvision
 set_user_gnvision(id, toggle)
@@ -10090,9 +10121,9 @@ flare_lighting(entity, duration)
 	engfunc(EngFunc_WriteCoord, originF[1]) // y
 	engfunc(EngFunc_WriteCoord, originF[2]) // z
 	write_byte(get_pcvar_num(cvar_flaresize)) // radius
-	write_byte(color[0]-50) // r
-	write_byte(color[1]-50) // g
-	write_byte(color[2]-50) // b
+	write_byte(color[0]) // r
+	write_byte(color[1]) // g
+	write_byte(color[2]) // b
 	write_byte(51) //life
 	write_byte((duration < 2) ? 3 : 0) //decay rate
 	message_end()
@@ -10851,7 +10882,6 @@ stock fm_user_team_update(id)
 		set_task((g_teams_targettime + 0.1) - current_time, "fm_cs_set_user_team_msg", id+TASK_TEAM)
 		g_teams_targettime = g_teams_targettime + 0.1
 	}
-	//nav_set_portrait(id)
 }
 
 // Send User Team Message
@@ -10868,7 +10898,6 @@ public fm_cs_set_user_team_msg(taskid)
 	ewrite_string(CS_TEAM_NAMES[fm_cs_get_user_team(ID_TEAM)]) // team
 	emessage_end()
 	
-	//nav_set_portrait(ID_TEAM)
 	// Done switching team
 	g_switchingteam = false
 }
@@ -10877,7 +10906,6 @@ public fm_cs_set_user_team_msg(taskid)
 stock fm_cs_set_user_model_index(id, value)
 {
 	set_pdata_int(id, OFFSET_MODELINDEX, value, OFFSET_LINUX)
-	//nav_set_portrait(id)
 }
 
 // Set Player Model on Entity
@@ -10885,7 +10913,7 @@ stock fm_set_playermodel_ent(id)
 {
 	// Make original player entity invisible without hiding shadows or firing effects
 	fm_set_rendering(id, kRenderFxNone, 255, 255, 255, kRenderTransTexture, 1)
-
+	
 	// Format model string
 	static model[100]
 	formatex(model, charsmax(model), "models/player/%s/%s.mdl", g_playermodel[id], g_playermodel[id])
@@ -10901,9 +10929,8 @@ stock fm_set_playermodel_ent(id)
 		set_pev(g_ent_playermodel[id], pev_aiment, id)
 		set_pev(g_ent_playermodel[id], pev_owner, id)
 	}
-	engfunc(EngFunc_SetModel, g_ent_playermodel[id], model)
 	
-	//nav_set_portrait(id)
+	engfunc(EngFunc_SetModel, g_ent_playermodel[id], model)
 }
 
 // Set Weapon Model on Entity
@@ -10926,7 +10953,6 @@ stock fm_set_weaponmodel_ent(id)
 	}
 	
 	engfunc(EngFunc_SetModel, g_ent_weaponmodel[id], model)
-	//nav_set_portrait(id)
 }
 
 // Remove Custom Model Entities
@@ -10950,7 +10976,6 @@ stock fm_remove_model_ents(id)
 public fm_cs_set_user_model(taskid)
 {
 	set_user_info(ID_MODEL, "model", g_playermodel[ID_MODEL])
-	//nav_set_portrait(ID_MODEL)
 }
 
 // Get User Model -model passed byref-

@@ -16,7 +16,7 @@
 // Classic Zombie Attributes
 new zclass_name[32] = "Psycho"
 new zclass_desc[32] = ""
-new const zclass_hostmodel[] = "pc_zombi_host"
+new const zclass_hostmodel[] = {"pc_zombi_host","pc_zombi_origin"}
 new const zclass_clawsmodelhost[] = "v_knife_pc_zombi.mdl"
 new const zclass_health = 3200
 new const zclass_speed = 280

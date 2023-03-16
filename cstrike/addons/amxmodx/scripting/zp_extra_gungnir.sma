@@ -76,14 +76,14 @@ new const EXP_MODELS_EX[][] =
 }
 // Weapon Config
 #define ACCURACY 23 // 0 - 100 ; -1 Default
-#define CLIP 50
+#define CLIP 70
 #define BPAMMO 999
 #define SPEED 0.113
 #define RECOIL 0.5
 #define RELOAD_TIME 2.03
 
-#define ELECTRO_DAMAGE 120.0
-#define ELECTRO_RANGE 300.0
+#define ELECTRO_DAMAGE 180.0
+#define ELECTRO_RANGE 400.0
 #define ELECTRO_KNOCKBACK 0.0 // the velocity of victim when got damage
 
 // base damage

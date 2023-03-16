@@ -656,8 +656,8 @@ public FrostEffect(id, attacker)
 	color[0] = g_skin[attacker]?200:0
 	color[1] = 100
 	color[2] = g_skin[attacker]?0:200
-	if(!is_user_bot(id))
-		md_drawimage(id, 4, 0, EFFECT_TGA, 0.5, 0.5, 1, 1, color[0], color[1], color[2], 255, 0.1, 2.0, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
+	// if(!is_user_bot(id))
+	// 	md_drawimage(id, 4, 0, EFFECT_TGA, 0.5, 0.5, 1, 1, color[0], color[1], color[2], 255, 0.1, 2.0, 0.1, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight())
 	
 	fm_set_rendering(id, kRenderFxGlowShell, color[0], color[1], color[2], kRenderNormal, 25)
 }

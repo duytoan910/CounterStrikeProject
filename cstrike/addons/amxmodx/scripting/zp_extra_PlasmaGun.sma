@@ -39,7 +39,7 @@ new const plasma_bomb_6[] = "sprites/plasmabomb_6.spr"
 #define SPEED 1.5
 #define RECOIL 0.8
 
-#define PLASMA_SPEED 1000.0
+#define PLASMA_SPEED 1500.0
 #define PLASMA_RADIUS 100.0
 
 // Level 3 Config
@@ -564,7 +564,7 @@ public Create_PlasmaBall(id)
 	static Float:Velocity[3]
 	if(is_user_bot(id))
 	{
-		get_speed_vector(StartOrigin, TargetOrigin, 2000.0, Velocity)
+		get_speed_vector(StartOrigin, TargetOrigin, 3500.0, Velocity)
 	}else	get_speed_vector(StartOrigin, TargetOrigin, PLASMA_SPEED, Velocity)
 	set_pev(Ent, pev_velocity, Velocity)
 }

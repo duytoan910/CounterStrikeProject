@@ -1,6 +1,0 @@
-L 11/09/2021 - 09:45:27: Start of error session.
-L 11/09/2021 - 09:45:27: Info (map "zm_toan") (file "addons/amxmodx/logs/error_20211109.log")
-L 11/09/2021 - 09:45:27: [FAKEMETA] Invalid entity
-L 11/09/2021 - 09:45:27: [AMXX] Displaying debug trace (plugin "zp_extra_speargun.amxx")
-L 11/09/2021 - 09:45:27: [AMXX] Run time error 10: native error (native "set_pdata_int")
-L 11/09/2021 - 09:45:27: [AMXX]    [0] zp_extra_speargun.sma::DoneReload (line 275)

@@ -14,11 +14,11 @@
 // Zombie Attributes 
 new const zclass_name[] = "Banshee" // name 
 new const zclass_info[] = " " // description 
-new const zclass_model[] = "witch_zombi_origin" // model 
+new const zclass_model[] ={ "witch_zombi_host", "witch_zombi_origin"} // model 
 new const zclass_clawmodel[] = "v_knife_witch_zombi.mdl" // claw model 
 const zclass_health = 3200 // health 
 const zclass_speed = 285 // speed 
-const Float:zclass_gravity = 0.7 // gravity 
+const Float:zclass_gravity = 0.69 // gravity 
 const Float:zclass_knockback = 1.25 // knockback 
 
 new const SOUND_BAT_HIT[] = "zombie_plague/zombi_banshee_laugh.wav"

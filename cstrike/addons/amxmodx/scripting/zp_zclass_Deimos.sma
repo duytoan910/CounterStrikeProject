@@ -77,7 +77,7 @@ public HamF_InfoTarget_Touch(ptr,ptd)
 
 new const zclass1_name[] = { "Deimos" }
 new const zclass1_info[] = { "" }
-new const zclass1_model[] = { "deimos_zombi_host" }
+new const zclass1_model[] = { "deimos_zombi_host", "deimos_zombi_origin" }
 new const zclass1_clawmodel[] = { "v_knife_deimos_zombi_host.mdl" }
 const zclass1_health = 3200
 const zclass1_speed = 290

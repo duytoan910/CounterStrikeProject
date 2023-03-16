@@ -7,8 +7,9 @@ new const ZP_CSO_PLUGIN_NAME[] = "[ZP] CSO Countdown"
 new const ZP_CSO_PLUGIN_VERSION[] = "5.0"
 new const ZP_CSO_PLUGIN_AUTHOR[] = "jc980"
 
-new zp_cso_sec
+new zp_cso_sec, zp_cso_round
 new g_msgsync, g_roundstarted
+new zp_cso_humanswins, zp_cso_zombieswins,zp_cso_hud_sync3
 
 new zp_cso_countchant[][] = 
 { 
@@ -30,6 +31,7 @@ public plugin_init()
 	register_event("HLTV", "zp_cso_round_start", "a", "1=0", "2=0")
 	register_logevent("Event_RoundEnd", 2, "1=Round_End")
 	g_msgsync = CreateHudSyncObj()
+	zp_cso_hud_sync3 = CreateHudSyncObj()
 }
 
 public plugin_precache()
@@ -42,7 +44,11 @@ public plugin_precache()
 public zp_cso_round_start()
 {
 	zp_cso_sec = get_cvar_num("zp_delay") + 1 
+	zp_cso_round += 1
 	zp_cso_countdown()
+}
+public client_putinserver(id){
+	set_task(0.1,"zp_cso_hud_score", id, _, _, "b")
 }
 public Event_RoundEnd()
 {
@@ -96,4 +102,33 @@ stock PlaySound(id, const sound[])
 		client_cmd(id, "mp3 play ^"sound/%s^"", sound)
 	else
 		client_cmd(id, "spk ^"%s^"", sound)
+}
+
+public zp_round_ended()
+{
+	if(zp_get_human_count() == 0)
+	{
+		zp_cso_zombieswins += 1
+	}
+	else
+	{
+		zp_cso_humanswins += 1
+	}
+}
+public zp_cso_hud_score(id)
+{
+	if(!is_user_alive(id))
+		return PLUGIN_CONTINUE
+	
+	new iMsg[600], zp_hmnum, zp_zbnum, zp_roundnum
+	
+	zp_hmnum = zp_get_human_count()
+	zp_zbnum = zp_get_zombie_count()
+	zp_roundnum = zp_cso_round
+	
+	set_hudmessage( 0, 250, 0, -1.0, 0.0, 0, 6.0, 1.1, 0.0, 0.0, -1)
+	format(iMsg, charsmax(iMsg), "[ Humans ] %02i [ Round %02i ] %02i [ Zombies ]^n [ %02i ] [ VS ] [ %02i ] ", zp_cso_humanswins, zp_roundnum, zp_cso_zombieswins, zp_hmnum, zp_zbnum)
+	ShowSyncHudMsg(id, zp_cso_hud_sync3, iMsg)
+	
+	return PLUGIN_CONTINUE
 }

@@ -513,8 +513,10 @@ public fw_CmdStart(id, uc_handle, seed)
 			
 			remove_task(id+TASK_IDLE)
 			remove_task(id+TASK_RELOAD)
-			md_playsprite(id, 4, ENTITY_SPRITE[4], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 25, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
-			
+
+			if(!is_user_bot(id))
+				md_playsprite(id, 4, ENTITY_SPRITE[4], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 25, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+
 			set_task(1.0,"Missile2",id)
 			
 			set_pdata_float(id, 83, 2.0)				
@@ -539,7 +541,9 @@ public fw_Item_Deploy(ent)
 		
 	remove_task(id+TASK_IDLE)
 	remove_task(id+TASK_RELOAD)
-	md_playsprite(id, 4, ENTITY_SPRITE[0], 0.0, 0.0, 0, 0, 255, 255, 255, 255, SPR_ADDITIVE, 35, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+	if(!is_user_bot(id))
+		md_playsprite(id, 4, ENTITY_SPRITE[0], 0.0, 0.0, 0, 0, 255, 255, 255, 255, SPR_ADDITIVE, 35, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+
 }
 public fw_Item_Deploy_Post(ent)
 {
@@ -641,7 +645,8 @@ public Play_SPR_Reload1(id)
 		return
 		
 	remove_task(id+TASK_IDLE)
-	md_playsprite(id, 4, ENTITY_SPRITE[2], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+	if(!is_user_bot(id))
+		md_playsprite(id, 4, ENTITY_SPRITE[2], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
 	
 	set_task(2.0, "Play_SPR_Reload2", id+TASK_RELOAD)
 }
@@ -651,7 +656,8 @@ public Play_SPR_Reload2(id)
 	if(!is_user_alive(id) || zp_get_user_zombie(id) || !g_had_magicmg[id] || get_user_weapon(id) != CSW_MAGICMG)
 		return
 		
-	md_playsprite(id, 4, ENTITY_SPRITE[3], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
+	if(!is_user_bot(id))
+		md_playsprite(id, 4, ENTITY_SPRITE[3], 0.0, 0.0, 0, 0, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+220)
 	
 }
 public fw_WeaponIdle(iItem)
@@ -688,7 +694,8 @@ public Play_SPR_Idle2(id)
 		return
 		
 	remove_task(id+TASK_RELOAD)
-	md_playsprite(id, 4, ENTITY_SPRITE[1], 0.5, 0.5, 1, 1, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+440)
+	if(!is_user_bot(id))
+		md_playsprite(id, 4, ENTITY_SPRITE[1], 0.5, 0.5, 1, 1, 255, 255, 255, 255 , SPR_ADDITIVE, 0, 0, ALIGN_NORMAL, md_getscreenwidth(), md_getscreenheight()+440)
 }
 public HolsterPost(wpn)
 {

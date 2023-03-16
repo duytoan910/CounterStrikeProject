@@ -967,7 +967,7 @@ stock set_weapon_anim(id, anim)
 stock set_fov(id, fov = 90)
 {
 	message_begin(MSG_ONE, get_user_msgid("SetFOV"), {0,0,0}, id)
-	write_byte(fov)
+	write_byte(zp_get_user_zombie(id)?get_cvar_num("zp_zombie_fov"):fov)
 	message_end()
 }
 stock Stock_SetAnimIdle(id, iEnt, iAnim, Float:flTime) //NST Ed Cyti

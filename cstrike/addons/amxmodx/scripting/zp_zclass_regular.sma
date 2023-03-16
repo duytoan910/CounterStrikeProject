@@ -25,7 +25,7 @@ enum (+= 100)
 // Zombie Attributes
 new const zclass_name[] = "Berserker"
 new const zclass_info[] = ""
-new const zclass_model[] = "tank_zombi_host" // model
+new const zclass_model[] = {"tank_zombi_host","tank_zombi_origin"} // model
 new const zclass_clawmodel[] = "v_knife_tank_zombi.mdl" // claw model
 const zclass_health = 3100 // health
 const zclass_speed = 290 // speed

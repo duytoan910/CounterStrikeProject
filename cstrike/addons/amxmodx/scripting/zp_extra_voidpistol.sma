@@ -12,11 +12,11 @@
 #define VERSION "1.2"
 #define AUTHOR "Mellowzy"
 
-#define SHOOT_MAX 100
-#define DAMAGE_A 56.0
-#define DAMAGE_B 56.0
-#define DAMAGE_C 56.0
-#define DAMAGE_HOLE 39.0
+#define SHOOT_MAX 120
+#define DAMAGE_A 58.0
+#define DAMAGE_B 58.0
+#define DAMAGE_C 58.0
+#define DAMAGE_HOLE 45.0
 
 #define DEFAULT_CLIP 50
 #define DEFAULT_BPAMMO 200
@@ -25,7 +25,7 @@
 
 #define MAXDIST 600.0
 #define RANGE_BLACKHOLE 500.0
-#define SPEED_BLACKHOLE 600.0
+#define SPEED_BLACKHOLE 900.0
 #define BLACKHOLE_TIME 5.0
 
 #define WP_BASEON CSW_TMP

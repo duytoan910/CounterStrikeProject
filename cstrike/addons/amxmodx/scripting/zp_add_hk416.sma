@@ -253,7 +253,7 @@ public give_hk416(id)
 	new iWep2 = give_item(id,"weapon_m4a1")
 	if( iWep2 > 0 )
 	{
-		cs_set_weapon_ammo(iWep2, 30)
+		cs_set_weapon_ammo(iWep2, 40)
 		cs_set_user_bpammo (id, CSW_M4A1, 200)	
 		set_pdata_float(id, m_flNextAttack, 1.0, PLAYER_LINUX_XTRA_OFF)
 
@@ -330,14 +330,15 @@ public fw_Item_Deploy_Post(weapon_ent)
 
 public CurrentWeapon(id)
 {
-     replace_weapon_models(id, read_data(2))
+	replace_weapon_models(id, read_data(2))
 
-     if(read_data(2) != CSW_M4A1 || !g_has_hk416[id])
-          return
+	if(read_data(2) != CSW_M4A1 || !g_has_hk416[id])
+		return;
      
-	static Float:iSpeed
+	static Float:iSpeed;
+
 	if(g_has_hk416[id])
-	iSpeed = 0.7
+		iSpeed = 0.7
 	
 	static weapon[32],Ent
 	get_weaponname(read_data(2),weapon,31)
@@ -458,7 +459,7 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage)
 		if(get_user_weapon(attacker) == CSW_M4A1)
 		{
 			if(g_has_hk416[attacker])
-				SetHamParamFloat(4, damage )
+				SetHamParamFloat(4, damage * 1.2 )
 		}
 	}
 }
@@ -514,7 +515,7 @@ public hk416_ItemPostFrame(weapon_entity)
 
      static iClipExtra
      
-     iClipExtra = 30
+     iClipExtra = 40
      new Float:flNextAttack = get_pdata_float(id, m_flNextAttack, PLAYER_LINUX_XTRA_OFF)
 
      new iBpAmmo = cs_get_user_bpammo(id, CSW_M4A1)
@@ -547,7 +548,7 @@ public hk416_Reload(weapon_entity)
      static iClipExtra
 
      if(g_has_hk416[id])
-          iClipExtra = 30
+          iClipExtra = 40
 
      g_hk416_TmpClip[id] = -1
 

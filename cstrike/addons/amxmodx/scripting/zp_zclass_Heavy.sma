@@ -18,7 +18,7 @@
 // Zombie Attributes
 new const zclass1_name[] = "Heavy"
 new const zclass1_info[] = ""
-new const zclass1_model[] = "heavy_zombi_host" // model
+new const zclass1_model[] = {"heavy_zombi_host","heavy_zombi_origin"} // model
 new const zclass1_clawmodel[] = "v_knife_heavy_zombi.mdl" // claw model
 const zclass1_health = 3700 // health
 const zclass1_speed = 280 // speed
