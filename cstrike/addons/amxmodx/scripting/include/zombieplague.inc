@@ -141,6 +141,7 @@ native zp_get_user_last_human(id)
  * @return		Internal zombie class ID, or -1 if not yet chosen.
  */
 native zp_get_user_zombie_class(id)
+
 /**
  * Returns a player's next zombie class ID (for the next infection).
  *
@@ -184,6 +185,7 @@ native zp_set_user_ammo_packs(id, amount)
  */
 native zp_get_zombie_maxhealth(id)
 native zp_set_zombie_maxhealth(id, vaule)
+
 /**
  * Returns a player's custom flashlight batteries charge.
  *
@@ -278,6 +280,19 @@ native zp_respawn_user(id, team)
  * @return		True on success, false otherwise.
  */
 native zp_force_buy_extra_item(id, itemid, ignorecost = 0)
+
+/**
+ * Overrides ZP player model with a different custom model.
+ *
+ * Note: This will last until player's next infection/humanization/respawn.
+ *
+ * Note: Don't call more often than absolutely needed.
+ *
+ * @param id		Player index.
+ * @param newmodel	Model name.
+ * @param modelindex	Modelindex (optional).
+ */
+native zp_override_user_model(id, const newmodel[], modelindex = 0)
 
 /**
  * Returns whether the ZP round has started, i.e. first zombie
@@ -387,7 +402,6 @@ native zp_register_zombie_class(const name[], const info[], const model[], const
  */
 native zp_get_extra_item_id(const name[])
 
-native zp_get_extra_item_length()
 /**
  * Returns a zombie class' ID.
  *
@@ -397,17 +411,14 @@ native zp_get_extra_item_length()
 native zp_get_zombie_class_id(const name[])
 
 /**
- * Overrides ZP player model with a different custom model.
+ * Returns a zombie class' description (passed by reference).
  *
- * Note: This will last until player's next infection/humanization/respawn.
- *
- * Note: Don't call more often than absolutely needed.
- *
- * @param id		Player index.
- * @param newmodel	Model name.
- * @param modelindex	Modelindex (optional).
+ * @param classid		Internal zombie class ID.
+ * @param info			The buffer to store the string in.
+ * @param len			Character size of the output buffer.
+ * @return			True on success, false otherwise.
  */
-native zp_override_user_model(id, const newmodel[], modelindex = 0)
+native zp_get_zombie_class_info(classid, info[], len)
 
 /**
  * Called when the ZP round starts, i.e. first zombie
@@ -494,7 +505,3 @@ forward zp_user_last_human(id)
  * For backwards compatibility only.
  */
 #define ZP_TEAM_ANY 0
-
-
-native md_zb_skill(id, type)
-native is_deadlyshot(id)
