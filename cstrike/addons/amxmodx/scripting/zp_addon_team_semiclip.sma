@@ -2,14 +2,14 @@
  [Plugin Customization]
 =================================================================================*/
 
-const Float:CVAR_INTERVAL  = 6.0		/* ¬ 6.0 */
-const Float:SPEC_INTERVAL  = 0.2		/* ¬ 0.2 */
-const Float:RANGE_INTERVAL = 0.1		/* It's like a 10 FPS server (look RANGE_CHECK_ON_SEMICLIP comment) ¬ 0.1 */
+const Float:CVAR_INTERVAL  = 6.0		/* ï¿½ 6.0 */
+const Float:SPEC_INTERVAL  = 0.2		/* ï¿½ 0.2 */
+const Float:RANGE_INTERVAL = 0.1		/* It's like a 10 FPS server (look RANGE_CHECK_ON_SEMICLIP comment) ï¿½ 0.1 */
 
-#define MAX_PLAYERS     32	/* Server slots ¬ 32 */
-#define MAX_REG_SPAWNS	24	/* Max cached regular spawns ¬ 24 */
-#define MAX_CSDM_SPAWNS 60	/* CSDM 2.1.2 value if you have more increase it ¬ 60 */
-#define MAX_ENT_ARRAY   128	/* Is for max 4096 entities (128*32=4096) ¬ 128 */
+#define MAX_PLAYERS     32	/* Server slots ï¿½ 32 */
+#define MAX_REG_SPAWNS	24	/* Max cached regular spawns ï¿½ 24 */
+#define MAX_CSDM_SPAWNS 60	/* CSDM 2.1.2 value if you have more increase it ï¿½ 60 */
+#define MAX_ENT_ARRAY   128	/* Is for max 4096 entities (128*32=4096) ï¿½ 128 */
 
 /*	Uncomment the line below to have range check in semiclip start forward maybe most
 	useful for surf servers this call any 1/FPS in seconds indeed of RANGE_INTERVAL.
@@ -56,7 +56,7 @@ new const PLUGIN_VERSION[]           = "3.1.0"
 new const HUMAN_SPAWN_ENTITY_NAME[]  = "info_player_start"
 new const ZOMBIE_SPAWN_ENTITY_NAME[] = "info_player_deathmatch"
 
-const Float:ANTI_BOOST_DISTANCE = 85.041169	/* do not change this! ¬ 85.041169 */
+const Float:ANTI_BOOST_DISTANCE = 85.041169	/* do not change this! ï¿½ 85.041169 */
 
 const pev_spec_mode     = pev_iuser1
 const pev_spec_target   = pev_iuser2
@@ -210,7 +210,7 @@ new Float:g_flSpawnsHuman[MAX_REG_SPAWNS][3],
 
 new Trie:TrieFunctions = Invalid_Trie
 
-new HamHook:g_iHamFuncForwards[16] /* Max supported entity classes ¬ 16 */
+new HamHook:g_iHamFuncForwards[16] /* Max supported entity classes ï¿½ 16 */
 
 /* Client global */
 new g_iTeam[MAX_PLAYERS+1],
@@ -646,6 +646,8 @@ public fw_PlayerSpawn_Post(id)
 
 	for(new i=0;i<g_iMaxPlayers;i++)
 	{
+		if(!is_user_alive(i))
+			continue;
 		if(zp_get_user_zombie(i))
 			g_iTeam[i] = ZP_TEAMS_ZOMBIE
 		else g_iTeam[i] = ZP_TEAMS_HUMAN
