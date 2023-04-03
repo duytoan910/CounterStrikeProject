@@ -2164,29 +2164,29 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 		if ((get_pcvar_num(cvar_ammodamage_human) > 0) && (!g_survivor[attacker] || !get_pcvar_num(cvar_survignoreammo)))
 		{
 			// Store damage dealt
-			/*g_damagedealt_human[attacker] += floatround(damage)
-			
+			/*
+			g_damagedealt_human[attacker] += floatround(damage)
 			// Reward ammo packs for every [ammo damage] dealt
 			while (g_damagedealt_human[attacker] > get_pcvar_num(cvar_ammodamage_human))
 			{
 				g_ammopacks[attacker]++
 				g_damagedealt_human[attacker] -= get_pcvar_num(cvar_ammodamage_human)
 			}*/
-						
-			new Float:multi
-			if(g_isbot[attacker])
-				multi=get_pcvar_float(cvar_ammodamage_human)*2
-			else multi = get_pcvar_float(cvar_ammodamage_human)
-			if(floatround(damage) > 1000)
-			{
-				g_ammopacks[attacker] += floatround(floatround(damage*multi) * 0.1)
-				loadmoney(attacker)
-			}else{
-				g_ammopacks[attacker] += floatround(damage*multi)
-				loadmoney(attacker)
-			}
 		}
-		
+						
+		new Float:multi
+		if(g_isbot[attacker])
+			multi=get_pcvar_float(cvar_ammodamage_human)*2
+		else multi = get_pcvar_float(cvar_ammodamage_human)
+
+		if(floatround(damage) > 1000)
+		{
+			g_ammopacks[attacker] += floatround(damage*multi * 0.08)
+			loadmoney(attacker)
+		}else{
+			g_ammopacks[attacker] += floatround(damage*multi)
+			loadmoney(attacker)
+		}
 		return HAM_IGNORED;
 	}
 	

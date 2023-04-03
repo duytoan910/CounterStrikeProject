@@ -6,6 +6,7 @@
 #include <cstrike>
 #include <xs>
 #include <zombieplague>
+#include <toan>
 
 #define PLUGIN "Infinity Laser Fist"
 #define VERSION "Counter Strike 1.6"
@@ -13,7 +14,7 @@
 
 
 #define DAMAGE_A 2.3
-#define DAMAGE_B 750.0
+#define DAMAGE_B random_float(750.0-10,750.0+10)
 #define CLIP 500
 #define BPAMMO 2000
 #define SPEED 0.01
@@ -80,7 +81,7 @@ public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
 	register_event("CurWeapon", "Event_CurWeapon", "be", "1=1")
-	register_message(get_user_msgid("DeathMsg"), "message_DeathMsg")
+	register_message(get_user_msgid("DeathMsg"), "Message_DeathMsg")
 	
 	RegisterHam(Ham_Spawn, "player", "fw_Spawn_Post", 1)
 	RegisterHam(Ham_Weapon_PrimaryAttack, weapon_laserfist, "fw_Weapon_PrimaryAttack")
@@ -240,19 +241,23 @@ public Event_CurWeapon(id)
 	set_pdata_float(Ent, 48, 1.0, 4)
 }
 
-public message_DeathMsg(msg_id, msg_dest, msg_ent)
+public Message_DeathMsg(msg_id, msg_dest, id)
 {
-	new szWeapon[64]
-	get_msg_arg_string(4, szWeapon, charsmax(szWeapon))
-	
-	if (strcmp(szWeapon, "m249"))
-		return PLUGIN_CONTINUE
-
-	new iEntity = get_pdata_cbase(get_msg_arg_int(1), 373)
-	if (!pev_valid(iEntity) || get_pdata_int(iEntity, 43, 4) != CSW_LASERFIST || !Get_BitVar(g_Had_Laserfist, get_msg_arg_int(1)))
-		return PLUGIN_CONTINUE
-
-	set_msg_arg_string(4, "laserfistex")
+	static szTruncatedWeapon[33], iAttacker, iVictim
+				
+	get_msg_arg_string(4, szTruncatedWeapon, charsmax(szTruncatedWeapon))
+				
+	iAttacker = get_msg_arg_int(1)
+	iVictim = get_msg_arg_int(2)
+				
+	if(!is_user_connected(iAttacker) || iAttacker == iVictim) return PLUGIN_CONTINUE
+				
+	if(get_user_weapon(iAttacker) == CSW_LASERFIST)
+	{
+		if(Get_BitVar(g_Had_Laserfist, iAttacker))
+			set_msg_arg_string(4, "laserfistex")
+	}
+								
 	return PLUGIN_CONTINUE
 }
 
@@ -908,7 +913,7 @@ public Check_Damage(id, right, blue)
 		
 		if(pev_valid(pEntity))
 		{
-			ExecuteHamB(Ham_TakeDamage, pEntity, id, id, DAMAGE_B, DMG_BULLET)
+			ExecuteHamB(Ham_TakeDamage, pEntity, id, id, is_deadlyshot(id)?DAMAGE_B*1.5:DAMAGE_B, DMG_BULLET)
 				
 			Stock_Fake_KnockBack(id, pEntity, 550.0)
 			if(is_user_alive(pEntity)) SpawnBlood(EndOrigin3, get_pdata_int(pEntity,89), floatround(DAMAGE_B/5.0))

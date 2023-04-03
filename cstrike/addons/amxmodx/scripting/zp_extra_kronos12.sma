@@ -9,6 +9,7 @@
 #include <xs>
 #include <zombieplague>
 #include <metadrawer>
+#include <toan>
 
 #define V_MODEL "models/v_kronos12.mdl"
 #define P_MODEL "models/p_kronos12.mdl"
@@ -22,8 +23,8 @@
 #define DAMAGE_B 250.0
 #define CLIP 30
 #define BPAMMO 240
-#define SPEED_A 0.34
-#define SPEED_B 0.34
+#define SPEED_A 0.27
+#define SPEED_B 0.27
 #define RECOIL 0.3
 #define RELOAD_TIME 4.0
 #define	RESULT_HIT_NONE 			0

@@ -36,8 +36,12 @@ public plugin_natives()
 	register_native("is_deadlyshot", "do_nothing", 1)
 	register_native("md_getscreenwidth", "do_nothing", 1)
 	register_native("md_getscreenheight", "do_nothing", 1)
+	register_native("set_hb_maxhp", "set_hb_maxhp", 1)
 }
 public event_round_start()
+{
+}
+public set_hb_maxhp(Float:value, Boss_Ent)
 {
 }
 public md_drawimage_nav(id, channel, isDefined, const imageName[], Float:x, Float:y, centerX, centerY, r, g, b, a, Float:fadeInTime, Float:FadeOutTime, Float:holdTime, align, customWidth, customHeight){

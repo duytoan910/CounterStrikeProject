@@ -4,6 +4,7 @@
 #include <zombieplague>
 #include <fun>
 #include <gunxpmod>
+#include <toan>
 
 #define PLUGIN 					"[ZP] Extra: CSO Weapon Dragon Cannon +6"
 #define VERSION 				"1.0"
@@ -20,6 +21,8 @@
 
 #define WEAPON_DAMAGE				random_float(60.0, 80.0) //FLOAT 
 #define WEAPON_KNOCKBACK			2.0
+#define WEAPON_RADIUS_EXP			200.0
+#define WEAPON_DAMAGE_EXP			random_float(1000.0, 1500.0)
 
 #define WEAPON_TIME_NEXT_IDLE 			10.0
 #define WEAPON_TIME_DELAY_DEPLOY 		1.4
@@ -32,15 +35,20 @@
 #define MODEL_VIEW					"models/v_cannon_6.mdl"
 #define MODEL_VIEWB					"models/v_cannon_6b.mdl"
 #define MODEL_PLAYER				"models/p_cannon_6.mdl"
+#define MODEL_MISSIL				"models/DragonModel.mdl"
 
 #define MODEL_BALL				"sprites/flame_puff01.spr"
 #define MODEL_BALLB				"sprites/flame_puff01_blue.spr"
+#define MODEL_EXP				"sprites/ef_cannon6_explotion.spr"
 
 // Sounds
 #define SOUND_FIRE				"weapons/cannon-1.wav"
+#define SOUND_DRAGON_EXP			"weapons/canon_firebal_exp.wav"
+#define SOUND_FIRE2				"weapons/canon_fireball.wav"	
 
 // Animation
 #define ANIM_EXTENSION				"rifle"
+#define MISSILE_CLASSNAME			"FireDragon"
 
 // Animation sequences 
 enum 
@@ -55,7 +63,7 @@ ANIM_DRAW_A,
 
 #define SET_MODEL(%0,%1)			engfunc(EngFunc_SetModel, %0, %1)
 #define SET_ORIGIN(%0,%1)			engfunc(EngFunc_SetOrigin, %0, %1)
-
+#define SET_SIZE(%0,%1,%2)			engfunc(EngFunc_SetSize, %0, %1, %2)
 #define PRECACHE_MODEL(%0)			engfunc(EngFunc_PrecacheModel, %0)
 #define PRECACHE_SOUND(%0)			engfunc(EngFunc_PrecacheSound, %0)
 #define PRECACHE_GENERIC(%0)			engfunc(EngFunc_PrecacheGeneric, %0)
@@ -66,7 +74,7 @@ ANIM_DRAW_A,
 #define WRITE_BYTE(%0)				write_byte(%0)
 #define WRITE_COORD(%0)				engfunc(EngFunc_WriteCoord, %0)
 #define WRITE_STRING(%0)			write_string(%0)
-#define WRITE_SHORT(%0)				write_short(%0)
+#define WRITE_SHORT(%0)				w/rite_short(%0)
 
 #define BitSet(%0,%1) 				(%0 |= (1 << (%1 - 1)))
 #define BitClear(%0,%1) 			(%0 &= ~(1 << (%1 - 1)))
@@ -105,10 +113,11 @@ new g_bitIsConnected;
 #define m_szAnimExtention			492
 
 #define IsValidPev(%0) 				(pev_valid(%0) == 2)
+#define GET_ATTACHMENT(%0,%1,%2,%3)		engfunc(EngFunc_GetAttachment, %0, %1, %2, %3)
 
 #define BALL_CLASSNAME				"FireCannon"
 
-new iBlood[4];
+new iBlood[5];
 
 Weapon_OnPrecache()
 {
@@ -117,12 +126,16 @@ Weapon_OnPrecache()
 	PRECACHE_MODEL(MODEL_WORLD);
 	PRECACHE_MODEL(MODEL_PLAYER);
 	
+	PRECACHE_MODEL(MODEL_MISSIL);
 	PRECACHE_SOUND(SOUND_FIRE);
+	PRECACHE_SOUND(SOUND_FIRE2);
+	PRECACHE_SOUND(SOUND_DRAGON_EXP);
 	
 	iBlood[0] = PRECACHE_MODEL("sprites/bloodspray.spr");
 	iBlood[1] = PRECACHE_MODEL("sprites/blood.spr");
 	iBlood[2] = PRECACHE_MODEL(MODEL_BALL);
 	iBlood[3] = PRECACHE_MODEL(MODEL_BALLB);
+	iBlood[4] = PRECACHE_MODEL(MODEL_EXP);
 	
 	precache_sound("weapons/cannon_draw.wav")
 	precache_sound("weapons/cannon_reload.wav")
@@ -218,47 +231,187 @@ Weapon_OnPrimaryAttack(const iItem, const iPlayer, const iClip, const iAmmoPrima
 	}
 }
 
+Weapon_OnSecondaryAttack(const iItem, const iPlayer, const iClip, const iAmmoPrimary)
+{
+	#pragma unused iClip, iAmmoPrimary
+
+	if (iAmmoPrimary <= 0)
+	{
+		if (get_pdata_int(iItem, m_fFireOnEmpty, extra_offset_player))
+		{
+			ExecuteHamB(Ham_Weapon_PlayEmptySound, iItem);
+			set_pdata_float(iItem, m_flNextPrimaryAttack, 0.2, extra_offset_weapon);
+		}	
+		return;
+	}
+	
+	static szAnimation[64];formatex(szAnimation, charsmax(szAnimation), "ref_shoot_%s", ANIM_EXTENSION);
+	Player_SetAnimation(iPlayer, szAnimation);
+	
+	set_pdata_float(iItem, m_flNextPrimaryAttack, 3.5, extra_offset_weapon);
+	set_pdata_float(iItem, m_flNextSecondaryAttack, 3.5, extra_offset_weapon);
+	set_pdata_float(iItem, m_flTimeWeaponIdle, 3.5, extra_offset_weapon);
+		
+	Weapon_SendAnim(iPlayer, ANIM_SHOOT_A);
+			
+	Punchangle(iPlayer, .iVecx = random_float(-2.0, -2.5), .iVecy = 0.0, .iVecz = 0.0);
+			
+	engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE2, 0.5, ATTN_NORM, 0, PITCH_NORM);
+			
+	SetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem), GetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem)) - 1);
+	
+	CreateMissile(iPlayer, iItem);
+}
+
+public CreateMissile(const iPlayer, skin)
+{
+	if (global_get(glb_maxEntities) - engfunc(EngFunc_NumberOfEntities) < 100)
+	{
+		return;
+	}
+	
+	static iszAllocStringCached, pEntity;
+	
+	static Float:VecEnd[3];fm_get_aim_origin(iPlayer, VecEnd);
+	static Float:vAngle[3], Float:Angles[3];pev(iPlayer,pev_v_angle,vAngle);
+	static Float:Origin[3];GET_ATTACHMENT(iPlayer, 0, Origin, Angles);
+	Angles[0] = 360.0 - vAngle[0];Angles[1] = vAngle[1];Angles[2] = vAngle[2];
+	
+	if (iszAllocStringCached || (iszAllocStringCached = engfunc(EngFunc_AllocString, "info_target")))
+	{
+		pEntity = engfunc(EngFunc_CreateNamedEntity, iszAllocStringCached);
+	}
+		
+	if (pev_valid(pEntity))
+	{
+		set_pev(pEntity, pev_movetype, MOVETYPE_TOSS);
+		set_pev(pEntity, pev_owner, iPlayer);
+			
+		SET_MODEL(pEntity, MODEL_MISSIL);
+		SET_ORIGIN(pEntity, Origin);
+	
+		set_pev(pEntity, pev_classname, MISSILE_CLASSNAME);
+		set_pev(pEntity, pev_solid, SOLID_BBOX);
+		set_pev(pEntity, pev_angles, Angles);
+		set_pev(pEntity, pev_gravity, 0.001);
+		set_pev(pEntity, pev_iuser3, skin);
+		SET_SIZE(pEntity, Float:{-2.0, -2.0, -2.0}, Float:{2.0, 2.0, 2.0});
+		set_pev(pEntity, pev_nextthink, get_gametime() + 0.01);
+	
+		static Float:Velocity[3];Get_Speed_Vector(Origin, VecEnd, 1500.0, Velocity);
+		set_pev(pEntity, pev_velocity, Velocity);
+	}
+}
+
+
+	#define _call.%0(%1,%2) \
+									\
+	Weapon_On%0							\
+	(								\
+		%1, 							\
+		%2,							\
+									\
+		get_pdata_int(%1, m_iClip, extra_offset_weapon),	\
+		GetAmmoInventory(%2, PrimaryAmmoIndex(%1))		\
+	) 
+
 Weapon_OnShoot(const iItem, const iPlayer, bool:iType)
 {
 	static szAnimation[64];
-	switch (iType)
-	{
-		case false:
-		{
-			Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
-			
-			set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
-			set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
-			set_pdata_float(iItem, m_flTimeWeaponIdle, 3.2, extra_offset_weapon);
-		
-			Weapon_SendAnim(iPlayer, ANIM_SHOOT_A);
-			
-			Punchangle(iPlayer, .iVecx = random_float(-2.0, -2.5), .iVecy = 0.0, .iVecz = 0.0);
-			
-			engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE, 1.0, ATTN_NORM, 0, PITCH_NORM);
-			
-			SetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem), GetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem)) - 1);
-			
-			formatex(szAnimation, charsmax(szAnimation), "ref_shoot_%s", ANIM_EXTENSION);
-			Player_SetAnimation(iPlayer, szAnimation);
-		}
-		case true:
-		{
-			Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
-			
-			set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
-			set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
-			set_pdata_float(iItem, m_flTimeWeaponIdle, 3.2, extra_offset_weapon);
-		
-	
-			Punchangle(iPlayer, .iVecx = random_float(-2.0, -2.5), .iVecy = 0.0, .iVecz = 0.0);
-			
-			engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE, 1.0, ATTN_NORM, 0, PITCH_NORM);
-			
-			formatex(szAnimation, charsmax(szAnimation), "ref_shoot_%s", ANIM_EXTENSION);
-			Player_SetAnimation(iPlayer, szAnimation);
 
-			set_pev(iItem, pev_iuser1, 0);
+	new enemy, body
+	get_user_aiming(iPlayer, enemy, body)
+	if ((1 <= enemy <= 32) && zp_get_user_zombie(enemy) && is_user_bot(iPlayer))
+	{
+		new origin1[3] ,origin2[3],range
+		get_user_origin(iPlayer,origin1)
+		get_user_origin(enemy,origin2)
+		range = get_distance(origin1, origin2)
+		if(range <= 200)
+		{
+			switch (iType)
+			{
+				case false:
+				{
+					Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
+					
+					set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
+					set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
+					set_pdata_float(iItem, m_flTimeWeaponIdle, 3.2, extra_offset_weapon);
+				
+					Weapon_SendAnim(iPlayer, ANIM_SHOOT_A);
+					
+					Punchangle(iPlayer, .iVecx = random_float(-2.0, -2.5), .iVecy = 0.0, .iVecz = 0.0);
+					
+					engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE, 1.0, ATTN_NORM, 0, PITCH_NORM);
+					
+					SetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem), GetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem)) - 1);
+					
+					formatex(szAnimation, charsmax(szAnimation), "ref_shoot_%s", ANIM_EXTENSION);
+					Player_SetAnimation(iPlayer, szAnimation);
+				}
+				case true:
+				{
+					Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
+					
+					set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
+					set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
+					set_pdata_float(iItem, m_flTimeWeaponIdle, 3.2, extra_offset_weapon);
+				
+			
+					Punchangle(iPlayer, .iVecx = random_float(-2.0, -2.5), .iVecy = 0.0, .iVecz = 0.0);
+					
+					engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE, 1.0, ATTN_NORM, 0, PITCH_NORM);
+					
+					formatex(szAnimation, charsmax(szAnimation), "ref_shoot_%s", ANIM_EXTENSION);
+					Player_SetAnimation(iPlayer, szAnimation);
+
+					set_pev(iItem, pev_iuser1, 0);
+				}
+			}
+		}else{
+			_call.SecondaryAttack(iItem, iPlayer);
+		}
+	}else{
+		switch (iType)
+		{
+			case false:
+			{
+				Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
+				
+				set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
+				set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
+				set_pdata_float(iItem, m_flTimeWeaponIdle, 3.2, extra_offset_weapon);
+			
+				Weapon_SendAnim(iPlayer, ANIM_SHOOT_A);
+				
+				Punchangle(iPlayer, .iVecx = random_float(-2.0, -2.5), .iVecy = 0.0, .iVecz = 0.0);
+				
+				engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE, 1.0, ATTN_NORM, 0, PITCH_NORM);
+				
+				SetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem), GetAmmoInventory(iPlayer, PrimaryAmmoIndex(iItem)) - 1);
+				
+				formatex(szAnimation, charsmax(szAnimation), "ref_shoot_%s", ANIM_EXTENSION);
+				Player_SetAnimation(iPlayer, szAnimation);
+			}
+			case true:
+			{
+				Weapon_OnSpawnFlame(iPlayer, pev(iItem, pev_iuser4));
+				
+				set_pdata_float(iItem, m_flNextPrimaryAttack, 3.2, extra_offset_weapon);
+				set_pdata_float(iItem, m_flNextSecondaryAttack, 3.2, extra_offset_weapon);
+				set_pdata_float(iItem, m_flTimeWeaponIdle, 3.2, extra_offset_weapon);
+			
+		
+				Punchangle(iPlayer, .iVecx = random_float(-2.0, -2.5), .iVecy = 0.0, .iVecz = 0.0);
+				
+				engfunc(EngFunc_EmitSound, iPlayer, CHAN_WEAPON, SOUND_FIRE, 1.0, ATTN_NORM, 0, PITCH_NORM);
+				
+				formatex(szAnimation, charsmax(szAnimation), "ref_shoot_%s", ANIM_EXTENSION);
+				Player_SetAnimation(iPlayer, szAnimation);
+
+				set_pev(iItem, pev_iuser1, 0);
+			}
 		}
 	}
 }
@@ -413,12 +566,14 @@ public FakeMeta_UpdateClientData_Post(const iPlayer, const iSendWeapons, const C
 
 public FakeMeta_Touch(const iEnt, const iOther)
 {
-	if(!pev_valid(iEnt) || !pev_valid(iOther))
+	if(!pev_valid(iEnt))
 	{
 		return FMRES_IGNORED;
 	}
 	
 	static Classname[32];pev(iEnt, pev_classname, Classname, sizeof(Classname));
+	static Float:Origin[3];pev(iEnt, pev_origin, Origin);
+	static iAttacker; 
 	
 	if (equal(Classname, BALL_CLASSNAME))
 	{
@@ -426,8 +581,8 @@ public FakeMeta_Touch(const iEnt, const iOther)
 		{
 			static Float:eOrigin[3];pev(iEnt, pev_origin, eOrigin);
 			
-			static iAttacker; iAttacker = pev(iEnt, pev_owner);
-		
+			iAttacker = pev(iEnt, pev_owner);
+
 			if (!is_user_connected(iAttacker))
 			{
 				set_pev(iEnt, pev_flags, pev(iEnt, pev_flags) | FL_KILLME);
@@ -440,7 +595,7 @@ public FakeMeta_Touch(const iEnt, const iOther)
 			{
 				if (zp_get_user_zombie(iOther))
 				{
-					//Create_Blood(vOrigin, iBlood[0], iBlood[1], 248, random_num(8,15));
+					Create_Blood(vOrigin, iBlood[0], iBlood[1], 248, random_num(8,15));
 					
 					static Float:vecViewAngle[3]; pev(iAttacker, pev_v_angle, vecViewAngle);
 					static Float:vecForward[3]; angle_vector(vecViewAngle, ANGLEVECTOR_FORWARD, vecForward);
@@ -455,6 +610,44 @@ public FakeMeta_Touch(const iEnt, const iOther)
 		}
 	}
 	
+	if (equal(Classname, MISSILE_CLASSNAME))
+	{
+		CreateExplosion(Origin, iBlood[4], 2.3, random_float(2.6,3.0), TE_EXPLFLAG_NODLIGHTS | TE_EXPLFLAG_NOSOUND | TE_EXPLFLAG_NOPARTICLES);
+		engfunc(EngFunc_EmitSound, iEnt, CHAN_BODY, SOUND_DRAGON_EXP, 1.0, ATTN_NORM, 0, PITCH_NORM);
+		
+		iAttacker = pev(iEnt, pev_owner);
+
+		new pNull = FM_NULLENT;
+			
+		while((pNull = fm_find_ent_in_sphere(pNull, Origin, WEAPON_RADIUS_EXP)) != 0)
+		{	
+			new Float:vOrigin[3];pev(pNull, pev_origin, vOrigin);
+				
+			if (IsValidPev(pNull) && pev(pNull, pev_takedamage) != DAMAGE_NO && pev(pNull, pev_solid) != SOLID_NOT)
+			{
+				if (is_user_connected(pNull))
+				{
+					if (zp_get_user_zombie(pNull))
+					{
+						new Float:vOrigin[3], Float:dist, Float:damage;pev(pNull, pev_origin, vOrigin);
+							
+						Create_Blood(vOrigin, iBlood[0], iBlood[1], 76, 13);
+		
+						dist = get_distance_f(Origin, vOrigin);damage = WEAPON_DAMAGE_EXP - (WEAPON_DAMAGE_EXP/WEAPON_DAMAGE_EXP) * dist;
+						if (damage > 0.0)
+						{
+							damage = is_deadlyshot(iAttacker)?random_float(damage-10,damage+10)*1.5:random_float(damage-10,damage+10)
+							ExecuteHamB(Ham_TakeDamage, pNull, iAttacker, iAttacker, damage, DMG_BULLET)
+							
+						}
+					}
+				}
+			}
+		}
+		
+		set_pev(iEnt, pev_flags, pev(iEnt, pev_flags) | FL_KILLME);
+		return FMRES_SUPERCEDE;
+	}
 	return FMRES_IGNORED;
 }
 new Float:Damage[33]
@@ -542,20 +735,14 @@ public FakeMeta_Think(const iEnt)
 		set_pev(iEnt, pev_nextthink, get_gametime() + 0.04);
 	}
 
+	else if (equal(Classname, MISSILE_CLASSNAME))
+	{
+		static Float:Origin[3];pev(iEnt, pev_origin, Origin);
+		CreateExplosion(Origin, pev(pev(iEnt,pev_iuser3), pev_iuser4)?iBlood[3]:iBlood[2], 1.1, 8.0, TE_EXPLFLAG_NODLIGHTS | TE_EXPLFLAG_NOSOUND | TE_EXPLFLAG_NOPARTICLES);
+		set_pev(iEnt, pev_nextthink, get_gametime() + 0.1);
+	}
 	return FMRES_IGNORED;
 }
-
-	#define _call.%0(%1,%2) \
-									\
-	Weapon_On%0							\
-	(								\
-		%1, 							\
-		%2,							\
-									\
-		get_pdata_int(%1, m_iClip, extra_offset_weapon),	\
-		GetAmmoInventory(%2, PrimaryAmmoIndex(%1))		\
-	) 
-
 
 public HamHook_Item_Deploy_Post(const iItem)
 {
@@ -615,13 +802,18 @@ public HamHook_Item_PrimaryAttack(const iItem)
 
 public HamHook_Item_PostFrame(const iItem)
 {
-	static iPlayer; 
+	static iPlayer, iButton;
 	static iState;pev(iItem, pev_iuser1, iState);
 	static Float:iTime;pev(iItem, pev_fuser1, iTime);
 
 	if (!CheckItem(iItem, iPlayer))
 	{
 		return HAM_IGNORED;
+	}
+	if ((iButton = pev(iPlayer, pev_button)) & IN_ATTACK2 && get_pdata_float(iItem, m_flNextSecondaryAttack, extra_offset_weapon) <= 0.0)
+	{
+		_call.SecondaryAttack(iItem, iPlayer);
+		set_pev(iPlayer, pev_button, iButton & ~IN_ATTACK2);
 	}
 	
 	if (iState && iTime < get_gametime())
@@ -630,8 +822,7 @@ public HamHook_Item_PostFrame(const iItem)
 
 		return HAM_IGNORED;
 	}
-	
-	return HAM_IGNORED;
+ 	return HAM_IGNORED;
 }		
 
 Weapon_Create(const Float: vecOrigin[3] = {0.0, 0.0, 0.0}, const Float: vecAngles[3] = {0.0, 0.0, 0.0})
@@ -775,11 +966,15 @@ stock FakeKnockBack(iPlayer, Float: vecDirection[3], Float:flKnockBack)
 
 stock Create_Blood(const Float:vStart[3], const iModel, const iModel2, const iColor, const iScale)
 {
-	message_begin(MSG_BROADCAST, SVC_TEMPENTITY, vStart, 0);
+	new pos[3];
+	pos[0] = floatround(vStart[0])
+	pos[1] = floatround(vStart[1])
+	pos[2] = floatround(vStart[2])
+	message_begin(MSG_BROADCAST, SVC_TEMPENTITY, pos, 0);
 	write_byte(TE_BLOODSPRITE);
-	write_coord(vStart[0])
-	write_coord(vStart[1])
-	write_coord(vStart[2])
+	write_coord(pos[0])
+	write_coord(pos[1])
+	write_coord(pos[2])
 	write_short(iModel);
 	write_short(iModel2);
 	write_byte(iColor);
@@ -971,4 +1166,32 @@ SetAmmoInventory(const iPlayer, const iAmmoIndex, const iAmount)
 
 	set_pdata_int(iPlayer, m_rgAmmo_CBasePlayer + iAmmoIndex, iAmount, extra_offset_player);
 	return 1;
+}
+
+stock Get_Speed_Vector(const Float:origin1[3],const Float:origin2[3],Float:speed, Float:new_velocity[3])
+{
+	new_velocity[0] = origin2[0] - origin1[0]
+	new_velocity[1] = origin2[1] - origin1[1]
+	new_velocity[2] = origin2[2] - origin1[2]
+	new Float:num = floatsqroot(speed*speed / (new_velocity[0]*new_velocity[0] + new_velocity[1]*new_velocity[1] + new_velocity[2]*new_velocity[2]))
+	new_velocity[0] *= num
+	new_velocity[1] *= num
+	new_velocity[2] *= num
+}
+
+stock CreateExplosion(Float:vecOrigin[3], const szSprite, Float:fScale, Float:fFramerate, iFlags)
+{
+	new iScale = floatround(fScale * 10.0);
+	new iFramerate = floatround(fFramerate * 10.0);
+	
+	message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
+	write_byte(TE_EXPLOSION);
+	engfunc(EngFunc_WriteCoord, vecOrigin[0]);
+	engfunc(EngFunc_WriteCoord, vecOrigin[1]);
+	engfunc(EngFunc_WriteCoord, vecOrigin[2]);
+	write_short(szSprite);
+	write_byte(iScale);
+	write_byte(iFramerate);
+	write_byte(iFlags);
+	message_end();
 }
