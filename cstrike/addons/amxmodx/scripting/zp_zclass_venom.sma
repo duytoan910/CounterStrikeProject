@@ -7,6 +7,7 @@
 #include <cstrike> 
 #include <xs> 
 #include <zombieplague> 
+#include <toan> 
 
 enum (+= 100)
 {

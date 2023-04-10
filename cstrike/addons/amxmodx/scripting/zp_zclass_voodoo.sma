@@ -4,6 +4,7 @@
 #include <zombieplague>
 #include <fakemeta>
 #include <hamsandwich> 
+#include <toan> 
 
 #define PLUGIN "[CSO LIKE] Voodoo zombie"
 #define VERSION "0.1"

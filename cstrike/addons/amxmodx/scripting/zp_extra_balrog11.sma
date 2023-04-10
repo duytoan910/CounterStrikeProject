@@ -5,6 +5,7 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <zombieplague>
+#include <toan> 
 
 #define PLUGIN "Balrog-XI"
 #define VERSION "2.0"

@@ -4,6 +4,7 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <zombieplague>
+#include <toan>
 
 #define PLUGIN "AMXX Gungnir"
 #define VERSION "2.0"
@@ -442,8 +443,7 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
                 emit_sound(id, CHAN_WEAPON, SOUND_FIRE[1], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
         }
 
-        if (
-	(!(iButton & IN_ATTACK2) && 0 < iCharge < 3) || (is_user_bot(id) && isModeA[id] == true && !(iButton & IN_ATTACK))
+        if ((!(iButton & IN_ATTACK2) && 0 < iCharge < 3) || (is_user_bot(id) && isModeA[id] == true && !(iButton & IN_ATTACK))
 	) {
                 if (is_user_bot(id)) {
                         iCharge = random_num(1, 4)
@@ -603,7 +603,10 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
 					}
                                 }
 
-                                pev(g_iVic[id][k], pev_origin, LOL[k])
+                                if(!is_user_alive(k))
+                                        continue
+                                else
+                                        pev(g_iVic[id][k], pev_origin, LOL[k])
 
                                 if (is_user_alive(g_iVic[id][k]) && can_damage(id, g_iVic[id][k]) && entity_range(id, g_iVic[id][k]) < ELECTRO_RANGE && !Stock_Blah(fOrigin, LOL[k], id)) {
                                         engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, fOrigin, 0)

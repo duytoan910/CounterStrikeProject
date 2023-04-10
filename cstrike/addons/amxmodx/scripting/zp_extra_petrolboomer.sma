@@ -6,6 +6,7 @@
 #include <cstrike>
 #include <fun>
 #include <zombieplague>
+#include <toan> 
 
 #define PLUGIN "[CSO] Weapon: Petrol Boomer"
 #define VERSION "1.0"
@@ -227,6 +228,8 @@ public PetrolBoomer_AttackHandle(id)
 }
 public DoneReload(id)
 {
+	if(!pev_valid(id) || !is_user_alive(id))
+		return
 	g_Reloading[id] = false;
 	set_pdata_int(g_wpnID[id], 51, 1, 4)
 }

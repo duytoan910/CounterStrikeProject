@@ -5,6 +5,7 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <fun>
+#include <toan>
 #include <zombieplague>
 
 #define PLUGIN "Balrog-XI"
@@ -331,7 +332,6 @@ public explode(id, Float:End1[3])
 			new TE_FLAG
 			
 			TE_FLAG |= TE_EXPLFLAG_NODLIGHTS
-			TE_FLAG |= TE_EXPLFLAG_NOSOUND
 			TE_FLAG |= TE_EXPLFLAG_NOPARTICLES
 			
 			// Exp

@@ -61,9 +61,14 @@ public Event_RoundStart()
 }
 public zp_cso_round_start()
 {
+	if(zp_cso_round>=10){
+    	server_cmd("sv_restartround 1");
+		return;
+	}
 	zp_cso_sec = get_cvar_num("zp_delay") + 1 
 	zp_cso_round += 1
 	zp_cso_countdown()
+	return;
 }
 public client_putinserver(id){
 	set_task(0.1,"zp_cso_hud_score", id, _, _, "b")

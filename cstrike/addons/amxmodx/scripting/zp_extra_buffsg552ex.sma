@@ -5,6 +5,7 @@
 #include <cstrike>
 #include <engine>
 #include <zombieplague>
+#include <toan>
 
 #define PLUGIN "SG552 Cerberus"
 #define VERSION "1.0"
@@ -256,22 +257,16 @@ public fw_PlaybackEvent(flags, invoker, eventid, Float:delay, Float:origin[3], F
 	if(cs_get_user_zoom(invoker) == 4  && is_user_alive(Target) && zp_get_user_zombie(Target))
 	{
 			fm_get_aim_origin(invoker, g_attack_origin)
-			new TE_FLAG
 			g_cerberus[invoker]++
-			TE_FLAG |= TE_EXPLFLAG_NODLIGHTS
-			TE_FLAG |= TE_EXPLFLAG_NOSOUND
-			TE_FLAG |= TE_EXPLFLAG_NOPARTICLES
-			
-			// Draw explosion
-			message_begin(MSG_BROADCAST, SVC_TEMPENTITY)
-			write_byte(TE_EXPLOSION) // Temporary entity ID
+
+			message_begin(MSG_BROADCAST ,SVC_TEMPENTITY)
+			write_byte(TE_SPRITE) // Temporary entity ID
 			engfunc(EngFunc_WriteCoord, g_attack_origin[0]) // engfunc because float
 			engfunc(EngFunc_WriteCoord, g_attack_origin[1])
 			engfunc(EngFunc_WriteCoord, g_attack_origin[2]) 
 			write_short(cache_cerberus[g_cerberus[invoker]])// Sprite index
-			write_byte(8) // Scale
-			write_byte(25) // Framerate
-			write_byte(TE_FLAG) // Flags
+			write_byte(8)	// scale in 0.1's
+			write_byte(255)	// alpha
 			message_end()
 			
 			emit_sound(invoker, CHAN_ITEM, ExtraSounds[random_num(0,3)], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)

@@ -5,6 +5,7 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <zombieplague>
+#include <toan> 
 
 #define PLUGIN "[CSO] PlasmaGun"
 #define VERSION "1.0"

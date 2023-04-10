@@ -5,6 +5,7 @@
 #include <fakemeta_util>
 #include <engine>
 #include <fun>
+#include <toan> 
 
 new const PLUGIN[] = "[CSO] Class Sting Finger"
 new const VERSION[] = "2.0"

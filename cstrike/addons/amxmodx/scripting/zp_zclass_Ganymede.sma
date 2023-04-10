@@ -4,6 +4,7 @@
 #include <hamsandwich>
 #include <zombieplague>
 #include <fun>
+#include <toan> 
 
 #define PLUGIN "[CSO:Hunter Zombie]"
 #define VERSION "1.2"

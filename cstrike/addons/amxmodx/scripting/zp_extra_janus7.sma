@@ -5,6 +5,7 @@
 #include <xs>
 #include <cstrike>
 #include <zombieplague>
+#include <toan> 
 
 #define EV_INT_WEAPONKEY	EV_INT_impulse
 #define WEAPONKEY 7213

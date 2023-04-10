@@ -8,6 +8,7 @@
 #include <xs>
 #include <cstrike>
 #include <zombieplague>
+#include <toan>
 
 #define write_coord_f(%1)	engfunc(EngFunc_WriteCoord,%1)
 

@@ -6,6 +6,7 @@
 #include <hamsandwich>
 #include <zombieplague>
 #include <xs>
+#include <toan> 
 
 #define PLUGIN "DJB Zombie Class Banchee"
 #define VERSION "1.0.3"

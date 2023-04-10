@@ -5,6 +5,7 @@
 #include <zombieplague>
 #include <xs>
 #include <engine>
+#include <toan> 
 
 #define PLUGIN "BTE Deimos Zombie"
 #define VERSION "1.0"
@@ -173,7 +174,7 @@ public fw_PlayerPostThink(id)
 	
 	if (zp_get_user_zombie_class(id) == idclass)
 	{
-		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == idclass) && !zp_get_user_nemesis(id)){
+		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == idclass)){
 			new button = pev(id, pev_button)
 			if(IsCurrentSpeedHigherThan(id, 200.0)){
 				if (!(button & IN_DUCK || button & IN_JUMP || button & IN_BACK) && !g_setAnim[id])
