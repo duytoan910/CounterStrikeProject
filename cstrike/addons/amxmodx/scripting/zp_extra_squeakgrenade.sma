@@ -595,7 +595,7 @@ public CSqueak_SuperBounceTouch ( const Snark, const Other )
 		{
 			Owner = pev( Snark, pev_RealOwner );
 			
-			ExecuteHam(Ham_TakeDamage, Other, Owner, Owner, 20.0, (1<<7));
+			ExecuteHam(Ham_TakeDamage, Other, Owner, Owner, 80.0, (1<<7));
 			zp_set_user_ammo_packs( Owner, zp_get_user_ammo_packs( Owner ) + 300 );
 			set_pev( Snark, pev_enemy, NULL_ENT );
 			

@@ -37,6 +37,15 @@ public plugin_natives()
 	register_native("md_getscreenwidth", "do_nothing", 1)
 	register_native("md_getscreenheight", "do_nothing", 1)
 	register_native("set_hb_maxhp", "set_hb_maxhp", 1)
+
+	// register_native("skull3", "do_nothing", 1)
+	// register_native("skull4", "do_nothing", 1)
+	// register_native("skull5", "do_nothing", 1)
+	// register_native("skull6", "do_nothing", 1)
+	// register_native("skull7", "do_nothing", 1)
+	// register_native("skull8", "do_nothing", 1)
+	// register_native("skull9", "do_nothing", 1)
+	// register_native("skull11", "do_nothing", 1)
 }
 public event_round_start()
 {

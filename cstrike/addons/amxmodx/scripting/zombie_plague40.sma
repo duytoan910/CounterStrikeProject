@@ -3976,16 +3976,19 @@ public get_weapon(id)
 {
 	//fm_strip_user_weapons(id)
 	if(!is_user_bot(id))dinfinity(id)
-	jaydagger(id)
+	skull9(id)
 	
 	// Give the new weapon and full ammo
-	switch(random_num(1,25))
+	switch(random_num(1,40))
 	{
-		case 1..5:crow3(id)
-		case 6..10:hk416(id)
-		case 11..15:crow7(id)
-		case 16..20:crow11(id)
-		case 21..25:at15hw(id)
+		case 1..5:hk416(id)
+		case 6..10:at15hw(id)
+		case 11..15:skull3(id)
+		case 16..20:skull4(id)
+		case 21..25:skull5(id)
+		case 26..30:skull7(id)
+		case 31..35:skull8(id)
+		case 36..40:skull11(id)
 	}
 	
 	static wname[32]
@@ -4128,14 +4131,17 @@ buy_extra_item(id, itemid, ignorecost = 0)
 		{
 			if(g_isbot[id])
 			{
-				switch(random_num(1,25))
+				switch(random_num(1,40))
 				{
-					case 1..5:crow3(id)
-					case 6..10:hk416(id)
-					case 11..15:crow7(id)
-					case 16..20:crow11(id)
-					case 21..25:at15hw(id)
-				}	
+					case 1..5:hk416(id)
+					case 6..10:at15hw(id)
+					case 11..15:skull3(id)
+					case 16..20:skull4(id)
+					case 21..25:skull5(id)
+					case 26..30:skull7(id)
+					case 31..35:skull8(id)
+					case 36..40:skull11(id)
+				}
 			}
 			zp_colored_print(id, "^x04[ZP]^x01 %L", id, "NOT_ENOUGH_AMMO")
 			return;
@@ -7756,7 +7762,7 @@ public bot_buy_extras_anti(const args[])
 	static temp, i, wname[32]
 	temp = random_num((EXTRA_WEAPONS_STARTID)+g_item_human_count, g_extraitem_i - 1)	
 	
-	jaydagger(id)
+	skull9(id)
 	
 	for (i = 0; i < ArraySize(g_additional_items); i++)
 	{
