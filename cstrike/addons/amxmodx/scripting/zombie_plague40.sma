@@ -163,6 +163,10 @@ const ZP_TEAM_ZOMBIE = (1<<0)
 const ZP_TEAM_HUMAN = (1<<1)
 const ZP_TEAM_NEMESIS = (1<<2)
 const ZP_TEAM_SURVIVOR = (1<<3)
+
+#define ZP_ITEM_NORMAL 0
+#define ZP_ITEM_PREMIUM 1
+
 new const ZP_TEAM_NAMES[][] = { "ZOMBIE , HUMAN", "ZOMBIE", "HUMAN", "ZOMBIE , HUMAN", "NEMESIS",
 			"ZOMBIE , NEMESIS", "HUMAN , NEMESIS", "ZOMBIE , HUMAN , NEMESIS",
 			"SURVIVOR", "ZOMBIE , SURVIVOR", "HUMAN , SURVIVOR", "ZOMBIE , HUMAN , SURVIVOR",
@@ -418,11 +422,15 @@ new db_slot_i // additional saved slots counter (should start on maxplayers+1)
 new Array:g_extraitem_name // caption
 new Array:g_extraitem_cost // cost
 new Array:g_extraitem_team // team
+new Array:g_extraitem_premium // prem
 new g_extraitem_i // loaded extra items counter
+#define EXTRA_PREMIUM_LIMIT 2
+
+new g_extraitem_premium_bought
 
 // For extra items file parsing
 new Array:g_extraitem2_realname, Array:g_extraitem2_name, Array:g_extraitem2_cost,
-Array:g_extraitem2_team, Array:g_extraitem_new
+Array:g_extraitem2_team, Array:g_extraitem_new, Array:g_extraitem2_premium
 
 // Zombie Classes vars
 new Array:g_zclass_name // caption
@@ -673,10 +681,12 @@ public plugin_precache()
 	g_extraitem_name = ArrayCreate(32, 1)
 	g_extraitem_cost = ArrayCreate(1, 1)
 	g_extraitem_team = ArrayCreate(1, 1)
+	g_extraitem_premium = ArrayCreate(1, 1)
 	g_extraitem2_realname = ArrayCreate(32, 1)
 	g_extraitem2_name = ArrayCreate(32, 1)
 	g_extraitem2_cost = ArrayCreate(1, 1)
 	g_extraitem2_team = ArrayCreate(1, 1)
+	g_extraitem2_premium = ArrayCreate(1, 1)
 	g_extraitem_new = ArrayCreate(1, 1)
 	g_zclass_name = ArrayCreate(32, 1)
 	g_zclass_info = ArrayCreate(32, 1)
@@ -1556,6 +1566,7 @@ public event_round_start()
 	g_infbombcounter = 0
 	g_antidotecounter = 0
 	g_madnesscounter = 0
+	g_extraitem_premium_bought = 0
 	
 	// Freezetime begins
 	g_freezetime = true
@@ -2961,6 +2972,8 @@ public fw_ThinkGrenade(entity)
 	// Check if it's time to go off
 	if (dmgtime > current_time)
 		return HAM_IGNORED;
+
+	
 	
 	// Check if it's one of our custom nades
 	switch (pev(entity, PEV_NADE_TYPE))
@@ -2986,6 +2999,11 @@ public fw_ThinkGrenade(entity)
 			static duration
 			duration = pev(entity, PEV_FLARE_DURATION)
 			
+			if(g_endround){
+				engfunc(EngFunc_RemoveEntity, entity)
+				return HAM_SUPERCEDE;
+			}
+
 			// Already went off, do lighting loop for the duration of PEV_FLARE_DURATION
 			if (duration > 0)
 			{
@@ -3013,7 +3031,7 @@ public fw_ThinkGrenade(entity)
 				emit_sound(entity, CHAN_WEAPON, sound, 1.0, ATTN_NORM, 0, PITCH_NORM)
 				
 				// Set duration and start lightning loop on next think
-				set_pev(entity, PEV_FLARE_DURATION, 1 + get_pcvar_num(cvar_flareduration)/2)
+				set_pev(entity, PEV_FLARE_DURATION, 1 + (get_pcvar_num(cvar_flareduration)/2)+random_num(-20,20))
 				set_pev(entity, pev_dmgtime, current_time + 0.1)
 			}
 			else
@@ -3492,13 +3510,20 @@ public show_menu_extras(id)
 			}
 			default:
 			{
-				if (item >= EXTRA_WEAPONS_STARTID && item <= EXTRAS_CUSTOM_STARTID-1 && !get_pcvar_num(cvar_extraweapons)) continue;
+				if (item >= EXTRA_WEAPONS_STARTID 
+				&& item <= EXTRAS_CUSTOM_STARTID-1 
+				&& !get_pcvar_num(cvar_extraweapons)) 
+					continue;
 				ArrayGetString(g_extraitem_name, item, buffer, charsmax(buffer))
+				
 			}
 		}
-		
-		// Add Item Name and Cost
-		formatex(menu, charsmax(menu), "%s \y%d %L", buffer, ArrayGetCell(g_extraitem_cost, item), id, "AMMO_PACKS2")
+
+		if(ArrayGetCell(g_extraitem_premium, item)){
+			formatex(menu, charsmax(menu), "%s %s [%d/%d] \y%d %L", "\r[Premium]\w", buffer, g_extraitem_premium_bought, EXTRA_PREMIUM_LIMIT, ArrayGetCell(g_extraitem_cost, item), id, "AMMO_PACKS2")
+		}else{
+			formatex(menu, charsmax(menu), "%s \y%d %L", buffer, ArrayGetCell(g_extraitem_cost, item), id, "AMMO_PACKS2")
+		}
 		buffer[0] = item
 		buffer[1] = 0
 		menu_additem(menuid, menu, buffer)
@@ -3976,23 +4001,19 @@ public get_weapon(id)
 {
 	//fm_strip_user_weapons(id)
 	if(!is_user_bot(id))dinfinity(id)
-	skull9(id)
+	skullaxe(id)
 	
 	// Give the new weapon and full ammo
-	switch(random_num(1,40))
+
+	switch(random_num(0,3))
 	{
-		case 1..5:hk416(id)
-		case 6..10:at15hw(id)
-		case 11..15:skull3(id)
-		case 16..20:skull4(id)
-		case 21..25:skull5(id)
-		case 26..30:skull7(id)
-		case 31..35:skull8(id)
-		case 36..40:skull11(id)
+		case 0:hk416(id)
+		case 1:at15hw(id)
+		case 2:skull8(id)
+		case 3:sfmg(id)
 	}
 	
 	static wname[32]
-	
 	
 	// Give additional items
 	static i
@@ -4000,6 +4021,11 @@ public get_weapon(id)
 	{
 		ArrayGetString(g_additional_items, i, wname, charsmax(wname))
 		fm_give_item(id, wname)
+	}
+	
+	if(is_user_bot(id)){
+		engclient_cmd(id,"weapon_smokegrenade")
+		ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
 	}
 }
 
@@ -4123,6 +4149,14 @@ buy_extra_item(id, itemid, ignorecost = 0)
 		return;
 	}
 	
+	if (ArrayGetCell(g_extraitem_premium,itemid))
+	{
+		if(g_extraitem_premium_bought>=EXTRA_PREMIUM_LIMIT && !get_cvar_num("bot_stop")){
+			zp_colored_print(id, "^x04[ZP]^x01 %L", id, "CMD_NOT_CANTUSE")
+			return;
+		}
+	}
+	
 	// Ignore item's cost?
 	if (!ignorecost)
 	{
@@ -4131,16 +4165,12 @@ buy_extra_item(id, itemid, ignorecost = 0)
 		{
 			if(g_isbot[id])
 			{
-				switch(random_num(1,40))
+				switch(random_num(0,3))
 				{
-					case 1..5:hk416(id)
-					case 6..10:at15hw(id)
-					case 11..15:skull3(id)
-					case 16..20:skull4(id)
-					case 21..25:skull5(id)
-					case 26..30:skull7(id)
-					case 31..35:skull8(id)
-					case 36..40:skull11(id)
+					case 0:hk416(id)
+					case 1:at15hw(id)
+					case 2:skull8(id)
+					case 3:sfmg(id)
 				}
 			}
 			zp_colored_print(id, "^x04[ZP]^x01 %L", id, "NOT_ENOUGH_AMMO")
@@ -4220,6 +4250,12 @@ buy_extra_item(id, itemid, ignorecost = 0)
 			
 			// Give weapon to the player
 			fm_give_item(id, "weapon_hegrenade")
+			
+			if (user_has_weapon(id, CSW_HEGRENADE))
+			{
+				engclient_cmd(id,"weapon_hegrenade")
+				ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
+			}
 		}
 		default:
 		{
@@ -4265,6 +4301,9 @@ buy_extra_item(id, itemid, ignorecost = 0)
 			}
 			else // Custom additions
 			{
+				if(ArrayGetCell(g_extraitem_premium,itemid))
+					g_extraitem_premium_bought++
+
 				// Item selected forward
 				ExecuteForward(g_fwExtraItemSelected, g_fwDummyResult, id, itemid);
 				
@@ -5832,8 +5871,7 @@ zombieme(id, infector, nemesis, silentmode, rewards)
 	
 	if (is_user_bot(id))
 	{
-		set_task(random_float(10.0,40.0), "bot_buy_z", id+TASK_BOT_BUY_Z)
-		//set_task(random_float(2.0,3.0), "bot_buy_z", id+TASK_BOT_BUY_Z)
+		set_task(random_float(10.0,30.0), "bot_buy_z", id+TASK_BOT_BUY_Z)
 	}
 	
 	// Switch to T
@@ -6089,27 +6127,22 @@ public bot_buy_z(taskid)
 	static temp
 	switch(num)
 	{
-		case 1..2:
+		case 1..3:
 		{
 			buy_extra_item(id, EXTRA_ANTIDOTE, 0)
 		}
-		case 3..12:
+		case 4..12:
 		{
 			temp = random_num(1, (EXTRA_WEAPONS_STARTID-1)+g_item_human_count)
 			buy_extra_item(id, temp,0)
 		}
-		case 14..18:
+		case 13..16:
 		{
 			buy_extra_item(id, EXTRA_MADNESS, 0)
 		}
-		case 19..20:
+		case 17..20:
 		{	
 			buy_extra_item(id, EXTRA_INFBOMB, 0)
-			if (user_has_weapon(id, CSW_SMOKEGRENADE))
-			{
-				engclient_cmd(id,"weapon_smokegrenade")
-				ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
-			}
 		}
 	}
 	new num2 = random_num(1,5)
@@ -6125,8 +6158,7 @@ public bot_buy_z(taskid)
 	if (task_exists(taskid)) 
 		remove_task(taskid)
 		
-	set_task(random_float(20.0,40.0), "bot_buy_z", id+TASK_BOT_BUY_Z)	
-	//set_task(random_float(2.0,3.0), "bot_buy_z", id+TASK_BOT_BUY_Z)	
+	set_task(random_float(20.0,30.0), "bot_buy_z", id+TASK_BOT_BUY_Z)	
 }
 
 // Function Human Me (player id, turn into a survivor, silent mode)
@@ -7544,6 +7576,9 @@ load_customization_from_files()
 				// Add to teams array
 				ArrayPushCell(g_extraitem2_team, teams)
 			}
+			else if (equal(key, "PREMIUM")){
+				ArrayPushCell(g_extraitem2_premium, str_to_num(value))
+			}
 		}
 		if (file) fclose(file)
 	}
@@ -7651,7 +7686,10 @@ save_customization()
 			fputs(file, buffer)
 			
 			// Add team
-			formatex(buffer, charsmax(buffer), "^nTEAMS = %s^n", ZP_TEAM_NAMES[ArrayGetCell(g_extraitem_team, i)])
+			formatex(buffer, charsmax(buffer), "^nTEAMS = %s", ZP_TEAM_NAMES[ArrayGetCell(g_extraitem_team, i)])
+			fputs(file, buffer)
+			
+			format(buffer, charsmax(buffer), "^nPREMIUM = %d^n", ArrayGetCell(g_extraitem_premium, i))
 			fputs(file, buffer)
 		}
 	}
@@ -7675,6 +7713,7 @@ save_customization()
 	ArrayDestroy(g_extraitem2_name)
 	ArrayDestroy(g_extraitem2_cost)
 	ArrayDestroy(g_extraitem2_team)
+	ArrayDestroy(g_extraitem2_premium)
 	ArrayDestroy(g_extraitem_new)
 }
 
@@ -7709,17 +7748,19 @@ public disable_minmodels(id)
 public extras_list(id)
 {	
 	// Loop through every item
-	static i, item_name[32], item_cost[10]
+	static i, item_name[32], item_cost[10], item_prem[10]
 	for (i = 0; i < g_extraitem_i; i++)
 	{
 		ArrayGetString(g_extraitem_name, i, item_name, charsmax(item_name))
 		ArrayGetString(g_extraitem_cost, i, item_name, charsmax(item_cost))
+		ArrayGetString(g_extraitem_premium, i, item_name, charsmax(item_prem))
 		
-		client_print(id, print_chat, "[%i] Name: %s, Price: %i",i,item_name,item_cost)
+		client_print(id, print_chat, "[%i] Name: %s, Price: %i, Premium: %s",i,item_name,item_cost,item_prem)
 	}
 	client_print(id, print_chat, "Start ID: %i",(EXTRA_WEAPONS_STARTID)+g_item_human_count)
 	client_print(id, print_chat, "End ID: %i",g_extraitem_i - 1)
 }
+
 // Bots automatically buy extra items
 public bot_buy_extras(taskid)
 {
@@ -7737,7 +7778,15 @@ public bot_buy_extras(taskid)
 	{ 
 		if (user_has_weapon(id, CSW_HEGRENADE))
 		{
-			set_task(random_float(1.0,5.0), "ThrowGrenade", id)
+			set_task(random_float(1.0,5.0), "ThrowGrenadeHE", id)
+		}
+		else if (user_has_weapon(id, CSW_SMOKEGRENADE))
+		{
+			set_task(random_float(1.0,5.0), "ThrowGrenadeHE", id)
+		}
+		else if (user_has_weapon(id, CSW_FLASHBANG))
+		{
+			set_task(random_float(1.0,5.0), "ThrowGrenadeHE", id)
 		}
 	}
 
@@ -7762,7 +7811,7 @@ public bot_buy_extras_anti(const args[])
 	static temp, i, wname[32]
 	temp = random_num((EXTRA_WEAPONS_STARTID)+g_item_human_count, g_extraitem_i - 1)	
 	
-	skull9(id)
+	skullaxe(id)
 	
 	for (i = 0; i < ArraySize(g_additional_items); i++)
 	{
@@ -7773,18 +7822,26 @@ public bot_buy_extras_anti(const args[])
 	{
 		if (user_has_weapon(id, CSW_HEGRENADE))
 		{
-			set_task(random_float(1.0,10.0), "ThrowGrenade", id)
+			set_task(random_float(1.0,10.0), "ThrowGrenadeHE", id)
 		}
 	}	
 	buy_extra_item(id, temp, 1)
 	bought[id]=true
 }
-public ThrowGrenade(id)
+public ThrowGrenadeHE(id)
 {
-	if(g_zombie[id] || !g_isalive[id])
+	if(!g_isalive[id])
 		return;
 
 	engclient_cmd(id,"weapon_hegrenade")
+	ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));		
+}
+public ThrowGrenadeSM(id)
+{
+	if(!g_isalive[id])
+		return;
+
+	engclient_cmd(id,"weapon_smokegrenade")
 	ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));		
 }
 // Refill BP Ammo Task
@@ -10045,8 +10102,9 @@ public native_get_survivor_count()
 }
 
 // Native: zp_register_extra_item
-public native_register_extra_item(const name[], cost, team)
+public native_register_extra_item(const name[], cost, team, premium)
 {
+
 	// ZP disabled
 	if (!g_pluginenabled)
 		return -1;
@@ -10086,7 +10144,8 @@ public native_register_extra_item(const name[], cost, team)
 	ArrayPushString(g_extraitem_name, name)
 	ArrayPushCell(g_extraitem_cost, cost)
 	ArrayPushCell(g_extraitem_team, team)
-	
+	ArrayPushCell(g_extraitem_premium, premium)
+
 	// Set temporary new item flag
 	ArrayPushCell(g_extraitem_new, 1)
 	
@@ -10114,12 +10173,16 @@ public native_register_extra_item(const name[], cost, team)
 		// Replace team
 		buffer[0] = ArrayGetCell(g_extraitem2_team, i)
 		ArraySetCell(g_extraitem_team, g_extraitem_i, buffer[0])
+		
+		// Replace team
+		buffer[0] = ArrayGetCell(g_extraitem2_premium, i)
+		ArraySetCell(g_extraitem_premium, g_extraitem_i, buffer[0])
 	}
 	
 	// Increase registered items counter
 	if(team == ZP_TEAM_ZOMBIE) g_item_human_count++
 	g_extraitem_i++
-	
+
 	// Return id under which we registered the item
 	return g_extraitem_i-1;
 }
@@ -10131,6 +10194,7 @@ native_register_extra_item2(const name[], cost, team)
 	ArrayPushString(g_extraitem_name, name)
 	ArrayPushCell(g_extraitem_cost, cost)
 	ArrayPushCell(g_extraitem_team, team)
+	ArrayPushCell(g_extraitem_premium, ZP_ITEM_NORMAL)
 	
 	// Set temporary new item flag
 	ArrayPushCell(g_extraitem_new, 1)
@@ -10695,11 +10759,11 @@ flare_lighting(entity, duration)
 	engfunc(EngFunc_WriteCoord, originF[0]) // x
 	engfunc(EngFunc_WriteCoord, originF[1]) // y
 	engfunc(EngFunc_WriteCoord, originF[2]) // z
-	write_byte(get_pcvar_num(cvar_flaresize)) // radius
+	write_byte(get_pcvar_num(cvar_flaresize) + random_num(-10, 10)) // radius
 	write_byte(color[0]) // r
 	write_byte(color[1]) // g
 	write_byte(color[2]) // b
-	write_byte(51) //life
+	write_byte(51) //life  
 	write_byte((duration < 2) ? 3 : 0) //decay rate
 	message_end()
 	

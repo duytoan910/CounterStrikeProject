@@ -74,7 +74,7 @@ public plugin_init()
 	
 	register_message(get_user_msgid("DeathMsg"), "Message_DeathMsg")
 	
-	g_itemid_m134ex = zp_register_extra_item("M134 Predator", 3000, ZP_TEAM_HUMAN)
+	g_itemid_m134ex = zp_register_extra_item("M134 Predator", 4000, ZP_TEAM_HUMAN)
 	g_MaxPlayers = get_maxplayers()
 }
 public Message_DeathMsg(msg_id, msg_dest, id)

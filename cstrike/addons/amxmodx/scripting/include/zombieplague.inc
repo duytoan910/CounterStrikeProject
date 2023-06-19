@@ -63,6 +63,9 @@
 #define ZP_TEAM_NEMESIS (1<<2)
 #define ZP_TEAM_SURVIVOR (1<<3)
 
+#define ZP_ITEM_NORMAL 0
+#define ZP_ITEM_PREMIUM 1
+
 /* Game modes for zp_round_started() */
 enum
 {
@@ -374,7 +377,7 @@ native zp_get_survivor_count()
  * @param teams		Bitsum of teams it should be available for.
  * @return		An internal extra item ID, or -1 on failure.
  */
-native zp_register_extra_item(const name[], cost, teams)
+native zp_register_extra_item(const name[], cost, teams, premium = ZP_ITEM_NORMAL)
 
 /**
  * Registers a custom class which will be added to the zombie classes menu of ZP.

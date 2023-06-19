@@ -93,7 +93,7 @@ public plugin_init()
 	
 	cvar_optimize = register_cvar("zp_optimize", "0")
 	
-	g_id = zp_register_extra_item("Petrol Boomer", 3000, ZP_TEAM_HUMAN)
+	g_id = zp_register_extra_item("Petrol Boomer", 6000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()

@@ -57,7 +57,7 @@ public plugin_init()
 	RegisterHam(Ham_TraceAttack, "player", "TraceAttack")
 	register_clcmd("setmode","set_mode")
 	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
-	g_itemid_janus7 = zp_register_extra_item("Janus-VII", 3000, ZP_TEAM_HUMAN);
+	g_itemid_janus7 = zp_register_extra_item("Janus-VII", 6000, ZP_TEAM_HUMAN);
 	
 }
 public Message_DeathMsg(msg_id, msg_dest, id)

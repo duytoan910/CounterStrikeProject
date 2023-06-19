@@ -79,7 +79,7 @@ public plugin_init()
 	register_forward(FM_PlayerPreThink, "fw_PlayerPreThink")
 	
 	
-	g_itemid = zp_register_extra_item("SG552 Lycanthrope", 3000, ZP_TEAM_HUMAN)
+	g_itemid = zp_register_extra_item("SG552 Lycanthrope", 8000, ZP_TEAM_HUMAN)
 	md_loadimage(EFFECT_TGA)
 }
 

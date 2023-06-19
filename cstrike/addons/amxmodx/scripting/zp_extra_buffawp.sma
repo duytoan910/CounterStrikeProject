@@ -11,42 +11,57 @@
 #include <toan>
 
 #define write_coord_f(%1)	engfunc(EngFunc_WriteCoord,%1)
+#define SET_MODEL(%0,%1)		engfunc(EngFunc_SetModel, %0, %1)
+#define SET_ORIGIN(%0,%1)		engfunc(EngFunc_SetOrigin, %0, %1)
+#define MESSAGE_BEGIN(%0,%1,%2,%3)	engfunc(EngFunc_MessageBegin, %0, %1, %2, %3)
+#define MESSAGE_END()			message_end()
 
-#define Reload_Time	2.0
+#define WRITE_ANGLE(%0)			engfunc(EngFunc_WriteAngle, %0)
+#define WRITE_BYTE(%0)			write_byte(%0)
+#define WRITE_COORD(%0)			engfunc(EngFunc_WriteCoord, %0)
+#define WRITE_STRING(%0)		write_string(%0)
+#define WRITE_SHORT(%0)			write_short(%0)
+#define PRECACHE_MODEL(%0)		engfunc(EngFunc_PrecacheModel, %0)
+#define PRECACHE_SOUND(%0)		engfunc(EngFunc_PrecacheSound, %0)
+
+#define Reload_Time	3.0
 
 #define	CSW_BUFFAWP	CSW_AWP
 #define	weapon_buffawp	"weapon_awp"
 
 #define	oldevent_buffawp	"events/awp.sc"
 #define	oldmodel_buffawp 	"models/w_awp.mdl"
-#define BUFFAWP_V_Model 	"models/v_buffawp.mdl"
-#define BUFFAWP_P_Model 	"models/p_buffawp.mdl"
-#define BUFFAWP_W_Model 	"models/w_buffawp.mdl"
-#define C7_Fire_Sound 	"weapons/awpbuff-1.wav"
+#define BUFFAWP_V_Model 	"models/v_zgun.mdl"
+#define BUFFAWP_P_Model 	"models/p_zgun.mdl"
+#define BUFFAWP_W_Model 	"models/w_zgun.mdl"
+#define C7_Fire_Sound 	"weapons/zgun-1.wav"
 
-#define	BUFFAWP_NAME "AWP Elven Ranger"
-#define	BUFFAWP_COST	3000
+#define	BUFFAWP_NAME "AWP-Z"
+#define	BUFFAWP_COST	10000
 #define BUFFAWP_CLIP 20
 #define BUFFAWP_AMMO 200
-#define BUFFAWP_RECOIL 1.0
-#define BUFFAWP_DAMAGE 4.0
+#define BUFFAWP_RECOIL 4.0
+#define BUFFAWP_DAMAGE 2.5
 #define CHARGE_EXPRADIUS 60.0
+#define WEAPONN_KRAKEN_DAMAGE			random_float(650.0, 700.0)
 
 #define m_iClip				51
 #define WEAP_LINUX_XTRA_OFF		4
 #define m_fInReload			54
+#define extra_offset_weapon		4
+#define m_flVelocityModifier 		108 
+#define extra_offset_player		5
 
-new const exp_spr[] = "sprites/ef_gungnir_bexplo.spr"
-new const exp_spr2[] = "sprites/ef_stickybomb_idle_g.spr"
-
-new const EXP_SOUND[2][] = {
-	"weapons/dartpistol_explosion1.wav",
-	"weapons/dartpistol_explosion2.wav"
-}
+#define MODEL_KRAKEN				"models/ef_kraken.mdl"
+#define SOUND_EXPLODE				"weapons/kraken_exp.wav"
+#define SOUND_EXPLODE2				"weapons/kraken_up.wav"
+#define SPRITE_EXP					"sprites/ef_kraken_exp.spr"
+#define SPRITE_SMOKE				"sprites/ef_kraken_fire.spr"
+#define KRAKEN_CLASSNAME			"KrakeClass"
 
 //CROW-7
 new g_has_buffawp[33], g_event_buffawp, Float:g_flNextUseTime[33]
-new g_bot,g_exp_sprid, g_exp_sprid2
+new g_bot, id_spr_exp, id_spr_smk
 new g_buffawp
 new g_isprimary, Float:recoil[33]
 new g_clip_ammo[33], g_clip[33], oldweap[33]
@@ -61,7 +76,8 @@ public plugin_init()
 	
 	register_forward(FM_SetModel, "SetModel")
 	register_forward(FM_UpdateClientData, "UpdateClientData_Post", 1)
-	register_forward(FM_PlaybackEvent, "PlaybackEvent")
+	register_forward(FM_PlaybackEvent, "PlaybackEvent")	
+	register_forward(FM_Think, 					"FakeMeta_Think",			false);
 	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
 	
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage")
@@ -88,12 +104,14 @@ public plugin_precache()
 	precache_model(BUFFAWP_P_Model)
 	precache_model(BUFFAWP_W_Model)
 	precache_sound(C7_Fire_Sound)
-	for(new i = 0; i < sizeof(EXP_SOUND); i++) 
-		engfunc(EngFunc_PrecacheSound, EXP_SOUND[i])
-	g_exp_sprid = engfunc(EngFunc_PrecacheModel, exp_spr)
-	g_exp_sprid2 = engfunc(EngFunc_PrecacheModel, exp_spr2)
 		
 	register_forward(FM_PrecacheEvent, "PrecacheEvent_Post", 1)
+
+	PRECACHE_MODEL(MODEL_KRAKEN);
+	PRECACHE_SOUND(SOUND_EXPLODE);
+	PRECACHE_SOUND(SOUND_EXPLODE2);
+	id_spr_exp = PRECACHE_MODEL(SPRITE_EXP);
+	id_spr_smk = PRECACHE_MODEL(SPRITE_SMOKE);
 }
 public client_putinserver(id)
 {
@@ -138,6 +156,7 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage)
 		}
 	}
 }
+
 public TraceAttack(ent, attacker, Float:Damage, Float:fDir[3], ptr, iDamageType)
 {
 	if(!is_user_alive(attacker))
@@ -154,7 +173,6 @@ public TraceAttack(ent, attacker, Float:Damage, Float:fDir[3], ptr, iDamageType)
 		pev(hit, pev_origin, flEnd)
 		
 	navtive_bullet_effect(attacker, ent, ptr)
-	
 	explode(attacker, flEnd)
 	
 	hit = 0;
@@ -343,49 +361,111 @@ public explode(id, Float:End1[3])
 			TE_FLAG |= TE_EXPLFLAG_NOSOUND
 			TE_FLAG |= TE_EXPLFLAG_NOPARTICLES
 			
+			MESSAGE_BEGIN(MSG_PVS, SVC_TEMPENTITY, End1, 0);
+			WRITE_BYTE(TE_EXPLOSION);
+			WRITE_COORD(End1[0]); 
+			WRITE_COORD(End1[1]);
+			WRITE_COORD(End1[2] + 10.0);
+			WRITE_SHORT(id_spr_exp);
+			WRITE_BYTE(20);
+			WRITE_BYTE(10);
+			WRITE_BYTE(TE_EXPLFLAG_NOSOUND | TE_EXPLFLAG_NODLIGHTS | TE_EXPLFLAG_NOPARTICLES);
+			MESSAGE_END();
+			
+			MESSAGE_BEGIN(MSG_PVS, SVC_TEMPENTITY, End1, 0);
+			WRITE_BYTE(TE_EXPLOSION);
+			WRITE_COORD(End1[0]); 
+			WRITE_COORD(End1[1]);
+			WRITE_COORD(End1[2] + 10.0);
+			WRITE_SHORT(id_spr_smk);
+			WRITE_BYTE(20);
+			WRITE_BYTE(15);
+			WRITE_BYTE(TE_EXPLFLAG_NOSOUND | TE_EXPLFLAG_NODLIGHTS | TE_EXPLFLAG_NOPARTICLES);
+			MESSAGE_END();
+			
+			
 			new ent = create_entity("info_target")
-			set_pev(ent, pev_origin, End1)
-			emit_sound(ent, CHAN_ITEM, EXP_SOUND[random_num(0,1)], 1.0, ATTN_NORM, 0, PITCH_NORM)
+			set_pev(ent, pev_origin, End1)			
+			engfunc(EngFunc_EmitSound, ent, CHAN_WEAPON, SOUND_EXPLODE, 0.9, ATTN_NORM, 0, PITCH_NORM);
 			set_pev(ent, pev_flags, FL_KILLME)
-			
-			// Exp
-			message_begin(MSG_BROADCAST ,SVC_TEMPENTITY)
-			write_byte(TE_EXPLOSION)
-			engfunc(EngFunc_WriteCoord, End1[0])
-			engfunc(EngFunc_WriteCoord, End1[1])
-			engfunc(EngFunc_WriteCoord, End1[2])
-			write_short(g_exp_sprid)	// sprite index
-			write_byte(5)	// scale in 0.1's
-			write_byte(25)	// framerate
-			write_byte(TE_FLAG)	// flags
-			message_end()
-			
-			message_begin(MSG_BROADCAST ,SVC_TEMPENTITY)
-			write_byte(TE_EXPLOSION)
-			engfunc(EngFunc_WriteCoord, End1[0])
-			engfunc(EngFunc_WriteCoord, End1[1])
-			engfunc(EngFunc_WriteCoord, End1[2])
-			write_short(g_exp_sprid2)	// sprite index
-			write_byte(7)	// scale in 0.1's
-			write_byte(15)	// framerate
-			write_byte(TE_FLAG)	// flags
-			message_end()
 			
 			// Alive...
 			new a = FM_NULLENT
 			// Get distance between victim and epicenter
 			while((a = find_ent_in_sphere(a, End1, CHARGE_EXPRADIUS)) != 0)
 			{
-				if (id == a)
+				if (id == a || !is_user_alive(a) || !zp_get_user_zombie(a))
 					continue 
 				if(pev(a, pev_takedamage) != DAMAGE_NO)
 				{
-					ExecuteHamB(Ham_TakeDamage, a, id, id, is_deadlyshot(id)?random_float(510.0-10,510.0+10)+1.5:random_float(510.0-10,510.0+10), DMG_BULLET)
+					new iEntity = create_entity("info_target");
+					if (pev_valid(iEntity))
+					{	
+						new Origin[3];	pev(a, pev_origin, Origin)
+						SET_MODEL(iEntity, MODEL_KRAKEN)
+						SET_ORIGIN(iEntity, Origin)
+					
+						set_pev(iEntity, pev_classname, KRAKEN_CLASSNAME);
+						set_pev(iEntity, pev_movetype, MOVETYPE_FLY);
+						set_pev(iEntity, pev_solid, SOLID_NOT);
+						set_pev(iEntity, pev_owner, id);
+						set_pev(iEntity, pev_framerate, 0.4);
+						set_pev(iEntity, pev_sequence, 0);
+						set_pev(iEntity, pev_animtime, get_gametime());
+						set_pev(iEntity, pev_fuser2, get_gametime() + 2.5);
+						set_pev(iEntity, pev_nextthink, get_gametime() + 0.4);
+					}
+
+					ExecuteHamB(Ham_TakeDamage, a, id, id, is_deadlyshot(id)?random_float(110.0-10,110.0+10)+1.5:random_float(110.0-10,110.0+10), DMG_BULLET)
 				}
 			}
 		}
 	}
 }
+
+public FakeMeta_Think(const iSprite)
+{
+	if (!pev_valid(iSprite))
+	{
+		return FMRES_IGNORED;
+	}
+	
+	static Classname[32];pev(iSprite, pev_classname, Classname, sizeof(Classname));
+
+	static iAttacker; iAttacker = pev(iSprite, pev_owner);
+
+	if (equal(Classname, KRAKEN_CLASSNAME))
+	{
+		static Float:Origin[3];pev(iSprite, pev_origin, Origin);
+		static Float:iTime;pev(iSprite, pev_fuser2, iTime);
+		static iVictim;iVictim = -1;
+
+		if (iTime <= get_gametime())
+		{
+			engfunc(EngFunc_RemoveEntity, iSprite);
+			return FMRES_SUPERCEDE;
+		}
+		
+		while((iVictim = engfunc(EngFunc_FindEntityInSphere, iVictim, Origin, 20.0)) != 0)
+		{
+			static Float:iVelo[3];pev(iVictim, pev_velocity, iVelo);
+			
+			if (!is_user_alive(iVictim))continue;
+			if (!zp_get_user_zombie(iVictim))continue;	
+			
+			iVelo[2] = 350.0;
+
+			ExecuteHamB(Ham_TakeDamage, iVictim, iSprite, iAttacker, is_deadlyshot(iAttacker)?WEAPONN_KRAKEN_DAMAGE*1.5:WEAPONN_KRAKEN_DAMAGE, DMG_SONIC);
+			
+			set_pdata_float(iVictim, m_flVelocityModifier, 1.0,  extra_offset_player);
+			set_pev(iVictim, pev_velocity, iVelo);
+		}
+		set_pev(iSprite, pev_nextthink, get_gametime() + 2.4);
+	}
+	
+	return FMRES_IGNORED;
+}
+
 stock set_anim(const Player, const Sequence)
 {
 	set_pev(Player, pev_weaponanim, Sequence)

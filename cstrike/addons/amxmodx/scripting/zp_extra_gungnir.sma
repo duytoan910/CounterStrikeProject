@@ -138,7 +138,7 @@ public plugin_init() {
 
         // Cac
         register_clcmd("weapon_gungnir", "hook_weapon")
-        g_Dprd = zp_register_extra_item("Gungnir", 10000, ZP_TEAM_HUMAN)
+        g_Dprd = zp_register_extra_item("Gungnir", 15000, ZP_TEAM_HUMAN, 1)
 }
 
 public hook_weapon(id) engclient_cmd(id, weapon_gungnir)

@@ -26,7 +26,7 @@
 #define WEAPON_SPECIAL_CODE 79483166
 #define WEAPON_REFERENCE "weapon_m3"
 #define WEAPON_ITEM_NAME "M32 MGL Venom"
-#define WEAPON_ITEM_COST 3000
+#define WEAPON_ITEM_COST 8000
 
 #define WEAPON_MODEL_VIEW "models/v_m32venom.mdl"
 #define WEAPON_MODEL_PLAYER "models/p_m32venom.mdl"
@@ -36,9 +36,9 @@
 
 //���������
 #define RADIUS_DMG 120.0	//������������ ������ ��� ������
-#define DMG_EXP 400.0		//������������ ����� (��� ����� �������� � ������� ����� 280)
+#define DMG_EXP 450.0		//������������ ����� (��� ����� �������� � ������� ����� 280)
 
-#define M32_DAMAGE_POISON 7.0
+#define M32_DAMAGE_POISON 8.5
 #define M32_RANGE 120.0
 
 #define DISTANCE 1200		//���������� �������� ��� �������

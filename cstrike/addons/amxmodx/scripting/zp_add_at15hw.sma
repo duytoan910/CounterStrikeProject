@@ -328,9 +328,8 @@ public PrimaryAttack_Post5(id)
 		set_pev(ent,pev_punchangle,push)
 		
 		set_anim(ent, random_num(ANIM_SHOOT1,ANIM_SHOOT3))
-		emit_sound(ent, CHAN_WEAPON, C5_Fire_Sound, VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
-		
 		set_pdata_float(id, 48, 0.4, 4)
+		emit_sound(id, CHAN_WEAPON, C5_Fire_Sound, VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
 	}
 }
 

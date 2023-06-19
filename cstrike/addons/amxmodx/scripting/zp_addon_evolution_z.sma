@@ -130,6 +130,8 @@ public zp_user_infected_post(iPlayer, id, iNemesis)
 			zp_cso_evokill[id] = 0
 			set_hudmessage(0, 255, 0, -1.0, 0.40, 1, 5.0, 5.0)
 			ShowSyncHudMsg(id, g_SyncHud_Kill, "Evolution!!!")
+			set_weapon_anim(id, 8)
+			set_pdata_float(id, 83, 0.5, 5)
 			PlaySound(id, zp_cso_zombie_lvlup[0])
 			zp_cso_evolution(id, zp_cso_zblvl[id]+1)
 			set_task(0.1, "Dead_Effect", id)
@@ -225,4 +227,17 @@ public Dead_Effect(id)
 	write_byte(10)
 	write_byte(TE_FLAG)
 	message_end()
+}
+
+stock set_weapon_anim(id, anim)
+{
+	if(!is_user_alive(id))
+		return
+		
+	set_pev(id, pev_weaponanim, anim)
+	
+	message_begin(MSG_ONE_UNRELIABLE, SVC_WEAPONANIM, _, id)
+	write_byte(anim)
+	write_byte(0)
+	message_end()	
 }

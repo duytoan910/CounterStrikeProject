@@ -172,30 +172,27 @@ public fw_PlayerPostThink(id)
 	if(!is_user_alive(id))
 		return PLUGIN_HANDLED
 	
-	if (zp_get_user_zombie_class(id) == idclass)
-	{
-		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == idclass)){
-			new button = pev(id, pev_button)
-			if(IsCurrentSpeedHigherThan(id, 200.0)){
-				if (!(button & IN_DUCK || button & IN_JUMP || button & IN_BACK) && !g_setAnim[id])
-				{
-					g_setAnim[id] = true
-					Player_SetAnimation(id, "ref_aim_knife_run")
-					set_task(1.9, "unlockAnim", id+TASK_USE_ANIM)
-				}else if((button & IN_DUCK || button & IN_JUMP || button & IN_BACK)){
-					Player_SetAnimation(id, "ref_aim_knife_walk")
-					if (task_exists(id+TASK_USE_ANIM)){
-						g_setAnim[id] = false
-						remove_task(id+TASK_USE_ANIM)
-					}
+	if(is_user_alive(id) && zp_get_user_zombie(id)){
+		new button = pev(id, pev_button)
+		if(IsCurrentSpeedHigherThan(id, 200.0)){
+			if (!(button & IN_DUCK || button & IN_JUMP || button & IN_BACK) && !g_setAnim[id])
+			{
+				g_setAnim[id] = true
+				Player_SetAnimation(id, "ref_aim_knife_run")
+				set_task(1.9, "unlockAnim", id+TASK_USE_ANIM)
+			}else if((button & IN_DUCK || button & IN_JUMP || button & IN_BACK)){
+				Player_SetAnimation(id, "ref_aim_knife_walk")
+				if (task_exists(id+TASK_USE_ANIM)){
+					g_setAnim[id] = false
+					remove_task(id+TASK_USE_ANIM)
 				}
-			}else{
-				if((button & IN_FORWARD || button & IN_LEFT || button & IN_RIGHT || button & IN_BACK)){
-					Player_SetAnimation(id, "ref_aim_knife_walk")
-					if (task_exists(id+TASK_USE_ANIM)){
-						g_setAnim[id] = false
-						remove_task(id+TASK_USE_ANIM)
-					}
+			}
+		}else{
+			if((button & IN_FORWARD || button & IN_LEFT || button & IN_RIGHT || button & IN_BACK)){
+				Player_SetAnimation(id, "ref_aim_knife_walk")
+				if (task_exists(id+TASK_USE_ANIM)){
+					g_setAnim[id] = false
+					remove_task(id+TASK_USE_ANIM)
 				}
 			}
 		}

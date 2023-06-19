@@ -98,7 +98,7 @@ public plugin_init()
 	
 	g_MsgStatusIcon = get_user_msgid("StatusIcon")
 	
-	g_thanatos7 = zp_register_extra_item("Thanatos-VII", 3000, ZP_TEAM_HUMAN) 
+	g_thanatos7 = zp_register_extra_item("Thanatos-VII", 4000, ZP_TEAM_HUMAN) 
 }
 
 public plugin_precache()

@@ -28,7 +28,7 @@
 #define WEAPON_TIME_DELAY_DEPLOY 		1.4
 
 #define ZP_ITEM_NAME				"Black Dragon Cannon" 
-#define ZP_ITEM_COST				10000
+#define ZP_ITEM_COST				15000
 
 // Models
 #define MODEL_WORLD 				"models/w_cannon_6.mdl"
@@ -499,7 +499,7 @@ public plugin_init()
 	
 	RegisterHam(Ham_Weapon_PrimaryAttack,	WEAPON_REFERANCE, 	"HamHook_Item_PrimaryAttack",		false);
 
-	g_iItemID = zp_register_extra_item(ZP_ITEM_NAME, ZP_ITEM_COST, ZP_TEAM_HUMAN);
+	g_iItemID = zp_register_extra_item(ZP_ITEM_NAME, ZP_ITEM_COST, ZP_TEAM_HUMAN, 1);
 }
 public zp_extra_item_selected(id, itemid)
 {

@@ -116,7 +116,7 @@ public plugin_init()
 	
 	//register_clcmd("admin_get_balrog11", "Get_Balrog11", ADMIN_RCON)
 	
-	g_balrog11 = zp_register_extra_item("Balrog-XI", 3000, ZP_TEAM_HUMAN)
+	g_balrog11 = zp_register_extra_item("Balrog-XI", 8000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()

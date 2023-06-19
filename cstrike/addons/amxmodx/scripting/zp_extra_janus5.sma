@@ -113,7 +113,7 @@ public plugin_init()
 	RegisterHam(Ham_TraceAttack, "func_plat", "fw_TraceAttack", 1)
 	RegisterHam(Ham_TraceAttack, "func_rotating", "fw_TraceAttack", 1)
 	
-	item_janus = zp_register_extra_item("Janus-V", 3000, ZP_TEAM_HUMAN)
+	item_janus = zp_register_extra_item("Janus-V", 4000, ZP_TEAM_HUMAN)
 	register_clcmd("setmode","set_mode")
 	g_MaxPlayers = get_maxplayers()
 }

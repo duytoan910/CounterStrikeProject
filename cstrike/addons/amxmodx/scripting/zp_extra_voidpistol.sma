@@ -7,6 +7,7 @@
 #include <fun>
 #include <xs>
 #include <zombieplague>
+#include <toan>
 
 #define PLUGIN "Void Avenger"
 #define VERSION "1.2"
@@ -135,7 +136,7 @@ public plugin_init()
 	
 	register_concmd("wc_refill", "refill_ammo")
 	
-	g_itemid = zp_register_extra_item("Void Avenger", 10000, ZP_TEAM_HUMAN)
+	g_itemid = zp_register_extra_item("Void Avenger", 15000, ZP_TEAM_HUMAN, 1)
 }
 
 public plugin_precache()

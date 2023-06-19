@@ -36,7 +36,7 @@
 #define WEAPON_DAMAGE_EXP2			140.0
 
 #define ZP_ITEM_NAME				"M3 Black Dragon" 
-#define ZP_ITEM_COST				3000
+#define ZP_ITEM_COST				8000
 
 // Models
 #define MODEL_WORLD				"models/w_m3dragon.mdl"

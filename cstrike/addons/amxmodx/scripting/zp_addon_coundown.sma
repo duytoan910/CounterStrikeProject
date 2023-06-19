@@ -11,6 +11,10 @@ new zp_cso_sec, zp_cso_round, current_mode
 new g_msgsync, g_roundstarted
 new zp_cso_humanswins, zp_cso_zombieswins,zp_cso_hud_sync3
 
+new createdFlag;
+#define g_Sky_CLASSNAME "SKYBOX_FLAME"
+new const SkyModel = "models/ef_sky_flame.mdl"
+
 new GAMEMODE_NAME[][] = 
 {
 	"Zombie is coming!!",
@@ -54,15 +58,20 @@ public plugin_precache()
 
 	for(i = 0; i < sizeof zp_cso_countchant; i++) 
 		engfunc(EngFunc_PrecacheSound, zp_cso_countchant[i])
+
+		
+	precache_model(SkyModel)
 }
 public Event_RoundStart()
 {
 	current_mode = 0
+
 }
 public zp_cso_round_start()
 {
-	if(zp_cso_round>=10){
-    	server_cmd("sv_restartround 1");
+	if(zp_cso_round>=7){
+		server_cmd("map zm_toan")
+		zp_cso_round = 0
 		return;
 	}
 	zp_cso_sec = get_cvar_num("zp_delay") + 1 
@@ -72,6 +81,19 @@ public zp_cso_round_start()
 }
 public client_putinserver(id){
 	set_task(0.1,"zp_cso_hud_score", id, _, _, "b")
+
+	if(!createdFlag){
+		static g_Sky; 
+		g_Sky = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
+		if(!pev_valid(g_Sky)) return
+
+		entity_set_string(g_Sky, EV_SZ_classname, g_Sky_CLASSNAME)
+		engfunc(EngFunc_SetModel, g_Sky, SkyModel)
+		set_pev(g_Sky, pev_origin, Float:{0.0, 0.0, 0.0})
+		set_pev(g_Sky, pev_nextthink, get_gametime() + 0.1)
+
+		createdFlag = true
+	}
 }
 public Event_RoundEnd()
 {

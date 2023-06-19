@@ -13,7 +13,7 @@
 
 // ================= Config =================
 // ZP Config
-#define COST 3000
+#define COST 6000
 
 // Level 1 Config
 #define V_MODEL "models/v_plasmagun.mdl"

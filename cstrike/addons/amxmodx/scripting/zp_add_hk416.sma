@@ -43,7 +43,7 @@ new hk416_W_MODEL[64] = "models/w_hk416.mdl"
 new const GUNSHOT_DECALS[] = { 41, 42, 43, 44, 45 }
 
 //new cvar_dmg_hk416, cvar_recoil_hk416, g_itemid_hk416, cvar_clip_hk416, cvar_spd_hk416, cvar_hk416_ammo
-new g_MaxPlayers, g_orig_event_hk416, g_IsInPrimaryAttack
+new g_MaxPlayers, g_orig_event_hk416, g_IsInPrimaryAttack, g_ham_bot
 new Float:cl_pushangle[MAX_PLAYERS + 1][3], m_iBlood[2]
 new g_has_hk416[33], g_clip_ammo[33], g_hk416_TmpClip[33], oldweap[33]
 new gmsgWeaponList
@@ -116,6 +116,19 @@ public plugin_precache()
 	register_forward(FM_PrecacheEvent, "fwPrecacheEvent_Post", 1)
 }
 
+public client_putinserver(id)
+{
+	if(!g_ham_bot && is_user_bot(id))
+	{
+		g_ham_bot = 1
+		set_task(0.1, "Do_Register_HamBot", id)
+	}
+}
+
+public Do_Register_HamBot(id)
+{
+	RegisterHamFromEntity(Ham_TakeDamage, id, "fw_TakeDamage")
+}
 public weapon_hook(id)
 {
     	engclient_cmd(id, "weapon_m4a1")
@@ -165,11 +178,6 @@ public fw_TraceAttack(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDama
 	write_short(iAttacker)
 	write_byte(GUNSHOT_DECALS[random_num (0, sizeof GUNSHOT_DECALS -1)])
 	message_end()
-}
-
-public zp_user_humanized_post(id)
-{
-	g_has_hk416[id] = false
 }
 
 public plugin_natives ()

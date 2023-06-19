@@ -366,13 +366,13 @@ public plugin_natives ()
 	// register_native("skull9", "give_skull9", 1)
 	// register_native("skull11", "give_skull11", 1)
 
-	register_native("skull3", "give_skull7", 1)
+	register_native("skull3", "give_skull4", 1)
 	register_native("skull4", "give_skull4", 1)
-	register_native("skull5", "give_skull5", 1)
-	register_native("skull7", "give_skull7", 1)
-	register_native("skull8", "give_skull8", 1)
+	register_native("skull5", "give_skull4", 1)
+	register_native("skull7", "give_skull4", 1)
+	register_native("skull8", "give_skull4", 1)
 	register_native("skull9", "give_skull9", 1)
-	register_native("skull11", "give_skull11", 1)
+	register_native("skull11", "give_skull4", 1)
 }
 
 public client_putinserver(id)

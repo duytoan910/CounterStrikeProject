@@ -111,7 +111,7 @@ public plugin_init()
 	register_message(get_user_msgid("DeathMsg"), "Message_DeathMsg")
 	
 	register_clcmd("weapon_thanatos5", "Hook_Weapon")
-	g_thanatos5 = zp_register_extra_item("Thanatos-V", 3000, ZP_TEAM_HUMAN)
+	g_thanatos5 = zp_register_extra_item("Thanatos-V", 4000, ZP_TEAM_HUMAN)
 }
 public Message_DeathMsg(msg_id, msg_dest, id)
 {
