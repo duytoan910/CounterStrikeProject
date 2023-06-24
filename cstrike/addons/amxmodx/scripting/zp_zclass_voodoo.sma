@@ -42,7 +42,6 @@ new g_sound[][] =
 
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR);
-	vzombi = zp_register_zombie_class("Voodoo", "", models, "v_knife_heal_zombi.mdl", 3100, 290, 0.8, 1.45);
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage");
 	register_event("DeathMsg", "Death", "a");
 	register_logevent("roundStart", 2, "1=Round_Start")
@@ -55,6 +54,9 @@ public plugin_precache() {
 	precache_sound(skillsound);
 	for(new i = 0; i < sizeof g_sound; i++)
 		precache_sound(g_sound[i]);
+
+		
+	vzombi = zp_register_zombie_class("Voodoo", "", models, "v_knife_heal_zombi.mdl", 3100, 290, 0.8, 1.45);
 }
 new g_bot
 public client_putinserver(id)

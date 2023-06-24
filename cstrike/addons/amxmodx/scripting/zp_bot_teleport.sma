@@ -59,7 +59,7 @@ public zp_round_started(gamemode, id)
 }
 public zp_user_humanized_post(id)
 {
-	if (get_cvar_num("bot_stop")==1)
+	if (get_cvar_num("bot_stop")==1 || !allowtele)
 		return;
 		
 	if(is_user_bot(id) && !zp_get_user_survivor(id))
