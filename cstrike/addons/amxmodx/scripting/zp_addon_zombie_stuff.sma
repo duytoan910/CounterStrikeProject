@@ -38,7 +38,7 @@ public hook_death()
 	if(zp_get_user_nemesis(read_data(1)))
 	{
 		create_thunder(coord,vOrigin);
-		client_cmd(0,"speak ambience/thunder_clap.wav")
+		emit_sound(0, CHAN_BODY, "ambience/thunder_clap.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)		
 	}
 	return PLUGIN_CONTINUE;
 }

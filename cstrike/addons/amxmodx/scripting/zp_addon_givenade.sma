@@ -44,14 +44,14 @@ public TestDeath(id)
 		give_item(ikiller, "weapon_hegrenade")
 		killcount[ikiller]=0
 		
-		if(is_user_bot(ikiller))
-		{
-			if (user_has_weapon(ikiller, CSW_HEGRENADE))
-			{
-				engclient_cmd(ikiller,"weapon_hegrenade")
-				ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(ikiller, 373, 5));
-			}			
-		}		
+		// if(is_user_bot(ikiller))
+		// {
+		// 	if (user_has_weapon(ikiller, CSW_HEGRENADE))
+		// 	{
+		// 		engclient_cmd(ikiller,"weapon_hegrenade")
+		// 		ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(ikiller, 373, 5));
+		// 	}			
+		// }		
 	}
 	return PLUGIN_HANDLED
 } 

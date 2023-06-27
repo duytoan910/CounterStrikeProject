@@ -372,7 +372,8 @@ native zp_get_survivor_count()
  * @param teams		Bitsum of teams it should be available for.
  * @return		An internal extra item ID, or -1 on failure.
  */
-native zp_register_extra_item(const name[], cost, teams, premium)
+//native zp_register_extra_item(const name[], cost, teams, premium)
+native zp_register_extra_item(const name[], cost, teams)
 
 /**
  * Registers a custom class which will be added to the zombie classes menu of ZP.

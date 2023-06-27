@@ -23,6 +23,7 @@
 #include <zp50_grenade_frost>
 #define LIBRARY_GRENADE_FIRE "zp50_grenade_fire"
 #include <zp50_grenade_fire>
+#include <zp50_gamemodes>
 
 // Settings file
 new const ZP_SETTINGS_FILE[] = "zombieplague.ini"

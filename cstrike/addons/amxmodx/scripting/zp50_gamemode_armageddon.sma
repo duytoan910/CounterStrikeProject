@@ -168,6 +168,13 @@ public zp_fw_gamemodes_start()
 		set_user_health(id, floatround(get_user_health(id) * get_pcvar_float(cvar_armageddon_nem_hp_multi)))
 	}
 	
+	for(new i=0; i<get_maxplayers();i++){
+		if(!is_user_alive(i))
+			continue 
+
+		set_user_rendering(i)
+	}
+
 	// Play Armageddon sound
 	if (get_pcvar_num(cvar_armageddon_sounds))
 	{

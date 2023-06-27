@@ -492,7 +492,7 @@ public create_explode_effect(Float:Origin[3])
 	write_byte(10);
 	write_byte(255);
 	message_end();
-	/*
+	
 	new iEnt;
 	new Float:fCurTime;
 	global_get(glb_time, fCurTime);
@@ -518,7 +518,7 @@ public create_explode_effect(Float:Origin[3])
 	engfunc(EngFunc_SetModel, iEnt,death_exp_effect_model2);
 	set_pev(iEnt, pev_origin, Origin);
 	engfunc(EngFunc_DropToFloor, iEnt);
-	set_pev(iEnt, pev_nextthink, fCurTime + 3.0);*/
+	set_pev(iEnt, pev_nextthink, fCurTime + 3.0);
 } 
 public HamF_Think(iEnt)
 {

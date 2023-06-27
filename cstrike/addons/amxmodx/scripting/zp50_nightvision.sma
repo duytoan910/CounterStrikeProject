@@ -321,7 +321,6 @@ public set_vision_on(id, R, G, B)
 {
     if(is_user_connected(id))
     {
-    
         new vlighting[2]
         get_pcvar_string(cvar_vlighting, vlighting, charsmax(vlighting))
         
@@ -335,6 +334,7 @@ public set_vision_on(id, R, G, B)
         write_byte(50)
         message_end()
         
+
         set_player_light(id, vlighting)
         g_active[id] = true
         
@@ -363,8 +363,6 @@ public set_vision_off(id)
         set_player_light(id, lighting)
         
         g_active[id] = false
-        
-        
     }
     
 }    

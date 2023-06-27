@@ -13,6 +13,7 @@
 #include <fakemeta>
 #include <amx_settings_api>
 #include <zp50_colorchat>
+#include <zp50_gamemodes>
 #include <zp50_core_const>
 #include <zp50_items_const>
 
@@ -43,12 +44,20 @@ new Array:g_ItemCost
 new g_ItemCount
 new g_AdditionalMenuText[32]
 
+enum (+=200){
+	TASK_BOT_BUY_Z = 3000
+}
+
+#define ID_BOT_BUY_Z (taskid - TASK_BOT_BUY_Z)
+
 public plugin_init()
 {
 	register_plugin("[ZP] Items Manager", ZP_VERSION_STRING, "ZP Dev Team")
 	
 	register_clcmd("say /items", "clcmd_items")
 	register_clcmd("say items", "clcmd_items")
+	register_clcmd("zp_buy", "clcmd_items")
+	register_clcmd("say /list", "listitem")
 	
 	g_Forwards[FW_ITEM_SELECT_PRE] = CreateMultiForward("zp_fw_items_select_pre", ET_CONTINUE, FP_CELL, FP_CELL, FP_CELL)
 	g_Forwards[FW_ITEM_SELECT_POST] = CreateMultiForward("zp_fw_items_select_post", ET_IGNORE, FP_CELL, FP_CELL, FP_CELL)
@@ -237,6 +246,71 @@ public clcmd_items(id)
 		return;
 	
 	show_items_menu(id)
+}
+
+new g_PlayerBought[33];
+
+public zp_fw_gamemodes_start(game_mode_id){
+	for(new id=0;id<get_maxplayers();id++){
+		bot_buy_item(TASK_BOT_BUY_Z+id)
+	}
+}
+
+public zp_fw_gamemodes_end(game_mode_id){
+	for(new id=0;id<get_maxplayers();id++){
+		g_PlayerBought[id] = false
+		
+		remove_task(id+TASK_BOT_BUY_Z)
+	}
+}
+public zp_fw_core_infect_post(id){
+	remove_task(id+TASK_BOT_BUY_Z)
+	set_task(random_float(5.0, 30.0), "bot_buy_item", TASK_BOT_BUY_Z+id,_,_,"a", 1)
+
+}
+public zp_fw_core_cure_post(id){
+	remove_task(id+TASK_BOT_BUY_Z)
+	set_task(random_float(1.0, 5.0), "bot_buy_item", TASK_BOT_BUY_Z+id)
+
+}
+public bot_buy_item(taskid){
+	new id;id = ID_BOT_BUY_Z
+
+	if(!is_user_alive(id) || zp_core_is_zombie(id) || g_PlayerBought[id])
+		 return;
+
+	new randomIndex; randomIndex = random_num(0, g_ItemCount-1)
+
+	ExecuteForward(g_Forwards[FW_ITEM_SELECT_PRE], g_ForwardResult, id, randomIndex, 0)
+
+	if (g_ForwardResult >= ZP_ITEM_DONT_SHOW)
+		bot_buy_item(id)
+	else{
+		buy_item(id, randomIndex, 1)
+		g_PlayerBought[id] = true
+		return
+	}
+	return;
+}
+
+public listitem(id){
+	static name[32], cost, transkey[64]
+	for (new index = 0; index < g_ItemCount; index++){
+		ExecuteForward(g_Forwards[FW_ITEM_SELECT_PRE], g_ForwardResult, id, index, 0)
+		
+		// Show item to player?
+		if (g_ForwardResult >= ZP_ITEM_DONT_SHOW)
+			continue;
+		
+		ArrayGetString(g_ItemName, index, name, charsmax(name))
+		cost = ArrayGetCell(g_ItemCost, index)
+		
+		// ML support for item name
+		formatex(transkey, charsmax(transkey), "ITEMNAME %s", name)
+		if (GetLangTransKey(transkey) != TransKey_Bad) formatex(name, charsmax(name), "%L", id, transkey)
+
+		client_print(id, print_chat, "%d: %s %d",index, name, cost)
+	}
 }
 
 // Items Menu

@@ -109,11 +109,6 @@ public zp_extra_item_selected ( id, Item )
 			
 			g_iJumpingNadeCount [ id ] = 1
 		}
-		if(is_user_bot(id))
-		{
-			engclient_cmd(id,"weapon_smokegrenade")
-			ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, ActiveItemOffset, ExtraOffset));
-		}
 	}
 	return PLUGIN_CONTINUE
 }
