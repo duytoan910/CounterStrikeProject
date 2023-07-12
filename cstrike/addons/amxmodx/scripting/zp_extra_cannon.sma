@@ -499,7 +499,7 @@ public plugin_init()
 	
 	RegisterHam(Ham_Weapon_PrimaryAttack,	WEAPON_REFERANCE, 	"HamHook_Item_PrimaryAttack",		false);
 
-	g_iItemID = zp_register_extra_item(ZP_ITEM_NAME, ZP_ITEM_COST, ZP_TEAM_HUMAN, 1);
+	g_iItemID = zp_register_extra_item(ZP_ITEM_NAME, ZP_ITEM_COST, ZP_TEAM_HUMAN);
 }
 public zp_extra_item_selected(id, itemid)
 {

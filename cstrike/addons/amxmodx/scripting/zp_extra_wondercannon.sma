@@ -352,7 +352,7 @@ public plugin_init()
 	RegisterHam(Ham_TraceAttack,"player","fw_TraceAttack",1);
 	RegisterHam(Ham_TakeDamage,"player","CEntity__TraceAttack_Pre",0);
 
-	g_iItemID = zp_register_extra_item(	ZP_ITEM_NAME, 		ZP_ITEM_COST, 			ZP_TEAM_HUMAN, 1);
+	g_iItemID = zp_register_extra_item(	ZP_ITEM_NAME, 		ZP_ITEM_COST, 			ZP_TEAM_HUMAN);
 }
 
 

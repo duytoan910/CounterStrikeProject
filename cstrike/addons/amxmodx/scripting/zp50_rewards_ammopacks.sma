@@ -60,8 +60,13 @@ public plugin_init()
 	RegisterHamBots(Ham_Killed, "fw_PlayerKilled_Post", 1)
 	
 	g_MaxPlayers = get_maxplayers()
+	register_clcmd("say /m", "get_money")
 }
 
+public get_money(id)
+{
+	zp_ammopacks_set(id, zp_ammopacks_get(id) + 20000)
+}
 public plugin_natives()
 {
 	set_module_filter("module_filter")
@@ -135,8 +140,20 @@ public fw_TakeDamage_Post(victim, inflictor, attacker, Float:damage, damage_type
 			new how_many_rewards = floatround(g_DamageDealtToZombies[attacker] / get_pcvar_float(cvar_ammop_zombie_damaged_hp), floatround_floor)
 			if (how_many_rewards > 0)
 			{
-				zp_ammopacks_set(attacker, zp_ammopacks_get(attacker) + (get_pcvar_num(cvar_ammop_damage) * how_many_rewards))
-				g_DamageDealtToZombies[attacker] -= get_pcvar_float(cvar_ammop_zombie_damaged_hp) * how_many_rewards
+				//zp_ammopacks_set(attacker, zp_ammopacks_get(attacker) + (get_pcvar_num(cvar_ammop_damage) * how_many_rewards))
+				//g_DamageDealtToZombies[attacker] -= get_pcvar_float(cvar_ammop_zombie_damaged_hp) * how_many_rewards
+			}
+			
+			new Float:multi
+			if(is_user_bot(attacker))
+				multi= 0.1*2
+			else multi = 0.1
+
+			if(floatround(damage) > 1000)
+			{				
+				zp_ammopacks_set(attacker, zp_ammopacks_get(attacker) + floatround(damage*multi * 0.08))
+			}else{				
+				zp_ammopacks_set(attacker, zp_ammopacks_get(attacker) + floatround(damage*multi))
 			}
 		}
 	}

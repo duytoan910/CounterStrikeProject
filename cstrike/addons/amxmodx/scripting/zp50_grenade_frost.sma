@@ -298,8 +298,8 @@ public fw_TraceAttack(victim, attacker)
 		return HAM_IGNORED;
 	
 	// Block damage while frozen, as it makes killing zombies too easy
-	if (flag_get(g_IsFrozen, victim))
-		return HAM_SUPERCEDE;
+	// if (flag_get(g_IsFrozen, victim))
+	// 	return HAM_SUPERCEDE;
 	
 	return HAM_IGNORED;
 }

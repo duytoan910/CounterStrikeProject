@@ -259,7 +259,7 @@ public fw_ThinkGrenade(entity)
 				emit_sound(entity, CHAN_WEAPON, sound, 1.0, ATTN_NORM, 0, PITCH_NORM)
 				
 				// Set duration and start lightning loop on next think
-				set_pev(entity, PEV_FLARE_DURATION, 1 + get_pcvar_num(cvar_grenade_flare_duration)/2)
+				set_pev(entity, PEV_FLARE_DURATION, 1 + (get_pcvar_num(cvar_grenade_flare_duration)+random_num(-20,20))/2)
 				set_pev(entity, pev_dmgtime, current_time + 0.1)
 			}
 			else

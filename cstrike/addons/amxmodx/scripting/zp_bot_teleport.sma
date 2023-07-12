@@ -4,6 +4,7 @@
 #include <zombieplague>
 #include <toan>
 #include <hamsandwich>
+#include <engine>
 
 new const PLUGIN_NAME[] = "[ZP] Teleport"
 new const PLUGIN_VERSION[] = "1.2"
@@ -30,7 +31,8 @@ static const map[][MapInfo] = {
 	{"zm_toan", {-747, -523, -339}},
 	{"zm_toan", {883, 370, -339}},
 	{"zm_toan", {-887, 150, -339}},
-	{"zm_toan", {-13, 872, -339}}
+	{"zm_toan", {-13, 872, -339}},
+	{"zm_downhill", {3728, 0, -345}}
 }
 
 // Plugin Initialization
@@ -47,6 +49,7 @@ public plugin_init()
 	//register_clcmd("say /tele", "ActivateTeleport");
 	register_clcmd("say /tele", "tele");
 	register_clcmd("say /checktele", "check_location");
+	register_clcmd("checkbotcamp", "check_bot_camp");
 	
 	g_maxplayers = get_maxplayers()
 }
@@ -81,6 +84,25 @@ public client_putinserver(id)
 		}
 			
 	AvailMap = false;
+}
+public check_bot_camp(id)
+{
+	new Float:NewLocation[3],Float:userOrg[3];
+	new ent = -1
+	pev(id, pev_origin, userOrg)
+	while((ent = find_ent_in_sphere(ent, userOrg, 2000.0)) != 0)
+	{
+		static Classname[64]
+		pev(ent, pev_classname, Classname, sizeof(Classname))
+		if(!pev_valid(ent) ||
+			equal(Classname, "func_wall") ||
+			equal(Classname, "info_player_start") ||
+			equal(Classname, "info_player_deathmatch"))
+			continue 
+			
+		pev(ent, pev_origin, NewLocation)
+		client_print(id,print_chat,"Location of %s : %f %f %f",Classname, NewLocation[0],NewLocation[1],NewLocation[2])
+	}
 }
 public check_location(id)
 {

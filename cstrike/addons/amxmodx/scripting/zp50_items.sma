@@ -43,6 +43,7 @@ new Array:g_ItemName
 new Array:g_ItemCost
 new g_ItemCount
 new g_AdditionalMenuText[32]
+new g_roundStarted
 
 enum (+=200){
 	TASK_BOT_BUY_Z = 3000
@@ -252,23 +253,37 @@ new g_PlayerBought[33];
 
 public zp_fw_gamemodes_start(game_mode_id){
 	for(new id=0;id<get_maxplayers();id++){
+		if(!is_user_bot(id))
+			continue
 		bot_buy_item(TASK_BOT_BUY_Z+id)
 	}
+	g_roundStarted = true
 }
 
 public zp_fw_gamemodes_end(game_mode_id){
 	for(new id=0;id<get_maxplayers();id++){
+		if(!is_user_bot(id))
+			continue
 		g_PlayerBought[id] = false
-		
 		remove_task(id+TASK_BOT_BUY_Z)
 	}
+	g_roundStarted = false
 }
 public zp_fw_core_infect_post(id){
+	if(!g_roundStarted)
+		return;
+	if(!is_user_bot(id))
+		return
+
 	remove_task(id+TASK_BOT_BUY_Z)
 	set_task(random_float(5.0, 30.0), "bot_buy_item", TASK_BOT_BUY_Z+id,_,_,"a", 1)
-
 }
 public zp_fw_core_cure_post(id){
+	if(!g_roundStarted)
+		return;
+	if(!is_user_bot(id))
+		return
+
 	remove_task(id+TASK_BOT_BUY_Z)
 	set_task(random_float(1.0, 5.0), "bot_buy_item", TASK_BOT_BUY_Z+id)
 
@@ -283,12 +298,22 @@ public bot_buy_item(taskid){
 
 	ExecuteForward(g_Forwards[FW_ITEM_SELECT_PRE], g_ForwardResult, id, randomIndex, 0)
 
-	if (g_ForwardResult >= ZP_ITEM_DONT_SHOW)
+
+	new name[50]
+	ArrayGetString(g_ItemName, randomIndex, name, charsmax(name))
+	engclient_cmd(id,"say", "Buying", name)
+	if (g_ForwardResult >= ZP_ITEM_DONT_SHOW){
 		bot_buy_item(id)
-	else{
-		buy_item(id, randomIndex, 1)
-		g_PlayerBought[id] = true
 		return
+	}
+	else{
+		if(g_ForwardResult == ZP_ITEM_NOT_AVAILABLE){
+			bot_buy_item(id)
+			return
+		}else{
+			buy_item(id, randomIndex, 1)
+			return
+		}
 	}
 	return;
 }
@@ -423,4 +448,28 @@ buy_item(id, itemid, ignorecost = 0)
 	
 	// Execute item selected forward
 	ExecuteForward(g_Forwards[FW_ITEM_SELECT_POST], g_ForwardResult, id, itemid, ignorecost)
+
+	if(!is_user_bot(id))
+		return
+
+	g_PlayerBought[id] = true
+	
+	new name[50]
+	new num2 = random_num(1,5)
+	ArrayGetString(g_ItemName, itemid, name, charsmax(name))
+	switch(num2)
+	{
+		case 1:
+		{
+			engclient_cmd(id,"say", "Nice! Now i have", name)
+		}
+		case 2:
+		{
+			engclient_cmd(id,"say", "Hehe, I'll kill you with my", name)
+		}
+		case 5:
+		{
+			engclient_cmd(id,"say", "I've just trying to buy",name)
+		}
+	}
 }

@@ -46,7 +46,6 @@ public plugin_init()
 	register_event("ResetHUD", "event_reset_hud", "be")
 	register_message(get_user_msgid("Money"), "message_money")
 }
-
 public plugin_natives()
 {
 	register_library("zp50_ammopacks")
@@ -63,7 +62,6 @@ public native_ammopacks_get(plugin_id, num_params)
 		log_error(AMX_ERR_NATIVE, "[ZP] Invalid Player (%d)", id)
 		return -1;
 	}
-	
 	return g_AmmoPacks[id];
 }
 
@@ -80,6 +78,7 @@ public native_ammopacks_set(plugin_id, num_params)
 	new amount = get_param(2)
 	
 	g_AmmoPacks[id] = amount
+	loadmoney(id)
 	return true;
 }
 
@@ -132,4 +131,12 @@ stock fm_cs_set_user_money(id, value)
 		return;
 	
 	set_pdata_int(id, OFFSET_CSMONEY, value)
+}
+
+public loadmoney(id)
+{
+	message_begin(MSG_ONE_UNRELIABLE, get_user_msgid("Money"), _, id);
+	write_long(g_AmmoPacks[id]);
+	write_byte(1);
+	message_end();
 }

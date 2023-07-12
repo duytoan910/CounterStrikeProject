@@ -52,15 +52,6 @@ const PRIMARY_WEAPONS_BIT_SUM = (1<<CSW_SCOUT)|(1<<CSW_XM1014)|(1<<CSW_MAC10)|(1
 const SECONDARY_WEAPONS_BIT_SUM = (1<<CSW_P228)|(1<<CSW_ELITE)|(1<<CSW_FIVESEVEN)|(1<<CSW_USP)|(1<<CSW_GLOCK18)|(1<<CSW_DEAGLE)
 const GRENADES_WEAPONS_BIT_SUM = (1<<CSW_HEGRENADE)|(1<<CSW_FLASHBANG)|(1<<CSW_SMOKEGRENADE)
 
-// Ammo Type Names for weapons
-new const AMMOTYPE[][] = { "", "357sig", "", "762nato", "", "buckshot", "", "45acp", "556nato", "", "9mm", "57mm", "45acp",
-			"556nato", "556nato", "556nato", "45acp", "9mm", "338magnum", "9mm", "556natobox", "buckshot",
-			"556nato", "9mm", "762nato", "", "50ae", "556nato", "762nato", "", "57mm" }
-
-// Max BP ammo for weapons
-new const MAXBPAMMO[] = { -1, 52, -1, 90, 1, 32, 1, 100, 90, 1, 120, 100, 100, 90, 90, 90, 100, 120,
-			30, 120, 200, 32, 90, 120, 90, 2, 35, 90, 90, -1, 100 }
-
 #define PRIMARY_ONLY 1
 #define SECONDARY_ONLY 2
 #define GRENADES_ONLY 4
@@ -209,12 +200,6 @@ public zp_fw_core_spawn_post(id)
 		if (get_pcvar_num(cvar_survivor_aura))
 			remove_task(id+TASK_AURA)
 		
-		// Remove survivor weapon model
-		new weapon_name[32]
-		get_pcvar_string(cvar_survivor_weapon, weapon_name, charsmax(weapon_name))
-		new weapon_id = get_weaponid(weapon_name)
-		cs_reset_player_view_model(id, weapon_id)
-		
 		// Remove survivor flag
 		flag_unset(g_IsSurvivor, id)
 	}
@@ -231,12 +216,6 @@ public zp_fw_core_infect(id, attacker)
 		// Remove survivor aura
 		if (get_pcvar_num(cvar_survivor_aura))
 			remove_task(id+TASK_AURA)
-		
-		// Remove survivor weapon model
-		new weapon_name[32]
-		get_pcvar_string(cvar_survivor_weapon, weapon_name, charsmax(weapon_name))
-		new weapon_id = get_weaponid(weapon_name)
-		cs_reset_player_view_model(id, weapon_id)
 		
 		// Remove survivor flag
 		flag_unset(g_IsSurvivor, id)
@@ -266,12 +245,6 @@ public zp_fw_core_cure_post(id, attacker)
 	ArrayGetString(g_models_survivor_player, random_num(0, ArraySize(g_models_survivor_player) - 1), player_model, charsmax(player_model))
 	cs_set_player_model(id, player_model)
 	
-	// Apply survivor weapon model
-	new weapon_name[32]
-	get_pcvar_string(cvar_survivor_weapon, weapon_name, charsmax(weapon_name))
-	new weapon_id = get_weaponid(weapon_name)
-	cs_set_player_view_model(id, weapon_id, g_models_survivor_weapon)
-	
 	// Survivor glow
 	if (get_pcvar_num(cvar_survivor_glow))
 		set_user_rendering(id, kRenderFxGlowShell, 0, 0, 255, kRenderNormal, 25)
@@ -284,8 +257,6 @@ public zp_fw_core_cure_post(id, attacker)
 	strip_weapons(id, PRIMARY_ONLY)
 	strip_weapons(id, SECONDARY_ONLY)
 	strip_weapons(id, GRENADES_ONLY)
-	give_item(id, weapon_name)
-	ExecuteHamB(Ham_GiveAmmo, id, MAXBPAMMO[weapon_id], AMMOTYPE[weapon_id], MAXBPAMMO[weapon_id])
 }
 
 public native_class_survivor_get(plugin_id, num_params)
