@@ -3,6 +3,7 @@
 #include <fakemeta_util>
 #include <hamsandwich>
 #include <cstrike>
+#include <toan>
 #include <zombieplague>
 
 #define PLUGIN "AMXX Dual Beretta"
@@ -196,7 +197,7 @@ public client_disconnect(id)
 
 public zp_extra_item_selected(i, d) if(d == g_Dprd) Get_Base(i)
 public zp_user_humanized_post(id, survivor){
-	if(zp_get_user_survivor(id)){
+	if(survivor){
 		Get_Base(id)
 	}
 }
@@ -567,50 +568,6 @@ public WE_GUNKATA(id, Ent, iButton)
 		if(iHit == RESULT_HIT_PLAYER) emit_sound(id, CHAN_ITEM, SkillSounds[6], 0.8, ATTN_NORM, 0, PITCH_NORM)
 		
 		new Float:fDelay
-		
-		switch(iAnimMod)
-		{
-			case 0..3:  
-			{
-				new iAnim = random_num(anim_skill01,anim_skill05)
-				if(iAnim == iSetAnim)
-				{
-					if(iAnim == anim_skill05) iAnim = iAnim - 1
-					else iAnim = iAnim + 1
-				}
-				
-				if(iAnim == 10 || iAnim == 11) fDelay = 0.5
-				else fDelay = 0.9
-				
-				if(iAnim == 12) MakeMuzzleFlash(id, Ent, 1)
-				if(iAnim == 13) set_pev(Ent, pev_fuser2, get_gametime() + 0.66)
-				
-				Set_WeaponAnim(id, iAnim)
-				set_pev(Ent, pev_iuser3, iAnim)
-			}
-			case 4..9:
-			{
-				iCurAnim++
-				if(iCurAnim > 4) iCurAnim = 0
-				set_pev(Ent, pev_iuser1, iCurAnim)
-				
-				if(iCurAnim == 1 || iCurAnim == 2) fDelay = 0.5
-				else fDelay = 0.9
-				
-				new iAnim = iCurAnim+10
-				if(iAnim == iSetAnim)
-				{
-					if(iAnim == anim_skill05) iAnim = iAnim - 1
-					else iAnim = iAnim + 1
-				}
-				
-				if(iAnim == 12) MakeMuzzleFlash(id, Ent, 1)
-				if(iAnim == 13) set_pev(Ent, pev_fuser2, get_gametime() + 0.66)
-				
-				DBG_Specials(Ent, id, iAnim, get_gametime() + 2.5)
-				set_pev(Ent, pev_iuser3, iAnim)
-			}
-		}
 		
 		switch(iAnimMod)
 		{

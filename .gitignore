@@ -1,3 +1,6 @@
 cstrike/demoheader.dmf
 logs
 cstrike/addons/amxmodx/logs
+logs/connection_log_27015.txt
+logs/metahook.log
+platform/config/CSBotConfig.vdf

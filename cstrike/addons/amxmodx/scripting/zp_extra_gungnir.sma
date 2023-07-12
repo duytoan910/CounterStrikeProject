@@ -106,7 +106,7 @@ new const EXP_MODELS_EX[][] =
 #define UnSet_BitVar(%1,%2) %1 &= ~(1 << (%2 & 31))
 
 new g_cachde_mf, Float:g_cache_frame_mf, g_cache_light[2], g_cache_hit[2], g_cache_exp[2][2], g_cache_beam[2][2], g_SpraySpr, g_DropSpr
-new g_Had_Base, g_Clip[33], g_OldWeapon[33], g_Dprd, g_iVic[32][5], g_skin[33]
+new g_Had_Base, g_Clip[33], g_OldWeapon[33], g_Dprd, g_iVic[32][8], g_skin[33]
 
 // Safety
 new g_HamBot
@@ -138,7 +138,7 @@ public plugin_init() {
 
         // Cac
         register_clcmd("weapon_gungnir", "hook_weapon")
-        g_Dprd = zp_register_extra_item("Gungnir", 15000, ZP_TEAM_HUMAN, 1)
+        g_Dprd = zp_register_extra_item("Gungnir", 15000, ZP_TEAM_HUMAN)
 }
 
 public hook_weapon(id) engclient_cmd(id, weapon_gungnir)
@@ -443,7 +443,10 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
                 emit_sound(id, CHAN_WEAPON, SOUND_FIRE[1], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
         }
 
-        if ((!(iButton & IN_ATTACK2) && 0 < iCharge < 3) || (is_user_bot(id) && isModeA[id] == true && !(iButton & IN_ATTACK))
+        if ((!(iButton & IN_ATTACK2) && 0 < iCharge < 3) ||
+         (is_user_bot(id) && 
+         isModeA[id] &&
+          !(iButton & IN_ATTACK))
 	) {
                 if (is_user_bot(id)) {
                         iCharge = random_num(1, 4)
@@ -556,7 +559,7 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
 
                         set_pev(iEnt, pev_fuser2, fCurTime + 0.01)
 
-                        new Float: fOrigin[3], Float: fEnd[3], Float: LOL[5][3]
+                        new Float: fOrigin[3], Float: fEnd[3], Float: LOL[8][3]
                         pev(id, pev_origin, fOrigin)
                         Stock_Get_Postion(id, 50.0, 0.0, 0.0, fEnd)
 
@@ -580,7 +583,7 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
                         message_end()
 
                         new k
-                        for (k = 0; k < 8; k++) {
+                        for (k = 0; k < 7; k++) {
                                 while ((pEntity = engfunc(EngFunc_FindEntityInSphere, pEntity, fOrigin, ELECTRO_RANGE)) != 0) {
 					if (pev(pEntity, pev_takedamage) == DAMAGE_NO) continue
 					if (is_user_connected(pEntity) && pEntity != id)
@@ -603,10 +606,14 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
 					}
                                 }
 
-                                if(!is_user_alive(k))
+                                if(!is_user_alive(k) || !pev_valid(k))
                                         continue
-                                else
-                                        pev(g_iVic[id][k], pev_origin, LOL[k])
+                                else{
+                                        pev(
+                                                g_iVic[id][k], 
+                                                pev_origin, 
+                                                LOL[k])
+                                }
 
                                 if (is_user_alive(g_iVic[id][k]) && can_damage(id, g_iVic[id][k]) && entity_range(id, g_iVic[id][k]) < ELECTRO_RANGE && !Stock_Blah(fOrigin, LOL[k], id)) {
                                         engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, fOrigin, 0)

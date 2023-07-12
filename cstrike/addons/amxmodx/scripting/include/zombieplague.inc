@@ -63,9 +63,6 @@
 #define ZP_TEAM_NEMESIS (1<<2)
 #define ZP_TEAM_SURVIVOR (1<<3)
 
-#define ZP_ITEM_NORMAL 0
-#define ZP_ITEM_PREMIUM 1
-
 /* Game modes for zp_round_started() */
 enum
 {
@@ -74,8 +71,7 @@ enum
 	MODE_SURVIVOR,
 	MODE_SWARM,
 	MODE_MULTI,
-	MODE_PLAGUE,
-	MODE_NPC
+	MODE_PLAGUE
 }
 
 /* Winner teams for zp_round_ended() */
@@ -187,7 +183,6 @@ native zp_set_user_ammo_packs(id, amount)
  * @return		Maximum amount of health points, or -1 if not a normal zombie.
  */
 native zp_get_zombie_maxhealth(id)
-native zp_set_zombie_maxhealth(id, vaule)
 
 /**
  * Returns a player's custom flashlight batteries charge.
@@ -377,7 +372,8 @@ native zp_get_survivor_count()
  * @param teams		Bitsum of teams it should be available for.
  * @return		An internal extra item ID, or -1 on failure.
  */
-native zp_register_extra_item(const name[], cost, teams, premium = ZP_ITEM_NORMAL)
+//native zp_register_extra_item(const name[], cost, teams, premium)
+native zp_register_extra_item(const name[], cost, teams)
 
 /**
  * Registers a custom class which will be added to the zombie classes menu of ZP.
@@ -508,3 +504,4 @@ forward zp_user_last_human(id)
  * For backwards compatibility only.
  */
 #define ZP_TEAM_ANY 0
+#define ZP_TEAM_NO_ONE 0

@@ -2,6 +2,14 @@
 {
 	"favorites"
 	{
+		"0"
+		{
+			"name"		"Biohazard -discord: https://discord.gg/SDy8qYbwzE"
+			"address"	"103.74.122.241:27085"
+			"lastplayed"	"1688716954"
+			"appID"		"10"
+		}
+
 	}
 
 	"history"
@@ -75,6 +83,30 @@
 			"name"		"192.168.1.6:27015"
 			"address"	"192.168.1.6:27015"
 			"lastplayed"	"1686880584"
+			"appID"		"0"
+		}
+
+		"9"
+		{
+			"name"		"192.168.1.22:27015"
+			"address"	"192.168.1.22:27015"
+			"lastplayed"	"1687165405"
+			"appID"		"0"
+		}
+
+		"10"
+		{
+			"name"		"192.168.1.15:27015"
+			"address"	"192.168.1.15:27015"
+			"lastplayed"	"1687492904"
+			"appID"		"0"
+		}
+
+		"11"
+		{
+			"name"		"169.254.154.113:27015"
+			"address"	"169.254.154.113:27015"
+			"lastplayed"	"1687751092"
 			"appID"		"0"
 		}
 

@@ -136,7 +136,7 @@ public plugin_init()
 	
 	register_concmd("wc_refill", "refill_ammo")
 	
-	g_itemid = zp_register_extra_item("Void Avenger", 15000, ZP_TEAM_HUMAN, 1)
+	g_itemid = zp_register_extra_item("Void Avenger", 15000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()

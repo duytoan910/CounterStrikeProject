@@ -114,7 +114,7 @@ public plugin_init()
 	RegisterHam(Ham_Weapon_PrimaryAttack, weapon_winggun, "fw_Weapon_PrimaryAttack_Post", 1)
 	RegisterHam(Ham_Think, "beam", "CWeapon__Think_Beam", true);
 
-	g_Winggun = zp_register_extra_item("Divine Blaster", 15000, ZP_TEAM_HUMAN, 1) 
+	g_Winggun = zp_register_extra_item("Divine Blaster", 15000, ZP_TEAM_HUMAN) 
 }
 
 public plugin_precache()

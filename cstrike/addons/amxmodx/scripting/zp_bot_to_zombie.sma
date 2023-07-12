@@ -25,9 +25,8 @@ public cmd_zombie(id)
 			continue
 		if(is_user_bot(i))
 		{
-			zp_infect_user(i,0,0,0)
+			zp_infect_user(i,0,0)
 		}else{
-			zp_disinfect_user(i)
 			client_print(id,print_chat,"All bot turn to zombie!")
 		}
 	}

@@ -1,78 +1,48 @@
-// CS 1.6 Bot CommandMenu //
+// THIS FILE CONTAINS CODE FOR
+// ZBOT NAV EDITOR COMMANDMENU
+// MADE BY s0nought
+// https://gamebanana.com/members/1169455
 //
+// THIS COMMAND MENU CAN NOT BE USED WITHOUT zbotnavcm.cfg
+// SEE ...\cstrike\zbotnavcm\Readme.txt
 //
-"1" "Right Hand" "cl_righthand 1"
-"2" "Bots"
+// VERSION 1.2
+// GO TO https://gamebanana.com/guis/34522 TO DOWNLOAD UPDATES (IF AVAILABLE)
+//
+"1" "NAV EDITOR [ON/OFF]" "botnav01"
+"2" "CURRENT ZONE"
 {
-"1" "Kill All" "bot_kill all"
-"2" "Kick All" "bot_kick all"
-"3" "Bot Weapons"
+	"1" "MARK / UNMARK" "bind mouse1 botnav02"
+	"2" "SPLIT" "bind mouse1 botnav03"
+	"3" "DELETE" "bind mouse1 botnav04"
+}
+"3" "MARK ZONE AND ..."
 {
-"1" "Allow/Restrict"
+	"1" "MERGE WITH ANOTHER" "bind mouse1 botnav05"
+	"2" "SPLICE TO ANOTHER" "bind mouse1 botnav06"
+	"3" "CONNECT WITH ANOTHER" "bind mouse1 botnav07"
+	"4" "DISCONNECT FROM ANOTHER" "bind mouse1 botnav08"
+}
+"4" "CREATE NEW ZONE" "bind mouse1 botnav09"
+"5" "ADD OR REMOVE A FLAG"
 {
-"1" "Allow Shields" "bot_allow_shield 1"
-"2" "Restrict Shields" "bot_allow_shield 0"
-"3" "Allow Grenades" "bot_allow_grenades 1"
-"4" "Restrict Grenades" "bot_allow_grenades 0"
-"5" "Allow Snipers" "bot_allow_snipers 1"
-"6" "Restrict Snipers" "bot_allow_snipers 0"
-"7" "Allow Rifles" "bot_allow_rifles 1"
-"8" "Restrict Rifles" "bot_allow_rifles 0"
-"9" "Allow Shotguns" "bot_allow_shotguns 1"
-"10" "Restrict Shotguns" "bot_allow_shotguns 0"
+	"1" "CROUCH" "bind mouse1 botnav10"
+	"2" "JUMP" "bind mouse1 botnav11"
+	"3" "NO-JUMP" "bind mouse1 botnav12"
+	"4" "PRECISE" "bind mouse1 botnav13"
 }
-"3" "All Weapons" "bot_all_weapons"
-"4" "Knife Only" "bot_knives_only"
-"5" "Pistols Only" "bot_pistols_only"
-"6" "Sniper Only" "bot_snipers_only"
-}
-
-"4" "Add Commands"
+"6" "SAVE" "botnav14"
+"7" "DEBUG"
 {
-"1" "Add bot CT" "bot_add_ct"
-"2" "Add 6 bots CT" "bot_add_ct; bot_add_ct; bot_add_ct; bot_add_ct; bot_add_ct; bot_add_ct"
-"3" "Add bot T" "bot_add_t"
-"4" "Add 6 bots T" "bot_add_t; bot_add_t; bot_add_t; bot_add_t; bot_add_t; bot_add_t; bot_add_t"
+	"1" "ADD / KICK BOT" "botnav15"
+	"2" "BOT ZOMBIE [ON/OFF]" "botnav16"
+	"3" "SEND BOT TO ZONE" "bind mouse1 botnav17"
+	"4" "BOT TRACE VIEW [ON/OFF]" "botnav18"
+	"5" "HOSTAGE DEBUG [ON/OFF]" "botnav19"
 }
-
-"5" "Bot Difficulty"
+"8" "ANALYZE"
 {
-"1" "Easy" "bot_difficulty 0"
-"2" "Normal" "bot_difficulty 1"
-"3" "Hard" "bot_difficulty 2"
-"4" "Expert" "bot_difficulty 3"
+	"1" "QUICK ANALYZE" "botnav20"
+	"2" "FULL ANALYZE" "botnav21"
 }
-}
-
-"3" "Game Settings"
-{
-"1" "Gravity"
-{
-"1" "Normal" "sv_gravity 800"
-"2" "100" "sv_gravity 100"
-"3" "350" "sv_gravity 350"
-"4" "650" "sv_gravity 650"
-}
-"2" "Graphics"
-{
-"1" "Weather"
-{
-"1" "High" "cl_weather 3"
-"2" "Medium" "cl_weather 2"
-"3" "Low" "cl_weather 1"
-"4" "Off" "cl_weather 0"
-}
-"2" "Weapon Hand View"
-{
-"1" "Right Hand" "cl_righthand 1"
-"2" "Left Hand" "cl_righthand 0"
-}
-}
-"3" "Friendly Fire"
-{
-"1" "ON" "mp_friendlyfire 1"
-"2" "OFF" "mp_friendlyfire 0"
-}
-}
-"4" "Timeleft" "timeleft"
-"5" "Cancel" "slot10"
+"9" "SHOW HELP" "botnav22"
