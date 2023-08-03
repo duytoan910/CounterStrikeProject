@@ -80,7 +80,12 @@ public fw_PlayerKilled_Post(victim, attacker, shouldgib)
 			return;
 		
 		// Set the respawn task
-		set_task(get_pcvar_float(cvar_respawn_delay), "respawn_player_task", victim+TASK_RESPAWN)
+		new gameModeName[32], Float:respawnDelay = get_pcvar_float(cvar_respawn_delay)
+		zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
+		if(equal(gameModeName, "Titan boss"))
+			respawnDelay = 15.0
+
+		set_task(respawnDelay, "respawn_player_task", victim+TASK_RESPAWN)
 	}
 }
 

@@ -11,6 +11,8 @@
 
 #include <amxmodx>
 #include <fakemeta>
+#include <hamsandwich>
+#include <cs_ham_bots_api>
 #include <zp50_core>
 
 #define is_user_valid(%1) (1 <= %1 <= g_MaxPlayers)
@@ -45,6 +47,8 @@ public plugin_init()
 	
 	register_event("ResetHUD", "event_reset_hud", "be")
 	register_message(get_user_msgid("Money"), "message_money")
+	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)	
+	RegisterHamBots(Ham_Spawn, "Player_Spawn", 1)	
 }
 public plugin_natives()
 {
@@ -53,6 +57,10 @@ public plugin_natives()
 	register_native("zp_ammopacks_set", "native_ammopacks_set")
 }
 
+public Player_Spawn(id)
+{
+	loadmoney(id)
+}
 public native_ammopacks_get(plugin_id, num_params)
 {
 	new id = get_param(1)

@@ -1,33 +1,33 @@
-// Created With Cs 1.6 Color Scheme Editor 3.0 3/25/2020
+// Created With Cs 1.6 Color Scheme Editor 3.0 7/24/2023
 // Developed By Camarones.Bubba.Gump
 
 Scheme
 {
 	Colors
 	{
-		"BaseText" "216 222 211 255"
+		"BaseText" "255 255 255 255"
 		"BrightBaseText" "255 255 255 255"
 		"SelectedText" "255 255 255 255"
 		"DimBaseText" "160 170 149 255"
 		"LabelDimText" "160 170 149 255"
 		"ControlText" "216 222 211 255"
-		"BrightControlText" "196 181 80 255"
+		"BrightControlText" "255 255 255 255"
 		"DisabledText1" "117 128 111 255"
 		"DisabledText2" "40 46 34 255"
 		"DimListText" "117 134 102 255"
-		"ControlBG" "76 88 68 255"
-		"ControlDarkBG" "90 106 80 255"
-		"WindowBG" "62 70 55 255"
-		"SelectionBG" "149 136 49 255"
+		"ControlBG" "0 0 0 104"
+		"ControlDarkBG" "0 0 0 37"
+		"WindowBG" "0 0 0 98"
+		"SelectionBG" "71 71 71 255"
 		"SelectionBG2" "40 46 34 255"
-		"ListBG" "62 70 55 255"
+		"ListBG" "0 0 0 104"
 		"TitleText" "255 255 255 255"
 		"TitleDimText" "136 145 128 255"
 		"TitleBG" "76 88 68 0"
 		"TitleDimBG" "76 88 68 0"
-		"SliderTickColor" "127 140 127 255"
-		"SliderTrackColor" "31 31 31 255"
-		"BorderBright" "136 145 128 255"
+		"SliderTickColor" "255 255 255 255"
+		"SliderTrackColor" "91 91 91 255"
+		"BorderBright" "255 255 255 255"
 		"BorderDark" "40 46 34 255"
 		"BorderSelection" "0 0 0 255"
 	}
@@ -111,7 +111,7 @@ Scheme
 		}
 		InGameDesktop
 		{
-			"MenuColor" "200 200 200 255"
+			"MenuColor" "242 242 242 255"
 			"ArmedMenuColor" "255 255 255 255"
 			"DepressedMenuColor" "192 186 80 255"
 			"WidescreenBarColor" "0 0 0 0"

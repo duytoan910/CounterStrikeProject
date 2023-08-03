@@ -15,7 +15,7 @@ new Float:user_time[32]
 
 #define TELE_TIME 5.0
 
-new allowtele,teled[33]
+new allowtele,teled[33], server_tele
 
 new g_maxplayers, AvailMap
 new g_spawnspot[33][3]
@@ -59,6 +59,14 @@ public zp_round_started(gamemode, id)
 	{
 		allowtele=0
 	}else 	allowtele=1
+
+
+}
+public plugin_natives(){
+	register_native("get_tele_status","getTeleStatus", 1)
+}
+public getTeleStatus(){
+	return server_tele
 }
 public zp_user_humanized_post(id)
 {
@@ -71,6 +79,7 @@ public zp_user_humanized_post(id)
 public zp_round_ended()
 {
 	allowtele=0
+	server_tele = 0
 }
 public client_putinserver(id)
 {
@@ -154,10 +163,14 @@ public fm_pthink(id)
 		}
 	}
 	static playercount;playercount=zp_get_human_count()+zp_get_zombie_count()
-	if(zp_get_zombie_count() >= floatround(0.3 * playercount)+2 && allowtele==1)
-	{
-		set_task(1.0 , "tele")
-		allowtele=0
+	if(zp_get_zombie_count() >= floatround(0.3 * playercount)+2)
+	{ 
+		if(allowtele==1){
+			set_task(1.0 , "tele")
+			allowtele=0
+		}
+		
+		server_tele = 1
 	}
 	return FMRES_HANDLED
 }
@@ -206,6 +219,8 @@ public ActivateTeleport(id)
 		client_print(id, print_chat,"Map Name: %s, Location: %i %i %i",map[ran_num][MapName],Origin[0],Origin[1],Origin[2])
 		set_user_origin(id, Origin);
 		teled[id] = true;
+			
+		give_item(id, "weapon_smokegrenade")
 	}
 	teled[id] = false
 	return FMRES_HANDLED

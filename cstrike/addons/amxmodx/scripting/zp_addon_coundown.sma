@@ -3,6 +3,7 @@
 #include <fakemeta>
 #include <engine>
 #include <zombieplague>
+#include <zp50_gamemodes>
 
 new const ZP_CSO_PLUGIN_NAME[] = "[ZP] CSO Countdown"
 new const ZP_CSO_PLUGIN_VERSION[] = "5.0"
@@ -58,7 +59,7 @@ public plugin_precache()
 }
 public Event_RoundStart()
 {
-	current_mode = 0
+	current_mode = -1
 
 }
 public zp_cso_round_start()
@@ -79,17 +80,19 @@ public client_putinserver(id){
 public Event_RoundEnd()
 {
 	g_roundstarted = false
+	zp_cso_sec = 0
 }
 public zp_round_started(gamemode)
 {
 	g_roundstarted = true
-	current_mode = gamemode
+	current_mode = zp_gamemodes_get_current()
 }
 public zp_cso_countdown()
 {   	
 	if(g_roundstarted)
 	{
 		client_cmd(0,"speak ^"%s^"", zp_cso_countchant[10])
+		zp_cso_sec = 0
 		return;	
 	}
 	
@@ -153,8 +156,14 @@ public zp_cso_hud_score(id)
 	zp_zbnum = zp_get_zombie_count()
 	zp_roundnum = zp_cso_round
 	
+	new modeName[32], gameid; gameid = zp_gamemodes_get_current()
+
+	if(gameid<0){
+		modeName = "Zombie is coming!!"
+	}else zp_gamemodes_get_name(gameid>=0?gameid:0, modeName, charsmax(modeName))
+
 	set_hudmessage( 0, 250, 0, -1.0, 0.0, 0, 6.0, 1.1, 0.0, 0.0, -1)
-	format(iMsg, charsmax(iMsg), "[ Humans ] %02i [ Round %02i ] %02i [ Zombies ]^n [ %02i ] [ VS ] [ %02i ]^n[ %s ]", zp_cso_humanswins, zp_roundnum, zp_cso_zombieswins, zp_hmnum, zp_zbnum, GAMEMODE_NAME[current_mode])
+	format(iMsg, charsmax(iMsg), "[ Humans ] %02i [ Round %02i ] %02i [ Zombies ]^n [ %02i ] [ VS ] [ %02i ]^n[ %s ]", zp_cso_humanswins, zp_roundnum, zp_cso_zombieswins, zp_hmnum, zp_zbnum, modeName)
 	ShowSyncHudMsg(id, zp_cso_hud_sync3, iMsg)
 	
 	return PLUGIN_CONTINUE

@@ -105,7 +105,7 @@ const pev_time = pev_fuser1
 const pev_time2 = pev_fuser2
 const pev_time3 = pev_fuser3
 
-new g_CurrentBoss_Ent, g_Reg_Ham, Float:last_bomb, Float:last_mine, Float:FT_HEALTH
+new g_CurrentBoss_Ent, Float:last_bomb, Float:last_mine, Float:FT_HEALTH
 new g_Msg_ScreenShake, g_MaxPlayers, g_FootStep, spr_trail, g_expspr_id
 
 public plugin_init() 
@@ -198,12 +198,6 @@ public Create_Boss(id, Float:HP)
 	
 	set_pev(FT, pev_time2, get_gametime() + 1.0)
 	
-	if(!g_Reg_Ham)
-	{
-		g_Reg_Ham = 1
-		RegisterHamFromEntity(Ham_TraceAttack, FT, "fw_FT_TraceAttack", 1)
-		//RegisterHamFromEntity(Ham_TakeDamage, FT, "fw_FT_TakeAttack")
-	}
 	return FT;
 }
 
@@ -213,11 +207,17 @@ public fw_FT_Think(ent)
 		return
 	if(pev(ent, pev_state) == FT_STATE_DEATH)
 		return
-	if((pev(ent, pev_health) - HEALTH_OFFSET) <= 0.0)
+	new owner; owner = pev(ent, pev_owner)
+	if(pev(owner, pev_health) < HEALTH_OFFSET)
 	{
+		set_pev(owner, pev_takedamage, DAMAGE_NO)
 		set_pev(ent, pev_takedamage, DAMAGE_NO)
 		FT_Death(ent)
 		return
+	}
+	if(get_cvar_num("bot_stop")){
+		set_pev(ent, pev_nextthink, get_gametime() + 0.1)
+		return;
 	}
 	switch(pev(ent, pev_state))
 	{
@@ -427,25 +427,6 @@ public fw_FT_Think(ent)
 		}
 	}
 }
-public fw_FT_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
-{
-	if(!is_valid_ent(Ent)) 
-		return
-     
-	static Classname[32]
-	pev(Ent, pev_classname, Classname, charsmax(Classname)) 
-	     
-	if(!equal(Classname, FT_CLASSNAME)) 
-		return
-		
-	new owner;owner=pev(Ent,pev_owner)
-	if(pev(owner, pev_health)>200.0)
-	{
-		set_pev(owner, pev_health, pev(Ent, pev_health) - HEALTH_OFFSET)
-	}
-	else set_pev(owner, pev_health, 1.0)
-}
-
 public Random_AttackMethod(ent)
 {
 	static RandomNum; RandomNum = random_num(0, 120)
@@ -1348,7 +1329,7 @@ public Make_PlayerShake(id)
 	{
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	} else {
@@ -1357,7 +1338,7 @@ public Make_PlayerShake(id)
 			
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake, _, id)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	}

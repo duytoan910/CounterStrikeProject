@@ -20,6 +20,9 @@ const zclass_speed = 280 // speed
 const Float:zclass_gravity = 0.8 // gravity 
 const Float:zclass_knockback = 1.25 // knockback 
 
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_resident_zombi.mdl" }
+
 const Float:finger_heal  = 2000.0
 const Float:armtime = 12.0
 const Float:healtime = 8.0
@@ -78,6 +81,7 @@ public plugin_init()
 	register_event("DeathMsg", "Death", "a");
 	register_logevent("logevent_round_end", 2, "1=Round_End");
 	register_logevent("roundStart", 2, "1=Round_Start")	
+	register_event("CurWeapon", "EV_CurWeapon", "be", "1=1")
 	RegisterHam(Ham_TakeDamage, "player", "String_TakeDamage");
 	register_forward(FM_PlayerPostThink, "fw_PlayerPostThink" , 1)
 	
@@ -94,6 +98,7 @@ public plugin_precache()
 	{
 		precache_sound(g_stinger_sound[i]);
 	}
+	precache_model(zclass1_bombmodel)
 	class_sting = zp_register_zombie_class(zclass_name, zclass_info, zclass_model, zclass_clawmodel, zclass_health, zclass_speed, zclass_gravity, zclass_knockback)      
 }
 public client_putinserver(id)
@@ -107,6 +112,18 @@ public client_putinserver(id)
 public Do_RegisterHamBot(id)
 {
 	RegisterHamFromEntity(Ham_TakeDamage, id, "String_TakeDamage")
+}
+public EV_CurWeapon(id)
+{
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE && zp_get_user_zombie_class(id) == class_sting)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+	return PLUGIN_CONTINUE
 }
 public roundStart(id)
 {
@@ -147,7 +164,9 @@ public fw_PlayerPostThink(id)
 		get_user_origin(id,origin1)
 		get_user_origin(enemy,origin2)
 		range = get_distance(origin1, origin2)
-		if(range <= Distance) cmd_arm(id)
+		if(range <= Distance) {
+			set_task(0.5 , "cmd_arm", id)
+		}
 	}
 	return PLUGIN_CONTINUE
 }

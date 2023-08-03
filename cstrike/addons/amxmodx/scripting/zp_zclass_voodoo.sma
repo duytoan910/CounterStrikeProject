@@ -39,11 +39,14 @@ new g_sound[][] =
 	"zombie_plague/zombi_hurt_01.wav" ,
 	"zombie_plague/zombi_hurt_02.wav"
 };
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_heal_zombi.mdl" }
 
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR);
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage");
 	register_event("DeathMsg", "Death", "a");
+	register_event("CurWeapon", "EV_CurWeapon", "be", "1=1")
 	register_logevent("roundStart", 2, "1=Round_Start")
 	register_clcmd("drop", "cmd_makeskill");
 	cvar_debug = register_cvar("zp_bot_skill_debug", "0")
@@ -55,6 +58,7 @@ public plugin_precache() {
 	for(new i = 0; i < sizeof g_sound; i++)
 		precache_sound(g_sound[i]);
 
+	precache_model(zclass1_bombmodel)
 		
 	vzombi = zp_register_zombie_class("Voodoo", "", models, "v_knife_heal_zombi.mdl", 3100, 290, 0.8, 1.45);
 }
@@ -80,6 +84,18 @@ public Death(id)
 	{
 		engfunc( EngFunc_EmitSound, id, CHAN_ITEM, g_sound[random_num(0,1)], 1.0, ATTN_NORM, 0, PITCH_NORM)
 	}
+}
+public EV_CurWeapon(id)
+{
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE && zp_get_user_zombie_class(id) == vzombi)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+	return PLUGIN_CONTINUE
 }
 public fw_TakeDamage(id, iVictim, iInflictor, iAttacker, Float:flDamage, bitsDamage)
 {
@@ -136,7 +152,7 @@ public cmd_makeskill(id) {
 			&& zp_get_user_zombie(i)
 			&& entity_range(id, i) < 200.0) 
 			{
-				cmd_heal(i);
+				cmd_heal(i, id);
 				set_task(10.0,"asd",id)
 			}
 		}
@@ -150,19 +166,22 @@ public asd(id)
 		client_print(id, print_center,"Cool down finish! [G]")
 	}
 }
-public cmd_heal(id) {
+public cmd_heal(i, id) {
 	set_pev(id, pev_health, float(pev(id,pev_health)+2000));
 	md_zb_skill(id, 1)
 	emit_sound(id, CHAN_VOICE, skillsound, 1.0, ATTN_NORM, 0, PITCH_NORM);
-	new Float: fOrigin[3];
-	pev( id, pev_origin, fOrigin );
-	engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, fOrigin, 0);
-	write_byte(TE_SPRITE);
-	engfunc(EngFunc_WriteCoord, fOrigin[0]);
-	engfunc(EngFunc_WriteCoord, fOrigin[1]);
-	engfunc(EngFunc_WriteCoord, fOrigin[2]);
-	write_short(spriteid);
-	write_byte(10);
-	write_byte(255);
-	message_end();
+	
+	if(id == i){
+		new Float: fOrigin[3];
+		pev( id, pev_origin, fOrigin );
+		engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, fOrigin, 0);
+		write_byte(TE_SPRITE);
+		engfunc(EngFunc_WriteCoord, fOrigin[0]);
+		engfunc(EngFunc_WriteCoord, fOrigin[1]);
+		engfunc(EngFunc_WriteCoord, fOrigin[2]);
+		write_short(spriteid);
+		write_byte(10);
+		write_byte(255);
+		message_end();
+	}
 }

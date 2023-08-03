@@ -135,7 +135,7 @@ public client_PostThink(id)
 		if(!using_item[id] && !waiting[id])
 		{			
 			tasked[id] = true	
-			set_task(random_float(1.0,10.0), "DO_DS", id)
+			set_task(random_float(3.0,10.0), "DO_DS", id)
 		}
 	}
 }

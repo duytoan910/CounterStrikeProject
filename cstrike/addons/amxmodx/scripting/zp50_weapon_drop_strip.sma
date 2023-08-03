@@ -12,6 +12,9 @@
 #include <amxmodx>
 #include <cstrike>
 #include <fakemeta>
+#include <fakemeta_util>
+#include <fun>
+#include <toan>
 #include <hamsandwich>
 #include <cs_ham_bots_api>
 #include <zp50_core>
@@ -72,28 +75,28 @@ public plugin_init()
 public zp_fw_core_infect(id, attacker)
 {
 	// Drop weapons?
-	switch (get_pcvar_num(cvar_zombie_drop_weapons))
-	{
-		case PRIMARY_ONLY: drop_weapons(id, PRIMARY_ONLY)
-		case SECONDARY_ONLY: drop_weapons(id, SECONDARY_ONLY)
-		case PRIMARY_AND_SECONDARY:
-		{
-			drop_weapons(id, PRIMARY_ONLY)
-			drop_weapons(id, SECONDARY_ONLY)
-		}
-	}
+	// switch (get_pcvar_num(cvar_zombie_drop_weapons))
+	// {
+	// 	case PRIMARY_ONLY: drop_weapons(id, PRIMARY_ONLY)
+	// 	case SECONDARY_ONLY: drop_weapons(id, SECONDARY_ONLY)
+	// 	case PRIMARY_AND_SECONDARY:
+	// 	{
+	// 		drop_weapons(id, PRIMARY_ONLY)
+	// 		drop_weapons(id, SECONDARY_ONLY)
+	// 	}
+	// }
 	
-	// Strip weapons?
-	switch (get_pcvar_num(cvar_zombie_strip_weapons))
-	{
-		case PRIMARY_ONLY: strip_weapons(id, PRIMARY_ONLY)
-		case SECONDARY_ONLY: strip_weapons(id, SECONDARY_ONLY)
-		case PRIMARY_AND_SECONDARY:
-		{
-			strip_weapons(id, PRIMARY_ONLY)
-			strip_weapons(id, SECONDARY_ONLY)
-		}
-	}
+	// // Strip weapons?
+	// switch (get_pcvar_num(cvar_zombie_strip_weapons))
+	// {
+	// 	case PRIMARY_ONLY: strip_weapons(id, PRIMARY_ONLY)
+	// 	case SECONDARY_ONLY: strip_weapons(id, SECONDARY_ONLY)
+	// 	case PRIMARY_AND_SECONDARY:
+	// 	{
+	// 		strip_weapons(id, PRIMARY_ONLY)
+	// 		strip_weapons(id, SECONDARY_ONLY)
+	// 	}
+	// }
 	
 	// Strip grenades?
 	if (get_pcvar_num(cvar_zombie_strip_grenades))
@@ -102,6 +105,14 @@ public zp_fw_core_infect(id, attacker)
 	// Strip armor?
 	if (get_pcvar_num(cvar_zombie_strip_armor))
 		cs_set_user_armor(id, 0, CS_ARMOR_NONE)
+
+	drop_weapons(id, 1)
+	drop_weapons(id, 2)
+	
+	// Strip zombies from guns and give them a knife
+	fm_strip_user_weapons(id)
+	fm_give_item(id, "weapon_knife")
+	KnockbackNade(id)
 }
 
 // Forward Set Model
@@ -202,6 +213,7 @@ stock drop_weapons(id, dropwhat)
 			
 			// Player drops the weapon
 			engclient_cmd(id, "drop", wname)
+			give_item(id, "weapon_knife")
 		}
 	}
 }
@@ -230,6 +242,8 @@ stock strip_weapons(id, stripwhat)
 			// Strip weapon and remove bpammo
 			ham_strip_weapon(id, wname)
 			cs_set_user_bpammo(id, weaponid, 0)
+			
+			give_item(id, "weapon_knife")
 		}
 	}
 }
@@ -262,12 +276,6 @@ stock ham_strip_weapon(index, const weapon[])
 	return true;
 }
 
-// Find entity by its owner (from fakemeta_util)
-stock fm_find_ent_by_owner(entity, const classname[], owner)
-{
-	while ((entity = engfunc(EngFunc_FindEntityByString, entity, "classname", classname)) && pev(entity, pev_owner) != owner) { /* keep looping */ }
-	return entity;
-}
 
 // Get User Current Weapon Entity
 stock fm_cs_get_current_weapon_ent(id)

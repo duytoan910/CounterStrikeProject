@@ -154,9 +154,9 @@ public fw_SetModel(entity, const model[])
 			}
 			case 4: // random (all colors)
 			{
-				rgb[0] = random_num(50,200) // r
-				rgb[1] = random_num(50,200) // g
-				rgb[2] = random_num(50,200) // b
+				rgb[0] = random_num(100,200) // r
+				rgb[1] = random_num(100,200) // g
+				rgb[2] = random_num(100,200) // b
 			}
 			case 5: // random (r,g,b)
 			{

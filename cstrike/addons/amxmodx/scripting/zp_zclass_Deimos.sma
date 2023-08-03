@@ -54,6 +54,7 @@ public plugin_init()
 	
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0")
 	register_event("DeathMsg", "Death", "a")
+	register_event("CurWeapon", "EV_CurWeapon", "be", "1=1")
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage");
 	
 	register_clcmd("drop", "use_skill")
@@ -85,6 +86,9 @@ const zclass1_speed = 290
 const Float:zclass1_gravity = 0.8
 const Float:zclass1_knockback = 1.45
 
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_deimos_zombi_host.mdl" }
+
 new const sound_skill_start[] = "zombie_plague/deimos_skill_start.wav" 
 new const sound_skill_hit[] = "zombie_plague/deimos_skill_hit.wav" 
 new g_sound[][] = 
@@ -99,7 +103,7 @@ public plugin_precache()
 {
 	precache_sound(sound_skill_start)
 	precache_sound(sound_skill_hit)
-	
+	precache_model(zclass1_bombmodel)
 	for(new i = 0; i < sizeof g_sound; i++)
 		precache_sound(g_sound[i]);
 
@@ -108,6 +112,18 @@ public plugin_precache()
 	
 	idclass = zp_register_zombie_class(zclass1_name, zclass1_info, zclass1_model, zclass1_clawmodel, zclass1_health, zclass1_speed, zclass1_gravity, zclass1_knockback)
 
+}
+public EV_CurWeapon(id)
+{
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE && zp_get_user_zombie_class(id) == idclass)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+	return PLUGIN_CONTINUE
 }
 new g_bot
 public client_putinserver(id)
@@ -173,38 +189,57 @@ public fw_PlayerPostThink(id)
 		return PLUGIN_HANDLED
 	
 	if(is_user_alive(id) && zp_get_user_zombie(id)){
-		new button = pev(id, pev_button)
-		if(IsCurrentSpeedHigherThan(id, 200.0)){
-			if (!(button & IN_DUCK || button & IN_JUMP || button & IN_BACK) && !g_setAnim[id])
-			{
-				g_setAnim[id] = true
-				Player_SetAnimation(id, "ref_aim_knife_run")
-				set_task(1.9, "unlockAnim", id+TASK_USE_ANIM)
-			}else if((button & IN_DUCK || button & IN_JUMP || button & IN_BACK)){
-				Player_SetAnimation(id, "ref_aim_knife_walk")
-				if (task_exists(id+TASK_USE_ANIM)){
-					g_setAnim[id] = false
-					remove_task(id+TASK_USE_ANIM)
+		if(!g_setAnim[id]){
+			new button = pev(id, pev_button)
+			if(pev(id, pev_flags) & FL_ONGROUND){
+				if(IsCurrentSpeedHigherThan(id, 200.0)){
+					if(button & IN_FORWARD){
+						g_setAnim[id] = true
+						Player_SetAnimation(id, "ref_aim_knife_run")
+						set_task(0.7, "unlockAnim", id+TASK_USE_ANIM)
+						return PLUGIN_HANDLED
+					}else if(button & IN_BACK){
+						Player_SetAnimation(id, "ref_aim_knife_walk")
+						return PLUGIN_HANDLED
+					}else{
+						Player_SetAnimation(id, "ref_aim_knife")
+					}
+				}else{
+					if(button & IN_FORWARD){
+						g_setAnim[id] = true
+						Player_SetAnimation(id, "ref_aim_knife_walk")
+						set_task(0.46, "unlockAnim", id+TASK_USE_ANIM)
+						return PLUGIN_HANDLED
+					}else if(button & IN_BACK){
+						Player_SetAnimation(id, "ref_aim_knife_walk")
+						return PLUGIN_HANDLED
+					}else{
+						Player_SetAnimation(id, "ref_aim_knife")
+					}
 				}
 			}
-		}else{
-			if((button & IN_FORWARD || button & IN_LEFT || button & IN_RIGHT || button & IN_BACK)){
-				Player_SetAnimation(id, "ref_aim_knife_walk")
-				if (task_exists(id+TASK_USE_ANIM)){
-					g_setAnim[id] = false
-					remove_task(id+TASK_USE_ANIM)
-				}
+			if(button & IN_ATTACK){
+				g_setAnim[id] = true
+				Player_SetAnimation(id, "ref_shoot_knife")
+				set_task(1.8, "unlockAnim", id+TASK_USE_ANIM)
+				return PLUGIN_HANDLED
+			}else if(button & IN_ATTACK2){
+				g_setAnim[id] = true
+				Player_SetAnimation(id, "ref_shoot_knife_run")
+				set_task(1.8, "unlockAnim", id+TASK_USE_ANIM)
+				return PLUGIN_HANDLED
+			}else{
+				Player_SetAnimation(id, "ref_aim_knife")
 			}
 		}
 	}
-
 	
 	if(is_user_bot(id)){
 		new enemy, body
 		get_user_aiming(id, enemy, body)
 		if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
 		{
-			use_skill(id)
+			set_task(0.5 , "use_skill", id)
 		}
 	}
 	return PLUGIN_CONTINUE

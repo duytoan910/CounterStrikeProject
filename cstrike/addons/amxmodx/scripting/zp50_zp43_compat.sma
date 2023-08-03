@@ -641,7 +641,8 @@ public native_infect_user(plugin_id, num_params)
 	
 	if (attacker)
 		return zp_core_infect(id, attacker);
-	new silent = get_param(3)
+	
+	
 	return zp_core_infect(id, id);
 }
 
@@ -907,6 +908,7 @@ public native_register_zombie_class(plugin_id, num_params)
 	new Float:knockback = get_param_f(8)
 	new classid = zp_class_zombie_register(name, desc, health, speed, gravity)
 	if (classid < 0) return classid;
+	
 	zp_class_zombie_register_model(classid, model)
 	zp_class_zombie_register_claw(classid, clawmodel)
 	zp_class_zombie_register_kb(classid, knockback)

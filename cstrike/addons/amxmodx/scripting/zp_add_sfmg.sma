@@ -408,24 +408,24 @@ public CurrentWeapon(id)
 		return
      
 	static Float:iSpeed, Ent
-     	Ent = find_ent_by_owner(-1,"weapon_m249",id)
+	Ent = find_ent_by_owner(-1,"weapon_m249",id)
 
-     	if (g_mode[id] == 1)
-     		iSpeed = SPD_SFMG
-     	else if (g_mode[id] == 2)
-     		iSpeed = SPD_MODE_SFMG
+	if (g_mode[id] == 1)
+		iSpeed = SPD_SFMG
+	else if (g_mode[id] == 2)
+		iSpeed = SPD_MODE_SFMG
 
-     	if(Ent)
-     	{
+	if(Ent)
+	{
 		static Float:Delay, Float:M_Delay
-          	Delay = get_pdata_float( Ent, 46, 4) * iSpeed
- 	  	M_Delay = get_pdata_float( Ent, 47, 4) * iSpeed
-          	if(Delay > 0.0)
-          	{
-			set_pdata_float(Ent, 46, Delay, 4)
-	       		set_pdata_float(Ent, 47, M_Delay, 4)
-          	}
-     	}
+		Delay = get_pdata_float( Ent, 46, 4) * iSpeed
+		M_Delay = get_pdata_float( Ent, 47, 4) * iSpeed
+		if(Delay > 0.0)
+		{
+		set_pdata_float(Ent, 46, Delay, 4)
+			set_pdata_float(Ent, 47, M_Delay, 4)
+		}
+	}
 }
 
 replace_weapon_models(id, weaponid)

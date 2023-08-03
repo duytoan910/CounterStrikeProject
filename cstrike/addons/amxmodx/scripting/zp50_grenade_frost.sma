@@ -509,15 +509,15 @@ set_freeze(victim)
 	emit_sound(victim, CHAN_BODY, sound, 1.0, ATTN_NORM, 0, PITCH_NORM)
 	
 	// Add a blue tint to their screen
-	message_begin(MSG_ONE, g_MsgScreenFade, _, victim)
-	write_short(0) // duration
-	write_short(0) // hold time
-	write_short(FFADE_STAYOUT) // fade type
-	write_byte(0) // red
-	write_byte(50) // green
-	write_byte(200) // blue
-	write_byte(100) // alpha
-	message_end()
+	// message_begin(MSG_ONE, g_MsgScreenFade, _, victim)
+	// write_short(0) // duration
+	// write_short(0) // hold time
+	// write_short(FFADE_STAYOUT) // fade type
+	// write_byte(0) // red
+	// write_byte(50) // green
+	// write_byte(200) // blue
+	// write_byte(100) // alpha
+	// message_end()
 	
 	// Update player entity rendering
 	ApplyFrozenRendering(victim)
@@ -593,15 +593,15 @@ public remove_freeze(taskid)
 	fm_set_rendering_float(ID_FROST_REMOVE, g_FrozenRenderingFx[ID_FROST_REMOVE], g_FrozenRenderingColor[ID_FROST_REMOVE], g_FrozenRenderingRender[ID_FROST_REMOVE], g_FrozenRenderingAmount[ID_FROST_REMOVE])
 	
 	// Gradually remove screen's blue tint
-	message_begin(MSG_ONE, g_MsgScreenFade, _, ID_FROST_REMOVE)
-	write_short(UNIT_SECOND) // duration
-	write_short(0) // hold time
-	write_short(FFADE_IN) // fade type
-	write_byte(0) // red
-	write_byte(50) // green
-	write_byte(200) // blue
-	write_byte(100) // alpha
-	message_end()
+	// message_begin(MSG_ONE, g_MsgScreenFade, _, ID_FROST_REMOVE)
+	// write_short(UNIT_SECOND) // duration
+	// write_short(0) // hold time
+	// write_short(FFADE_IN) // fade type
+	// write_byte(0) // red
+	// write_byte(50) // green
+	// write_byte(200) // blue
+	// write_byte(100) // alpha
+	// message_end()
 	
 	// Broken glass sound
 	static sound[SOUND_MAX_LENGTH]

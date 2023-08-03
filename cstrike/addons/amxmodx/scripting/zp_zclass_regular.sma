@@ -33,6 +33,9 @@ const zclass_speed = 290 // speed
 const Float:zclass_gravity = 0.8 // gravity
 const Float:zclass_knockback =  1.45 // knockback
 
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_tank_zombi.mdl" }
+
 new Float:g_fastspeed = 400.0 // sprint speed 340
 new Float:g_normspeed = 290.0 // norm speed. must be as zclass_speed
 new Float:g_skill_wait = 5.0 // cooldown time
@@ -56,6 +59,7 @@ public plugin_precache()
 	precache_sound(sound_china_sprint)
 	for(new i = 0; i < sizeof g_sound; i++)
 		precache_sound(g_sound[i]);
+	precache_model(zclass1_bombmodel)
 }
 
 public plugin_init() 
@@ -65,8 +69,8 @@ public plugin_init()
 
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage");
 	register_event("DeathMsg", "Death", "a");
+	register_event("CurWeapon", "EV_CurWeapon", "be", "1=1")
 
-	register_event("CurWeapon", "Event_CurrentWeapon", "be", "1=1")
 	register_forward( FM_PlayerPreThink, "client_prethink" )
 	register_logevent("roundStart", 2, "1=Round_Start")
 	register_forward(FM_EmitSound, "fw_EmitSound")
@@ -82,6 +86,18 @@ public client_prethink(id)
 		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && !zp_get_user_nemesis(id))
 		Action(id);
 	}
+}
+public EV_CurWeapon(id)
+{
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE && zp_get_user_zombie_class(id) == g_zclass_china)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+	return PLUGIN_CONTINUE
 }
 new g_bot
 public client_putinserver(id)
@@ -231,11 +247,6 @@ public zp_user_humanized_post(id)
 	client_cmd(id, "cl_sidespeed 400");
 }
 
-
-public Event_CurrentWeapon(id)
-{
-
-}
 public fw_EmitSound(id, channel, const sample[], Float:volume, Float:attn, flags, pitch)
 {
 	if(!is_user_connected(id))

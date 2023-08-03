@@ -224,7 +224,6 @@ public PetrolBoomer_AttackHandle(id)
 	Set_Weapon_TimeIdle(id, CSW_PETROLBOOMER, TIME_RELOAD)
 	set_pdata_int(g_wpnID[id], 51, 0, 4)
 	set_task(TIME_RELOAD, "DoneReload", id)
-	
 }
 public DoneReload(id)
 {
@@ -673,39 +672,39 @@ const PRIMARY_WEAPONS_BIT_SUM =
 CSW_MP5NAVY)|(1<<CSW_M249)|(1<<CSW_M3)|(1<<CSW_M4A1)|(1<<CSW_TMP)|(1<<CSW_G3SG1)|(1<<CSW_SG552)|(1<<CSW_AK47)|(1<<CSW_P90)
 stock drop_weapons(id, dropwhat)
 {
-     static weapons[32], num, i, weaponid
-     num = 0
-     get_user_weapons(id, weapons, num)
-     
-     for (i = 0; i < num; i++)
-     {
-          weaponid = weapons[i]
-          
-          if (dropwhat == 1 && ((1<<weaponid) & PRIMARY_WEAPONS_BIT_SUM))
-          {
-               static wname[32]
-               get_weaponname(weaponid, wname, sizeof wname - 1)
-               engclient_cmd(id, "drop", wname)
-          }
-     }
+	static weapons[32], num, i, weaponid
+	num = 0
+	get_user_weapons(id, weapons, num)
+	
+	for (i = 0; i < num; i++)
+	{
+		weaponid = weapons[i]
+		
+		if (dropwhat == 1 && ((1<<weaponid) & PRIMARY_WEAPONS_BIT_SUM))
+		{
+			static wname[32]
+			get_weaponname(weaponid, wname, sizeof wname - 1)
+			engclient_cmd(id, "drop", wname)
+		}
+	}
 }
 
 public Message_DeathMsg(msg_id, msg_dest, id)
 {
 	static szTruncatedWeapon[33], iAttacker, iVictim
-        
+		
 	get_msg_arg_string(4, szTruncatedWeapon, charsmax(szTruncatedWeapon))
-        
+		
 	iAttacker = get_msg_arg_int(1)
 	iVictim = get_msg_arg_int(2)
-        
+		
 	if(!is_user_connected(iAttacker) || iAttacker == iVictim) return PLUGIN_CONTINUE
-        
+		
 	if(get_user_weapon(iAttacker) == CSW_PETROLBOOMER)
 	{
 		if(Get_BitVar(g_Had_PB, iAttacker))
 			set_msg_arg_string(4, "petrolboomer")
 	}
-                
+			 
 	return PLUGIN_CONTINUE
 }

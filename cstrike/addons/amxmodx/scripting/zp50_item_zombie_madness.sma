@@ -10,7 +10,7 @@
 ================================================================================*/
 
 #define ITEM_NAME "Zombie Madness"
-#define ITEM_COST 15
+#define ITEM_COST 5000
 
 #include <amxmodx>
 #include <cstrike>

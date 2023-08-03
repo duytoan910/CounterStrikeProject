@@ -319,22 +319,23 @@ public bot_buy_item(taskid){
 }
 
 public listitem(id){
-	static name[32], cost, transkey[64]
+	static name[32], cost
 	for (new index = 0; index < g_ItemCount; index++){
 		ExecuteForward(g_Forwards[FW_ITEM_SELECT_PRE], g_ForwardResult, id, index, 0)
 		
-		// Show item to player?
-		if (g_ForwardResult >= ZP_ITEM_DONT_SHOW)
-			continue;
-		
 		ArrayGetString(g_ItemName, index, name, charsmax(name))
 		cost = ArrayGetCell(g_ItemCost, index)
-		
-		// ML support for item name
-		formatex(transkey, charsmax(transkey), "ITEMNAME %s", name)
-		if (GetLangTransKey(transkey) != TransKey_Bad) formatex(name, charsmax(name), "%L", id, transkey)
 
-		client_print(id, print_chat, "%d: %s %d",index, name, cost)
+		client_print(id, print_chat, "%d: %s %d _ result:%d",index, name, cost, g_ForwardResult)
+
+		// Show item to player?
+		if(index==0){
+			if(!zp_core_is_zombie(id))
+			continue;
+		}else if (g_ForwardResult >= ZP_ITEM_DONT_SHOW)
+			continue;
+		
+		client_print(id, print_chat, "%d_: %s %d",index, name, cost)
 	}
 }
 

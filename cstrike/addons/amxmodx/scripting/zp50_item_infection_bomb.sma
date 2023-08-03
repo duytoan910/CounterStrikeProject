@@ -10,7 +10,7 @@
 ================================================================================*/
 
 #define ITEM_NAME "Infection Bomb"
-#define ITEM_COST 20
+#define ITEM_COST 20000
 
 #include <amxmodx>
 #include <fun>

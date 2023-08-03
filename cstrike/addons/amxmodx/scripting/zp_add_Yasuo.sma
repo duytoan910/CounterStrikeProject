@@ -69,11 +69,11 @@ new const WeaponSounds[][] =
 	
 	"weapons/YasuoW1.wav",
 	"weapons/YasuoW2.wav",
-	"weapons/YasuoW3.wav",
-	"weapons/YasuoW4.wav",
-	"weapons/YasuoR1.wav",
-	"weapons/YasuoR2.wav",
-	"weapons/YasuoR3.wav"
+	"zombie_plague/Yasuo/Yasuo_Original_Q3_0.wav",
+	"zombie_plague/Yasuo/Yasuo_Original_Q3_1.wav",
+	"zombie_plague/Yasuo/Yasuo_Original_R_0.wav",
+	"zombie_plague/Yasuo/Yasuo_Original_R_1.wav",
+	"zombie_plague/Yasuo/Yasuo_Original_R_2.wav"
 }
 
 enum _:WpnAnim
@@ -146,17 +146,17 @@ public BotTest2()
 }
 public plugin_natives()
 {
-	register_native("jaydagger", "get_jaydagger", 1)
+	register_native("skullaxe", "get_jaydagger", 1)
 }
 public plugin_precache()
 {
 	precache_model(v_model)
 	precache_model(p_model)	
 	precache_model(tornado)	
-	precache_model("models/dualsword_ys_fx.mdl")	
 	
 	for(new i = 0; i < sizeof(WeaponSounds); i++)
-		engfunc(EngFunc_PrecacheSound, WeaponSounds[i])
+		precache_sound(WeaponSounds[i])
+		
 	g_Line = precache_model("sprites/zbeam4.spr")
 	m_iBlood[0] = precache_model("sprites/blood.spr");
 	m_iBlood[1] = precache_model("sprites/bloodspray.spr");	
@@ -174,6 +174,12 @@ public get_jaydagger(id)
 	g_isattacking[id] = 0
 	g_Checking_Mode[id] = 0
 	g_Hit_Ing[id] = 0
+	
+	if(get_user_weapon(id) == CSW_YASUO && g_Had_Yasuo[id])
+	{
+		set_pev(id, pev_viewmodel2, v_model)
+		set_pev(id, pev_weaponmodel2, p_model)
+	}
 	//fm_give_item(id, "weapon_knife")
 }
 
@@ -323,7 +329,6 @@ public fw_CmdStart(id, uc_handle, seed)
 	
 		static num;num=random_num(ANIM_SLASH1,ANIM_SLASH4)
 		set_weapon_anim(id, num)
-		Create_Slash(id,g_wpn[id],num-1,1)		
 		
 		if(task_exists(id+TASK_DONE)) remove_task(id+TASK_DONE)
 		set_task(0.55,"DoneAttack",id+TASK_DONE)	
@@ -399,8 +404,6 @@ public MakeSlash(id)
 	id-=TASK_SLASHING
 	static num;num=random_num(ANIM_SLASH1,ANIM_SLASH4)
 	set_weapon_anim(id, num)
-	Create_Slash(id,g_wpn[id],num-1,0)
-	Create_Slash(id,g_wpn[id],random_num(0,3),0)
 	emit_sound(id, CHAN_ITEM, WeaponSounds[random_num(9, 11)], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
 }
 public MakeSound(id) emit_sound(id, CHAN_VOICE, WeaponSounds[random_num(25,27)], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
@@ -789,80 +792,6 @@ public Fw_AddToFullPack_Post(esState, iE, iEnt, iHost, iHostFlags, iPlayer, pSet
 	}
 }
 
-public Fw_DPSEnt_Think(iEnt)
-{
-	if(!pev_valid(iEnt)) 
-		return
-	
-	new iOwner
-	iOwner = pev(iEnt, pev_owner)
-	
-	if(!is_user_alive(iOwner) || !is_user_connected(iOwner) || zp_get_user_zombie(iOwner))
-	{
-		remove_entity(iEnt)
-		//g_soundmode[iOwner] = 0
-		return
-	}
-	
-	if(!Get_Entity_Mode(iEnt))
-	{
-		new iWpn,iState,Float:vecOrigin[3], Float:vecAngle[3];
-		iWpn = pev(iEnt, pev_iuser1)
-		iState = pev(iWpn, pev_iuser4)
-		get_position(iOwner, 0.0, 0.0, 0.0, vecOrigin);
-		
-		pev(iOwner, pev_v_angle, vecAngle);
-		vecAngle[0] = -vecAngle[0];
-		
-		//set_pev(iEnt, pev_origin, vecOrigin);
-		//set_pev(iEnt, pev_angles, vecAngle);
-		
-		if(!iState || get_user_weapon(iOwner) != CSW_YASUO)
-		{
-			new Float:fRenderAmount;
-			pev(iEnt, pev_renderamt, fRenderAmount);
-
-			fRenderAmount -= 4.5;
-
-			if (fRenderAmount <= 5.0)
-			{
-				remove_entity(iEnt);
-				return;
-			}
-			set_pev(iEnt, pev_renderamt, fRenderAmount);
-		}
-	}
-	
-	if(Get_Entity_Mode(iEnt) == 1)
-	{
-		new iWpn,iState,Float:vecOrigin[3], Float:vecAngle[3];
-		iWpn = pev(iEnt, pev_iuser1)
-		iState = pev(iWpn, pev_iuser4)
-		get_position(iOwner, 0.0, 0.0, 0.0, vecOrigin);
-		
-		pev(iOwner, pev_v_angle, vecAngle);
-		vecAngle[0] = -vecAngle[0];
-		
-		//set_pev(iEnt, pev_origin, vecOrigin);
-		//set_pev(iEnt, pev_angles, vecAngle);
-		
-		if(!iState || get_user_weapon(iOwner) != CSW_YASUO)
-		{
-			new Float:fRenderAmount;
-			pev(iEnt, pev_renderamt, fRenderAmount);
-
-			fRenderAmount -= 4.5;
-
-			if (fRenderAmount <= 5.0)
-			{
-				remove_entity(iEnt);
-				return;
-			}
-			set_pev(iEnt, pev_renderamt, fRenderAmount);
-		}
-	}
-	set_pev(iEnt, pev_nextthink, get_gametime() + 0.01)
-}
 do_attack(Attacker, Victim, Inflictor, Float:fDamage)
 {
 	fake_player_trace_attack(Attacker, Victim, fDamage)
@@ -1210,114 +1139,3 @@ stock entity_set_aim(ent,const Float:origin2[3],bone=0)
 
 	return 1;
 }
-
-stock Create_Slash(id,iEnt,seq, mode)
-{
-	new Float:vecOrigin[3], Float:vecAngle[3];
-	GetGunPosition(id, vecOrigin);
-	pev(id, pev_v_angle, vecAngle);
-	vecAngle[0] = -vecAngle[0];
-	
-	new pEntity = DPS_Entites(id,"models/dualsword_ys_fx.mdl",vecOrigin,vecOrigin,0.01,SOLID_NOT,seq)
-		
-	// Set info for ent	
-	Set_Entity_Mode(pEntity, mode)
-	set_pev(pEntity, pev_scale, 0.1);
-	set_pev(pEntity, pev_iuser1, iEnt);
-	set_pev(pEntity, pev_velocity, Float:{0.01,0.01,0.01});
-	set_pev(pEntity, pev_angles, vecAngle);
-	set_pev(pEntity, pev_nextthink, get_gametime()+0.01);
-}
-stock Set_Entity_Mode(iEnt, mode) set_pev(iEnt, pev_iuser3, mode)
-stock Get_Entity_Mode(iEnt) return pev(iEnt,pev_iuser3)
-stock DPS_Entites(id, models[], Float:Start[3], Float:End[3], Float:speed, solid, seq, move=MOVETYPE_FLY)
-{
-	new pEntity = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"));
-		
-	// Set info for ent	
-	set_pev(pEntity, pev_movetype, move);
-	set_pev(pEntity, pev_owner, id);
-	engfunc(EngFunc_SetModel, pEntity, models);
-	set_pev(pEntity, pev_classname, "dps_entytyd");
-	set_pev(pEntity, pev_mins, Float:{-1.0, -1.0, -1.0});
-	set_pev(pEntity, pev_maxs, Float:{1.0, 1.0, 1.0});
-	set_pev(pEntity, pev_origin, Start);
-	set_pev(pEntity, pev_gravity, 0.01);
-	set_pev(pEntity, pev_solid, solid);
-	
-	static Float:Velocity[3];
-	Get_Speed_Vector(Start, End, speed, Velocity);
-	set_pev(pEntity, pev_velocity, Velocity);
-
-	new Float:vecVAngle[3]; pev(id, pev_v_angle, vecVAngle);
-	vector_to_angle(Velocity, vecVAngle)
-	
-	if(vecVAngle[0] > 90.0) vecVAngle[0] = -(360.0 - vecVAngle[0]);
-	set_pev(pEntity, pev_angles, vecVAngle);
-	
-	set_pev(pEntity, pev_rendermode, kRenderTransAdd);
-	set_pev(pEntity, pev_renderamt, 255.0);
-	set_pev(pEntity, pev_sequence, seq)
-	set_pev(pEntity, pev_animtime, get_gametime());
-	set_pev(pEntity, pev_framerate, 1.0)
-	return pEntity;
-}stock GetGunPosition(id, Float:vecSrc[3])
-{
-	new Float:vecViewOfs[3];
-	pev(id, pev_origin, vecSrc);
-	pev(id, pev_view_ofs, vecViewOfs);
-	xs_vec_add(vecSrc, vecViewOfs, vecSrc);
-}
-
-stock Stock_Hook_Ent(ent, Float:TargetOrigin[3], Float:Speed, mode=0)
-{
-	static Float:fl_Velocity[3],Float:EntOrigin[3],Float:distance_f,Float:fl_Time
-	pev(ent, pev_origin, EntOrigin)
-	
-	if(!mode)
-	{
-		distance_f = get_distance_f(EntOrigin, TargetOrigin)
-		fl_Time = distance_f / Speed
-			
-		pev(ent, pev_velocity, fl_Velocity)
-			
-		fl_Velocity[0] = (TargetOrigin[0] - EntOrigin[0]) / fl_Time
-		fl_Velocity[1] = (TargetOrigin[1] - EntOrigin[1]) / fl_Time
-		fl_Velocity[2] = (TargetOrigin[2] - EntOrigin[2]) / fl_Time
-
-		if(vector_length(fl_Velocity) > 1.0) set_pev(ent, pev_velocity, fl_Velocity)
-		else set_pev(ent, pev_velocity, Float:{0.01, 0.01, 0.01})
-	} else {
-		static Float:fl_EntVelocity[3], Float:fl_Acc[3]
-		Stock_Directed_Vector(TargetOrigin, EntOrigin, fl_Velocity)
-		xs_vec_mul_scalar(fl_Velocity, Speed, fl_Velocity)
-		
-		for(new i =0; i<3; i++)
-		{
-			if(fl_Velocity[i] > fl_EntVelocity[i]) 
-			{
-				fl_Acc[i] = fl_Velocity[i]-fl_EntVelocity[i]
-				fl_Acc[i] = floatmin(70.0, fl_Acc[i])
-				fl_EntVelocity[i] += fl_Acc[i]
-			}
-			else if(fl_Velocity[i] < fl_EntVelocity[i])
-			{
-				fl_Acc[i] = fl_EntVelocity[i]-fl_Velocity[i]
-				fl_Acc[i] = floatmin(70.0, fl_Acc[i])
-				fl_EntVelocity[i] -= fl_Acc[i]
-			}
-		}
-		set_pev(ent, pev_velocity, fl_EntVelocity)
-	}
-}
-stock Stock_Directed_Vector(Float:start[3],Float:end[3],Float:reOri[3])
-{	
-	new Float:v3[3],i
-	for(i=0;i<3;i++) v3[i]=start[i]-end[i]
-
-	new Float:vl = vector_length(v3)
-	for(i=0;i<3;i++) reOri[i] = v3[i] / vl
-}
-/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
-*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1033\\ f0\\ fs16 \n\\ par }
-*/

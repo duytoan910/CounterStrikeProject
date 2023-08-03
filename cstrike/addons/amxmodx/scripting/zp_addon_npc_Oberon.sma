@@ -99,7 +99,7 @@ const pev_time = pev_fuser1
 const pev_time2 = pev_fuser2
 const pev_time3 = pev_fuser3
 
-new g_CurrentBoss_Ent, g_Reg_Ham, Float:OBERON_HEALTH, g_stage
+new g_CurrentBoss_Ent, Float:OBERON_HEALTH, g_stage
 new g_Msg_ScreenShake, g_MaxPlayers, g_FootStep, g_expspr_id
 
 public plugin_init() 
@@ -193,30 +193,7 @@ public Create_Boss(id, Float:HP)
 	ATTACK_DAMAGE = BASE_ATTACK_DAMAGE
 	OBERON_ATTACK_BOMB_DAMAGE = BASE_OBERON_ATTACK_BOMB_DAMAGE
 	
-	if(!g_Reg_Ham)
-	{
-		g_Reg_Ham = 1
-		RegisterHamFromEntity(Ham_TraceAttack, OBERON, "fw_OBERON_TraceAttack", 1)
-	}
 	return OBERON;
-}
-public fw_OBERON_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
-{
-	if(!is_valid_ent(Ent)) 
-		return
-     
-	static Classname[32]
-	pev(Ent, pev_classname, Classname, charsmax(Classname)) 
-	     
-	if(!equal(Classname, OBERON_CLASSNAME)) 
-		return
-		
-	new owner;owner=pev(Ent,pev_owner)
-	if(pev(owner, pev_health)>200.0)
-	{
-		set_pev(owner, pev_health, pev(Ent, pev_health) - HEALTH_OFFSET)
-	}
-	else set_pev(owner, pev_health, 1.0)
 }
 public fw_OBERON_Think(ent)
 {
@@ -224,13 +201,19 @@ public fw_OBERON_Think(ent)
 		return
 	if(pev(ent, pev_state) == OBERON_STATE_DEATH)
 		return
-	if((pev(ent, pev_health) - HEALTH_OFFSET) <= 0.0)
+	
+	new owner; owner = pev(ent, pev_owner)
+	if((pev(owner, pev_health) - HEALTH_OFFSET) <= 0.0)
 	{
 		set_pev(ent, pev_takedamage, DAMAGE_NO)
 		OBERON_Death(ent)
 		return
 	}
-	if(!g_stage && (pev(ent, pev_health) <= (HEALTH_OFFSET+(OBERON_HEALTH*0.5))))
+	if(get_cvar_num("bot_stop")){
+		set_pev(ent, pev_nextthink, get_gametime() + 0.1)
+		return;
+	}
+	if(!g_stage && (pev(owner, pev_health) <= (HEALTH_OFFSET+(OBERON_HEALTH*0.5))))
 	{
 		OBERON_Changing(ent)
 		return
@@ -443,7 +426,8 @@ public OBERON_ChangingDone(ent)
 	if(!pev_valid(ent))
 		return	
 		
-	set_pev(ent, pev_health, pev(ent, pev_health) + (OBERON_HEALTH*0.1))
+	new owner; owner = pev(ent, pev_owner)
+	set_pev(owner, pev_health, pev(owner, pev_health) + (OBERON_HEALTH*0.1))
 	set_pev(ent, pev_movetype, MOVETYPE_PUSHSTEP)
 	set_pev(ent, pev_state, OBERON_STATE_SEARCHING_ENEMY)	
 	set_pev(ent, pev_nextthink, get_gametime() + 0.1)
@@ -917,7 +901,7 @@ public Make_PlayerShake(id)
 	{
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	} else {
@@ -926,7 +910,7 @@ public Make_PlayerShake(id)
 			
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake, _, id)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	}

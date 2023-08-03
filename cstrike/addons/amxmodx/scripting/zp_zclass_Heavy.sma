@@ -26,6 +26,9 @@ const zclass1_speed = 280 // speed
 const Float:zclass1_gravity = 0.8 // gravity
 const Float:zclass1_knockback =  1.12 // knockback
 
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_heavy_zombi.mdl" }
+
 new g_sound[][] = 
 {
 	"zombie_plague/zombi_death_heavy_1.wav" ,
@@ -87,6 +90,8 @@ public plugin_precache()
 	engfunc(EngFunc_PrecacheSound, szSoundTrapSet)	
 	for(new i = 0; i < sizeof g_sound; i++)
 		precache_sound(g_sound[i]);
+		
+	precache_model(zclass1_bombmodel)
 }
 
 public fw_PlayerPostThink(id)
@@ -150,8 +155,18 @@ public fw_ClientCommand(id)
 
 public Event_CurWeapon(id)
 {
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE && zp_get_user_zombie_class(id) == iClass)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+
 	if(get_user_weapon(id) == CSW_KNIFE) iSkillStat[id] = CANUSE;
 	else iSkillStat[id] = CANNOT;
+	return PLUGIN_CONTINUE
 }
 
 public Event_HLTV()

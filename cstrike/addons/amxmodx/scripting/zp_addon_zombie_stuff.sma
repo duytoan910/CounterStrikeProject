@@ -10,7 +10,7 @@
 #define TEMP_MSG	16
 #define TEMP_MSG2	1936
 
-new g_Smoke,g_Lightning;
+new g_Smoke,g_Lightning, iBlood[2];
 public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR);
@@ -20,6 +20,8 @@ public plugin_precache()
 {
 	precache_sound("ambience/thunder_clap.wav");
 	g_Lightning = precache_model("sprites/lgtning.spr");
+	iBlood[0] = precache_model("sprites/bloodspray.spr");
+	iBlood[1] = precache_model("sprites/blood.spr");
 	return PLUGIN_CONTINUE
 }
 
@@ -38,8 +40,14 @@ public hook_death()
 	if(zp_get_user_nemesis(read_data(1)))
 	{
 		create_thunder(coord,vOrigin);
-		emit_sound(0, CHAN_BODY, "ambience/thunder_clap.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)		
+		//emit_sound(0, CHAN_BODY, "ambience/thunder_clap.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)		
+		client_cmd(0, "spk ^"%s^"", "ambience/thunder_clap.wav")
 	}
+
+	if(zp_get_user_zombie(victim)){
+		Create_Blood(vOrigin, iBlood[0], iBlood[1], 248, random_num(8,15));
+	}
+	
 	return PLUGIN_CONTINUE;
 }
 
@@ -81,5 +89,18 @@ create_thunder(vec1[3],vec2[3])
 	write_short(g_Smoke); 
 	write_byte(10);  
 	write_byte(10)  
+	message_end();
+}
+stock Create_Blood(const vStartTMP[3], const iModel, const iModel2, const iColor, const iScale)
+{
+	message_begin(MSG_BROADCAST, SVC_TEMPENTITY, vStartTMP, 0);
+	write_byte(TE_BLOODSPRITE);
+	write_coord(vStartTMP[0])
+	write_coord(vStartTMP[1])
+	write_coord(vStartTMP[2])
+	write_short(iModel);
+	write_short(iModel2);
+	write_byte(iColor);
+	write_byte(iScale);
 	message_end();
 }

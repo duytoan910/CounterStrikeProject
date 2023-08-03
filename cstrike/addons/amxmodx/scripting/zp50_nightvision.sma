@@ -29,7 +29,6 @@ new cvar_lighting, cvar_vlighting, cvar_triggered_lights
 // Night Vision
 new g_msgScreenFade
 
-new g_itemid
 new g_item[33], g_active[33]
 
 new cvar_vcolor_human_r, cvar_vcolor_human_g, cvar_vcolor_human_b
@@ -62,7 +61,7 @@ public plugin_init()
     //g_itemid = zp_items_register("New Night Vision", 5)
     
     cvar_lighting = register_cvar("zp_lighting", "g")
-    cvar_vlighting = register_cvar("zp_lighting_vision", "m")
+    cvar_vlighting = register_cvar("zp_lighting_vision", "g")
     cvar_triggered_lights = register_cvar("zp_triggered_lights", "1")
     
     // Night Vision Colors
@@ -232,33 +231,6 @@ public lighting_task()
     
     
 }  
-
-// EXTRA ITEM ======================================================================================
-
-public zp_fw_items_select_pre(id, itemid, igc)
-{
-    if( itemid == g_itemid)
-    {
-        if( zp_core_is_zombie(id) || zp_class_survivor_get(id))
-        return ZP_ITEM_DONT_SHOW   
-        
-        if(g_item[id])
-        return ZP_ITEM_NOT_AVAILABLE
-    }
-    return ZP_ITEM_AVAILABLE
-     
-}
-
-public zp_fw_items_select_post(id, item, igc)
-{
-    if(item == g_itemid)
-    {
-        g_item[id] = true
-        set_vision_color(id)
-        
-    }
-    return PLUGIN_CONTINUE  
-}
 
 // SET NIGHT VISION ================================================================================
 

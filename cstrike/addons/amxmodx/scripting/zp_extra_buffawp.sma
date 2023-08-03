@@ -9,6 +9,7 @@
 #include <cstrike>
 #include <zombieplague>
 #include <toan>
+#include <zp50_gamemodes>
 
 #define write_coord_f(%1)	engfunc(EngFunc_WriteCoord,%1)
 #define SET_MODEL(%0,%1)		engfunc(EngFunc_SetModel, %0, %1)
@@ -169,8 +170,16 @@ public TraceAttack(ent, attacker, Float:Damage, Float:fDir[3], ptr, iDamageType)
 	new Float:flEnd[3]
 	get_tr2(ptr, TR_vecEndPos, flEnd)
 	new hit = get_tr(TR_pHit)
-	if(pev_valid(hit)&&is_user_alive(hit))
-		pev(hit, pev_origin, flEnd)
+	if(pev_valid(hit)){
+		new gameModeName[32]
+		zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
+		new isNPC = equal(gameModeName, "Titan boss")
+		if(isNPC && pev(hit, pev_owner)){
+			pev(pev(hit, pev_owner), pev_origin, flEnd)
+		}else if(is_user_alive(hit)){
+			pev(hit, pev_origin, flEnd)
+		}
+	}
 		
 	navtive_bullet_effect(attacker, ent, ptr)
 	explode(attacker, flEnd)
@@ -396,8 +405,10 @@ public explode(id, Float:End1[3])
 			{
 				if (id == a || !is_user_alive(a) || !zp_get_user_zombie(a))
 					continue 
+				
 				if(pev(a, pev_takedamage) != DAMAGE_NO)
 				{
+
 					new iEntity = create_entity("info_target");
 					if (pev_valid(iEntity))
 					{	

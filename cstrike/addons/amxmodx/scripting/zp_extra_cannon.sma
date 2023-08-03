@@ -370,7 +370,11 @@ Weapon_OnShoot(const iItem, const iPlayer, bool:iType)
 				}
 			}
 		}else{
-			_call.SecondaryAttack(iItem, iPlayer);
+			if(pev(iItem, pev_fuser3) < get_gametime())
+			{
+				set_pev(iItem, pev_fuser3, get_gametime() + 3.5)
+				_call.SecondaryAttack(iItem, iPlayer);
+			}
 		}
 	}else{
 		switch (iType)

@@ -67,7 +67,7 @@ const pev_time = pev_fuser1
 const pev_time2 = pev_fuser2
 const pev_time3 = pev_fuser3
 
-new g_CurrentBoss_Ent, g_Reg_Ham, Float:PHOBOS_HEALTH, g_sprid
+new g_CurrentBoss_Ent, Float:PHOBOS_HEALTH, g_sprid
 new g_Msg_ScreenShake, g_MaxPlayers, g_FootStep
 
 public plugin_init() 
@@ -127,7 +127,7 @@ public Create_Boss(id, Float:HP)
 	// Set Config
 	entity_set_string(PHOBOS, EV_SZ_classname,PHOBOS_CLASSNAME)
 	entity_set_model(PHOBOS, random_num(0,1)?PHOBOS_MODEL2:PHOBOS_MODEL)
-		
+
 	set_pev(PHOBOS, pev_gamestate, 1)
 	entity_set_int(PHOBOS, EV_INT_solid, SOLID_BBOX)
 	entity_set_int(PHOBOS, EV_INT_movetype, MOVETYPE_PUSHSTEP)
@@ -151,31 +151,7 @@ public Create_Boss(id, Float:HP)
 	
 	set_pev(PHOBOS, pev_time2, get_gametime() + 1.0)
 	
-	if(!g_Reg_Ham)
-	{
-		g_Reg_Ham = 1
-		RegisterHamFromEntity(Ham_TraceAttack, PHOBOS, "fw_PHOBOS_TraceAttack", 1)
-	}
 	return PHOBOS;
-}
-public fw_PHOBOS_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
-{
-	if(!is_valid_ent(Ent)) 
-		return
-     
-	static Classname[32]
-	pev(Ent, pev_classname, Classname, charsmax(Classname)) 
-	     
-	if(!equal(Classname, PHOBOS_CLASSNAME)) 
-		return
-		
-	new owner;owner=pev(Ent,pev_owner)
-	if(pev(owner, pev_health)>200.0)
-	{
-		set_pev(owner, pev_health, pev(Ent, pev_health) - HEALTH_OFFSET)
-	}
-	else set_pev(owner, pev_health, 1.0)
-	
 }
 public fw_PHOBOS_Think(ent)
 {
@@ -183,12 +159,19 @@ public fw_PHOBOS_Think(ent)
 		return
 	if(pev(ent, pev_state) == PHOBOS_STATE_DEATH)
 		return
-	if((pev(ent, pev_health) - HEALTH_OFFSET) <= 0.0)
+	new owner; owner = pev(ent, pev_owner)
+	if(pev(owner, pev_health) < HEALTH_OFFSET)
 	{
+		set_pev(owner, pev_takedamage, DAMAGE_NO)
 		set_pev(ent, pev_takedamage, DAMAGE_NO)
 		PHOBOS_Death(ent)
 		return
 	}
+	if(get_cvar_num("bot_stop")){
+		set_pev(ent, pev_nextthink, get_gametime() + 0.1)
+		return;
+	}
+
 	switch(pev(ent, pev_state))
 	{
 		case PHOBOS_STATE_IDLE:
@@ -563,7 +546,7 @@ public Make_PlayerShake(id)
 	{
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	} else {
@@ -572,7 +555,7 @@ public Make_PlayerShake(id)
 			
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake, _, id)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	}

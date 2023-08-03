@@ -16,6 +16,7 @@
 #include <cs_ham_bots_api>
 #include <zp50_core>
 #include <toan>
+#include <zp50_class_survivor>
 
 public plugin_init()
 {
@@ -24,7 +25,7 @@ public plugin_init()
 
 public zp_fw_core_cure_post(id, attacker)
 {
-    if (!is_user_alive(id) || zp_core_is_zombie(id))
+    if (!is_user_alive(id) || zp_core_is_zombie(id) || zp_class_survivor_get(id))
         return;
         
     remove_task(id)
@@ -36,14 +37,14 @@ public give_weapon(id){
         dinfinity(id)
 
     skullaxe(id)
+    chaingrenade(id)
+    chaingrenade(id)
         
     // Give the new weapon and full ammo
-    switch(random_num(0,3))
+    switch(random_num(0,5))
     {
         case 0:hk416(id)
-        case 1:at15hw(id)
-        case 2:skull8(id)
-        case 3:sfmg(id)
+        case 1..5:at15hw(id)
     }
 
     // if(is_user_bot(id)){

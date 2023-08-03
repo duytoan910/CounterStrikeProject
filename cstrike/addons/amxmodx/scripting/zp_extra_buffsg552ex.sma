@@ -6,6 +6,7 @@
 #include <engine>
 #include <zombieplague>
 #include <toan>
+#include <zp50_gamemodes>
 
 #define PLUGIN "SG552 Cerberus"
 #define VERSION "1.0"
@@ -252,7 +253,18 @@ public fw_PlaybackEvent(flags, invoker, eventid, Float:delay, Float:origin[3], F
 	
 	set_weapon_anim(invoker, SHOOT_ANIM)
 	emit_sound(invoker, CHAN_WEAPON, FIRE_SOUND, VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
-	static Float:g_attack_origin[3],Body, Target; get_user_aiming(invoker, Target, Body, 99999)
+	static Float:g_attack_origin[3],Body, Target; 
+	
+	get_user_aiming(invoker, Target, Body, 99999)
+	
+	new gameModeName[32]
+	zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
+	new isNPC = equal(gameModeName, "Titan boss")
+
+	if(isNPC && pev(Target, pev_owner)){
+		Target = pev(Target, pev_owner)
+	}
+
 	if(cs_get_user_zoom(invoker) == 4  && is_user_alive(Target) && zp_get_user_zombie(Target))
 	{
 			fm_get_aim_origin(invoker, g_attack_origin)

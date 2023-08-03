@@ -185,7 +185,7 @@ public fw_PlayerPostThink(id)
 	get_user_aiming(id, enemy, body)
 	if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
 	{
-		cmd_SPIT(id)
+		set_task(0.5 , "cmd_SPIT", id)
 	}
 	return PLUGIN_CONTINUE
 }

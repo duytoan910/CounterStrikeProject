@@ -809,12 +809,12 @@ public Fw_AddToFullPack_Post(esState, iE, iEnt, iHost, iHostFlags, iPlayer, pSet
 	if (pev(iEnt, pev_flags) & FL_KILLME) 
 		return;
 
-	new classname[32], iOwner;
-	pev(iEnt, pev_classname, classname, 31);
-	iOwner = pev(iEnt, pev_owner)
+	// new classname[32], iOwner;
+	// pev(iEnt, pev_classname, classname, 31);
+	// iOwner = pev(iEnt, pev_owner)
 	
-	if (equal(classname,"dbg_entytyd") && g_special[iOwner])
-		if (iHost != iOwner) set_es(esState, ES_Effects, (get_es(esState, ES_Effects) | EF_NODRAW));
+	// if (equal(classname,"dbg_entytyd") && g_special[iOwner])
+	// 	if (iHost != iOwner) set_es(esState, ES_Effects, (get_es(esState, ES_Effects) | EF_NODRAW));
 }
 
 public fw_MF_Think(ent)
@@ -1099,7 +1099,7 @@ stock KnifeAttack2(id, bStab, Float:flRange, Float:fAngle, Float:flDamage, Float
 			continue
 		if (Stock_CheckAngle(id, pEntity) > floatcos(fAngle,degrees))
 			continue;
-		Stock_Fake_KnockBack(id, pEntity, flKnockBack)
+		Stock_Fake_KnockBack(id, pEntity, zp_get_user_nemesis(pEntity)?flKnockBack/3:flKnockBack)
 	}
 	return iHitResult;
 }

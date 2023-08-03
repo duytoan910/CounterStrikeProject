@@ -32,15 +32,15 @@ new const zp_cso_evo_hp_lvl[][] =
 new const zp_cso_evo_hp_lvl[][] =
 {
 	"0",
-	"2000",
-	"4000",
-	"6000",
-	"8000",
-	"10000",
-	"11000",
-	"1200",
-	"13000",
-	"14000"
+	"2500",
+	"4500",
+	"6500",
+	"8500",
+	"10500",
+	"11500",
+	"1250",
+	"13500",
+	"14500"
 }
 new g_SyncHud_Kill,g_ham_bot, g_respawn_iconid
 new zp_cso_zblvl[33], zp_cso_evomax, zp_cso_evokill[33],zp_cso_evokill2[33], zp_cso_evokillmax, death_count[33]

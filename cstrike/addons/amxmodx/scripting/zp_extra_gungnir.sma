@@ -5,6 +5,7 @@
 #include <cstrike>
 #include <zombieplague>
 #include <toan>
+#include <zp50_gamemodes>
 
 #define PLUGIN "AMXX Gungnir"
 #define VERSION "2.0"
@@ -530,6 +531,8 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
         }
 
         if (iButton & IN_ATTACK && iClip) {
+                new gameModeName[32]
+                zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
                 if (fSound < fCurTime) {
                         emit_sound(id, CHAN_WEAPON, SOUND_FIRE[0], VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
                         set_pev(iEnt, pev_fuser1, fCurTime + 1.0)
@@ -584,18 +587,22 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
 
                         new k
                         for (k = 0; k < 7; k++) {
-                                while ((pEntity = engfunc(EngFunc_FindEntityInSphere, pEntity, fOrigin, ELECTRO_RANGE)) != 0) {
+                                while ((pEntity = engfunc(EngFunc_FindEntityInSphere, pEntity, fEnd, ELECTRO_RANGE)) != 0) {
 					if (pev(pEntity, pev_takedamage) == DAMAGE_NO) continue
 					if (is_user_connected(pEntity) && pEntity != id)
-					if (!can_damage(pEntity, id)) continue
-					if (pEntity == id) continue
-					if (!can_see_fm(id, pEntity)) continue
+					        if (!zp_get_user_zombie(pEntity)) continue
+
+                                        if (!equal(gameModeName, "Titan boss")){
+                                                if(!can_see_fm(id, pEntity)) 
+                                                        continue
+
+                                                new Float: org[3]
+                                                pev(pEntity, pev_origin, org)
+                                                if (!is_in_viewcone(id, org)) continue
+                                                
+                                        }
 					
-					new Float: org[3]
-					pev(pEntity, pev_origin, org)
-					if (!is_in_viewcone(id, org)) continue
-					
-					if(valueinarray(pEntity,g_iVic[id])) continue
+                                        if(valueinarray(pEntity,g_iVic[id])) continue
 					
 					if (pev_valid(pEntity)) {
 						new Float: tempOrigin[3]
@@ -615,7 +622,7 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
                                                 LOL[k])
                                 }
 
-                                if (is_user_alive(g_iVic[id][k]) && can_damage(id, g_iVic[id][k]) && entity_range(id, g_iVic[id][k]) < ELECTRO_RANGE && !Stock_Blah(fOrigin, LOL[k], id)) {
+                                if (is_user_alive(g_iVic[id][k]) && zp_get_user_zombie(g_iVic[id][k]) && entity_range(id, g_iVic[id][k]) < ELECTRO_RANGE && !Stock_Blah(fOrigin, LOL[k], id)) {
                                         engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, fOrigin, 0)
                                         write_byte(TE_EXPLOSION)
                                         engfunc(EngFunc_WriteCoord, LOL[k][0])
@@ -907,7 +914,7 @@ public HamF_InfoTarget_Touch(iEnt, iPtd) {
         while ((pEntity = engfunc(EngFunc_FindEntityInSphere, pEntity, vecOri, fRng)) != 0) {
                 if (pev(pEntity, pev_takedamage) == DAMAGE_NO) continue
                 if (is_user_connected(pEntity) && pEntity != iOwner)
-                        if (!can_damage(pEntity, iOwner)) continue
+                        if (!zp_get_user_zombie(pEntity)) continue
                 if (pEntity == iOwner) continue
 
                 if (pev_valid(pEntity)) {
@@ -1042,10 +1049,17 @@ stock Float: Stock_Blah(Float: start[3], Float: end[3], ignore_ent) {
 }
 stock can_damage(id1, id2) {
         if (id1 <= 0 || id1 >= 33 || id2 <= 0 || id2 >= 33)
-                return 1
+                return false
 
-        // Check team
-        return (get_pdata_int(id1, 114) != get_pdata_int(id2, 114))
+        if(zp_get_user_zombie(id1))
+                if(!zp_get_user_zombie(id2))
+                        return true
+
+        if(!zp_get_user_zombie(id2))
+                if(zp_get_user_zombie(id1))
+                        return true
+                        
+        return false
 }
 stock Stock_Get_Velocity_Angle(entity, Float: output[3]) {
         static Float: velocity[3]

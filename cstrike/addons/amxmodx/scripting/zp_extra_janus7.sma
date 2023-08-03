@@ -6,6 +6,7 @@
 #include <cstrike>
 #include <zombieplague>
 #include <toan> 
+#include <zp50_gamemodes>
 
 #define EV_INT_WEAPONKEY	EV_INT_impulse
 #define WEAPONKEY 7213
@@ -363,6 +364,13 @@ public fw_janus7_PrimaryAttack_Post(Weapon) {
 			
 			get_user_aiming(Player, targ, body);
 			
+			new gameModeName[32]
+			zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
+			new isNPC = equal(gameModeName, "Titan boss")
+			if(isNPC && pev(targ, pev_owner)){
+				targ = pev(targ, pev_owner)
+			}
+
 			if(g_mode[Player]) {
 				message_begin(MSG_BROADCAST, SVC_TEMPENTITY)
 				write_byte(TE_BEAMENTPOINT)
@@ -543,7 +551,12 @@ public janus7__ItemPostFrame(weapon_entity) {
 			emit_sound(id, CHAN_WEAPON, Fire_snd[g_mode[id]], 0.0, ATTN_NORM, 0, PITCH_NORM);
 			g_sound[id] = 0;
 		}
-		if( !is_user_alive(g_target[id]) || !zp_get_user_zombie(g_target[id])  || !can_see_fm(id,g_target[id]) || !is_in_viewcone(id, origin))
+		
+		new gameModeName[32]
+		zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
+		new isNPC = equal(gameModeName, "Titan boss")
+
+		if( !is_user_alive(g_target[id]) || !zp_get_user_zombie(g_target[id])  || (!isNPC && !can_see_fm(id,g_target[id])) || (!isNPC && !is_in_viewcone(id, origin)))
 			g_target[id] = 0;
 		
 		UTIL_PlayWeaponAnimation(id, 7);

@@ -21,7 +21,8 @@ const zclass_health = 3200 // health
 const zclass_speed = 285 // speed 
 const Float:zclass_gravity = 0.69 // gravity 
 const Float:zclass_knockback = 1.25 // knockback 
-
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_witch_zombi.mdl" }
 new const SOUND_BAT_HIT[] = "zombie_plague/zombi_banshee_laugh.wav"
 new const SOUND_BAT_MISS[] = "zombie_plague/zombi_banshee_pulling_fail.wav"
 
@@ -71,6 +72,7 @@ public plugin_precache()
 	precache_sound(SOUND_BAT_HIT)
 	precache_sound(SOUND_BAT_MISS)
 	precache_model(MODEL_BAT)
+	precache_model(zclass1_bombmodel)
 	for(new i = 0; i < sizeof g_sound; i++)
 	{
 		precache_sound(g_sound[i]);
@@ -86,6 +88,7 @@ public plugin_init()
 	
 	register_event("HLTV", "EventHLTV", "a", "1=0", "2=0")
 	register_event("DeathMsg", "EventDeath", "a")
+	register_event("CurWeapon", "EV_CurWeapon", "be", "1=1")
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage");
 	
 	register_clcmd("drop", "cmd_bat")
@@ -108,6 +111,18 @@ public client_putinserver(id)
 public Do_RegisterHamBot(id)
 {
 	RegisterHamFromEntity(Ham_TakeDamage, id, "fw_TakeDamage")
+}
+public EV_CurWeapon(id)
+{
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE && zp_get_user_zombie_class(id) == classbanchee)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+	return PLUGIN_CONTINUE
 }
 public EventHLTV()
 {
@@ -220,7 +235,7 @@ public fw_PlayerPreThink(id)
 		get_user_aiming(id, enemy, body)
 		if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
 		{
-			cmd_bat(id)
+			set_task(0.5 , "cmd_bat", id)
 		}
 	}
 	return FMRES_IGNORED

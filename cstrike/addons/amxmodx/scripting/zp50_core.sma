@@ -154,8 +154,9 @@ InfectPlayer(id, attacker = 0)
 	
 	flag_set(g_IsZombie, id)
 	
-	if (GetZombieCount() == 1)
+	if (GetZombieCount() == 1){
 		flag_set(g_IsFirstZombie, id)
+	}
 	else
 		flag_unset(g_IsFirstZombie, id)
 	

@@ -37,6 +37,9 @@ const zclass_health = 3400 // health
 const zclass_speed = 280 // speed
 const Float:zclass_gravity = 0.8 // gravity
 const Float:zclass_knockback =  1.45 // knockback
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_deimos2_zombi.mdl" }
+
 
 new Float:g_fastspeed = 250.0 // sprint speed 340
 new Float:g_normspeed = 280.0 // norm speed. must be as zclass_speed
@@ -61,6 +64,7 @@ public plugin_precache()
 	precache_sound(sound_china_sprint)
 	for(new i = 0; i < sizeof g_sound; i++)
 		precache_sound(g_sound[i]);
+	precache_model(zclass1_bombmodel)
 }
 
 public plugin_init() 
@@ -70,6 +74,7 @@ public plugin_init()
 
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage_Post",1);
 	register_event("DeathMsg", "Death", "a");
+	register_event("CurWeapon", "EV_CurWeapon", "be", "1=1")
 
 	register_forward( FM_PlayerPreThink, "client_prethink" )
 	register_forward( FM_PlayerPostThink, "fw_PlayerPostThink" )
@@ -79,7 +84,18 @@ public plugin_init()
 	cvar_debug = register_cvar("zp_bot_skill_debug", "0")
 }
 
-
+public EV_CurWeapon(id)
+{
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE && zp_get_user_zombie_class(id) == g_zclass_china)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+	return PLUGIN_CONTINUE
+}
 public client_prethink(id)
 {
 	if (zp_get_user_zombie_class(id) == g_zclass_china)

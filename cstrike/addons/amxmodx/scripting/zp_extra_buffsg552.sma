@@ -79,7 +79,7 @@ public plugin_init()
 	register_forward(FM_PlayerPreThink, "fw_PlayerPreThink")
 	
 	
-	g_itemid = zp_register_extra_item("SG552 Lycanthrope", 8000, ZP_TEAM_HUMAN)
+	g_itemid = zp_register_extra_item("SG552 Lycanthrope", 6000, ZP_TEAM_HUMAN)
 	md_loadimage(EFFECT_TGA)
 }
 
@@ -344,8 +344,8 @@ public HAM_TakeDamage(victim, inflictor, attacker, Float:damage)
 				//client_print(attacker,print_chat,"Damage: %i on %s",dmgCount[attacker][victim],name)
 				if(dmgCount[attacker][victim] >= 1000)
 				{
-					Frozen(attacker,victim)
 					dmgCount[attacker][victim] = 0
+					Frozen(attacker,victim)
 					emit_sound(victim, CHAN_WEAPON, "zombie_plague/impalehit.wav", VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
 				}	
 				SetHamParamFloat(4, damage * WPN_DAMAGE)
@@ -385,8 +385,43 @@ public Frozen(attacker, id)
 	FrostEffect(id, attacker)
 	FrostEffectRing(attacker,originF)
 	
+	new a = FM_NULLENT
+	while((a = find_ent_in_sphere(a, originF, 100.0)) != 0)
+	{
+		if (id == a)
+			continue 
+		if (!zp_get_user_zombie(a))
+			continue 
+		if(pev(a, pev_takedamage) != DAMAGE_NO)
+		{
+			Frozen2(attacker, a)		
+		}
+	}
+
 	set_task(FROZENTIME,"UnFrozen",id)
 }
+public Frozen2(attacker, id)
+{
+	// Not alive
+	if (!is_user_alive(id))
+		return;
+	if (!zp_get_user_zombie(id))
+		return;
+	if (zp_get_user_nemesis(id))
+		return;
+	if(g_FrozeN[id])
+		return;
+
+	g_FrozeN[id] = true
+	emit_sound(id, CHAN_WEAPON, "zombie_plague/impalehit.wav", VOL_NORM, ATTN_NORM, 0, PITCH_NORM)
+
+	static Float:originF[3]
+	pev(id, pev_origin, originF)
+	FrostEffect(id, attacker)
+	FrostEffectRing(attacker,originF)
+	set_task(FROZENTIME,"UnFrozen",id)
+}
+
 public UnFrozen(id)
 {
 	fm_set_rendering(id)
@@ -663,7 +698,7 @@ public FrostEffect(id, attacker)
 }
 
 // Frost Effect Ring
-FrostEffectRing(id, const Float:originF3[3])
+FrostEffectRing(id, const Float:originF3[3], size=60)
 {
 	engfunc(EngFunc_MessageBegin, MSG_BROADCAST ,SVC_TEMPENTITY, originF3, 0) 
 	write_byte(TE_SPRITETRAIL) // TE ID 
@@ -699,7 +734,7 @@ FrostEffectRing(id, const Float:originF3[3])
 	write_byte(0) // startframe
 	write_byte(0) // framerate
 	write_byte(4) // life
-	write_byte(60) // width
+	write_byte(size) // width
 	write_byte(0) // noise
 	write_byte(color[0]) // red
 	write_byte(color[1]) // green
@@ -720,7 +755,7 @@ FrostEffectRing(id, const Float:originF3[3])
 	write_byte(0) // startframe
 	write_byte(0) // framerate
 	write_byte(4) // life
-	write_byte(60) // width
+	write_byte(size) // width
 	write_byte(0) // noise
 	write_byte(color[0]) // red
 	write_byte(color[1]) // green
@@ -741,7 +776,7 @@ FrostEffectRing(id, const Float:originF3[3])
 	write_byte(0) // startframe
 	write_byte(0) // framerate
 	write_byte(4) // life
-	write_byte(60) // width
+	write_byte(size) // width
 	write_byte(0) // noise
 	write_byte(color[0]) // red
 	write_byte(color[1]) // green

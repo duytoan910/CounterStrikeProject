@@ -23,6 +23,9 @@ new const zclass_health = 3200
 new const zclass_speed = 280
 new const Float:zclass_gravity = 0.8
 new const Float:zclass_knockback = 1.25
+
+new g_iCurrentWeapon[33]
+new const zclass1_bombmodel[] = { "models/zombie_plague/v_zombibomb_teleport_zombi_host.mdl" }
 new const DeathSound[2][] =
 {
 	"zombie_plague/zombi_death_1.wav",
@@ -66,6 +69,7 @@ public plugin_init()
 	// Events
 	register_logevent("logevent_round_start",2, "1=Round_Start")
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0")
+	register_event("CurWeapon", "EV_CurWeapon", "be", "1=1")
 	register_event("DeathMsg", "Death", "a")
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage");
 
@@ -84,9 +88,22 @@ public plugin_precache()
 		precache_sound(DeathSound[i]);
 	for(new i = 0; i < sizeof HurtSound; i++)
 		precache_sound(HurtSound[i]);
-			
+
+	precache_model(zclass1_bombmodel)			
 	// Register all classes
 	g_zclass = zp_register_zombie_class(zclass_name, zclass_desc, zclass_hostmodel, zclass_clawsmodelhost, zclass_health, zclass_speed, zclass_gravity, zclass_knockback)
+}
+public EV_CurWeapon(id)
+{
+	if(!is_user_alive(id) || !zp_get_user_zombie(id))
+		return PLUGIN_CONTINUE
+		
+	g_iCurrentWeapon[id] = read_data(2)
+	if(g_iCurrentWeapon[id] == CSW_SMOKEGRENADE)
+	{
+		set_pev(id, pev_viewmodel2, zclass1_bombmodel)
+	}
+	return PLUGIN_CONTINUE
 }
 
 new g_bot

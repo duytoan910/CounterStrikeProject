@@ -576,11 +576,12 @@ public menu_buy_grenades(id, key)
 // Buy Grenades
 buy_grenades(id, selection)
 {
+
 	// Give the new weapon
 	static weapon_name[32]
 	ArrayGetString(g_grenades_items, selection, weapon_name, charsmax(weapon_name))
 	give_item(id, weapon_name)
-	
+
 	// Grenades bought
 	flag_unset(g_CanBuyGrenades, id)
 }

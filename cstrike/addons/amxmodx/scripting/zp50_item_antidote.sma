@@ -10,7 +10,7 @@
 ================================================================================*/
 
 #define ITEM_NAME "Antidote"
-#define ITEM_COST 15
+#define ITEM_COST 15000
 
 #include <amxmodx>
 #include <zp50_items>
@@ -53,9 +53,10 @@ public zp_fw_items_select_pre(id, itemid, ignorecost)
 	
 	// Antidote only available during infection modes
 	new current_mode = zp_gamemodes_get_current()
+
 	if (current_mode != g_GameModeInfectionID && current_mode != g_GameModeMultiID)
 		return ZP_ITEM_DONT_SHOW;
-	
+		
 	// Antidote only available to zombies
 	if (!zp_core_is_zombie(id))
 		return ZP_ITEM_DONT_SHOW;
