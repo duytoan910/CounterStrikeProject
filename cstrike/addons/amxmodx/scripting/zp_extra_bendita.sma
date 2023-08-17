@@ -528,7 +528,7 @@ public Make_HolyFire(id)
 		set_pev(iEnt, pev_renderamt, 250.0)
 		set_pev(iEnt, pev_fuser1, get_gametime() + HOLYBOMB_BURNTIME)
 		set_pev(iEnt, pev_scale, 1.0)
-		set_pev(iEnt, pev_nextthink, get_gametime() + 0.5)
+		set_pev(iEnt, pev_nextthink, get_gametime() + 0.1)
 		
 		set_pev(iEnt, pev_classname, HOLYFIREBURN_CLASSNAME)
 		engfunc(EngFunc_SetModel, iEnt, WeaponResources[0])

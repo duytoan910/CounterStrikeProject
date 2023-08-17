@@ -24,15 +24,15 @@
 #define POISON_CLASSNAME "poison"
 #define TENTACLE_MAX1 30
 #define TENTACLE_MAX2 60
-#define ANGRA_ATTACK_RANGE 280.0
+#define ANGRA_ATTACK_RANGE 150.0
 #define HEALTH_OFFSET 50000.0
-#define ANGRA_SPEED 280.0
+#define ANGRA_SPEED 250.0
 
 #define QUAKE_DAMAGE random_float(200.0, 400.0)
 #define QUAKE_DAMAGE_RADIUS 400.0
 #define BITE_DAMAGE random_float(350.0, 450.0)
 #define SWING_DAMAGE random_float(350.0, 450.0)
-#define TENTACLE_DAMAGE random_float(250.0, 300.0)
+#define TENTACLE_DAMAGE random_float(150.0, 200.0)
 #define POISON_DAMAGE random_float(50.0, 100.0)
 
 enum
@@ -124,7 +124,7 @@ new const footstep[][] = {
 
 const WPN_NOT_DROP = ((1<<2)|(1<<CSW_HEGRENADE)|(1<<CSW_SMOKEGRENADE)|(1<<CSW_FLASHBANG)|(1<<CSW_KNIFE)|(1<<CSW_C4))
 
-new g_Angra_Ent, Float:Angra_Time_Idle, g_Reg_Ham, m_iBlood[2]
+new g_Angra_Ent, m_iBlood[2]
 new g_Msg_ScreenShake, g_MaxPlayers, Float:ANGRA_HEALTH, g_FootStep
 
 const pev_state = pev_iuser1
@@ -220,8 +220,8 @@ public Create_Boss(id, Float:HP)
 	entity_set_int(ent, EV_INT_movetype, MOVETYPE_PUSHSTEP)
 
 	// Set Size
-	new Float:maxs[3] = {162.0, 122.0, 194.0}
-	new Float:mins[3] = {-162.0, -122.0, -30.0}
+	new Float:maxs[3] = {142.0, 102.0, 194.0}
+	new Float:mins[3] = {-142.0, -102.0, -30.0}
 	entity_set_size(ent, mins, maxs)
 	
 	// Set Life
@@ -236,50 +236,25 @@ public Create_Boss(id, Float:HP)
 	set_pev(ent, pev_nextthink, get_gametime() + 0.1)
 	
 	engfunc(EngFunc_DropToFloor, ent)
-	
-	if(!g_Reg_Ham)
-	{
-		g_Reg_Ham = 1
-		RegisterHamFromEntity(Ham_TraceAttack, ent, "fw_Angra_TraceAttack", 1)
-	}
 	return ent;
 }
 
-public fw_Angra_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
-{
-	if(!is_valid_ent(Ent)) 
-		return
-     
-	static Classname[32]
-	pev(Ent, pev_classname, Classname, charsmax(Classname)) 
-	     
-	if(!equal(Classname, ANGRA_CLASSNAME)) 
-		return
-		
-	new owner;owner=pev(Ent,pev_owner)
-	static Float:EndPos[3] 
-	get_tr2(ptr, TR_vecEndPos, EndPos)
-
-	create_blood(EndPos)
-	//zp_set_user_ammo_packs(Attacker, zp_get_user_ammo_packs(Attacker)+1)
-	
-	if(pev(owner, pev_health)>200.0)
-	{
-		set_pev(owner, pev_health, pev(Ent, pev_health) - HEALTH_OFFSET)
-	}
-	else set_pev(owner, pev_health, 1.0)
-	
-}
 // ================= IDLE SCENE ===================
 public fw_Angra_Think(ent)
 {
 	if(!pev_valid(ent)) return
-	if(pev(ent, pev_health) - 10000.0 <= 0.0)
+	new owner; owner = pev(ent, pev_owner)
+	if(pev(owner, pev_health) < HEALTH_OFFSET)
 	{
+		set_pev(owner, pev_takedamage, DAMAGE_NO)
+		set_pev(ent, pev_takedamage, DAMAGE_NO)
 		Angra_Die(ent)
 		return
 	}
-	
+	if(get_cvar_num("bot_stop")){
+		set_pev(ent, pev_nextthink, get_gametime() + 0.1)
+		return;
+	}	
 	switch(pev(ent, pev_state))
 	{
 		case ANGRA_STATE_IDLE:
@@ -338,13 +313,13 @@ public fw_Angra_Think(ent)
 				{
 					MM_Aim_To(ent, EnemyOrigin) 
 					
-					new ran = random_num(0, 13)					
+					new ran = random_num(0, 12)					
 					switch(ran)
 					{
 						case 0..4: Angra_Do_Bite(ent)
 						case 5..9: Angra_Do_Swing(ent)
 						case 10..11: Angra_Do_Quake(ent)
-						case 12..13: Angra_Do_Tentacle(ent)
+						case 12: Angra_Do_Tentacle(ent)
 					}
 				} else {
 					if(pev(ent, pev_movetype) == MOVETYPE_PUSHSTEP)
@@ -370,9 +345,7 @@ public fw_Angra_Think(ent)
 						if(get_gametime() - 4.0 > pev(ent, pev_time2))
 						{
 							new rand = random_num(0, 5)
-							if(rand == 0)
-								Angra_Do_Tentacle(ent)
-							else if(rand == 1) Angra_Do_Poison(ent)
+							if(rand == 1) Angra_Do_Poison(ent)
 							else if(rand == 3) Angra_Do_FlyingUp(ent)
 							
 							set_pev(ent, pev_time2, get_gametime())
@@ -1430,7 +1403,7 @@ public Make_PlayerShake(id)
 	{
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	} else {
@@ -1439,7 +1412,7 @@ public Make_PlayerShake(id)
 			
 		message_begin(MSG_BROADCAST, g_Msg_ScreenShake, _, id)
 		write_short(8<<12)
-		write_short(5<<12)
+		write_short(1<<12)
 		write_short(4<<12)
 		message_end()
 	}

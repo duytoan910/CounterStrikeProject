@@ -52,7 +52,7 @@ new const DioneSound[][] = {
 #define SWING_DAMAGE random_float(450.0, 550.0)
 #define POISON_DAMAGE random_float(100.0, 150.0)
 #define ROLLING_DAMAGE random_float(450.0, 550.0)
-#define TENTACLE_DAMAGE random_float(250.0, 300.0)
+#define TENTACLE_DAMAGE random_float(150.0, 200.0)
 
 enum
 {

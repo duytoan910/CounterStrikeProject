@@ -15,6 +15,7 @@
 #include <fun>
 #include <engine>
 #include <fakemeta>
+#include <fakemeta_util>
 #include <hamsandwich>
 #include <zombieplague>
 #include <zp50_gamemodes>
@@ -31,6 +32,8 @@ native Create_Oberon(id, Float:HP)
 native Create_Dione(id, Float:HP)
 native Create_Phobos(id, Float:HP)
 native Create_Revenant(id, Float:HP)
+native Create_Angra(id, Float:HP)
+native Create_BioScropion(id, Float:HP)
 
 native set_hb_maxhp(Float:value, Boss_Ent)
 
@@ -59,7 +62,6 @@ new m_iBlood[2]
 new cvar_npc_chance, cvar_npc_min_players
 new cvar_npc_show_hud, cvar_npc_sounds
 new cvar_npc_allow_respawn
-
 new g_HamBot;
 
 public plugin_init() {
@@ -153,6 +155,7 @@ public Event_NewRound()
 public logevent_round_end()
 {
 	g_npcround = false
+	remove_entity(g_Boss_Ent)
 }
 
 public MakeHB(id)
@@ -162,6 +165,8 @@ public MakeHB(id)
 	
 	set_pev(id, pev_health, BOSS_HP)
 	set_hb_maxhp(BOSS_HP, g_Boss_Ent)
+	//fm_set_rendering(id, kRenderFxGlowShell, 0, 0, 0, kRenderTransAlpha, 0)
+
 }
 public Bot_Setting(id)
 {
@@ -316,14 +321,19 @@ public zp_fw_gamemodes_start()
 		set_user_origin(i, Origin)
 	}
 	
-	switch(random_num(0,4))
-	//switch(3)
+	if(pev_valid(g_Boss_Ent))
+		remove_entity(g_Boss_Ent)
+
+	//switch(random_num(0,4))
+	switch(6)
 	{
 		case 0:g_Boss_Ent = Create_FallenTitan(g_TargetPlayer, BOSS_HP)
 		case 1:g_Boss_Ent = Create_Oberon(g_TargetPlayer, BOSS_HP)
 		case 2:g_Boss_Ent = Create_Dione(g_TargetPlayer, BOSS_HP)
 		case 3:g_Boss_Ent = Create_Phobos(g_TargetPlayer, BOSS_HP)
 		case 4:g_Boss_Ent = Create_Revenant(g_TargetPlayer, BOSS_HP)
+		case 5:g_Boss_Ent = Create_Angra(g_TargetPlayer, BOSS_HP)
+		case 6:g_Boss_Ent = Create_BioScropion(g_TargetPlayer, BOSS_HP)
 	}	
 	
 	RegisterHamFromEntity(Ham_TraceAttack, g_Boss_Ent, "fw_TraceAttack", 1)
@@ -355,8 +365,8 @@ public client_PreThink(id)
 	pev(id, pev_classname, Classname, sizeof(Classname))
 
 	if(equal(Classname, "NPC_DIONE"))
-		EntOrigin[2]+=60.0
-	else EntOrigin[2]+=110.0
+		EntOrigin[2]+=20.0
+	else EntOrigin[2]+=80.0
 
 	set_pev(id, pev_origin, EntOrigin)	
 	pev(g_Boss_Ent, pev_v_angle, EntOrigin)
