@@ -3,6 +3,7 @@
 #include <amxmodx>
 #include <amxmisc>
 #include <zombieplague>
+#include <zp50_gamemodes>
 
 #define PLUGIN "New Plug-In"
 #define VERSION "1.0"
@@ -16,18 +17,18 @@ public plugin_init() {
 }
 public cmd_zombie(id)
 {
-	
+	zp_gamemodes_start(zp_gamemodes_get_id("Multiple Infection Mode"))
+
 	for(new i=0;i<get_maxplayers();i++)
 	{
 		if(!is_user_alive(i))
 			continue
-		if(zp_get_user_zombie(i))
-			continue
 		if(is_user_bot(i))
 		{
-			zp_infect_user(i,0,0)
+			zp_infect_user(i,0,1)
 		}else{
-			client_print(id,print_chat,"All bot turn to zombie!")
+			if(zp_get_user_zombie(i))
+				zp_disinfect_user(i, 1)
 		}
 	}
 }

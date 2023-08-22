@@ -12,11 +12,18 @@
 #define SCORPION_MODEL "models/zombie_plague/boss/zbs_bossl_big08.mdl"
 
 #define SCORPION_CLASSNAME "NPC_SCORPION"
+#define TORNADO_CLASSNAME "NPC_SCORPION_TORNADO"
+#define HOLE_CLASSNAME "NPC_SCORPION_HOLE"
 
+new const skill_hole1[] = "models/ef_scorpion_hole.mdl"
+new const skill_hole3[] = "models/ef_scorpion_hole3.mdl"
 new const skill_swing[] = "models/zombie_plague/boss/ef_swing.mdl"
+new const skill_tornado[] = "models/ef_sewerhole1.mdl"
+new const smoke_dust[] = "sprites/dust.spr"
+new g_Smoke_Id;
 new const skill_tentacle[][] = {
 	"models/zombie_plague/boss/ef_tentacle_sign.mdl",
-	"models/zombie_plague/boss/tentacle4.mdl",
+	"models/zombie_plague/boss/tentacle3.mdl",
 	"models/zombie_plague/boss/ef_tentacle.mdl"
 }
 new const ScorpionSound[][] = {	
@@ -37,17 +44,17 @@ new const ScorpionSound[][] = {
 }
 
 
-#define SCORPION_SPEED 250.0
+#define SCORPION_SPEED 200.0
 #define HEALTH_OFFSET 50000.0
 #define SCORPION_ATTACK_RANGE 250.0
 
 #define BITE_RADIUS 100.0
-#define BITE_DAMAGE random_float(350.0, 450.0)
+#define BITE_DAMAGE random_float(300.0, 400.0)
 #define SWING_RADIUS 320.0
-#define SWING_DAMAGE random_float(450.0, 550.0)
-#define POISON_DAMAGE random_float(100.0, 150.0)
+#define SWING_DAMAGE random_float(400.0, 500.0)
 #define ROLLING_DAMAGE random_float(450.0, 550.0)
-#define TENTACLE_DAMAGE random_float(150.0, 200.0)
+#define TENTACLE_DAMAGE random_float(100.0, 150.0)
+#define TORNADO_DAMAGE random_float(50.0, 100.0)
 
 enum
 {
@@ -108,13 +115,16 @@ public plugin_init()
 	register_plugin(PLUGIN, VERSION, AUTHOR)
 	
 	register_think(SCORPION_CLASSNAME, "fw_SCORPION_Think")
-	register_touch("scorpion_poison", "*", "fw_PoisonTouch")
+	register_think(TORNADO_CLASSNAME, "fw_SCORPION_Tornado_Think")
+	register_think(HOLE_CLASSNAME, "fw_SCORPION_Hole_Think")
 	
 	register_event("HLTV", "Event_NewRound", "a", "1=0", "2=0")
 	register_logevent("logevent_round_end", 2, "1=Round_End")
 	
 	g_Msg_ScreenShake = get_user_msgid("ScreenShake")
 	g_MaxPlayers = get_maxplayers()	
+
+	register_clcmd("say tor", "do_Tornado")
 }
 public plugin_natives()
 {
@@ -124,12 +134,17 @@ public plugin_precache()
 {
 	engfunc(EngFunc_PrecacheModel, SCORPION_MODEL)
 	engfunc(EngFunc_PrecacheModel, skill_swing)
+	engfunc(EngFunc_PrecacheModel, skill_tornado)
+	engfunc(EngFunc_PrecacheModel, skill_hole1)
+	engfunc(EngFunc_PrecacheModel, skill_hole3)
 	
 	for(new i = 0; i < sizeof(skill_tentacle); i++)
 		engfunc(EngFunc_PrecacheModel, skill_tentacle[i])
 		
 	for(new i = 0; i < sizeof(ScorpionSound); i++)
 		precache_sound(ScorpionSound[i])
+
+	g_Smoke_Id = precache_model(smoke_dust)
 }
 public Event_NewRound()
 {
@@ -361,11 +376,11 @@ public Scorpion_Attack_Attack1_2(ent)
 	new attackChance = random_num(0,1)
 	if(attackChance){
 		set_entity_anim(ent, SCORPION_ANIM_ATTACK_1, 1.0)
-		set_task(float(25/30), "Scorpion_Check_Attack_Attack1", ent+TASK_ATTACK)
+		set_task(1.0, "Scorpion_Check_Attack_Attack1", ent+TASK_ATTACK)
 		set_task(2.03, "Scorpion_End_Attack_Attack1", ent+TASK_ATTACK)	
 	}else{
 		set_entity_anim(ent, SCORPION_ANIM_ATTACK_2, 1.0)
-		set_task(float(40/30), "Scorpion_Check_Attack_Attack1", ent+TASK_ATTACK)
+		set_task(1.3, "Scorpion_Check_Attack_Attack1", ent+TASK_ATTACK)
 		set_task(2.7, "Scorpion_End_Attack_Attack1", ent+TASK_ATTACK)	
 	}
 }
@@ -420,8 +435,8 @@ public Scorpion_Attack_Swing(ent)
 
 	set_entity_anim(ent, SCORPION_ANIM_ATTACK_3, 1.0)
 	
-	set_task(0.6, "Scorpion_Check_Attack_Swing", ent+TASK_ATTACK)
-	set_task(3.5, "Scorpion_End_Attack_Swing", ent+TASK_ATTACK)
+	set_task(1.5, "Scorpion_Check_Attack_Swing", ent+TASK_ATTACK)
+	set_task(4.7, "Scorpion_End_Attack_Swing", ent+TASK_ATTACK)
 }
 public Scorpion_Check_Attack_Swing(ent)
 {
@@ -619,6 +634,7 @@ public Scorpion_Attack_Tentacle(ent)
 	}	
 }
 public Scorpion_Tentacle_Sound(index) PlaySound(0,ScorpionSound[index])
+
 public Scorpion_Tentacle(ent)
 {
 	ent -= TASK_ATTACK
@@ -731,6 +747,298 @@ public Tentacle_Check(ent)
 		Make_PlayerShake(i)
 	}
 }
+
+public do_Tornado(id){
+	Scorpion_Attack_Tornado(g_CurrentBoss_Ent+TASK_ATTACK)
+}
+
+public Scorpion_Attack_Tornado(ent)
+{
+	ent -= TASK_ATTACK
+	if(!pev_valid(ent))
+		return
+	
+	set_pev(ent, pev_movetype, MOVETYPE_NONE)
+	set_pev(ent, pev_velocity, {0.0, 0.0, 0.0})	
+	set_pev(ent, pev_state, SCORPION_STATE_STORM)
+	set_pev(ent, pev_nextthink, get_gametime() + 0.1)	
+
+	static Float:CheckPosition[3]
+	get_position(ent, 0.0, 0.0, 0.0, CheckPosition)
+	
+	static ent_ef; ent_ef = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
+	if(!pev_valid(ent_ef)) return
+	CheckPosition[2] -= 30.0
+	entity_set_origin(ent_ef, CheckPosition)	
+	entity_set_string(ent_ef, EV_SZ_classname, HOLE_CLASSNAME)
+	entity_set_model(ent_ef, skill_hole1)
+	entity_set_int(ent_ef, EV_INT_solid, SOLID_NOT)
+	entity_set_int(ent_ef, EV_INT_movetype, MOVETYPE_NONE)
+	new Float:maxs[3] = {16.0,16.0,36.0}
+	new Float:mins[3] = {-16.0,-16.0,-36.0}
+	entity_set_size(ent_ef, mins, maxs)
+	set_pev(ent_ef, pev_rendermode, kRenderTransAdd)
+	set_pev(ent_ef, pev_renderamt, 255.0)	
+	entity_set_float(ent_ef, EV_FL_animtime, get_gametime())
+	entity_set_float(ent_ef, EV_FL_framerate, 2.0)	
+	entity_set_int(ent_ef, EV_INT_sequence, 0)
+
+	new ent_ef3 = create_entity("info_target")
+	entity_set_origin(ent_ef3, CheckPosition)	
+	entity_set_string(ent_ef3,EV_SZ_classname, HOLE_CLASSNAME)
+	entity_set_model(ent_ef3, skill_hole3)
+	entity_set_int(ent_ef3, EV_INT_solid, SOLID_NOT)
+	entity_set_int(ent_ef3, EV_INT_movetype, MOVETYPE_NONE)
+	entity_set_size(ent_ef3, mins, maxs)
+	set_pev(ent_ef3, pev_rendermode, kRenderTransAdd)
+	set_pev(ent_ef3, pev_renderamt, 255.0)	
+	entity_set_float(ent_ef3, EV_FL_animtime, get_gametime())
+	entity_set_float(ent_ef3, EV_FL_framerate, 1.0)	
+	entity_set_int(ent_ef3, EV_INT_sequence, 0)
+
+	set_pev(ent_ef, pev_iuser1, 0)
+	set_pev(ent_ef3, pev_iuser1, 0)
+	set_pev(ent_ef, pev_nextthink, get_gametime() + 0.1)
+	set_pev(ent_ef3, pev_nextthink, get_gametime() + 0.1)	
+
+	set_entity_anim(ent, random_num(SCORPION_ANIM_STORM_1, SCORPION_ANIM_STORM_2), 1.0)
+
+	set_task(7.0, "Scorpion_Remove_Hole_Class")
+	set_task(7.5, "Scorpion_Check_Attack_Tornado", ent+TASK_ATTACK)
+}
+public Scorpion_Remove_Hole_Class(){
+	remove_entity_name(HOLE_CLASSNAME)
+}
+public fw_SCORPION_Hole_Think(ent){
+	if(!pev_valid(ent))
+		return;
+
+	static a, Float:Speed, Float:entOrg[3];pev(ent, pev_origin, entOrg)
+	static Out;Out = pev(ent, pev_iuser1)
+	while((a = find_ent_in_sphere(a, entOrg, 1500.0)) != 0)
+	{
+		if(!pev_valid(a)) continue
+		if(!is_user_connected(a)) continue
+
+		if(Out)
+			Speed = (4000.0 / entity_range(ent, a)) * 35.0 * -1
+		else{
+			Speed = (1500.0 / entity_range(ent, a)) * 15.0
+		}
+		hook_ent2(a, entOrg, Speed)
+	}
+
+	set_pev(ent, pev_nextthink, get_gametime() + 0.1)
+}
+public Scorpion_Check_Attack_Tornado(ent)
+{
+	ent -= TASK_ATTACK
+	if(!pev_valid(ent))
+		return
+
+	static torCount,Float:Ori[3]
+	static Float:TorOrigin[10][3]
+	pev(ent, pev_origin, Ori)
+
+	//new Style = random_num(0,1)
+	new Style = 0
+	if(Style){
+		torCount = 8;
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 0.0, 0.0, TorOrigin[0])
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 90.0, 0.0, TorOrigin[1])
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 180.0, 0.0, TorOrigin[2])
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 270.0, 0.0, TorOrigin[3])
+		
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 315.0, 0.0, TorOrigin[4])
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 45.0, 0.0, TorOrigin[5])
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 135.0, 0.0, TorOrigin[6])
+		get_spherical_coord(Ori, random_float(40.0, 60.0), 225.0, 0.0, TorOrigin[7])
+	}else{
+		torCount = 10
+		get_spherical_coord(Ori, 400.0, 0.0, 0.0, TorOrigin[0])
+		get_spherical_coord(Ori, 800.0, 0.0, 0.0, TorOrigin[1])
+		get_spherical_coord(Ori, 1200.0, 0.0, 0.0, TorOrigin[2])
+		get_spherical_coord(Ori, 1600.0, 0.0, 0.0, TorOrigin[3])
+		get_spherical_coord(Ori, 2000.0, 0.0, 0.0, TorOrigin[4])
+
+		get_spherical_coord(Ori, -400.0, 0.0, 0.0, TorOrigin[5])
+		get_spherical_coord(Ori, -800.0, 0.0, 0.0, TorOrigin[6])
+		get_spherical_coord(Ori, -1200.0, 0.0, 0.0, TorOrigin[7])
+		get_spherical_coord(Ori, -1600.0, 0.0, 0.0, TorOrigin[8])
+		get_spherical_coord(Ori, -2000.0, 0.0, 0.0, TorOrigin[9])
+	}
+
+	for(new i = 0; i < torCount; i++)
+	{	
+		Create_Tornado(ent, TorOrigin[i], Style)
+	}
+
+	set_task(5.0, "Scorpion_Remove_Tornado_Class")
+	set_task(7.0, "Scorpion_ReAppear_Tornado", ent+TASK_ATTACK)
+}
+
+public Scorpion_Remove_Tornado_Class(){
+	remove_entity_name(TORNADO_CLASSNAME)
+}
+public Create_Tornado(ent, Float:EndOrigin[3], Style){
+	static TornadoEnt; TornadoEnt = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
+	if(!pev_valid(TornadoEnt)) return
+
+	// Set info for TornadoEnt
+	set_pev(TornadoEnt, pev_movetype, MOVETYPE_NOCLIP)
+	set_pev(TornadoEnt, pev_solid, SOLID_NOT)
+	set_pev(TornadoEnt, pev_rendermode, kRenderTransAdd)
+	set_pev(TornadoEnt, pev_renderamt, 255.0)
+	
+	set_pev(TornadoEnt, pev_classname, TORNADO_CLASSNAME)
+	engfunc(EngFunc_SetModel, TornadoEnt, skill_tornado)
+	
+	set_pev(TornadoEnt, pev_maxs, Float:{50.0, 50.0, 200.0})
+	set_pev(TornadoEnt, pev_mins, Float:{-50.0, -50.0, -25.0})
+	
+	if(!Style){
+		EndOrigin[1]+= 1000.0
+	}
+
+	set_pev(TornadoEnt, pev_origin, EndOrigin)
+	
+	set_pev(TornadoEnt, pev_gravity, 1.0)
+	set_pev(TornadoEnt, pev_frame, 0.0)
+
+	static Float:EntOrigin[3],Float:Velocity[3]
+	pev(ent, pev_origin, EntOrigin)
+	if(!Style){
+		EntOrigin = EndOrigin
+		EntOrigin[1] += 1200.0
+	}
+	get_speed_vector(EntOrigin, EndOrigin, 350.0, Velocity)
+
+	set_pev(TornadoEnt, pev_velocity, Velocity)
+
+		// Animation
+	set_pev(TornadoEnt, pev_animtime, get_gametime())
+	set_pev(TornadoEnt, pev_framerate, 4.0)
+	set_pev(TornadoEnt, pev_sequence, 0)
+	
+	set_pev(TornadoEnt, pev_nextthink, get_gametime() + 0.1)	
+}
+
+public fw_SCORPION_Tornado_Think(ent){
+	if(!pev_valid(ent))
+		return
+	
+	static Float:EntOrigin[3];pev(ent, pev_origin, EntOrigin)
+	static owner;owner = pev(ent, pev_owner)
+
+	if(pev(ent, pev_fuser1) <= get_gametime() ){
+		set_pev(ent, pev_fuser1, get_gametime() + 0.1)
+
+		static Float:TorOrigin[4][3]
+		get_spherical_coord(EntOrigin, 160.0, 0.0, 0.0, TorOrigin[0])
+		get_spherical_coord(EntOrigin, 160.0, 90.0, 0.0, TorOrigin[1])
+		get_spherical_coord(EntOrigin, 160.0, 180.0, 0.0, TorOrigin[2])
+		get_spherical_coord(EntOrigin, 160.0, 270.0, 0.0, TorOrigin[3])
+		
+		// get_spherical_coord(EntOrigin, 160.0, 315.0, 0.0, TorOrigin[4])
+		// get_spherical_coord(EntOrigin, 160.0, 45.0, 0.0, TorOrigin[5])
+		// get_spherical_coord(EntOrigin, 160.0, 135.0, 0.0, TorOrigin[6])
+		// get_spherical_coord(EntOrigin, 160.0, 225.0, 0.0, TorOrigin[7])
+		for(new i = 0; i < 4; i++)
+		{	
+			message_begin(MSG_BROADCAST, SVC_TEMPENTITY)
+			write_byte(TE_EXPLOSION)
+			write_coord(floatround(TorOrigin[i][0]))
+			write_coord(floatround(TorOrigin[i][1]))
+			write_coord(floatround(TorOrigin[i][2])) 
+			write_short(g_Smoke_Id)
+			write_byte(15)	// scale in 0.1's
+			write_byte(random_num(70,90))	// framerate
+			write_byte(TE_EXPLFLAG_NODLIGHTS|TE_EXPLFLAG_NOPARTICLES|TE_EXPLFLAG_NOSOUND)	// flags
+			message_end()
+		}
+	}
+
+	new a;
+	while((a = find_ent_in_sphere(a, EntOrigin, 200.0)) != 0)
+	{
+		if(!pev_valid(a)) continue
+		if(!is_user_connected(a)) continue
+		if(a == owner) continue
+
+		ExecuteHamB(Ham_TakeDamage, a, owner, owner, TORNADO_DAMAGE, DMG_BULLET)
+		set_pev(a, pev_velocity, {0.0, 0.0, 500.0})
+	}
+	
+	set_pev(ent, pev_nextthink, get_gametime() + 0.1)	
+}
+
+public Scorpion_ReAppear_Tornado(ent)
+{
+	ent -= TASK_ATTACK
+
+	new teleEnemy;teleEnemy = FindFarestEnemy(ent, 0)
+	new Float:Org[3];pev(teleEnemy, pev_origin, Org)
+	set_pev(ent, pev_origin, Org)
+
+	engfunc(EngFunc_DropToFloor, ent)
+
+	static Float:CheckPosition[3]
+	get_position(ent, 0.0, 0.0, 0.0, CheckPosition)
+	
+	static ent_ef; ent_ef = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
+	if(!pev_valid(ent_ef)) return
+
+	CheckPosition[2] -= 30.0
+	entity_set_origin(ent_ef, CheckPosition)	
+	entity_set_string(ent_ef, EV_SZ_classname, HOLE_CLASSNAME)
+	entity_set_model(ent_ef, skill_hole1)
+	entity_set_int(ent_ef, EV_INT_solid, SOLID_NOT)
+	entity_set_int(ent_ef, EV_INT_movetype, MOVETYPE_NONE)
+	new Float:maxs[3] = {16.0,16.0,36.0}
+	new Float:mins[3] = {-16.0,-16.0,-36.0}
+	entity_set_size(ent_ef, mins, maxs)
+	set_pev(ent_ef, pev_rendermode, kRenderTransAdd)
+	set_pev(ent_ef, pev_renderamt, 255.0)	
+	entity_set_float(ent_ef, EV_FL_animtime, get_gametime())
+	entity_set_float(ent_ef, EV_FL_framerate, 2.0)	
+	entity_set_int(ent_ef, EV_INT_sequence, 1)
+
+	static ent_ef2; ent_ef2 = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "env_sprite"))
+	if(!pev_valid(ent_ef2)) return
+	entity_set_origin(ent_ef2, CheckPosition)	
+	entity_set_string(ent_ef2,EV_SZ_classname, HOLE_CLASSNAME)
+	entity_set_model(ent_ef2, skill_hole3)
+	entity_set_int(ent_ef2, EV_INT_solid, SOLID_NOT)
+	entity_set_int(ent_ef2, EV_INT_movetype, MOVETYPE_NONE)
+	entity_set_size(ent_ef2, mins, maxs)
+	set_pev(ent_ef2, pev_rendermode, kRenderTransAdd)
+	set_pev(ent_ef2, pev_renderamt, 250.0)		
+	entity_set_float(ent_ef2, EV_FL_animtime, get_gametime())
+	entity_set_float(ent_ef2, EV_FL_framerate, 1.0)	
+	entity_set_int(ent_ef2, EV_INT_sequence, 1)
+
+	set_pev(ent_ef, pev_iuser1, 1)
+	set_pev(ent_ef2, pev_iuser1, 1)
+	set_pev(ent_ef, pev_nextthink, get_gametime() + 0.1)
+	set_pev(ent_ef2, pev_nextthink, get_gametime() + 0.1)
+
+	set_entity_anim(ent, SCORPION_ANIM_STORM_END, 1.0)
+
+	set_task(6.4, "Scorpion_End_Attack_Tornado", ent+TASK_ATTACK)	
+}
+public Scorpion_End_Attack_Tornado(ent)
+{
+	ent -= TASK_ATTACK
+	if(!pev_valid(ent))
+		return	
+		
+	remove_entity_name(HOLE_CLASSNAME)
+	set_pev(ent, pev_movetype, MOVETYPE_PUSHSTEP)
+	set_pev(ent, pev_state, SCORPION_STATE_CHASE_ENEMY)
+	
+	set_pev(ent, pev_nextthink, get_gametime() + 0.1)
+}
+
 public SCORPION_Death(ent)
 {
 	if(!pev_valid(ent))
@@ -1013,4 +1321,13 @@ stock get_speed_vector(const Float:origin1[3],const Float:origin2[3],Float:speed
 	new_velocity[2] *= num
 	
 	return 1;
+}
+
+stock get_spherical_coord(const Float:ent_origin[3], Float:redius, Float:level_angle, Float:vertical_angle, Float:origin[3])
+{
+	new Float:length
+	length  = redius * floatcos(vertical_angle, degrees)
+	origin[0] = ent_origin[0] + length * floatcos(level_angle, degrees)
+	origin[1] = ent_origin[1] + length * floatsin(level_angle, degrees)
+	origin[2] = ent_origin[2] + redius * floatsin(vertical_angle, degrees)
 }

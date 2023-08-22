@@ -117,7 +117,7 @@ public plugin_init()
 
 public plugin_natives()
 {
-	register_native("vulcanus9", "get_vulcanus9", 1)
+	register_native("skullaxe", "get_vulcanus9", 1)
 }
 public plugin_precache()
 {
@@ -1119,6 +1119,26 @@ public burn_effect(taskid)
 	write_byte(34) // b
 	write_byte(3) // life
 	write_byte(0) // decay rate
+	message_end()
+
+	// Add a blue tint to their screen
+	message_begin(MSG_ONE, get_user_msgid("ScreenFade"), _, ID_BURN_EFFECT)
+	write_short((1<<12))
+	write_short(0)
+	write_short(0x0000)
+	write_byte(226) // red
+	write_byte(88) // green
+	write_byte(34) // blue
+	write_byte(50) // alpha
+	message_end()
+
+	message_begin(MSG_ONE_UNRELIABLE, get_user_msgid("Damage"), _, ID_BURN_EFFECT)
+	write_byte(0) // damage save
+	write_byte(0) // damage take
+	write_long(DMG_BURN) // damage type
+	write_coord(0) // x
+	write_coord(0) // y
+	write_coord(0) // z
 	message_end()
 
 	new TE_FLAG

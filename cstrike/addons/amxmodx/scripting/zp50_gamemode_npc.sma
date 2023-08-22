@@ -164,18 +164,12 @@ public MakeHB(id)
 		return
 	
 	set_pev(id, pev_health, BOSS_HP)
-	set_hb_maxhp(BOSS_HP, g_Boss_Ent)
+	// set_pev(id, pev_movetype, MOVETYPE_FOLLOW)
+	// set_pev(id, pev_solid, SOLID_NOT);
+	// set_pev(id, pev_aiment, g_Boss_Ent)
+	// set_pev(id, pev_body, 1)
 	//fm_set_rendering(id, kRenderFxGlowShell, 0, 0, 0, kRenderTransAlpha, 0)
 
-}
-public Bot_Setting(id)
-{
-	if(!is_user_alive(id))
-		return
-	
-	//set_pev(id, pev_solid, SOLID_NOT)
-	//set_pev(id, pev_movetype, MOVETYPE_NONE)
-	//set_pev(id, pev_takedamage, DAMAGE_NO)
 }
 // new Float:fDamage[33]
 public fw_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
@@ -202,19 +196,21 @@ public fw_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType
 	// }	
 	new owner;owner=pev(Ent,pev_owner)
 	if(Damage){
-		ExecuteHamB(Ham_TakeDamage, owner ,Attacker ,Attacker, Damage, DMG_BULLET)
+		ExecuteHamB(Ham_TakeDamage, owner ,Attacker ,Attacker, Damage, DamageType)
 		set_pev(Ent, pev_health, BOSS_HP)
+
+		client_print(Attacker, print_center, "HP: [%d]", pev(owner, pev_health))
 	}
 
 }
 public fw_TraceAttack_Player(victim, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
 {
-	if(!is_user_connected(Attacker))
-		return HAM_IGNORED	
-	if(!g_npcround)
-		return HAM_IGNORED
+	// if(!is_user_connected(Attacker))
+	// 	return HAM_IGNORED	
+	// if(!g_npcround)
+	// 	return HAM_IGNORED
 		
-	return HAM_SUPERCEDE
+	// return HAM_SUPERCEDE
 }
 // Deathmatch module's player respawn forward
 public zp_fw_deathmatch_respawn_pre(id)
@@ -338,8 +334,7 @@ public zp_fw_gamemodes_start()
 	
 	RegisterHamFromEntity(Ham_TraceAttack, g_Boss_Ent, "fw_TraceAttack", 1)
 	
-	set_task(0.1, "MakeHB", g_TargetPlayer)
-	Bot_Setting(g_TargetPlayer)	
+	set_task(0.5, "MakeHB", g_TargetPlayer)
 }
 
 public client_PreThink(id)
