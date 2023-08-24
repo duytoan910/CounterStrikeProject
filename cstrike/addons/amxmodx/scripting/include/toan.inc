@@ -1,3 +1,7 @@
+
+#include <zombieplague>
+#include <zp50_gamemodes>
+
 native janus1(id)
 native janus9(id)
 native jaydagger(id)
@@ -28,3 +32,14 @@ native KnockbackNade(id)
 
 native md_zb_skill(id, type)
 native is_deadlyshot(id)
+
+public get_real_owner(targ){
+    new gameModeName[32],targ;
+    zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
+    new isNPC = equal(gameModeName, "Titan boss")
+    if(isNPC && pev(targ, pev_owner)){
+        targ = pev(targ, pev_owner)
+    }
+
+    return targ
+}

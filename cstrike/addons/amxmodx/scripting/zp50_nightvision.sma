@@ -262,6 +262,8 @@ public set_vision_spec(id)
 
 public set_vision_color(id)
 {
+    if(!is_user_connected(id))
+        return
     if(zp_core_is_zombie(id))
     {
         if(zp_class_nemesis_get(id))

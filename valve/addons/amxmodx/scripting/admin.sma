@@ -108,7 +108,7 @@ public plugin_init()
 	new configsDir[64]
 	get_configsdir(configsDir, 63)
 	
-	server_cmd("exec %s/amxx.cfg", configsDir)	// Execute main configuration file
+	server_cmd("exec addons/amxmodx/configs/amxx.cfg")	// Execute main configuration file
 	server_cmd("exec %s/sql.cfg", configsDir)
 
 	// Create a vector of 5 cells to store the info.

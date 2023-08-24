@@ -2,6 +2,7 @@
 #include <fakemeta_util>
 #include <hamsandwich>
 #include <zombieplague>
+#include <toan>
 
 #define PLUGIN 					"[ZP] Extra: Heaven Splitter"
 #define VERSION 				"1.0"
@@ -37,7 +38,7 @@
 #define SPEED_OWNER_UP				500.0
 
 #define FIRE_DURATION				4
-#define FIRE_DAMAGE				random_float(15.0,25.0)
+#define FIRE_DAMAGE				random_float(35.0,45.0)
 #define TASK_FBURN				122
 #define ID_FBURN                        	( taskid - TASK_FBURN )
 #define ZP_ITEM_NAME				"Heaven Splitter" 
@@ -388,28 +389,41 @@ public fw_TraceAttack(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDama
 		write_byte(random_num(41,45));
 		message_end();
 	}	
-	if(is_user_connected(iEnt)&&zp_get_user_zombie(iEnt))
-	{ 	
-		static iVictim;iVictim = FM_NULLENT;
-		while((iVictim = fm_find_ent_in_sphere(iVictim,flEnd, WEAPON_BALL_RADIUS_EXP)) != 0 )
-		{
-			if(is_user_connected(iVictim)&&zp_get_user_zombie(iVictim))
-			{ 
-				static iParams[2]; iParams[0] = iAttacker;
-				set_task( 0.5, "CTask__BurningFlame", iVictim + TASK_FBURN, iParams, sizeof iParams, "b" );
-				g_burning_duration[ iVictim ] += FIRE_DURATION	
-				engfunc(EngFunc_MessageBegin, MSG_BROADCAST, SVC_TEMPENTITY, iVictim, 0);
-				write_byte(TE_EXPLOSION);
-				engfunc(EngFunc_WriteCoord,flEnd[0]);
-				engfunc(EngFunc_WriteCoord,flEnd[1]);
-				engfunc(EngFunc_WriteCoord,flEnd[2]-16.0);
-				write_short(iBlood[4]);
-				write_byte(10);
-				write_byte(15);
-				write_byte(TE_EXPLFLAG_NOSOUND | TE_EXPLFLAG_NODLIGHTS | TE_EXPLFLAG_NOPARTICLES);
-				message_end();
-			}
+
+	static iVictim;iVictim = FM_NULLENT;
+	while((iVictim = fm_find_ent_in_sphere(iVictim,flEnd, WEAPON_BALL_RADIUS_EXP)) != 0 )
+	{
+		static iRealVictim;iRealVictim = iVictim
+		
+		new gameModeName[32]
+		zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
+		new isNPC = equal(gameModeName, "Titan boss")
+		if(isNPC && pev(iVictim, pev_owner)){
+			iRealVictim = pev(iVictim, pev_owner)
 		}
+		client_print(1, print_chat, "iVictim: %d", iVictim)
+		client_print(1, print_chat, "iRealVictim: %d", iRealVictim)
+
+		if(is_user_connected(iRealVictim) && is_user_alive(iRealVictim) && zp_get_user_zombie(iRealVictim)){
+			iVictim = iRealVictim
+		}
+		else if(!is_user_connected(iVictim) || is_user_alive(iVictim) || !zp_get_user_zombie(iVictim))
+			continue
+
+		client_print(0, print_chat, "iVictim: %d", iVictim)
+		static iParams[2]; iParams[0] = iAttacker;
+		set_task( 0.5, "CTask__BurningFlame", iVictim + TASK_FBURN, iParams, sizeof iParams, "b" );
+		g_burning_duration[ iVictim ] += FIRE_DURATION	
+		engfunc(EngFunc_MessageBegin, MSG_BROADCAST, SVC_TEMPENTITY, iVictim, 0);
+		write_byte(TE_EXPLOSION);
+		engfunc(EngFunc_WriteCoord,flEnd[0]);
+		engfunc(EngFunc_WriteCoord,flEnd[1]);
+		engfunc(EngFunc_WriteCoord,flEnd[2]-16.0);
+		write_short(iBlood[4]);
+		write_byte(10);
+		write_byte(15);
+		write_byte(TE_EXPLFLAG_NOSOUND | TE_EXPLFLAG_NODLIGHTS | TE_EXPLFLAG_NOPARTICLES);
+		message_end();
 	}
 
 }	

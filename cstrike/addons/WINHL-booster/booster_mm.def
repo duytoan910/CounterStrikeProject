@@ -1,0 +1,4 @@
+LIBRARY BOOSTER_MM
+EXPORTS
+ GiveFnptrsToDll @1
+

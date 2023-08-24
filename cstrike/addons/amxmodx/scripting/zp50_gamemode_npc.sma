@@ -68,7 +68,7 @@ public plugin_init() {
 	register_event("HLTV", "Event_NewRound", "a", "1=0", "2=0")	
 	register_logevent("logevent_round_end", 2, "1=Round_End")
 	
-	RegisterHam(Ham_TraceAttack, "player", "fw_TraceAttack_Player")
+	//RegisterHam(Ham_TraceAttack, "player", "fw_TraceAttack_Player")
 }
 
 public plugin_precache()
@@ -135,7 +135,7 @@ public client_putinserver(id)
 
 public Do_Register_HamBot(id)
 {
-	RegisterHamFromEntity(Ham_TraceAttack, id, "fw_TraceAttack_Player")
+	//RegisterHamFromEntity(Ham_TraceAttack, id, "fw_TraceAttack_Player")
 }
 
 public do_tele_player(id)
@@ -171,6 +171,22 @@ public MakeHB(id)
 	//fm_set_rendering(id, kRenderFxGlowShell, 0, 0, 0, kRenderTransAlpha, 0)
 
 }
+public fw_TakeDamage(ent, inflictor, Attacker, Float:damage)
+{
+	static Classname[32], BossClassame[32]
+	pev(g_Boss_Ent, pev_classname, BossClassame, charsmax(BossClassame))
+	pev(ent, pev_classname, Classname, charsmax(Classname)) 
+		 
+	if(!equal(Classname, BossClassame))
+		return
+	new owner;owner=pev(ent,pev_owner)
+	if(damage){
+		//ExecuteHam(Ham_TakeDamage, owner ,Attacker ,Attacker, damage, DMG_BULLET)
+		//set_pev(ent, pev_health, BOSS_HP)
+
+		client_print(Attacker, print_center, "HP: [%d]", pev(ent, pev_health))
+	}
+}
 // new Float:fDamage[33]
 public fw_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
 {
@@ -194,24 +210,25 @@ public fw_TraceAttack(Ent, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType
 	// 	zp_set_user_ammo_packs(Attacker, zp_get_user_ammo_packs(Attacker)+3)
 	// 	fDamage[Attacker] = 0.0
 	// }	
+
 	new owner;owner=pev(Ent,pev_owner)
 	if(Damage){
-		ExecuteHamB(Ham_TakeDamage, owner ,Attacker ,Attacker, Damage, DamageType)
+		ExecuteHam(Ham_TakeDamage, owner ,Attacker ,Attacker, Damage, DamageType)
 		set_pev(Ent, pev_health, BOSS_HP)
 
 		client_print(Attacker, print_center, "HP: [%d]", pev(owner, pev_health))
 	}
 
 }
-public fw_TraceAttack_Player(victim, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
-{
-	// if(!is_user_connected(Attacker))
-	// 	return HAM_IGNORED	
-	// if(!g_npcround)
-	// 	return HAM_IGNORED
+// public fw_TraceAttack_Player(victim, Attacker, Float:Damage, Float:Dir[3], ptr, DamageType)
+// {
+// 	// if(!is_user_connected(Attacker))
+// 	// 	return HAM_IGNORED	
+// 	// if(!g_npcround)
+// 	// 	return HAM_IGNORED
 		
-	// return HAM_SUPERCEDE
-}
+// 	// return HAM_SUPERCEDE
+// }
 // Deathmatch module's player respawn forward
 public zp_fw_deathmatch_respawn_pre(id)
 {
@@ -332,7 +349,8 @@ public zp_fw_gamemodes_start()
 		case 6:g_Boss_Ent = Create_BioScropion(g_TargetPlayer, BOSS_HP)
 	}	
 	
-	RegisterHamFromEntity(Ham_TraceAttack, g_Boss_Ent, "fw_TraceAttack", 1)
+	//RegisterHamFromEntity(Ham_TraceAttack, g_Boss_Ent, "", 1)
+	RegisterHamFromEntity(Ham_TakeDamage, g_Boss_Ent, "fw_TakeDamage", 1)
 	
 	set_task(0.5, "MakeHB", g_TargetPlayer)
 }

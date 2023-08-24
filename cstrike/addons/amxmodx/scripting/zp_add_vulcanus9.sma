@@ -1108,7 +1108,7 @@ public burn_effect(taskid)
 	get_user_origin(ID_BURN_EFFECT, origin)
 	
 	// Colored Aura
-	message_begin(MSG_PVS, SVC_TEMPENTITY, origin)
+	engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, destoriginF, 0)
 	write_byte(TE_DLIGHT) // TE id
 	write_coord(origin[0]) // x
 	write_coord(origin[1]) // y

@@ -1,0 +1,249 @@
+WinHL-Booster MM Plugin v1.70 
+ by Jussi Kivilinna <hullu@hullu.cjb.net>
+ http://hullu.xtragaming.com/
+ [15.8.2003]
+
+
+
+Info:
+ - Booster makes server run with higher FPS by making 'sleep' function for more accurently. 
+   HLDS.EXE tries to sleep 1ms but default minimum sleep time in Windows is usually 10ms. 
+   This causes server fps be always under 100fps. This tweak has no effect on listenserver 
+   as listenserver doesn't sleep between frames. With default settings WinHL-Booster sets 
+   minimum sleep time to 3ms allowing server to run higher FPS (333fps when empty). For 
+   example when server is running at 100fps with booster server is sleeping 3ms and working 
+   7ms every frame. Without booster server would sleep 10ms and work 7ms causing fps to be 
+   around 60 (1000/(10+7) =~ 58).
+
+
+
+Installing:
+ 1. You need Metamod or Adminmod. (see LINKS)
+ 2. Extract booster_mm.dll to your "c:\halflife\moddir\addons\booster"-folder.
+ 3. Add following two lines to either "c:\halflife\moddir\metamod.ini" or "c:\halflife\moddir\addons\metamod\plugin.ini":
+
+win32 addons/booster/booster_mm.dll
+
+ If you reinstall Adminmod you have to add this line again!
+
+
+
+CVars (you can copy these to server.cfg):
+// booster_show_connmsg -- 
+//
+//      2:      Large connmessage 
+//      1:      small connmessage 
+//      0:      disabled
+//
+booster_show_connmsg 1
+
+
+// booster_autofps -- 
+//
+//      Automaticly changes value of sys_ticrate to get server run at fps value defined in this cvar.
+//      Minimum sys_ticrate that set is 100, maximum 1000.
+//
+booster_autofps 100
+
+
+// booster_minsleepms --
+//
+//      Minimum sleep time set to mmsystem. 1.41-1.44 used 1ms which might cause some timer problems
+//      with Win2k.
+//
+//      1ms makes server to run at max 1000fps
+//      2ms  -||-                  max  500fps
+//      3ms  -||-                  max  333fps (booster default)
+//      4ms  -||-                  max  250fps
+//      10ms -||-                  max  100fps (OS default)
+//      Default value is 3ms. Value range is 1 to 10.
+//
+//      !NOTE! systemwide effect! all timers will get accurency that booster sets!
+//      !NOTE! If you run other programs that use multimedia timer tweak values that booster has set
+//             might get overridden!
+//
+booster_minsleepms 3
+
+
+// booster_force_systicrate -- 
+//
+//      Less than 50             : Disabled
+//      More than or equal to 50 : Forces value of sys_ticrate to value of this cvar
+//
+//      !NOTE! Setting more than or equal to 50 overrides booster_autofps feature
+//
+booster_force_systicrate 10000
+
+
+// booster_cpu_enabled -- 
+//
+//      1:      Booster will monitor CPU usage and adjust timers to reduce load when necessary  
+//      0:      disabled
+//
+booster_cpu_enabled 0
+
+
+// booster_cpu_spikemax -- 
+//
+//      Number of times booster_cpu_spikelevel needs to be exceeded in order for timers to
+//	increase and CPU load to be reduced.      
+//
+booster_cpu_spikemax 3
+
+
+// booster_cpu_spikelevel -- 
+//
+//	Level which CPU utilization needs to exceed (booster_cpu_spikemax times) for timers
+//      to increae and CPU load to be reduced.
+//
+booster_cpu_spikelevel 75
+
+
+// booster_cpu_mminc -- 
+//
+//	Amount timer will increment (WinHL-Booster will also decrease the timer every time
+//      5 minutes passes without booster_cpu_spikelevel being exceeded.
+//
+booster_cpu_mminc 2
+
+
+
+History:
+
+[1.70]
+ * Switched back to 1.50beta source (all 1.60 changes are removed).
+   - WinHL-Booster can monitor CPU usage and automatically manage the sleep timer to balance between FPS and CPU utilization (by Buzz_Kill <buzzkill@100acrebloodbath.com>)
+   - No monitor for CPU usage on Win9x series.
+ * Removed TOS tweak.
+
+[1.60]
+ * uses kernel timer tweak now on Windows NT4/2000/XP/2003
+    - no longer cause system wide timer accurency change
+ * similiar changes on Windows 95/98/ME
+    - only enables higher accurency just before sleeping and disables right after
+ * Removed TOS tweak.
+
+[1.50beta]
+ * WinHL-Booster can monitor CPU usage and automatically manage the sleep timer to balance between FPS and CPU utilization (by Buzz_Kill <buzzkill@100acrebloodbath.com>)
+ * Added TOS low delay tweak, "-tos" commandline option for activating TOS tweak
+ 
+[1.46]
+ * booster_force_systicrate is set to 10000 by default now
+ * made filesize bigger (don't ask)
+ 
+[1.45 beta]
+ * booster_minsleepms cvar for adjusting sleep timer tweak
+
+[1.44] 
+ * booster_autofps 100 for better ping and better server stability
+
+[1.43]
+ * Oh .. did I skip 1.43 .. oops I think I did :D
+
+[1.42]
+ * Name changed back to WinHL-Booster
+ * sets sys_ticrate to 10000 instead of 1000. Seems to help ping problems that booster causes on some servers.
+ 
+[1.41]
+ * removed url from connmessages
+ 
+[1.40]
+ * !! Makes server run with higher fps than 100 !!
+    - Uses multimedia timer tweaking of Windows
+    - Same effect than with flash-ani trick
+    - OS wide effect .. only one server running booster -> all servers boosted
+    
+ * No more Linux binary (sorry .. no mm timer tweak in linux that I know off (You might want to try multimedia timer tweaked kernel(search net))))
+ * Connection message can be disabled
+ 
+ * Removed all extra stuff that were causing more bad than good
+    - Underrun £@&$ removed
+    - Dynamic sys_ticrate adjusting for fps removed
+    - Cleaned connection messages from extra crap removed
+ 
+[1.36b]
+ * New installation directories in booster_mm.txt (http://www.unitedadmins.com/info_addon_dev_standards.aspx)
+ 
+[1.36]
+ * Fixed targetfps system to work under linux
+ * Tested with DoD3 (works fine with me)
+
+[1.35]
+ * sys_ticrate/targetfps system is now deactivated on listenservers!
+ * Setting "booster_targetfps 0" deactivates targetfps system (you can still use underrun mode with this)
+ 
+[1.34]
+ * Trying to fix XP problems
+ 
+[1.33]
+ * targetfps default value is now 133 ;)
+ * booster_maxsysticrate, booster_mixsysticrate cvars to 
+   set maximum and minimum boundaries for target-fps system
+ * Small connection message is now default
+ * booster_underrun_scale changed to booster_underrun_finalrate (thanks to !2SX!)
+
+[1.32]
+ * Booster's day off.. Sauna & Vodka
+ 
+[1.31]
+ * sys_ticrate, sv_maxupdaterate are now visible in server info
+ 
+[1.30]
+ * targetfps system for better function with 1.1.0.9
+ 
+[1.21]
+ * [bugfix] Fixed (hopefully) current players counting :P
+
+[1.20]
+ * Shows current map in connection message
+ * [bugfix] Now underrun even works :D .. fixed current players counting
+ 
+[1.17]
+ * [bugfix] rewritten underrun code
+
+[1.16]
+ * Comes with Linux binary by default (LinHL-Booster)
+ * Added 'booster_small_connmsg' for those who don't want that big connection message ruin other messages
+ * Speed tweaks (this was in 1.15 already)
+ * [bugfix] Underrun works now even if force settings is enabled
+ 
+[1.15]
+ * Changed connection message 'made by' to 'plugin-url' so that people stop email-asking me for url ;)
+
+[1.14]
+ * [bugfix] Removed "meta-interface version mismatch"-warnings
+
+[1.13]
+ * Jumped over this version (I don't like number 13 :D)
+
+[1.12]
+ * [bugfix] booster_forcesettings should work right way now.
+ * [bugfix] booster_underrun should work right way now.
+ * [bugfix] Current players on server counter function fixed.
+ 
+[1.11]
+ * Added 'booster_forcesettings'
+ * [bugfix] Removed debugging message that I left in 1.10
+ 
+[1.10]
+ * Added 'booster_underrun_on', 'booster_underrun_players' and 'booster_underrun_scale' cvars for servers with low bandwidth.
+ 
+[1.02]
+ * Shows how many players are present on server to joining player.
+ 
+[1.01] 
+ * Small code tweaks
+ 
+[1.00]
+ * -
+
+
+Credits:
+ * Buzz_Kill <buzzkill@100acrebloodbath.com> for cpu usage monitoring code
+ * -[SBV]-MeGaHuRtZ, Rage, Mikee and all others for betatesting
+
+
+Links:
+ Unitedadmins: http://www.unitedadmins.com/
+ Metamod:      http://www.metamod.org/
+ Adminmod:     http://www.adminmod.org/
