@@ -15,8 +15,12 @@
 #include <zp50_gamemodes>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 
 #define MAXPLAYERS 32
 
@@ -25,7 +29,9 @@ new Float:g_LeapLastTime[MAXPLAYERS+1]
 
 new cvar_leap_zombie, cvar_leap_zombie_force, cvar_leap_zombie_height, cvar_leap_zombie_cooldown
 new cvar_leap_nemesis, cvar_leap_nemesis_force, cvar_leap_nemesis_height, cvar_leap_nemesis_cooldown
+new cvar_leap_assassin, cvar_leap_assassin_force, cvar_leap_assassin_height, cvar_leap_assassin_cooldown
 new cvar_leap_survivor, cvar_leap_survivor_force, cvar_leap_survivor_height, cvar_leap_survivor_cooldown
+new cvar_leap_sniper, cvar_leap_sniper_force, cvar_leap_sniper_height, cvar_leap_sniper_cooldown
 
 public plugin_init()
 {
@@ -44,6 +50,15 @@ public plugin_init()
 		cvar_leap_nemesis_height = register_cvar("zp_leap_nemesis_height", "300")
 		cvar_leap_nemesis_cooldown = register_cvar("zp_leap_nemesis_cooldown", "5.0")
 	}
+
+	// Assassin Class loaded?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library))
+	{
+		cvar_leap_assassin = register_cvar("zp_leap_assassin", "1")
+		cvar_leap_assassin_force = register_cvar("zp_leap_assassin_force", "500")
+		cvar_leap_assassin_height = register_cvar("zp_leap_assassin_height", "300")
+		cvar_leap_assassin_cooldown = register_cvar("zp_leap_assassin_cooldown", "5.0")
+	}
 	
 	// Survivor Class loaded?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library))
@@ -52,6 +67,15 @@ public plugin_init()
 		cvar_leap_survivor_force = register_cvar("zp_leap_survivor_force", "500")
 		cvar_leap_survivor_height = register_cvar("zp_leap_survivor_height", "300")
 		cvar_leap_survivor_cooldown = register_cvar("zp_leap_survivor_cooldown", "5.0")
+	}
+
+	// Sniper Class loaded?
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library))
+	{
+		cvar_leap_sniper = register_cvar("zp_leap_sniper", "0")
+		cvar_leap_sniper_force = register_cvar("zp_leap_sniper_force", "500")
+		cvar_leap_sniper_height = register_cvar("zp_leap_sniper_height", "300")
+		cvar_leap_sniper_cooldown = register_cvar("zp_leap_sniper_cooldown", "5.0")
 	}
 	
 	register_forward(FM_PlayerPreThink, "fw_PlayerPreThink")
@@ -64,7 +88,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -104,6 +128,15 @@ public fw_PlayerPreThink(id)
 		force = get_pcvar_num(cvar_leap_nemesis_force)
 		height = get_pcvar_float(cvar_leap_nemesis_height)
 	}
+	// Assassin Class loaded?
+	else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(id))
+	{
+		// Check if assassin should leap
+		if (!get_pcvar_num(cvar_leap_assassin)) return;
+		cooldown = get_pcvar_float(cvar_leap_assassin_cooldown)
+		force = get_pcvar_num(cvar_leap_assassin_force)
+		height = get_pcvar_float(cvar_leap_assassin_height)
+	}
 	// Survivor Class loaded?
 	else if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id))
 	{
@@ -112,6 +145,15 @@ public fw_PlayerPreThink(id)
 		cooldown = get_pcvar_float(cvar_leap_survivor_cooldown)
 		force = get_pcvar_num(cvar_leap_survivor_force)
 		height = get_pcvar_float(cvar_leap_survivor_height)
+	}
+	// Sniper Class loaded?
+	else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id))
+	{
+		// Check if sniper should leap
+		if (!get_pcvar_num(cvar_leap_sniper)) return;
+		cooldown = get_pcvar_float(cvar_leap_sniper_cooldown)
+		force = get_pcvar_num(cvar_leap_sniper_force)
+		height = get_pcvar_float(cvar_leap_sniper_height)
 	}
 	else
 	{

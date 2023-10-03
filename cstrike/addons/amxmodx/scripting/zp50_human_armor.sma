@@ -17,8 +17,12 @@
 #include <zp50_core>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 
 // CS Player PData Offsets (win32)
 const OFFSET_PAINSHOCK = 108 // ConnorMcLeod
@@ -30,7 +34,8 @@ const DMG_HEGRENADE = (1<<24)
 new const g_sound_armor_hit[] = "player/bhit_helmet-1.wav"
 
 new cvar_human_armor_protect, cvar_human_armor_default
-new cvar_armor_protect_nemesis, cvar_survivor_armor_protect
+new cvar_armor_protect_nemesis, cvar_survivor_armor_protect,
+cvar_armor_protect_assassin, cvar_sniper_armor_protect
 
 public plugin_init()
 {
@@ -41,8 +46,12 @@ public plugin_init()
 	
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library))
 		cvar_armor_protect_nemesis = register_cvar("zp_armor_protect_nemesis", "1")
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library))
+		cvar_armor_protect_assassin = register_cvar("zp_armor_protect_assassin", "1")
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library))
 		cvar_survivor_armor_protect = register_cvar("zp_survivor_armor_protect", "1")
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library))
+		cvar_sniper_armor_protect = register_cvar("zp_sniper_armor_protect", "1")
 	
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage")
 	RegisterHamBots(Ham_TakeDamage, "fw_TakeDamage")
@@ -55,7 +64,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -103,9 +112,17 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 		// Should armor protect against nemesis attacks?
 		if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && !get_pcvar_num(cvar_armor_protect_nemesis) && zp_class_nemesis_get(attacker))
 			return HAM_IGNORED;
+
+		// Should armor protect against assassin attacks?
+		if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && !get_pcvar_num(cvar_armor_protect_assassin) && zp_class_assassin_get(attacker))
+			return HAM_IGNORED;
 		
 		// Should armor protect survivor too?
 		if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && !get_pcvar_num(cvar_survivor_armor_protect) && zp_class_survivor_get(victim))
+			return HAM_IGNORED;
+
+		// Should armor protect sniper too?
+		if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && !get_pcvar_num(cvar_sniper_armor_protect) && zp_class_sniper_get(victim))
 			return HAM_IGNORED;
 		
 		// Get victim armor

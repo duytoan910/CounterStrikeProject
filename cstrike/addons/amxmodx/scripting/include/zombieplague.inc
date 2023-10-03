@@ -62,6 +62,8 @@
 #define ZP_TEAM_HUMAN (1<<1)
 #define ZP_TEAM_NEMESIS (1<<2)
 #define ZP_TEAM_SURVIVOR (1<<3)
+#define ZP_TEAM_SNIPER (1<<4)
+#define ZP_TEAM_ASSASSIN (1<<5)
 
 /* Game modes for zp_round_started() */
 enum
@@ -71,7 +73,10 @@ enum
 	MODE_SURVIVOR,
 	MODE_SWARM,
 	MODE_MULTI,
-	MODE_PLAGUE
+	MODE_PLAGUE,
+	MODE_ASSASSIN,
+	MODE_SNIPER,
+	MODE_ARMAGEDDON
 }
 
 /* Winner teams for zp_round_ended() */
@@ -261,6 +266,42 @@ native zp_make_user_nemesis(id)
 native zp_make_user_survivor(id)
 
 /**
+ * Returns whether a player is an assassin.
+ *
+ * @param id  Player index.
+ * @return  True if it is, false otherwise.
+ */
+native zp_get_user_assassin(id)
+
+/**
+ * Forces a player to become a survivor.
+ *
+ * Note: Unavailable for last zombie/nemesis.
+ *
+ * @param id		Player index to turn into survivor.
+ * @return		True on success, false otherwise.
+ */
+native zp_make_user_assassin(id)
+
+/**
+ * Returns whether a player is a sniper.
+ *
+ * @param id  Player index.
+ * @return  True if it is, false otherwise.
+ */
+native zp_get_user_sniper(id)
+
+/**
+ * Forces a player to become a survivor.
+ *
+ * Note: Unavailable for last zombie/nemesis.
+ *
+ * @param id		Player index to turn into survivor.
+ * @return		True on success, false otherwise.
+ */
+native zp_make_user_sniper(id)
+
+/**
  * Respawns a player into a specific team.
  *
  * @param id		Player index to be respawned.
@@ -331,6 +372,27 @@ native zp_is_swarm_round()
 native zp_is_plague_round()
 
 /**
+ * Returns whether the current round is a assassin round.
+ *
+ * @return		True if it is, false otherwise.
+ */
+native zp_is_assassin_round()
+
+/**
+ * Returns whether the current round is a sniper round.
+ *
+ * @return		True if it is, false otherwise.
+ */
+native zp_is_sniper_round()
+
+/**
+ * Returns whether the current round is a armageddon round.
+ *
+ * @return		True if it is, false otherwise.
+ */
+native zp_is_lnj_round()
+
+/**
  * Returns number of alive zombies.
  *
  * @return		Zombie count.
@@ -359,6 +421,20 @@ native zp_get_nemesis_count()
 native zp_get_survivor_count()
 
 /**
+ * Returns number of alive assassin.
+ *
+ * @return		Assassin count.
+ */
+native zp_get_assassin_count()
+
+/**
+ * Returns number of alive sniper.
+ *
+ * @return		Sniper count.
+ */
+native zp_get_sniper_count()
+
+/**
  * Registers a custom item which will be added to the extra items menu of ZP.
  *
  * Note: The returned extra item ID can be later used to catch item
@@ -372,7 +448,6 @@ native zp_get_survivor_count()
  * @param teams		Bitsum of teams it should be available for.
  * @return		An internal extra item ID, or -1 on failure.
  */
-//native zp_register_extra_item(const name[], cost, teams, premium)
 native zp_register_extra_item(const name[], cost, teams)
 
 /**

@@ -38,6 +38,8 @@ public fm_pthink(id)
 		return FMRES_IGNORED
 	if ( zp_get_user_nemesis(id) || zp_get_user_survivor(id))
 		return FMRES_IGNORED
+	if ( zp_get_user_assassin(id) || zp_get_user_sniper(id))
+		return FMRES_IGNORED
 	if (!zp_get_user_zombie(id))
 		return FMRES_IGNORED
 	if (!is_user_alive(id))
@@ -104,7 +106,7 @@ public rehealth(id)
 			write_byte(12)
 			write_byte(255)
 			message_end()
-			md_zb_skill(id, 1)
+			//md_zb_skill(id, 1)
 		}
 		else
 		{
@@ -119,7 +121,7 @@ public rehealth(id)
 			write_byte(12)
 			write_byte(255)
 			message_end()
-			md_zb_skill(id, 1)
+			//md_zb_skill(id, 1)
 		}
 	}
 }

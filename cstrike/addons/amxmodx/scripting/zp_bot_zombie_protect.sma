@@ -22,7 +22,7 @@ public plugin_init() {
 }
 public zp_round_started(gamemode, id)
 {	
-	if(zp_is_nemesis_round() || zp_is_survivor_round() || zp_is_swarm_round() || zp_is_plague_round())
+	if(zp_is_nemesis_round() || zp_is_survivor_round()  || zp_is_assassin_round() || zp_is_sniper_round() || zp_is_swarm_round() || zp_is_plague_round())
 	{
 		allowprotect=0
 	}else 	allowprotect=1

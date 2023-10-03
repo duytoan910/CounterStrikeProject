@@ -27,6 +27,13 @@
 #define BLOODCOLOR 248
 #define FIGHT_MUSIC "zombie_plague/boss/background/Scenario_Start.mp3"
 
+new AvailMap
+static const map[][] = { 
+	{"zm_toan"},
+	{"zm_downhill"},
+	{"zm_toan_2023"}
+}
+
 native Create_FallenTitan(id, Float:HP)
 native Create_Oberon(id, Float:HP)
 native Create_Dione(id, Float:HP)
@@ -123,7 +130,6 @@ public plugin_precache()
 			precache_sound(sound)
 	}
 }
-
 public client_putinserver(id)
 {
 	if(!g_HamBot && is_user_bot(id))
@@ -131,6 +137,17 @@ public client_putinserver(id)
 		g_HamBot = 1
 		set_task(0.1, "Do_Register_HamBot", id)
 	}
+
+	new g_MapName[33];
+	get_mapname(g_MapName,32);
+	for(new i=0;i<sizeof(map);i++)
+		if(equali(map[i],g_MapName))
+		{
+			AvailMap = true;
+			return;
+		}
+			
+	AvailMap = false;
 }
 
 public Do_Register_HamBot(id)
@@ -267,6 +284,9 @@ public zp_fw_gamemodes_choose_pre(game_mode_id, skipchecks)
 {
 	if (!skipchecks)
 	{
+		if(!AvailMap)
+			return PLUGIN_HANDLED;
+			
 		// Random chance
 		if (random_num(1, get_pcvar_num(cvar_npc_chance)) != 1)
 			return PLUGIN_HANDLED;

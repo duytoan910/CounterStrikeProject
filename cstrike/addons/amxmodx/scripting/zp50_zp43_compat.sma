@@ -20,6 +20,10 @@
 #include <zp50_class_nemesis>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 #include <zp50_gamemodes>
 #define LIBRARY_FLASHLIGHT "zp50_flashlight"
 #include <zp50_flashlight>
@@ -41,11 +45,26 @@
 #define ZP_TEAM_HUMAN (1<<1)
 #define ZP_TEAM_NEMESIS (1<<2)
 #define ZP_TEAM_SURVIVOR (1<<3)
+#define ZP_TEAM_SNIPER (1<<4)
+#define ZP_TEAM_ASSASSIN (1<<5)
 new const ZP_TEAM_NAMES[][] = { "ZOMBIE , HUMAN", "ZOMBIE", "HUMAN", "ZOMBIE , HUMAN", "NEMESIS",
 			"ZOMBIE , NEMESIS", "HUMAN , NEMESIS", "ZOMBIE , HUMAN , NEMESIS",
 			"SURVIVOR", "ZOMBIE , SURVIVOR", "HUMAN , SURVIVOR", "ZOMBIE , HUMAN , SURVIVOR",
 			"NEMESIS , SURVIVOR", "ZOMBIE , NEMESIS , SURVIVOR", "HUMAN, NEMESIS, SURVIVOR",
-			"ZOMBIE , HUMAN , NEMESIS , SURVIVOR" }
+			"ASSASSIN" , "SNIPER" , "ASSASSIN , SNIPER" , "ASSASSIN , HUMAN" , "ASSASSIN , ZOMBIE" ,
+			"ASSASSIN , NEMESIS" , "ASSASSIN , SURVIVOR" , "ASSASSIN , SNIPER , HUMAN" , "ASSASSIN , SNIPER , ZOMBIE" ,
+			"ASSASSIN , SNIPER , NEMESIS" , "ASSASSIN , SNIPER , SURVIVOR" , "ASSASSIN , SNIPER , HUMAN , ZOMBIE" ,
+			"ASSASSIN , SNIPER , HUMAN , SURVIVOR" , "ASSASSIN , SNIPER , HUMAN , NEMESIS" ,
+			"ASSASSIN , SURVIVOR , HUMAN , NEMESIS" , "SNIPER , HUMAN" ,
+			"SNIPER , ZOMBIE" , "SNIPER , SURVIVOR" , "SNIPER , NEMESIS" , "SNIPER , HUMAN" ,
+			"SNIPER , HUMAN , ZOMBIE" , "SNIPER , HUMAN , NEMESIS" , "SNIPER , HUMAN , SURVIVOR" ,
+			"SNIPER , HUMAN , ZOMBIE , SURVIVOR" , "SNIPER , HUMAN , ZOMBIE , NEMESIS" ,
+			"SNIPER , HUMAN , SURVIVOR , NEMESIS" , "SNIPER , ZOMBIE , SURVIVOR , NEMESIS" ,
+			"ZOMBIE , HUMAN , NEMESIS , SURVIVOR" , "SNIPER , ZOMBIE , SURVIVOR , NEMESIS , HUMAN" ,
+			"SNIPER , ZOMBIE , SURVIVOR , NEMESIS , ASSASSIN" , "SNIPER , ZOMBIE , SURVIVOR , ASSASSIN , HUMAN" ,
+			"ASSASSIN , ZOMBIE , SURVIVOR , ASSASSIN , HUMAN" , "ASSASSIN , ZOMBIE , SURVIVOR , NEMESIS , HUMAN" ,
+			"ASSASSIN , ZOMBIE , SURVIVOR , ASSASSIN , HUMAN , SNIPER" , "HUMAN , NEMESIS , SURVIVOR , ZOMBIE"
+			 }
 
 enum
 {
@@ -55,7 +74,10 @@ enum
 	MODE_SURVIVOR,
 	MODE_SWARM,
 	MODE_MULTI,
-	MODE_PLAGUE
+	MODE_ASSASSIN,
+	MODE_SNIPER,
+	MODE_PLAGUE,
+	MODE_ARMAGEDDON
 }
 
 // There was a bug with ZP 4.3 round end forward: it passed ZP_TEAM_ZOMBIE
@@ -90,7 +112,7 @@ new g_MaxPlayers
 new cvar_ammopack_to_money_enable, cvar_ammopack_to_money_ratio
 new cvar_zombie_first_hp_multiplier
 
-new g_GameModeInfectionID, g_GameModeMultiID, g_GameModeNemesisID, g_GameModeSurvivorID, g_GameModeSwarmID, g_GameModePlagueID
+new g_GameModeInfectionID, g_GameModeMultiID, g_GameModeNemesisID, g_GameModeSurvivorID, g_GameModeSwarmID, g_GameModePlagueID, g_GameModeAssassinID, g_GameModeSniperID, g_GameModeLnjID
 new g_ModeStarted
 
 new Array:g_ItemID, Array:g_ItemTeams
@@ -191,6 +213,40 @@ public zp_fw_gamemodes_start(game_mode_id)
 	{
 		ExecuteForward(g_Forwards[FW_ROUND_STARTED], g_ForwardResult, MODE_PLAGUE, 0)
 	}
+	else if (game_mode_id == g_GameModeAssassinID)
+	{
+		// Get assassin index
+		new player_index = 1
+		while ((!is_user_alive(player_index) || !zp_class_assassin_get(player_index)) && player_index <= g_MaxPlayers)
+			player_index++
+		
+		if (player_index > g_MaxPlayers)
+		{
+			abort(AMX_ERR_GENERAL, "ERROR - assassin index not found!")
+			player_index = 0
+		}
+		
+		ExecuteForward(g_Forwards[FW_ROUND_STARTED], g_ForwardResult, MODE_ASSASSIN, player_index)
+	}
+	else if (game_mode_id == g_GameModeSniperID)
+	{
+		// Get sniper index
+		new player_index = 1
+		while ((!is_user_alive(player_index) || !zp_class_sniper_get(player_index)) && player_index <= g_MaxPlayers)
+			player_index++
+		
+		if (player_index > g_MaxPlayers)
+		{
+			abort(AMX_ERR_GENERAL, "ERROR - sniper index not found!")
+			player_index = 0
+		}
+		
+		ExecuteForward(g_Forwards[FW_ROUND_STARTED], g_ForwardResult, MODE_SNIPER, player_index)
+	}
+	else if (game_mode_id == g_GameModeLnjID)
+	{
+		ExecuteForward(g_Forwards[FW_ROUND_STARTED], g_ForwardResult, MODE_ARMAGEDDON, 0)
+	}
 	else
 	{
 		// Custom game mode started, pass MODE_CUSTOM (0) as mode parameter
@@ -214,6 +270,8 @@ public zp_fw_core_infect_pre(id, attacker)
 {
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(id))
 		ExecuteForward(g_Forwards[FW_USER_INFECT_ATTEMPT], g_ForwardResult, id, attacker, true)
+	else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(id))
+		ExecuteForward(g_Forwards[FW_USER_INFECT_ATTEMPT], g_ForwardResult, id, attacker, true)
 	else
 		ExecuteForward(g_Forwards[FW_USER_INFECT_ATTEMPT], g_ForwardResult, id, attacker, false)
 	
@@ -226,6 +284,8 @@ public zp_fw_core_infect(id, attacker)
 {
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(id))
 		ExecuteForward(g_Forwards[FW_USER_INFECTED_PRE], g_ForwardResult, id, attacker, true)
+	else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(id))
+		ExecuteForward(g_Forwards[FW_USER_INFECTED_PRE], g_ForwardResult, id, attacker, true)
 	else
 		ExecuteForward(g_Forwards[FW_USER_INFECTED_PRE], g_ForwardResult, id, attacker, false)
 }
@@ -234,6 +294,8 @@ public zp_fw_core_infect_post(id, attacker)
 {
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(id))
 		ExecuteForward(g_Forwards[FW_USER_INFECTED_POST], g_ForwardResult, id, attacker, true)
+	else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(id))
+		ExecuteForward(g_Forwards[FW_USER_INFECTED_POST], g_ForwardResult, id, attacker, true)
 	else
 		ExecuteForward(g_Forwards[FW_USER_INFECTED_POST], g_ForwardResult, id, attacker, false)
 }
@@ -241,6 +303,8 @@ public zp_fw_core_infect_post(id, attacker)
 public zp_fw_core_cure_pre(id, attacker)
 {
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id))
+		ExecuteForward(g_Forwards[FW_USER_HUMANIZE_ATTEMPT], g_ForwardResult, id, true)
+	else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id))
 		ExecuteForward(g_Forwards[FW_USER_HUMANIZE_ATTEMPT], g_ForwardResult, id, true)
 	else
 		ExecuteForward(g_Forwards[FW_USER_HUMANIZE_ATTEMPT], g_ForwardResult, id, false)
@@ -254,6 +318,8 @@ public zp_fw_core_cure(id, attacker)
 {
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id))
 		ExecuteForward(g_Forwards[FW_USER_HUMANIZED_PRE], g_ForwardResult, id, true)
+	else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id))
+		ExecuteForward(g_Forwards[FW_USER_HUMANIZED_PRE], g_ForwardResult, id, true)
 	else
 		ExecuteForward(g_Forwards[FW_USER_HUMANIZED_PRE], g_ForwardResult, id, false)
 }
@@ -261,6 +327,8 @@ public zp_fw_core_cure(id, attacker)
 public zp_fw_core_cure_post(id, attacker)
 {
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id))
+		ExecuteForward(g_Forwards[FW_USER_HUMANIZED_POST], g_ForwardResult, id, true)
+	else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id))
 		ExecuteForward(g_Forwards[FW_USER_HUMANIZED_POST], g_ForwardResult, id, true)
 	else
 		ExecuteForward(g_Forwards[FW_USER_HUMANIZED_POST], g_ForwardResult, id, false)
@@ -304,6 +372,9 @@ public plugin_cfg()
 	g_GameModeSurvivorID = zp_gamemodes_get_id("Survivor Mode")
 	g_GameModeSwarmID = zp_gamemodes_get_id("Swarm Mode")
 	g_GameModePlagueID = zp_gamemodes_get_id("Plague Mode")
+	g_GameModeAssassinID = zp_gamemodes_get_id("Assassin Mode")
+	g_GameModeSniperID = zp_gamemodes_get_id("Sniper Mode")
+	g_GameModeLnjID = zp_gamemodes_get_id("Armageddon Mode")
 }
 
 public plugin_natives()
@@ -314,6 +385,8 @@ public plugin_natives()
 	register_native("zp_get_user_zombie", "native_get_user_zombie")
 	register_native("zp_get_user_nemesis", "native_get_user_nemesis")
 	register_native("zp_get_user_survivor", "native_get_user_survivor")
+	register_native("zp_get_user_sniper", "native_get_user_sniper")
+	register_native("zp_get_user_assassin", "native_get_user_assassin")
 	register_native("zp_get_user_first_zombie", "native_get_user_first_zombie")
 	register_native("zp_get_user_last_zombie", "native_get_user_last_zombie")
 	register_native("zp_get_user_last_human", "native_get_user_last_human")
@@ -331,6 +404,8 @@ public plugin_natives()
 	register_native("zp_disinfect_user", "native_disinfect_user")
 	register_native("zp_make_user_nemesis", "native_make_user_nemesis")
 	register_native("zp_make_user_survivor", "native_make_user_survivor")
+	register_native("zp_make_user_assassin", "native_make_user_assassin")
+	register_native("zp_make_user_sniper", "native_make_user_sniper")
 	register_native("zp_respawn_user", "native_respawn_user")
 	register_native("zp_force_buy_extra_item", "native_force_buy_extra_item")
 	register_native("zp_override_user_model", "native_override_user_model")
@@ -339,6 +414,9 @@ public plugin_natives()
 	register_native("zp_is_survivor_round", "native_is_survivor_round")
 	register_native("zp_is_swarm_round", "native_is_swarm_round")
 	register_native("zp_is_plague_round", "native_is_plague_round")
+	register_native("zp_is_assassin_round", "native_is_assassin_round")
+	register_native("zp_is_sniper_round", "native_is_sniper_round")
+	register_native("zp_is_lnj_round", "native_is_lnj_round")
 	register_native("zp_get_zombie_count", "native_get_zombie_count")
 	register_native("zp_get_human_count", "native_get_human_count")
 	register_native("zp_get_nemesis_count", "native_get_nemesis_count")
@@ -358,7 +436,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_EXTRAITEMS) || equal(module, LIBRARY_FLASHLIGHT) || equal(module, LIBRARY_AMMOPACKS) || equal(module, LIBRARY_GRENADE_FROST))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_SNIPER) || equal(module, LIBRARY_EXTRAITEMS) || equal(module, LIBRARY_FLASHLIGHT) || equal(module, LIBRARY_AMMOPACKS) || equal(module, LIBRARY_GRENADE_FROST))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -419,6 +497,37 @@ public native_get_user_survivor(plugin_id, num_params)
 	return zp_class_survivor_get(id);
 }
 
+public native_get_user_assassin(plugin_id, num_params)
+{
+	if (!LibraryExists(LIBRARY_ASSASSIN, LibType_Library))
+		return false;
+	
+	new id = get_param(1)
+	
+	if (!is_user_connected(id))
+	{
+		log_error(AMX_ERR_NATIVE, "[ZP] Invalid Player (%d)", id)
+		return false;
+	}
+	
+	return zp_class_assassin_get(id);
+}
+
+public native_get_user_sniper(plugin_id, num_params)
+{
+	if (!LibraryExists(LIBRARY_SNIPER, LibType_Library))
+		return false;
+	
+	new id = get_param(1)
+	
+	if (!is_user_connected(id))
+	{
+		log_error(AMX_ERR_NATIVE, "[ZP] Invalid Player (%d)", id)
+		return false;
+	}
+	
+	return zp_class_sniper_get(id);
+}
 public native_get_user_first_zombie(plugin_id, num_params)
 {
 	new id = get_param(1)
@@ -686,6 +795,31 @@ public native_make_user_survivor(plugin_id, num_params)
 	return zp_class_survivor_set(id);
 }
 
+public native_make_user_assassin(plugin_id, num_params)
+{
+	new id = get_param(1)
+	
+	if (!is_user_alive(id))
+	{
+		log_error(AMX_ERR_NATIVE, "[ZP] Invalid Player (%d)", id)
+		return false;
+	}
+	
+	return zp_class_assassin_set(id);
+}
+
+public native_make_user_sniper(plugin_id, num_params)
+{
+	new id = get_param(1)
+	
+	if (!is_user_alive(id))
+	{
+		log_error(AMX_ERR_NATIVE, "[ZP] Invalid Player (%d)", id)
+		return false;
+	}
+	
+	return zp_class_sniper_set(id);
+}
 public native_respawn_user(plugin_id, num_params)
 {
 	new id = get_param(1)
@@ -790,6 +924,20 @@ public native_is_plague_round(plugin_id, num_params)
 	return (zp_gamemodes_get_current() == g_GameModePlagueID);
 }
 
+public native_is_assassin_round(plugin_id, num_params)
+{
+	return (zp_gamemodes_get_current() == g_GameModeAssassinID);
+}
+
+public native_is_sniper_round(plugin_id, num_params)
+{
+	return (zp_gamemodes_get_current() == g_GameModeSniperID);
+}
+
+public native_is_lnj_round(plugin_id, num_params)
+{
+	return (zp_gamemodes_get_current() == g_GameModeLnjID);
+}
 public native_get_zombie_count(plugin_id, num_params)
 {
 	return zp_core_get_zombie_count();
@@ -841,6 +989,10 @@ public native_register_extra_item(plugin_id, num_params)
 			teams_bitsum |= ZP_TEAM_NEMESIS
 		if (contain(teams_string, ZP_TEAM_NAMES[ZP_TEAM_SURVIVOR]) != -1)
 			teams_bitsum |= ZP_TEAM_SURVIVOR
+		if (contain(teams_string, ZP_TEAM_NAMES[ZP_TEAM_SNIPER]) != -1)
+			teams_bitsum |= ZP_TEAM_SNIPER
+		if (contain(teams_string, ZP_TEAM_NAMES[ZP_TEAM_ASSASSIN]) != -1)
+			teams_bitsum |= ZP_TEAM_ASSASSIN
 	}
 	
 	// Add ZP team restrictions
@@ -871,6 +1023,11 @@ public zp_fw_items_select_pre(id, itemid, ignorecost)
 			if (!(teams_bitsum & ZP_TEAM_NEMESIS))
 				return ZP_ITEM_DONT_SHOW;
 		}
+		else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(id))
+		{
+			if (!(teams_bitsum & ZP_TEAM_ASSASSIN))
+				return ZP_ITEM_DONT_SHOW;
+		}
 		else
 		{
 			if (!(teams_bitsum & ZP_TEAM_ZOMBIE))
@@ -882,6 +1039,11 @@ public zp_fw_items_select_pre(id, itemid, ignorecost)
 		if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id))
 		{
 			if (!(teams_bitsum & ZP_TEAM_SURVIVOR))
+				return ZP_ITEM_DONT_SHOW;
+		}
+		else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id))
+		{
+			if (!(teams_bitsum & ZP_TEAM_SNIPER))
 				return ZP_ITEM_DONT_SHOW;
 		}
 		else

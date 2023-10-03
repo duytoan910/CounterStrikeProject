@@ -45,7 +45,7 @@ enum
 
 #define rifles_P_Model 	"models/p_at15hw.mdl"
 
-#define rifles_W_Model 	"models/w_at15hw.mdl"
+#define rifles_W_Model 	"models/w_ak47.mdl"
 
 #define	rifles_COST	15
 #define rifles_CLIP 35

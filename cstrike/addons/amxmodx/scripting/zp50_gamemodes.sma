@@ -21,8 +21,12 @@
 #include <zp50_gamemodes_const>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 
 #define TASK_GAMEMODE 100
 
@@ -111,7 +115,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -509,9 +513,17 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 		// Nemesis shouldn't be infecting
 		if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(attacker))
 			return HAM_IGNORED;
+
+		// Assassin shouldn't be infecting
+		if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(attacker))
+			return HAM_IGNORED;
 		
 		// Survivor shouldn't be infected
 		if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(victim))
+			return HAM_IGNORED;
+
+		// Sniper shouldn't be infected
+		if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(victim))
 			return HAM_IGNORED;
 		
 		// Prevent infection/damage by HE grenade (bugfix)

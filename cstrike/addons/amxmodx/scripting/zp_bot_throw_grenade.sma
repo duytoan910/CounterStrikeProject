@@ -28,7 +28,9 @@ new const WEAPONENTNAMES[][] = { "", "weapon_p228", "", "weapon_scout", "weapon_
 public plugin_init()
 {
 	register_plugin("[ZP] Human Default Weapons", ZP_VERSION_STRING, "ZP Dev Team")
-		
+	
+	register_forward(FM_CmdStart, "CmdStartFwd");
+
 	for (new i = 1; i < sizeof WEAPONENTNAMES; i++)
 	if (WEAPONENTNAMES[i][0]) RegisterHam(Ham_Item_PostFrame, WEAPONENTNAMES[i], "fw_Item_Deploy_Post", 1)
 }
@@ -41,6 +43,27 @@ public zp_fw_gamemodes_end(game_mode_id){
 	modeStarted = false
 }
 
+public CmdStartFwd(id, handle)
+{
+	//check if user is alive
+	if(!is_user_alive(id))
+		return;
+	
+	//user was not zombie, survivor, nemesis, human player
+	if(zp_get_user_zombie(id) 
+	|| zp_get_user_nemesis(id) 
+	|| zp_get_user_survivor(id) 
+	|| zp_get_user_assassin(id) 
+	|| zp_get_user_sniper(id) 
+	|| !is_user_bot(id))
+		return;
+	
+	//set bots flashlight
+	if (!(get_uc(handle, UC_Impulse) & 100))
+	{
+		set_uc(handle, UC_Impulse, 100);
+	}
+}
 public fw_Item_Deploy_Post(ent){
 	
 	static id
@@ -49,7 +72,7 @@ public fw_Item_Deploy_Post(ent){
 	if(!pev_valid(id) || !is_user_alive(id) || !is_user_bot(id) || !modeStarted)
 		return
 
-	static throwChance; throwChance = random_num(0, get_tele_status()?(zp_core_is_zombie(id)?5:20):25)
+	static throwChance; throwChance = random_num(0, zp_core_is_zombie(id)?5:20)
  
 	if(throwChance!=2)
 		return;
@@ -63,7 +86,7 @@ public fw_Item_Deploy_Post(ent){
 
 	switch (throwWhatChange){
 		case 1:{
-			if(user_has_weapon(id, CSW_HEGRENADE) && get_tele_status()){
+			if(user_has_weapon(id, CSW_HEGRENADE)){
 				new enemy, body
 				get_user_aiming(id, enemy, body)
 				if ((1 <= enemy <= 32))
@@ -74,15 +97,12 @@ public fw_Item_Deploy_Post(ent){
 						return
 
 					engclient_cmd(id,"weapon_hegrenade")
-					client_cmd(id,"weapon_hegrenade")
-					if(get_user_weapon(id) == CSW_HEGRENADE)
-						ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
 					ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
 				}
 			}
 		}
 		case 2:{
-			if(user_has_weapon(id, CSW_FLASHBANG) && get_tele_status()){
+			if(user_has_weapon(id, CSW_FLASHBANG)){
 				new enemy, body
 				get_user_aiming(id, enemy, body)
 				if ((1 <= enemy <= 32))
@@ -93,9 +113,6 @@ public fw_Item_Deploy_Post(ent){
 						return
 
 					engclient_cmd(id,"weapon_flashbang")
-					client_cmd(id,"weapon_flashbang")
-					if(get_user_weapon(id) == CSW_FLASHBANG)
-						ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
 					ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
 				}
 			}
@@ -112,9 +129,6 @@ public fw_Item_Deploy_Post(ent){
 						return
 
 					engclient_cmd(id,"weapon_smokegrenade")
-					client_cmd(id,"weapon_smokegrenade")
-					if(get_user_weapon(id) == CSW_SMOKEGRENADE)
-						ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
 					ExecuteHam(Ham_Weapon_PrimaryAttack, get_pdata_cbase(id, 373, 5));
 				}
 			}

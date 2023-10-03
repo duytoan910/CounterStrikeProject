@@ -42,7 +42,7 @@
 #define TASK_FBURN				122
 #define ID_FBURN                        	( taskid - TASK_FBURN )
 #define ZP_ITEM_NAME				"Heaven Splitter" 
-#define ZP_ITEM_COST				15000
+#define ZP_ITEM_COST				35000
 
 #define MODEL_WORLD				"models/w_wondercannon.mdl"
 #define MODEL_VIEW				"models/v_wondercannon.mdl"
@@ -401,8 +401,8 @@ public fw_TraceAttack(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDama
 		if(isNPC && pev(iVictim, pev_owner)){
 			iRealVictim = pev(iVictim, pev_owner)
 		}
-		client_print(1, print_chat, "iVictim: %d", iVictim)
-		client_print(1, print_chat, "iRealVictim: %d", iRealVictim)
+		// client_print(1, print_chat, "iVictim: %d", iVictim)
+		// client_print(1, print_chat, "iRealVictim: %d", iRealVictim)
 
 		if(is_user_connected(iRealVictim) && is_user_alive(iRealVictim) && zp_get_user_zombie(iRealVictim)){
 			iVictim = iRealVictim
@@ -410,7 +410,7 @@ public fw_TraceAttack(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDama
 		else if(!is_user_connected(iVictim) || is_user_alive(iVictim) || !zp_get_user_zombie(iVictim))
 			continue
 
-		client_print(0, print_chat, "iVictim: %d", iVictim)
+		// client_print(0, print_chat, "iVictim: %d", iVictim)
 		static iParams[2]; iParams[0] = iAttacker;
 		set_task( 0.5, "CTask__BurningFlame", iVictim + TASK_FBURN, iParams, sizeof iParams, "b" );
 		g_burning_duration[ iVictim ] += FIRE_DURATION	

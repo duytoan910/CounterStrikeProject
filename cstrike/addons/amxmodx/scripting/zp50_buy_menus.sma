@@ -19,6 +19,8 @@
 #include <zp50_core>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 #include <zp50_colorchat>
 
 // Settings file
@@ -189,7 +191,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -253,8 +255,8 @@ public human_weapons(id)
 	if (!is_user_alive(id) || zp_core_is_zombie(id))
 		return;
 	
-	// Survivor automatically gets his own weapon
-	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id))
+	// Survivor and Sniper automatically gets his own weapon
+	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id) || LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id))
 	{
 		flag_unset(g_CanBuyPrimary, id)
 		flag_unset(g_CanBuySecondary, id)
@@ -576,12 +578,11 @@ public menu_buy_grenades(id, key)
 // Buy Grenades
 buy_grenades(id, selection)
 {
-
 	// Give the new weapon
 	static weapon_name[32]
 	ArrayGetString(g_grenades_items, selection, weapon_name, charsmax(weapon_name))
 	give_item(id, weapon_name)
-
+	
 	// Grenades bought
 	flag_unset(g_CanBuyGrenades, id)
 }

@@ -2,6 +2,7 @@
 #include <zombieplague>
 #include <zp50_gamemodes>
 
+native sfpistol(id)
 native janus1(id)
 native janus9(id)
 native jaydagger(id)
@@ -25,21 +26,12 @@ native skull7(id)
 native skull8(id)
 native skullaxe(id)
 native skull11(id)
+native katana(id)
 native sfmg(id)
 native chaingrenade(id)
-native get_tele_status()
 native KnockbackNade(id)
+native gunkata(id)
+native m82a1(id)
 
 native md_zb_skill(id, type)
 native is_deadlyshot(id)
-
-public get_real_owner(targ){
-    new gameModeName[32],targ;
-    zp_gamemodes_get_name(zp_gamemodes_get_current(), gameModeName, charsmax(gameModeName))
-    new isNPC = equal(gameModeName, "Titan boss")
-    if(isNPC && pev(targ, pev_owner)){
-        targ = pev(targ, pev_owner)
-    }
-
-    return targ
-}

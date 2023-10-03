@@ -18,6 +18,8 @@
 #include <zp50_core>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 
 // Settings file
 new const ZP_SETTINGS_FILE[] = "zombieplague.ini"
@@ -83,7 +85,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -132,6 +134,17 @@ public zp_fw_core_infect_post(id, attacker)
 	
 	// Nemesis Class loaded?
 	if (!LibraryExists(LIBRARY_NEMESIS, LibType_Library) || !zp_class_nemesis_get(id))
+	{
+		// Set silent footsteps?
+		if (get_pcvar_num(cvar_zombie_silent))
+			set_user_footsteps(id, 1)
+		
+		// Zombie bleeding?
+		if (get_pcvar_num(cvar_zombie_bleeding))
+			set_task(0.7, "zombie_bleeding", id+TASK_BLOOD, _, _, "b")
+	}
+	// Assassin Class loaded?
+	else if (!LibraryExists(LIBRARY_ASSASSIN, LibType_Library) || !zp_class_assassin_get(id))
 	{
 		// Set silent footsteps?
 		if (get_pcvar_num(cvar_zombie_silent))

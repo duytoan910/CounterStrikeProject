@@ -5,6 +5,7 @@
 #include <hamsandwich>
 #include <cstrike>
 #include <fun>
+#include <toan>
 #include <zombieplague> 
 
 #define PLUGIN "[CSO] Thanatos-3"
@@ -125,7 +126,7 @@ public plugin_init()
 	
 	RegisterHam(Ham_TraceAttack, "worldspawn", "fw_TraceAttack_World")
 	RegisterHam(Ham_TraceAttack, "player", "fw_TraceAttack_Player")	
-	g_thanatos3 = zp_register_extra_item("Thanatos-III", 3000, ZP_TEAM_HUMAN) 
+	g_thanatos3 = zp_register_extra_item("Thanatos-III", 4000, ZP_TEAM_HUMAN) 
      
 	g_MsgCurWeapon = get_user_msgid("CurWeapon")
 	register_clcmd("say /s","test")

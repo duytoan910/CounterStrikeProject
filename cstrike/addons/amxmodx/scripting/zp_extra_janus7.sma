@@ -18,13 +18,13 @@
 #define SHOOT_NEED 100
 #define write_coord_f(%1)	engfunc(EngFunc_WriteCoord,%1)
 
-#define JANUS7_VMODEL "models/v_janus7.mdl"
+#define JANUS7_VMODEL "models/v_janus7_xmas.mdl"
 #define JANUS7_PMODEL "models/p_janus7.mdl"
 #define JANUS7_WMODEL "models/w_janus7.mdl"
 
 #define JANUS7_VMODEL_X "models/v_janus7_xmas.mdl"
-#define JANUS7_PMODEL_X "models/p_janus7_xmas.mdl"
-#define JANUS7_WMODEL_X "models/w_janus7_xmas.mdl"
+#define JANUS7_PMODEL_X "models/p_janus7.mdl"
+#define JANUS7_WMODEL_X "models/w_janus7.mdl"
 
 new const Fire_snd[][] = {"weapons/janus7-1.wav", "weapons/janus7-2.wav"};
 new const went[] ="weapon_m249";
@@ -58,7 +58,7 @@ public plugin_init()
 	RegisterHam(Ham_TraceAttack, "player", "TraceAttack")
 	register_clcmd("setmode","set_mode")
 	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
-	g_itemid_janus7 = zp_register_extra_item("Janus-VII", 6000, ZP_TEAM_HUMAN);
+	g_itemid_janus7 = zp_register_extra_item("Janus-VII", 8000, ZP_TEAM_HUMAN);
 	
 }
 public Message_DeathMsg(msg_id, msg_dest, id)
@@ -109,12 +109,10 @@ public plugin_precache()
 	precache_model(JANUS7_PMODEL_X);
 	precache_model(JANUS7_WMODEL_X);
 	g_sprite = precache_model("sprites/lgtning.spr");
-	g_sprite_hit = precache_model("sprites/ef_janus7_hit.spr");
+	g_sprite_hit = precache_model("sprites/ef_janus7_hit_xmas.spr");
 	g_sprite_hit_xmas = precache_model("sprites/ef_janus7_hit_xmas.spr");
 	precache_sound(Fire_snd[0]);
 	precache_sound(Fire_snd[1]);
-	precache_sound("weapons/janus7_change1.wav");
-	precache_sound("weapons/janus7_change2.wav");
 	precache_sound("weapons/change1_ready.wav")
 	
 	m_iBlood[0] = precache_model("sprites/blood.spr");

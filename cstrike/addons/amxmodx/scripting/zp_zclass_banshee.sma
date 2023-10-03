@@ -138,7 +138,7 @@ public EventDeath()
 	new id = read_data(2)
 	
 	banchee_reset_value_player(id)
-	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==classbanchee && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==classbanchee && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		engfunc( EngFunc_EmitSound, id, CHAN_ITEM, g_sound[0], 1.0, ATTN_NORM, 0, PITCH_NORM)
 	}
@@ -155,14 +155,14 @@ public bat_anim_start(id)
 }
 public fw_TakeDamage(id, iVictim, iInflictor, iAttacker, Float:flDamage, bitsDamage)
 {
-	if (zp_get_user_zombie_class(id)==classbanchee && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if (zp_get_user_zombie_class(id)==classbanchee && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		emit_sound(id, CHAN_WEAPON, g_sound[1], 1.0, ATTN_NORM, 0, PITCH_LOW)
 	}
 }
 public cmd_bat(id)
 {
-	if(is_user_alive(id) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && zp_get_user_zombie_class(id)==classbanchee && !g_bat_time[id] && get_user_weapon(id) == CSW_KNIFE)
+	if(is_user_alive(id) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id)  && !zp_get_user_assassin(id) && zp_get_user_zombie_class(id)==classbanchee && !g_bat_time[id] && get_user_weapon(id) == CSW_KNIFE)
 	{
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return	
@@ -233,7 +233,7 @@ public fw_PlayerPreThink(id)
 	{	
 		new enemy, body
 		get_user_aiming(id, enemy, body)
-		if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
+		if (pev_valid(enemy) && is_user_alive(enemy) && !zp_get_user_zombie(enemy))
 		{
 			set_task(0.5 , "cmd_bat", id)
 		}

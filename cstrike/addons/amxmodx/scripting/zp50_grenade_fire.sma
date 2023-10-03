@@ -20,6 +20,8 @@
 #include <zp50_core>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 
 // Settings file
 new const ZP_SETTINGS_FILE[] = "zombieplague.ini"
@@ -164,7 +166,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -401,6 +403,12 @@ set_on_fire(victim)
 		// fire duration (nemesis)
 		g_BurningDuration[victim] += get_pcvar_num(cvar_grenade_fire_duration)
 	}
+	// Reduced duration for Assassin
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(victim))
+	{
+		// fire duration (assassin)
+		g_BurningDuration[victim] += get_pcvar_num(cvar_grenade_fire_duration)
+	}
 	else
 	{
 		// fire duration (zombie)
@@ -442,6 +450,27 @@ public burning_flame(taskid)
 	
 	// Nemesis Class loaded?
 	if (!LibraryExists(LIBRARY_NEMESIS, LibType_Library) || !zp_class_nemesis_get(ID_BURN))
+	{
+		// Randomly play burning zombie scream sounds
+		if (random_num(1, 20) == 1)
+		{
+			static sound[SOUND_MAX_LENGTH]
+			ArrayGetString(g_sound_grenade_fire_player, random_num(0, ArraySize(g_sound_grenade_fire_player) - 1), sound, charsmax(sound))
+			emit_sound(ID_BURN, CHAN_VOICE, sound, 1.0, ATTN_NORM, 0, PITCH_NORM)
+		}
+		
+		// Fire slow down
+		if ((flags & FL_ONGROUND) && get_pcvar_float(cvar_grenade_fire_slowdown) > 0.0)
+		{
+			static Float:velocity[3]
+			pev(ID_BURN, pev_velocity, velocity)
+			xs_vec_mul_scalar(velocity, get_pcvar_float(cvar_grenade_fire_slowdown), velocity)
+			set_pev(ID_BURN, pev_velocity, velocity)
+		}
+	}
+
+	// Assassin Class loaded?
+	if (!LibraryExists(LIBRARY_ASSASSIN, LibType_Library) || !zp_class_assassin_get(ID_BURN))
 	{
 		// Randomly play burning zombie scream sounds
 		if (random_num(1, 20) == 1)

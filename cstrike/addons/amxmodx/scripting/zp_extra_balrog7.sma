@@ -17,7 +17,7 @@
 #define P_MODEL "models/p_balrog7.mdl"
 #define W_MODEL "models/w_balrog7.mdl"
 
-#define V_MODELB "models/v_balrog7b.mdl"
+#define V_MODELB "models/v_balrog7.mdl"
 
 #define Fire_Sound "weapons/balrog7-1.wav"
 
@@ -61,8 +61,8 @@ enum
 new const exp_spr[] = "sprites/balrogcritical.spr"
 new const exp_spr2[] = "sprites/flame_puff01.spr"
 
-new const exp_sprb[] = "sprites/balrogcritical_blue.spr"
-new const exp_sprb2[] = "sprites/flame_puff01_blue.spr"
+new const exp_sprb[] = "sprites/balrogcritical.spr"
+new const exp_sprb2[] = "sprites/flame_puff01.spr"
 
 new g_balrog7, g_skin[33], g_exp_sprid2, g_exp_spridb2
 //new g_exp_sprid, g_exp_spridb
@@ -108,7 +108,7 @@ public plugin_precache()
 	engfunc(EngFunc_PrecacheModel, V_MODEL)
 	engfunc(EngFunc_PrecacheModel, P_MODEL)
 	engfunc(EngFunc_PrecacheModel, W_MODEL)
-	engfunc(EngFunc_PrecacheModel, V_MODELB)
+	//engfunc(EngFunc_PrecacheModel, V_MODELB)
 	
 	engfunc(EngFunc_PrecacheSound, Fire_Sound)
 	

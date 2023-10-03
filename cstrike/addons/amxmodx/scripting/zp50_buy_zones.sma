@@ -16,6 +16,8 @@
 #include <zp50_core>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 #define LIBRARY_AMMOPACKS "zp50_ammopacks"
 #include <zp50_ammopacks>
 #include <zp50_colorchat>
@@ -114,7 +116,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_AMMOPACKS))
+	if (equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER) || equal(module, LIBRARY_AMMOPACKS))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -204,14 +206,14 @@ public fw_Spawn(entity)
 
 public zp_fw_core_cure_post(id, attacker)
 {
-	if (get_pcvar_num(cvar_buyzone_humans) && (!LibraryExists(LIBRARY_SURVIVOR, LibType_Library) || !zp_class_survivor_get(id)))
+	if (get_pcvar_num(cvar_buyzone_humans) && (!LibraryExists(LIBRARY_SURVIVOR, LibType_Library) || !zp_class_survivor_get(id)) && (!LibraryExists(LIBRARY_SNIPER, LibType_Library) || !zp_class_sniper_get(id)))
 	{
 		// Buyzone time starts when player is set to human
 		g_BuyTimeStart[id] = get_gametime()
 	}
 	else
 	{
-		// Buyzone time ends when player is set to human/survivor
+		// Buyzone time ends when player is set to human/survivor/sniper
 		g_BuyTimeStart[id] = get_gametime() - get_pcvar_float(cvar_buyzone_time)
 	}
 }

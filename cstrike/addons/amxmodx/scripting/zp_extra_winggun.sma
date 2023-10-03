@@ -21,8 +21,8 @@
 #define old_event "events/m3.sc"
 #define BEAM_CLASSNAME "szBeamBoss21"
 
-#define DAMAGE 112
-#define DAMAGE_B random_float(25.0, 40.0)
+#define DAMAGE 122
+#define DAMAGE_B random_float(35.0, 45.0)
 #define DAMAGE_SPEC random_float(2000.0,3000.0)
 #define SPEED 0.35
 #define RECOIL 0.75
@@ -114,7 +114,7 @@ public plugin_init()
 	RegisterHam(Ham_Weapon_PrimaryAttack, weapon_winggun, "fw_Weapon_PrimaryAttack_Post", 1)
 	RegisterHam(Ham_Think, "beam", "CWeapon__Think_Beam", true);
 
-	g_Winggun = zp_register_extra_item("Divine Blaster", 15000, ZP_TEAM_HUMAN) 
+	g_Winggun = zp_register_extra_item("Divine Blaster", 35000, ZP_TEAM_HUMAN) 
 }
 
 public plugin_precache()

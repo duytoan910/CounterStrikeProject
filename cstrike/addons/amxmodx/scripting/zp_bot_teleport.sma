@@ -32,7 +32,14 @@ static const map[][MapInfo] = {
 	{"zm_toan", {883, 370, -339}},
 	{"zm_toan", {-887, 150, -339}},
 	{"zm_toan", {-13, 872, -339}},
-	{"zm_downhill", {3728, 0, -345}}
+	{"zm_downhill", {3728, 0, -345}},
+	{"zm_toan_2023", {844, 929, -1}},
+	{"zm_toan_2023", {269, -210, -27}},
+	{"zm_toan_2023", {147, -210, -27}},
+	{"zm_toan_2023", {-556, 1224, -123}},
+	{"zm_toan_2023", {-1295, -303, -219}},
+	{"zm_toan_2023", {112, 1119, -163}},
+	{"zm_toan_2023", {-928, -292, 100}}
 }
 
 // Plugin Initialization
@@ -55,12 +62,15 @@ public plugin_init()
 }
 public zp_round_started(gamemode, id)
 {	
-	if(zp_is_nemesis_round() || zp_is_survivor_round() || zp_is_swarm_round() || zp_is_plague_round())
+	if(zp_is_nemesis_round() || zp_is_survivor_round() || zp_is_swarm_round() || zp_is_plague_round()
+	|| zp_is_assassin_round() || zp_is_sniper_round() || zp_is_lnj_round())
 	{
 		allowtele=0
 	}else 	allowtele=1
 
-
+	if(zp_is_sniper_round()){
+		ActivateTeleport(id)
+	}
 }
 public plugin_natives(){
 	register_native("get_tele_status","getTeleStatus", 1)
@@ -129,6 +139,8 @@ public fm_pthink(id)
 		return FMRES_IGNORED
 	if ( zp_get_user_nemesis(id) || zp_get_user_survivor(id))
 		return FMRES_IGNORED
+	if ( zp_get_user_assassin(id) || zp_get_user_sniper(id))
+		return FMRES_IGNORED
 	if (!zp_get_user_zombie(id))
 		return FMRES_IGNORED
 	if (!is_user_alive(id))
@@ -182,7 +194,7 @@ public tele()
 	{
 		if(!is_user_alive(i))
 			continue
-		if (zp_get_user_zombie(i) || zp_get_user_survivor(i) || zp_get_user_nemesis(i))
+		if (zp_get_user_zombie(i) || zp_get_user_survivor(i) || zp_get_user_nemesis(i) || zp_get_user_assassin(i))
 			continue
 		if(is_user_bot(i))
 		{
@@ -216,11 +228,18 @@ public ActivateTeleport(id)
 		Origin[1] = map[ran_num][TheOrigin][1]
 		Origin[2] = map[ran_num][TheOrigin][2]
 		
-		client_print(id, print_chat,"Map Name: %s, Location: %i %i %i",map[ran_num][MapName],Origin[0],Origin[1],Origin[2])
+		//client_print(id, print_chat,"Map Name: %s, Location: %i %i %i",map[ran_num][MapName],Origin[0],Origin[1],Origin[2])
+		
+		engclient_cmd(id,"+duck")
+		client_cmd(id,"+duck")
+
 		set_user_origin(id, Origin);
 		teled[id] = true;
 			
 		give_item(id, "weapon_smokegrenade")
+		
+		engclient_cmd(id,"-duck")
+		client_cmd(id,"-duck")
 	}
 	teled[id] = false
 	return FMRES_HANDLED

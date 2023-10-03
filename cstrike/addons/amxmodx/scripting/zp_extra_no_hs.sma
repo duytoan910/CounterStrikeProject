@@ -43,7 +43,7 @@ public plugin_init()
 	g_item = zp_register_extra_item(g_item_name, g_item_cost, ZP_TEAM_ZOMBIE) // Registramos el item extra
 	
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage") // Hookeamos el evento de damage
-	//RegisterHam(Ham_Killed, "player", "fw_PlayerKilled") // Registramos el evento cuando un jugador muere
+	RegisterHam(Ham_Killed, "player", "fw_PlayerKilled") // Registramos el evento cuando un jugador muere
 	
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0") // Evento donde empieza la ronda
 	
@@ -103,10 +103,10 @@ public event_round_start()
 public fw_PlayerKilled(victim, attacker, shouldgib)
 {
 	// Si tiene "No HeadShots"
-	//if(g_hasnohs[victim])
-	//	g_hasnohs[victim] = false // Le sacamos el item
+	if(g_hasnohs[victim])
+		g_hasnohs[victim] = false // Le sacamos el item
 		
-	//return HAM_IGNORED
+	return HAM_IGNORED
 }
 
 // Mensaje y devolucion de ammos
@@ -116,7 +116,7 @@ public no_buy_item(id)
 	zp_set_user_ammo_packs(id, zp_get_user_ammo_packs(id) + g_item_cost) // Devolvemos la cantidad de ammo packs del item
 }
 
-// Forward donde detectamos el daño
+// Forward donde detectamos el daï¿½o
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 {
 	// Si la victima tiene "No HeadShots", es zombie y el atacante es valido..
@@ -133,8 +133,8 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 			
 			fm_set_rendering(victim, kRenderFxGlowShell, 255, 255, 255, kRenderNormal , 5)
 			if(task_exists(victim+TASK_GLOW))remove_task(victim+TASK_GLOW)
-			set_task(0.5, "Reset_Glow", victim+TASK_GLOW)			
-			return HAM_SUPERCEDE // Que no dañe a la victima
+			set_task(0.4, "Reset_Glow", victim+TASK_GLOW)			
+			return HAM_SUPERCEDE // Que no daï¿½e a la victima
 		}
 			
 			

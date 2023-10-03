@@ -2,13 +2,14 @@
 
 #include <amxmodx>
 #include <zombieplague>
+#include <zp50_gamemodes>
 
 #define PLUGIN "[ZP] More Infections"
 #define VERSION "0.1"
 #define AUTHOR "Chrescoe1"
 
-new const AddZombies[]={12,15,18,20}
-new maxplayers
+new const AddZombies[]={9,12,15,20}
+new maxplayers, g_deny
 
 public plugin_init()
 {
@@ -16,13 +17,27 @@ public plugin_init()
 	maxplayers=get_maxplayers()
 	// Add your code here...
 }
-public zp_user_infected_post(id)
-if(zp_get_user_first_zombie(id)&&!zp_get_user_nemesis(id))
-{
-	static players;players=PlayersCount()
-	for(new i=0;i<sizeof AddZombies;i++)
-		if(AddZombies[i]<players)infect_randomplayer()
-		else break
+public zp_fw_gamemodes_start(game_mode_id){
+	new gamemodename[50]
+	zp_gamemodes_get_name(game_mode_id, gamemodename, charsmax(gamemodename))
+
+	if(!equal(gamemodename, "Infection Mode") && !equal(gamemodename, "Multiple Infection Mode") )
+		g_deny = true
+}
+public zp_fw_gamemodes_end(){
+	g_deny = false
+}
+public zp_user_infected_post(id){
+	if(g_deny)
+		return
+
+	if(zp_get_user_first_zombie(id)&&!zp_get_user_nemesis(id)&&!zp_get_user_assassin(id))
+	{
+		static players;players=PlayersCount()
+		for(new i=0;i<sizeof AddZombies;i++)
+			if(AddZombies[i]<players)infect_randomplayer()
+			else break
+	}
 }
 //Stocks
 stock PlayersCount(){

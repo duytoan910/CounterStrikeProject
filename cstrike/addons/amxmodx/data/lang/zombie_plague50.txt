@@ -1,11 +1,13 @@
-[en]
+﻿[en]
 CMD_CANT_LAST_HUMAN = You can't use this command on the last human.
 CMD_CANT_LAST_ZOMBIE = You can't use this command on the last zombie.
 CMD_ONLY_AFTER_GAME_MODE = You can only use this command after a game mode started.
 GAME_MODE_CANT_START = Game mode can't be started right now.
 CANT_RESPAWN = Player can't be respawned
 ALREADY_SURVIVOR = Player already a survivor
+ALREADY_SIPER = Player already a sniper
 ALREADY_NEMESIS = Player already a nemesis
+ALREADY_ASSASSIN = Player already a assassin
 ALREADY_HUMAN = Player already a human
 ALREADY_ZOMBIE = Player already a zombie
 INVALID_GAME_MODE = Invalid game mode id
@@ -57,7 +59,9 @@ ITEMNAME Infection Bomb = Infection Bomb
 
 MODENAME Infection Mode = Infection Mode
 MODENAME Nemesis Mode = Nemesis Mode
+MODENAME Assassin Mode = Assassin Mode
 MODENAME Survivor Mode = Survivor Mode
+MODENAME Sniper Mode = Sniper Mode
 MODENAME Swarm Mode = Swarm Mode
 MODENAME Multiple Infection Mode = Multiple Infection Mode
 MODENAME Plague Mode = Plague Mode

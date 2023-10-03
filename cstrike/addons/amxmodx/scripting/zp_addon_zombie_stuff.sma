@@ -37,7 +37,7 @@ public hook_death()
 	coord[1] = vOrigin[1] + 150;
 	coord[2] = vOrigin[2] + 800;
 	
-	if(zp_get_user_nemesis(read_data(1)))
+	if(zp_get_user_nemesis(read_data(1)) || zp_get_user_assassin(read_data(1)))
 	{
 		create_thunder(coord,vOrigin);
 		//emit_sound(0, CHAN_BODY, "ambience/thunder_clap.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)		

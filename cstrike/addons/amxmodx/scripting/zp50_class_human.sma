@@ -331,7 +331,7 @@ public zp_fw_core_cure_post(id, attacker)
 	}
 	
 	// Set custom knife model
-	cs_set_player_view_model(id, CSW_KNIFE, g_model_vknife_human)
+	//cs_set_player_view_model(id, CSW_KNIFE, g_model_vknife_human)
 }
 
 public zp_fw_core_infect(id, attacker)

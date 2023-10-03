@@ -1,17 +1,17 @@
-// NOTE:  THIS FILE IS AUTOMATICALLY REGENERATED, 
+// NOTE:  THIS FILE IS AUTOMATICALLY REGENERATED,
 //DO NOT EDIT THIS HEADER, YOUR COMMENTS WILL BE LOST IF YOU DO
 // User options script
 //
 // Format:
 //  Version [float]
-//  Options description followed by 
+//  Options description followed by
 //  Options defaults
 //
 // Option description syntax:
 //
 //  "cvar" { "Prompt" { type [ type info ] } { default } }
 //
-//  type = 
+//  type =
 //   BOOL   (a yes/no toggle)
 //   STRING
 //   NUMBER
@@ -32,7 +32,7 @@
 
 
 // Half-Life User Info Configuration Layout Script (stores last settings chosen, too)
-// File generated:  Mon Apr 06 13:35:26 AM
+// File generated:  Fri Jun 22 19:04:59 AM
 //
 //
 // Cvar	-	Setting
@@ -41,46 +41,6 @@ VERSION 1.0
 
 DESCRIPTION INFO_OPTIONS
 {
-	"cl_corpsestay"
-	{
-		"#Cstrike_Corpse_Stay"
-		{ NUMBER 0.000000 600.000000 }
-		{ "600.000000" }
-	}
-
-	"mp_decals"
-	{
-		"#Valve_Multiplayer_Decal_Limit"
-		{ NUMBER 0.000000 4096.000000 }
-		{ "300.000000" }
-	}
-
-	"max_shells"
-	{
-		"#Cstrike_Max_Shells"
-		{ NUMBER 0.000000 -1.000000 }
-		{ "120.000000" }
-	}
-
-	"max_smokepuffs"
-	{
-		"#Cstrike_Max_Smoke_Puffs"
-		{ NUMBER 0.000000 -1.000000 }
-		{ "120.000000" }
-	}
-
-	"fastsprites"
-	{
-		"#Cstrike_Smoke_Quality"
-		{
-			LIST
-			"#Cstrike_Smoke_Best" "0"
-			"#Cstrike_Smoke_Medium" "1"
-			"#Cstrike_Smoke_Worst" "2"
-		}
-		{ "0.000000" }
-	}
-
 	"cl_righthand"
 	{
 		"#Cstrike_Weapon_Alignment"
@@ -92,16 +52,15 @@ DESCRIPTION INFO_OPTIONS
 		{ "1.000000" }
 	}
 
-	"_vgui_menus"
+	"cl_oldbuy"
 	{
 		"#Cstrike_Buy_Menu_Type"
 		{
 			LIST
-			"#Cstrike_Old_Style_Menus" "0"
-			"#Cstrike_VGUI_Menus" "1"
+			"#Cstrike_VGUI_Menus" "0"
+			"#Cstrike_Old_Style_Menus" "1"
 		}
-		{ "1.000000" }
-		SetInfo
+		{ "0.000000" }
 	}
 
 	"_cl_autowepswitch"
@@ -109,7 +68,6 @@ DESCRIPTION INFO_OPTIONS
 		"#Cstrike_Automatic_Weapon_Switch"
 		{ BOOL }
 		{ "1" }
-		SetInfo
 	}
 
 	"hud_centerid"
@@ -119,12 +77,24 @@ DESCRIPTION INFO_OPTIONS
 		{ "0" }
 	}
 
-	"_ah"
+	"tutor_enable"
 	{
 		"#Cstrike_AutoHelp"
 		{ BOOL }
+		{ "1" }
+	}
+
+	"cl_allow_invite"
+	{
+		"#CSO_ALLOW_INVITE"
+		{
+			LIST
+			"#CSO_Allow_Invite_0" "0"
+			"#CSO_Allow_Invite_3" "3"
+			"#CSO_Allow_Invite_1" "1"
+			"#CSO_Allow_Invite_2" "2"
+		}
 		{ "0" }
-		SetInfo
 	}
 
 	"hud_takesshots"
@@ -149,7 +119,77 @@ DESCRIPTION INFO_OPTIONS
 			"#Cstrike_Transparent" "0"
 			"#Cstrike_Solid" "1"
 		}
-		{ "1.000000" }
+		{ "0.000000" }
+	}
+	
+	"cl_radar_on"
+	{
+		"#CSO_cl_radar_on"
+		{ BOOL }
+		{ "1" }
+	}	
+
+	"cl_scoreboard"
+	{
+		"#CSO_cl_scoreboard"
+		{ BOOL }
+		{ "1" }
 	}
 
+	"cl_killeffect"
+	{
+		"#CSO_cl_killeffect"
+		{ BOOL }
+		{ "1" }
+	}
+
+	// buff
+	"cl_buff"
+	{
+		"#CSO_cl_buff"
+		{ BOOL }
+		{ "1" }
+	}
+	
+	"gene_jump_disable"
+	{
+		"#CSO_gene_jump_disable"
+		{ BOOL }
+		{ "0" }		
+	}	
+	
+	"cl_botchatter"
+	{
+		"#CSO_botchatter"
+		{ BOOL }
+		{ "1" }
+	}	
+	
+	"cl_weapondrop_effect"
+	{
+		"#CSO_Weapondrop_Effect_Option"
+		{ BOOL }
+		{ "1" }
+	}
+	
+	"cam_thirdperson_active2"
+	{
+		"#CSO_ThirdPersonView_Option"
+		{ BOOL }
+		{ "0" }
+	}
+
+	"cl_weaponparts_hud"
+	{
+		"#CSO_WeaponParts_Hud_Option"
+		{ BOOL }
+		{ "1" }
+	}
+	
+	"cl_outline_tdm"
+	{
+		"#CSO_Outline_TDM_Option"
+		{ BOOL }
+		{ "1" }
+	}
 }

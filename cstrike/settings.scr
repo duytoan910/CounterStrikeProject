@@ -32,7 +32,7 @@
 
 
 // Half-Life Server Configuration Layout Script (stores last settings chosen, too)
-// File generated:  Tue Aug 22 03:00:30 PM
+// File generated:  Tue Oct 03 12:02:22 AM
 //
 //
 // Cvar	-	Setting
@@ -45,7 +45,7 @@ DESCRIPTION SERVER_OPTIONS
 	{
 		"#Valve_Hostname"
 		{ STRING }
-		{ "HL WaRzOnE Server" }
+		{ "Counter-Strike" }
 	}
 
 	"maxplayers"
@@ -62,41 +62,77 @@ DESCRIPTION SERVER_OPTIONS
 		{ "" }
 	}
 
-	"mp_teamlist"
-	{
-		"#Valve_Valid_Teams"
-		{ STRING }
-		{ "robo;hgrunt" }
-	}
-
-	"mp_fraglimit"
-	{
-		"#Valve_Frag_Limit"
-		{ NUMBER 0.000000 -1.000000 }
-		{ "0.000000" }
-	}
-
 	"mp_timelimit"
 	{
-		"#Valve_Time_Limit"
+		"#Cstrike_Timelimit"
+		{ NUMBER 0.000000 -1.000000 }
+		{ "60.000000" }
+	}
+
+	"mp_winlimit"
+	{
+		"#Cstrike_WinLimit"
 		{ NUMBER 0.000000 -1.000000 }
 		{ "0.000000" }
 	}
 
-	"mp_falldamage"
+	"mp_maxrounds"
 	{
-		"#Valve_Falling_Damage"
+		"#Cstrike_RoundLimit"
+		{ NUMBER 0.000000 -1.000000 }
+		{ "15.000000" }
+	}
+
+	"mp_roundtime"
+	{
+		"#Cstrike_RoundTime"
+		{ NUMBER 0.000000 15.000000 }
+		{ "5.000000" }
+	}
+
+	"mp_freezetime"
+	{
+		"#Cstrike_FreezeTime"
+		{ NUMBER 0.000000 60.000000 }
+		{ "0.000000" }
+	}
+
+	"mp_buytime"
+	{
+		"#Cstrike_BuyTime"
+		{ NUMBER 0.250000 -1.000000 }
+		{ "0.000000" }
+	}
+
+	"mp_startmoney"
+	{
+		"#Cstrike_StartMoney"
+		{ NUMBER 800.000000 16000.000000 }
+		{ "60000.000000" }
+	}
+
+	"mp_footsteps"
+	{
+		"#Valve_Footsteps"
+		{ BOOL }
+		{ "1" }
+	}
+
+	"mp_forcecamera"
+	{
+		"#Cstrike_Death_Camera_Type"
 		{
 			LIST
-			"#Valve_Normal" "0"
-			"#Valve_Realistic" "1"
+			"#Cstrike_Spectate_Anyone" "0"
+			"#Cstrike_Spectate_Team_Only" "1"
+			"#Cstrike_Only_First_Person" "2"
 		}
 		{ "0.000000" }
 	}
 
-	"mp_teamplay"
+	"mp_fadetoblack"
 	{
-		"#Valve_Teamplay"
+		"#Cstrike_Fade_To_Black"
 		{ BOOL }
 		{ "0" }
 	}
@@ -108,39 +144,32 @@ DESCRIPTION SERVER_OPTIONS
 		{ "0" }
 	}
 
-	"mp_weaponstay"
+	"mp_tkpunish"
 	{
-		"#Valve_Weapons_Stay"
+		"#Cstrike_TK_Punish"
 		{ BOOL }
 		{ "0" }
 	}
 
-	"mp_forcerespawn"
+	"mp_autokick"
 	{
-		"#Valve_Force_Respawn"
+		"#Cstrike_AutoKick"
 		{ BOOL }
 		{ "0" }
 	}
 
-	"mp_footsteps"
+	"mp_hostagepenalty"
 	{
-		"#Valve_Footsteps"
-		{ BOOL }
-		{ "1" }
+		"#Cstrike_Hostage_Penalty"
+		{ NUMBER 0.000000 -1.000000 }
+		{ "5.000000" }
 	}
 
 	"mp_flashlight"
 	{
-		"#Valve_Flashlight"
+		"#Cstrike_Allow_Flashlight"
 		{ BOOL }
-		{ "0" }
-	}
-
-	"mp_autocrosshair"
-	{
-		"#Valve_Autocrosshair"
-		{ BOOL }
-		{ "0" }
+		{ "1" }
 	}
 
 }

@@ -19,6 +19,8 @@
 #include <zp50_gamemodes>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 
 // Settings file
 new const ZP_SETTINGS_FILE[] = "zombieplague.ini"
@@ -63,6 +65,7 @@ const PEV_ADDITIONAL_AMMO = pev_iuser1
 #define SECONDARY_ONLY 2
 
 new cvar_survivor_weapon_block
+new cvar_sniper_weapon_block
 new g_MsgAmmoPickup
 
 public plugin_init()
@@ -115,6 +118,7 @@ public plugin_precache()
 public plugin_cfg()
 {
 	cvar_survivor_weapon_block = get_cvar_pointer("zp_survivor_weapon_block")
+	cvar_sniper_weapon_block = get_cvar_pointer("zp_sniper_weapon_block")
 }
 
 public plugin_natives()
@@ -124,7 +128,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -154,6 +158,10 @@ public zp_fw_items_select_pre(id, itemid, ignorecost)
 	
 	// Weapons available to survivor?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(id) && get_pcvar_num(cvar_survivor_weapon_block))
+		return ZP_ITEM_DONT_SHOW;
+
+	// Weapons available to sniper?
+	else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id) && get_pcvar_num(cvar_sniper_weapon_block))
 		return ZP_ITEM_DONT_SHOW;
 	
 	return ZP_ITEM_AVAILABLE;

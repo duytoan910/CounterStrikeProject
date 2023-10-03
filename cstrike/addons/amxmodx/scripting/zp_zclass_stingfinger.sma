@@ -158,7 +158,7 @@ public fw_PlayerPostThink(id)
 	
 	new enemy, body
 	get_user_aiming(id, enemy, body)
-	if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
+	if (pev_valid(enemy) && is_user_alive(enemy) && !zp_get_user_zombie(enemy))
 	{
 		new origin1[3] ,origin2[3],range
 		get_user_origin(id,origin1)
@@ -174,19 +174,19 @@ public Death(id)
 {
 	new id = read_data(2)
 
-	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==class_sting && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==class_sting && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		engfunc( EngFunc_EmitSound, id, CHAN_ITEM, g_stinger_sound[DEATH], 1.0, ATTN_NORM, 0, PITCH_NORM)
 	}
 }
 public String_TakeDamage(id, iVictim, iInflictor, iAttacker, Float:flDamage, bitsDamage)
 {
-	if (zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if (zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		switch(random_num(1,2))
   		{
-			case 1: emit_sound(id, CHAN_WEAPON, g_stinger_sound[PAIN1], 0.7, ATTN_NORM, 0, PITCH_LOW)
-			case 2: emit_sound(id, CHAN_WEAPON, g_stinger_sound[PAIN2], 0.7, ATTN_NORM, 0, PITCH_LOW)
+			case 1: emit_sound(id, CHAN_WEAPON, g_stinger_sound[PAIN1], 1.0, ATTN_NORM, 0, PITCH_LOW)
+			case 2: emit_sound(id, CHAN_WEAPON, g_stinger_sound[PAIN2], 1.0, ATTN_NORM, 0, PITCH_LOW)
 		}
 	}
 } 
@@ -197,7 +197,7 @@ public cmd_heal(id)
 	if(!zp_get_user_zombie(id))
 		return
 		
-	if(zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{	
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return
@@ -219,7 +219,7 @@ public UTIL_Heal(id)
 		return FMRES_IGNORED
 	}
 	
-	if(zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		
 		UTIL_PlayAnim( id , EndGrav ) 
@@ -234,7 +234,7 @@ public UTIL_Heal(id)
 
 public cmd_arm(id)
 {	
-	if(is_user_alive(id)&&zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if(is_user_alive(id)&&zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{			
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return
@@ -256,7 +256,7 @@ public UTIL_LongDamage(id)
 	if (!is_user_alive(id))
 		return FMRES_IGNORED
 	
-	if(zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie_class(id)==class_sting && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{		
 		emit_sound(id, CHAN_WEAPON, g_stinger_sound[SKILL1], 1.0, ATTN_NORM, 0, PITCH_LOW)
 					

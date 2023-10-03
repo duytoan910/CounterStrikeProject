@@ -276,7 +276,7 @@ public zp_fw_core_infect_post(id){
 		return
 
 	remove_task(id+TASK_BOT_BUY_Z)
-	set_task(random_float(5.0, 30.0), "bot_buy_item", TASK_BOT_BUY_Z+id,_,_,"a", 1)
+	set_task(random_float(10.0, 20.0), "bot_buy_item", TASK_BOT_BUY_Z+id,_,_,"b")
 }
 public zp_fw_core_cure_post(id){
 	if(!g_roundStarted)
@@ -291,17 +291,16 @@ public zp_fw_core_cure_post(id){
 public bot_buy_item(taskid){
 	new id;id = ID_BOT_BUY_Z
 
-	if(!is_user_alive(id) || zp_core_is_zombie(id) || g_PlayerBought[id])
+	if(!is_user_alive(id) || g_PlayerBought[id])
 		 return;
 
 	new randomIndex; randomIndex = random_num(0, g_ItemCount-1)
 
 	ExecuteForward(g_Forwards[FW_ITEM_SELECT_PRE], g_ForwardResult, id, randomIndex, 0)
 
-
-	new name[50]
-	ArrayGetString(g_ItemName, randomIndex, name, charsmax(name))
-	engclient_cmd(id,"say", "Buying", name)
+	//new name[50]
+	//ArrayGetString(g_ItemName, randomIndex, name, charsmax(name))
+	//engclient_cmd(id,"say", "Buying", name)
 	if (g_ForwardResult >= ZP_ITEM_DONT_SHOW){
 		bot_buy_item(id)
 		return
@@ -315,24 +314,16 @@ public bot_buy_item(taskid){
 			return
 		}
 	}
-	return;
 }
 
 public listitem(id){
 	static name[32], cost
 	for (new index = 0; index < g_ItemCount; index++){
 		ExecuteForward(g_Forwards[FW_ITEM_SELECT_PRE], g_ForwardResult, id, index, 0)
-		
+
 		ArrayGetString(g_ItemName, index, name, charsmax(name))
 		cost = ArrayGetCell(g_ItemCost, index)
-
-		client_print(id, print_chat, "%d: %s %d _ result:%d",index, name, cost, g_ForwardResult)
-
-		// Show item to player?
-		if(index==0){
-			if(!zp_core_is_zombie(id))
-			continue;
-		}else if (g_ForwardResult >= ZP_ITEM_DONT_SHOW)
+		if (g_ForwardResult >= ZP_ITEM_DONT_SHOW)
 			continue;
 		
 		client_print(id, print_chat, "%d_: %s %d",index, name, cost)

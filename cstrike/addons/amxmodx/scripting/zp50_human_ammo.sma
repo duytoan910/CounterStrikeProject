@@ -16,6 +16,8 @@
 #include <zp50_core>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 
 // CS Player CBase Offsets (win32)
 const PDATA_SAFE = 2
@@ -31,8 +33,8 @@ new const AMMOTYPE[][] = { "", "357sig", "", "762nato", "", "buckshot", "", "45a
 			"556nato", "9mm", "762nato", "", "50ae", "556nato", "762nato", "", "57mm" }
 
 // Max BP ammo for weapons
-new const MAXBPAMMO[] = { -1, 200, -1, 200, 1, 200, 1, 200, 200, 1, 200, 200, 200, 200, 200, 200, 200, 200,
-			200, 200, 200, 200, 200, 200, 200, 2, 200, 200, 90, -1, 200 }
+new const MAXBPAMMO[] = { -1, 52, -1, 90, 1, 32, 1, 100, 90, 1, 120, 100, 100, 90, 90, 90, 100, 120,
+			30, 120, 200, 32, 90, 120, 90, 2, 35, 90, 90, -1, 100 }
 
 // Max Clip for weapons
 new const MAXCLIP[] = { -1, 13, -1, 10, -1, 7, -1, 30, 30, -1, 30, 20, 25, 30, 35, 25, 12, 20,
@@ -43,7 +45,7 @@ new const MAXCLIP[] = { -1, 13, -1, 10, -1, 7, -1, 30, 30, -1, 30, 20, 25, 30, 3
 
 new g_MsgAmmoPickup
 
-new cvar_human_unlimited_ammo, cvar_survivor_unlimited_ammo
+new cvar_human_unlimited_ammo, cvar_survivor_unlimited_ammo, cvar_sniper_unlimited_ammo
 
 public plugin_init()
 {
@@ -54,6 +56,10 @@ public plugin_init()
 	// Survivor Class loaded?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library))
 		cvar_survivor_unlimited_ammo = register_cvar("zp_survivor_unlimited_ammo", "1") // 1-bp ammo // 2-clip ammo
+
+	// Sniper Class loaded?
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library))
+		cvar_sniper_unlimited_ammo = register_cvar("zp_sniper_unlimited_ammo", "1") // 1-bp ammo // 2-clip ammo
 	
 	register_event("AmmoX", "event_ammo_x", "be")
 	register_message(get_user_msgid("CurWeapon"), "message_cur_weapon")
@@ -68,7 +74,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -93,6 +99,13 @@ public event_ammo_x(id)
 	{
 		// Unlimited BP ammo enabled for survivor?
 		if (get_pcvar_num(cvar_survivor_unlimited_ammo) < 1)
+			return;
+	}
+	// Sniper Class loaded?
+	else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(id))
+	{
+		// Unlimited BP ammo enabled for sniper?
+		if (get_pcvar_num(cvar_sniper_unlimited_ammo) < 1)
 			return;
 	}
 	else
@@ -156,6 +169,13 @@ public message_cur_weapon(msg_id, msg_dest, msg_entity)
 	{
 		// Unlimited Clip ammo enabled for humans?
 		if (get_pcvar_num(cvar_survivor_unlimited_ammo) < 2)
+			return;
+	}
+	// Sniper Class loaded?
+	else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(msg_entity))
+	{
+		// Unlimited Clip ammo enabled for humans?
+		if (get_pcvar_num(cvar_sniper_unlimited_ammo) < 2)
 			return;
 	}
 	else

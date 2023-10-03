@@ -18,6 +18,8 @@
 #include <zp50_class_zombie>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 
 // Settings file
 new const ZP_SETTINGS_FILE[] = "zombieplague.ini"
@@ -68,7 +70,7 @@ new const WEAPONENTNAMES_UP[][] = { "", "WEAPON_P228", "", "WEAPON_SCOUT", "WEAP
 
 new cvar_knockback_damage, cvar_knockback_power, cvar_knockback_obey_class
 new cvar_knockback_zvel, cvar_knockback_ducking, cvar_knockback_distance
-new cvar_knockback_nemesis
+new cvar_knockback_nemesis, cvar_knockback_assassin
 
 public plugin_init()
 {
@@ -87,6 +89,10 @@ public plugin_init()
 	// Nemesis Class loaded?
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library))
 		cvar_knockback_nemesis = register_cvar("zp_knockback_nemesis", "0.25")
+
+	// Assassin Class loaded?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library))
+		cvar_knockback_assassin = register_cvar("zp_knockback_assassin", "0.25")
 }
 
 public plugin_precache()
@@ -109,7 +115,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -143,6 +149,10 @@ public fw_TraceAttack_Post(victim, attacker, Float:damage, Float:direction[3], t
 	
 	// Nemesis knockback disabled, nothing else to do here
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(victim) && get_pcvar_float(cvar_knockback_nemesis) == 0.0)
+		return;
+
+	// Assassin knockback disabled, nothing else to do here
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(victim) && get_pcvar_float(cvar_knockback_assassin) == 0.0)
 		return;
 	
 	// Get whether the victim is in a crouch state
@@ -185,6 +195,12 @@ public fw_TraceAttack_Post(victim, attacker, Float:damage, Float:direction[3], t
 	{
 		// Apply nemesis knockback multiplier
 		xs_vec_mul_scalar(direction, get_pcvar_float(cvar_knockback_nemesis), direction)
+	}
+	// Assassin Class loaded?
+	else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(victim))
+	{
+		// Apply assassin knockback multiplier
+		xs_vec_mul_scalar(direction, get_pcvar_float(cvar_knockback_assassin), direction)
 	}
 	else if (get_pcvar_num(cvar_knockback_obey_class))
 	{

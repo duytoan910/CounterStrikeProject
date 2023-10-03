@@ -24,6 +24,8 @@
 #include <zp50_grenade_fire>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 
 // Settings file
 new const ZP_SETTINGS_FILE[] = "zombieplague.ini"
@@ -110,7 +112,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_GRENADE_FROST) || equal(module, LIBRARY_GRENADE_FIRE))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_GRENADE_FROST) || equal(module, LIBRARY_GRENADE_FIRE))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -146,8 +148,8 @@ public zp_fw_items_select_pre(id, itemid, ignorecost)
 	if (!zp_core_is_zombie(id))
 		return ZP_ITEM_DONT_SHOW;
 	
-	// Zombie madness not available to Nemesis
-	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(id))
+	// Zombie madness not available to Nemesis/Assassin
+	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(id) || LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(id))
 		return ZP_ITEM_DONT_SHOW;
 	
 	// Player already has madness

@@ -25,9 +25,6 @@
 #define LASERFIST_OLDMODEL "models/w_m249.mdl"
 #define weapon_event "events/m249.sc"
 
-#define MUZZLE_FLASH "sprites/muzzleflash92.spr"
-#define MUZZLE_FLASH_CH "sprites/muzzleflash87.spr"
-
 #define V_MODEL "models/v_laserfistex.mdl"
 #define V_MODEL2 "models/v_laserfistex2.mdl"
 #define P_MODEL "models/p_laserfist.mdl"
@@ -44,10 +41,6 @@ new const laserfist_Resources[][] =
 {
 	"sprites/ef_laserfistex_laser.spr",
 	"sprites/ef_laserfist_laser_explosion.spr",
-	"sprites/muzzleflash86.spr",
-	"sprites/muzzleflash89.spr",
-	"sprites/muzzleflash91.spr",
-	"sprites/muzzleflash92.spr"
 }
 
 enum _:Anim
@@ -112,7 +105,7 @@ public plugin_init()
 	g_Msg_WeaponList = get_user_msgid("WeaponList")
 	register_clcmd("weapon_laserfist", "Hook_Weapon")
 
-	g_laserfist = zp_register_extra_item("Enternal Laser Fist", 10000, ZP_TEAM_HUMAN)
+	g_laserfist = zp_register_extra_item("Enternal Laser Fist", 20000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()
@@ -139,9 +132,6 @@ public plugin_precache()
 	
 	// Muzzleflash
 	g_exp2 = precache_model("sprites/ef_laserfist_laser_explosion.spr")
-	
-	precache_model(MUZZLE_FLASH_CH)
-	precache_model("models/w_usp.mdl")
 }
 public zp_extra_item_selected(id, itemid)
 {
@@ -430,8 +420,6 @@ public fw_Weapon_PrimaryAttack_Post(Ent)
 			shotcount[id]=0
 
 			set_weapon_anim(id, ANIM_SHOOTB_SHOOT)
-			MakeMuzzleFlash(id, 1, 0.08,  "mf2", MUZZLE_FLASH_CH)
-			MakeMuzzleFlash(id, 2, 0.08,  "mf2", MUZZLE_FLASH_CH)
 			
 			Check_Damage(id, 1, 0)
 			Check_Damage(id, 0, 0)
@@ -569,8 +557,6 @@ public WE_LaserFist(id, Ent, iClip, iButton)
 		
 		if(flTime && flTime < get_gametime())
 		{
-			MakeMuzzleFlash(id, 1, 0.2, "mf1", "sprites/muzzleflash91.spr")
-			MakeMuzzleFlash(id, 2, 0.2, "mf1", "sprites/muzzleflash91.spr")
 			set_pev(Ent, pev_fuser2, 0.0)
 		}
 	}
@@ -590,8 +576,6 @@ public WE_LaserFist(id, Ent, iClip, iButton)
 	if(!(iButton & IN_ATTACK2) && g_Mode[id] == 2)
 	{
 		set_weapon_anim(id, ANIM_SHOOTB_SHOOT)
-		MakeMuzzleFlash(id, 1, 0.08,  "mf2", MUZZLE_FLASH_CH)
-		MakeMuzzleFlash(id, 2, 0.08,  "mf2", MUZZLE_FLASH_CH)
 		
 		Check_Damage(id, 1, 0)
 		Check_Damage(id, 0, 0)
@@ -625,9 +609,6 @@ public WE_LaserFist(id, Ent, iClip, iButton)
 			laserfist_controlcharge(id, Ent)
 			set_pdata_float(Ent, 46, SPEED, 4)
 			set_pdata_float(Ent, 48, SPEED, 4)
-			
-			MakeMuzzleFlash(id, 1, 0.05,  "mff", MUZZLE_FLASH)
-			MakeMuzzleFlash(id, 2, 0.05,  "mff", MUZZLE_FLASH)
 			
 			g_Mode[id] = 1
 			TempEntity(id, 0)
@@ -685,8 +666,6 @@ public WE_LaserFist(id, Ent, iClip, iButton)
 				
 				if(iState == 1)
 				{
-					MakeMuzzleFlash(id, 1, 0.2, "mf1", "sprites/muzzleflash91.spr")
-					MakeMuzzleFlash(id, 2, 0.2, "mf1", "sprites/muzzleflash91.spr")
 				}
 				
 				set_pev(Ent, pev_iuser1, 2)

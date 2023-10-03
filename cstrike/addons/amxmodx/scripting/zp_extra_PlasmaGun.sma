@@ -13,14 +13,14 @@
 
 // ================= Config =================
 // ZP Config
-#define COST 6000
+#define COST 8000
 
 // Level 1 Config
 #define V_MODEL "models/v_plasmagun.mdl"
 #define P_MODEL "models/p_plasmagun.mdl"
 #define W_MODEL "models/w_plasmagun.mdl"
 
-#define V_MODEL_6 "models/v_plasmagun_6.mdl"
+#define V_MODEL_6 "models/v_plasmagun.mdl"
 
 new const WeaponSounds[2][] =
 {
@@ -30,8 +30,8 @@ new const WeaponSounds[2][] =
 
 new const plasma_ball[] = "sprites/plasmaball.spr"
 new const plasma_bomb[] = "sprites/plasmabomb.spr"
-new const plasma_ball_6[] = "sprites/plasmaball_6.spr"
-new const plasma_bomb_6[] = "sprites/plasmabomb_6.spr"
+new const plasma_ball_6[] = "sprites/plasmaball.spr"
+new const plasma_bomb_6[] = "sprites/plasmabomb.spr"
 
 // Level 2 Config
 #define DAMAGE 125

@@ -15,8 +15,12 @@
 #include <zp50_gamemodes>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 #include <zp50_ammopacks>
 
 #define MAXPLAYERS 32
@@ -31,6 +35,7 @@ new cvar_ammop_damage, cvar_ammop_zombie_damaged_hp, cvar_ammop_human_damaged_hp
 new cvar_ammop_zombie_killed, cvar_ammop_human_killed
 new cvar_ammop_human_infected
 new cvar_ammop_nemesis_ignore, cvar_ammop_survivor_ignore
+new cvar_ammop_assassin_ignore, cvar_ammop_sniper_ignore
 
 public plugin_init()
 {
@@ -49,10 +54,18 @@ public plugin_init()
 	// Nemesis Class loaded?
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library))
 		cvar_ammop_nemesis_ignore = register_cvar("zp_ammop_nemesis_ignore", "0")
+
+	// Assassin Class loaded?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library))
+		cvar_ammop_assassin_ignore = register_cvar("zp_ammop_assassin_ignore", "0")
 	
 	// Survivor Class loaded?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library))
 		cvar_ammop_survivor_ignore = register_cvar("zp_ammop_survivor_ignore", "0")
+
+	// Sniper Class loaded?
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library))
+		cvar_ammop_sniper_ignore = register_cvar("zp_ammop_sniper_ignore", "0")
 	
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage_Post", 1)
 	RegisterHamBots(Ham_TakeDamage, "fw_TakeDamage_Post", 1)
@@ -74,7 +87,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -104,9 +117,17 @@ public fw_TakeDamage_Post(victim, inflictor, attacker, Float:damage, damage_type
 	// Ignore ammo pack rewards for Nemesis?
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(attacker) && get_pcvar_num(cvar_ammop_nemesis_ignore))
 		return;
+
+	// Ignore ammo pack rewards for Assassin?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(attacker) && get_pcvar_num(cvar_ammop_assassin_ignore))
+		return;
 	
 	// Ignore ammo pack rewards for Survivor?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(attacker) && get_pcvar_num(cvar_ammop_survivor_ignore))
+		return;
+
+	// Ignore ammo pack rewards for Sniper?
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(attacker) && get_pcvar_num(cvar_ammop_sniper_ignore))
 		return;
 	
 	// Zombie attacking human...
@@ -169,9 +190,17 @@ public fw_PlayerKilled_Post(victim, attacker, shouldgib)
 	// Ignore ammo pack rewards for Nemesis?
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(attacker) && get_pcvar_num(cvar_ammop_nemesis_ignore))
 		return;
+
+	// Ignore ammo pack rewards for Assassin?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(attacker) && get_pcvar_num(cvar_ammop_assassin_ignore))
+		return;
 	
 	// Ignore ammo pack rewards for Survivor?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(attacker) && get_pcvar_num(cvar_ammop_survivor_ignore))
+		return;
+
+	// Ignore ammo pack rewards for Sniper?
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(attacker) && get_pcvar_num(cvar_ammop_sniper_ignore))
 		return;
 	
 	// Reward ammo packs to attacker for the kill

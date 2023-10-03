@@ -39,7 +39,7 @@ const OFFSET_LINUX_WEAPONS = 4
 new const Fire_Sounds[][] = { "weapons/hk416_unsil-1.wav", "weapons/hk416-1.wav" }
 new hk416_V_MODEL[64] = "models/v_hk416.mdl"
 new hk416_P_MODEL[64] = "models/p_hk416.mdl"
-new hk416_W_MODEL[64] = "models/w_hk416.mdl"
+new hk416_W_MODEL[64] = "models/w_m4a1.mdl"
 new const GUNSHOT_DECALS[] = { 41, 42, 43, 44, 45 }
 
 //new cvar_dmg_hk416, cvar_recoil_hk416, g_itemid_hk416, cvar_clip_hk416, cvar_spd_hk416, cvar_hk416_ammo

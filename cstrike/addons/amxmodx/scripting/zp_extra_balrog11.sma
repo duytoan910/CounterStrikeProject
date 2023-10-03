@@ -15,7 +15,7 @@
 #define V_MODEL "models/v_balrog11.mdl"
 #define P_MODEL "models/p_balrog11.mdl"
 #define W_MODEL "models/w_balrog11.mdl"
-#define V_MODELB "models/v_balrog11b.mdl"
+#define V_MODELB "models/v_balrog11.mdl"
 
 #define CSW_BALROG11 CSW_XM1014
 #define weapon_balrog11 "weapon_xm1014"
@@ -68,7 +68,7 @@ new const WeaponSounds[5][] =
 new const WeaponResources[][] =
 {
 	"sprites/flame_puff01.spr",
-	"sprites/flame_puff01_blue.spr"
+	"sprites/flame_puff01.spr"
 }
 
 enum
@@ -116,7 +116,7 @@ public plugin_init()
 	
 	//register_clcmd("admin_get_balrog11", "Get_Balrog11", ADMIN_RCON)
 	
-	g_balrog11 = zp_register_extra_item("Balrog-XI", 8000, ZP_TEAM_HUMAN)
+	g_balrog11 = zp_register_extra_item("Balrog-XI", 15000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()

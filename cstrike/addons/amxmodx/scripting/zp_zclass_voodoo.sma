@@ -101,7 +101,7 @@ public fw_TakeDamage(id, iVictim, iInflictor, iAttacker, Float:flDamage, bitsDam
 {
 	if (zp_get_user_zombie_class(id)==vzombi && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
 	{
-		emit_sound(id, CHAN_WEAPON, g_sound[random_num(2,3)], 0.7, ATTN_NORM, 0, PITCH_LOW)
+		emit_sound(id, CHAN_WEAPON, g_sound[random_num(2,3)], 1.0, ATTN_NORM, 0, PITCH_LOW)
 	}
 }
 public client_connect(id)
@@ -140,7 +140,7 @@ public bot_use_skill(taskid)
 public cmd_makeskill(id) {
 		
 	static Float:fLastUse[33]
-	if(zp_get_user_zombie(id)&&!zp_get_user_nemesis(id)&& zp_get_user_zombie_class(id) == vzombi&& is_user_alive(id)&& fLastUse[id] + 8.0 < get_gametime()) 
+	if(zp_get_user_zombie(id)&&!zp_get_user_nemesis(id)&&!zp_get_user_assassin(id)&& zp_get_user_zombie_class(id) == vzombi&& is_user_alive(id)&& fLastUse[id] + 8.0 < get_gametime()) 
 	{
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return;

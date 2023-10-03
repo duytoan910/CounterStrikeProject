@@ -76,7 +76,7 @@ public plugin_init()
 	RegisterHam(Ham_TakeDamage, "player", "HAM_TakeDamage")
 	
 	g_Msg_CurWeapon = get_user_msgid("CurWeapon")
-	buffsg552ex = zp_register_extra_item("SG552 Cerberus", 8000, ZP_TEAM_HUMAN)
+	buffsg552ex = zp_register_extra_item("SG552 Cerberus", 15000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()

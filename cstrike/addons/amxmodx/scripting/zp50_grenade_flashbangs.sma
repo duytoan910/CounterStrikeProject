@@ -13,9 +13,11 @@
 #include <zp50_core>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 
 new cvar_grenade_flashbang_color_R, cvar_grenade_flashbang_color_G, cvar_grenade_flashbang_color_B
-new cvar_grenade_flashbang_nemesis
+new cvar_grenade_flashbang_nemesis, cvar_grenade_flashbang_assassin
 
 public plugin_init()
 {
@@ -30,6 +32,10 @@ public plugin_init()
 	// Nemesis Class loaded?
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library))
 		cvar_grenade_flashbang_nemesis = register_cvar("zp_grenade_flashbang_nemesis", "0")
+
+	// Assassin Class loaded?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library))
+		cvar_grenade_flashbang_assassin = register_cvar("zp_grenade_flashbang_assassin", "0")
 }
 
 public plugin_natives()
@@ -39,7 +45,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -65,6 +71,10 @@ public message_screenfade(msg_id, msg_dest, msg_entity)
 	
 	// Nemesis Class loaded?
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(msg_entity) && !get_pcvar_num(cvar_grenade_flashbang_nemesis))
+		return PLUGIN_HANDLED;
+
+	// Assassin Class loaded?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(msg_entity) && !get_pcvar_num(cvar_grenade_flashbang_assassin))
 		return PLUGIN_HANDLED;
 	
 	// Set flash color

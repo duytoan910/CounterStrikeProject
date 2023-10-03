@@ -10,6 +10,7 @@
 ================================================================================*/
 
 #include <amxmodx>
+#include <fakemeta>
 #include <cstrike>
 #include <amx_settings_api>
 #include <zp50_gamemodes>
@@ -127,8 +128,10 @@ public zp_fw_gamemodes_start()
 			continue;
 		
 		// Not a Terrorist
-		if (cs_get_user_team(id) != CS_TEAM_T)
-			continue;
+		if (cs_get_user_team(id) != CS_TEAM_T){
+			set_pev(id, pev_health, 100.0)
+			continue;	
+		}
 		
 		// Turn into a zombie
 		zp_core_infect(id, 0)
@@ -147,6 +150,10 @@ public zp_fw_gamemodes_start()
 		// Show Swarm HUD notice
 		set_hudmessage(HUD_EVENT_R, HUD_EVENT_G, HUD_EVENT_B, HUD_EVENT_X, HUD_EVENT_Y, 1, 0.0, 5.0, 1.0, 1.0, -1)
 		ShowSyncHudMsg(0, g_HudSync, "%L", LANG_PLAYER, "NOTICE_SWARM")
+	}
+
+	for(new i=0; i<g_MaxPlayers; i++){
+
 	}
 }
 

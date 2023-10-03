@@ -16,6 +16,8 @@
 #include <zp50_core>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 
 new cvar_zombie_defense, cvar_zombie_hitzones
 
@@ -39,7 +41,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -86,6 +88,10 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 	{
 		// Ignore for Nemesis
 		if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(attacker))
+			return HAM_IGNORED;
+
+		// Ignore for Nemesis
+		else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(attacker))
 			return HAM_IGNORED;
 		
 		// Armor multiplier for the final damage

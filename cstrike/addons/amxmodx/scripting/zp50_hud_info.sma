@@ -17,8 +17,12 @@
 #include <zp50_class_zombie>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 #define LIBRARY_AMMOPACKS "zp50_ammopacks"
 #include <zp50_ammopacks>
 
@@ -60,7 +64,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_AMMOPACKS))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER) || equal(module, LIBRARY_AMMOPACKS))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -116,6 +120,10 @@ public ShowHUD(taskid)
 		// Nemesis Class loaded?
 		if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(player))
 			formatex(class_name, charsmax(class_name), "%L", ID_SHOWHUD, "CLASS_NEMESIS")
+			
+		// Assassin Class loaded?
+		else if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(player))
+			formatex(class_name, charsmax(class_name), "%L", ID_SHOWHUD, "CLASS_ASSASSIN")
 		else
 		{
 			zp_class_zombie_get_name(zp_class_zombie_get_current(player), class_name, charsmax(class_name))
@@ -132,8 +140,12 @@ public ShowHUD(taskid)
 		blue = HUD_STATS_HUMAN_B
 		
 		// Survivor Class loaded?
-		if (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_survivor_get(player))
+		if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(player))
 			formatex(class_name, charsmax(class_name), "%L", ID_SHOWHUD, "CLASS_SURVIVOR")
+
+		// Sniper Class loaded?
+		else if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(player))
+			formatex(class_name, charsmax(class_name), "%L", ID_SHOWHUD, "CLASS_SNIPER")
 		else
 		{
 			zp_class_human_get_name(zp_class_human_get_current(player), class_name, charsmax(class_name))

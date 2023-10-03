@@ -160,7 +160,7 @@ public zp_round_started(gamemode)
 	{
 		for(id=0;id<get_maxplayers();id++)
 		{
-			if (is_user_alive(id) && !zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_survivor(id))
+			if (is_user_alive(id) && !zp_get_user_zombie(id) && !zp_get_user_nemesis(id)  && !zp_get_user_assassin(id) && !zp_get_user_survivor(id) && !zp_get_user_sniper(id))
 			{
 				if(is_user_bot(id))
 					continue
@@ -178,7 +178,7 @@ public fw_takedamage(victim, inflictor, attacker, Float:damage, damagetype)
 	if((damagetype & (1<<24)) && zp_get_user_zombie(attacker))
 		return HAM_IGNORED	
 	
-	if(victim != attacker && is_user_connected(attacker) && !zp_get_user_zombie(attacker) && !zp_get_user_nemesis(attacker) && !zp_get_user_survivor(attacker))
+	if(victim != attacker && is_user_connected(attacker) && !zp_get_user_zombie(attacker) && !zp_get_user_nemesis(attacker) && !zp_get_user_survivor(attacker) && !zp_get_user_assassin(attacker) && !zp_get_user_sniper(attacker))
 	{
 		if (g_level)
 		{
@@ -197,7 +197,7 @@ public show_hud(taskid)
 {
 	new id = taskid - TASK_SHOWHUD
 	
-	if (is_user_alive(id) && !zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_survivor(id) && !is_user_bot(id))
+	if (is_user_alive(id) && !zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_survivor(id)  && !zp_get_user_assassin(id) && !zp_get_user_sniper(id) && !is_user_bot(id))
 	{
 		show_hud_text(id)
 	} else {
@@ -215,7 +215,7 @@ public UpdateLevelTeamHuman()
 		static id
 		for (id = 1; id <= get_maxplayers(); id++)
 		{
-			if (is_user_alive(id) && !zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_survivor(id) && !is_user_bot(id))
+			if (is_user_alive(id) && !zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_survivor(id)  && !zp_get_user_assassin(id) && !zp_get_user_sniper(id) && !is_user_bot(id))
 			{
 				// Play Sound
 				PlaySound2(id, levelup_sound)

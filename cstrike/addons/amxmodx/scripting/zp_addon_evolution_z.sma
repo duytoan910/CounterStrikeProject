@@ -145,7 +145,7 @@ public fw_spawn_post(id)
 	//client_print(id,print_chat,"Level Up 1!")
 	if(zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
 	{
-		set_user_health(id, zp_get_zombie_maxhealth(id) + str_to_num(zp_cso_evo_hp_lvl[zp_cso_zblvl[id]]))
+		set_user_health(id, zp_get_zombie_maxhealth(id) + str_to_num(zp_cso_evo_hp_lvl[zp_cso_zblvl[id]]) + )
 	}
 }
 

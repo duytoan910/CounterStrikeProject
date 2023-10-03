@@ -32,8 +32,8 @@
 #define P_MODEL "models/p_buffsg552.mdl"
 #define W_MODEL "models/w_buffsg552.mdl"
 
-#define V_MODEL_6 "models/v_buffsg552_6.mdl"
-#define P_MODEL_6 "models/p_buffsg552_6.mdl"
+#define V_MODEL_6 "models/v_buffsg552.mdl"
+#define P_MODEL_6 "models/p_buffsg552.mdl"
 
 #define FIRE_SOUND "weapons/buffsg552-1.wav"
 #define EFFECT_TGA "gfx/tga_image/Freeze.tga"
@@ -79,7 +79,7 @@ public plugin_init()
 	register_forward(FM_PlayerPreThink, "fw_PlayerPreThink")
 	
 	
-	g_itemid = zp_register_extra_item("SG552 Lycanthrope", 6000, ZP_TEAM_HUMAN)
+	g_itemid = zp_register_extra_item("SG552 Lycanthrope", 8000, ZP_TEAM_HUMAN)
 	md_loadimage(EFFECT_TGA)
 }
 
@@ -98,7 +98,7 @@ public plugin_precache()
 	
 	shockwave_spr = precache_model("sprites/shockwave.spr");
 	g_frost_gib = precache_model("sprites/frost_gib.spr");
-	g_fire_gib = precache_model("sprites/fire_gib.spr");
+	g_fire_gib = precache_model("sprites/frost_gib.spr");
 	
 	g_glassSpr = engfunc(EngFunc_PrecacheModel, "models/glassgibs.mdl")
 }

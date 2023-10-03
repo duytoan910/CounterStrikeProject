@@ -100,7 +100,7 @@ public client_prethink(id)
 {
 	if (zp_get_user_zombie_class(id) == g_zclass_china)
 	{
-		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && !zp_get_user_nemesis(id))
+		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 		Action(id);
 	}
 }
@@ -109,7 +109,7 @@ public fw_PlayerPostThink(id)
 {
 	if (zp_get_user_zombie_class(id) == g_zclass_china)
 	{
-		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && !zp_get_user_nemesis(id)){
+		if(is_user_alive(id) && zp_get_user_zombie(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id)){
 			new button = pev(id, pev_button)
 			if(IsCurrentSpeedHigherThan(id, 200.0)){
 				if (!(button & IN_DUCK || button & IN_JUMP || button & IN_BACK) && !g_setAnim[id])
@@ -161,16 +161,16 @@ public Death(id)
 	set_task(0.1, "set_normal_speed",id)	
 	g_wait[id] = 0
 	
-	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==g_zclass_china && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==g_zclass_china && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		engfunc( EngFunc_EmitSound, id, CHAN_ITEM, g_sound[random_num(0,1)], 1.0, ATTN_NORM, 0, PITCH_NORM)
 	}
 }
 public fw_TakeDamage_Post(id, iVictim, iInflictor, iAttacker, Float:flDamage, bitsDamage)
 {
-	if (zp_get_user_zombie_class(id)==g_zclass_china && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if (zp_get_user_zombie_class(id)==g_zclass_china && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
-		emit_sound(id, CHAN_WEAPON, g_sound[random_num(2,3)], 0.7, ATTN_NORM, 0, PITCH_LOW)
+		emit_sound(id, CHAN_WEAPON, g_sound[random_num(2,3)], 1.0, ATTN_NORM, 0, PITCH_LOW)
 	}
 
 	if (zp_get_user_zombie_class(id)==g_zclass_china && zp_get_user_zombie(id))
@@ -249,7 +249,7 @@ public bot_use_skill(taskid)
 
 public useabilityone(id)
 {
-	if (is_user_alive(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !g_wait[id] && g_skill_used[id] != 1)
+	if (is_user_alive(id) && (zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id) && !g_wait[id] && g_skill_used[id] != 1)
 	{
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return	
@@ -269,7 +269,7 @@ public useabilityone(id)
 
 public set_normal_speed(id)
 {
-	if ((zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if ((zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		g_skill_used[id] = 0	
 		
@@ -282,7 +282,7 @@ public set_normal_speed(id)
 }
 public remove_count_down(id)
 {
-	if ((zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if ((zp_get_user_zombie_class(id) == g_zclass_china) && zp_get_user_zombie(id) && !zp_get_user_assassin(id) && !zp_get_user_nemesis(id))
 	{
 		g_wait[id] = 0
 		client_print(id, print_center,"Cool down finish! [G]")
@@ -290,7 +290,7 @@ public remove_count_down(id)
 }
 public zp_user_infected_post(id, infector)
 {
-	if ((zp_get_user_zombie_class(id) == g_zclass_china) && !zp_get_user_nemesis(id))
+	if ((zp_get_user_zombie_class(id) == g_zclass_china) && !zp_get_user_assassin(id) && !zp_get_user_nemesis(id))
 	{		
 		remove_task(id)
 		g_wait[id] = 0
@@ -315,7 +315,7 @@ public fw_EmitSound(id, channel, const sample[], Float:volume, Float:attn, flags
 		return FMRES_SUPERCEDE;
 
 
-	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == g_zclass_china && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id) == g_zclass_china && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		if (sample[7] == 'd' && ((sample[8] == 'i' && sample[9] == 'e') || (sample[8] == 'e' && sample[9] == 'a')))
 		{

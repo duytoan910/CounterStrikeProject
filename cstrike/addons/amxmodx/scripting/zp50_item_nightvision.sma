@@ -15,6 +15,10 @@
 #include <amxmodx>
 #include <cstrike>
 #include <zp50_items>
+#include <zp50_class_nemesis>
+#include <zp50_class_assassin>
+#include <zp50_class_survivor>
+#include <zp50_class_sniper>
 
 new g_ItemID
 
@@ -32,7 +36,7 @@ public zp_fw_items_select_pre(id, itemid, ignorecost)
 		return ZP_ITEM_AVAILABLE;
 	
 	// Nightvision only available to humans
-	if (zp_core_is_zombie(id))
+	if (zp_class_nemesis_get(id) || zp_class_assassin_get(id) || zp_core_is_zombie(id) || zp_class_survivor_get(id) || zp_class_sniper_get(id))
 		return ZP_ITEM_DONT_SHOW;
 	
 	// Player already has nightvision

@@ -137,7 +137,7 @@ public fw_ClientCommand(id)
 	if(pev(id, pev_deadflag) != DEAD_NO)
 		return FMRES_IGNORED;
 
-	if(iClass != zp_get_user_zombie_class(id) || zp_get_user_nemesis(id) || zp_get_user_zombie(id) != 1)
+	if(iClass != zp_get_user_zombie_class(id) || zp_get_user_nemesis(id) || zp_get_user_assassin(id) || zp_get_user_zombie(id) != 1)
 		return FMRES_IGNORED;
 	
 	if(!strcmp(szCommand, "drop"))
@@ -295,7 +295,7 @@ public Death()
 	
 	cooldown_started[player] = false
 	
-	if(zp_get_user_zombie(player) && zp_get_user_zombie_class(player)==iClass && !zp_get_user_nemesis(player))
+	if(zp_get_user_zombie(player) && zp_get_user_zombie_class(player)==iClass && !zp_get_user_nemesis(player) && !zp_get_user_assassin(player))
 	{
 		engfunc( EngFunc_EmitSound, player, CHAN_ITEM, g_sound[random_num(0,1)], 1.0, ATTN_NORM, 0, PITCH_NORM)
 	}
@@ -303,7 +303,7 @@ public Death()
 
 public fw_TakeDamage(id, iVictim, iInflictor, iAttacker, Float:flDamage, bitsDamage)
 {
-	if (zp_get_user_zombie_class(id)==iClass && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if (zp_get_user_zombie_class(id)==iClass && zp_get_user_zombie(id) && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		emit_sound(id, CHAN_WEAPON, g_sound[random_num(2,3)], 1.0, ATTN_NORM, 0, PITCH_LOW)
 	}

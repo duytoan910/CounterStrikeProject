@@ -11,6 +11,7 @@
 
 #include <amxmodx>
 #include <fun>
+#include <fakemeta>
 #include <amx_settings_api>
 #include <cs_teams_api>
 #include <zp50_gamemodes>
@@ -207,6 +208,7 @@ public zp_fw_gamemodes_start()
 		
 		// Switch to CT
 		cs_set_player_team(id, CS_TEAM_CT)
+		set_pev(id, pev_health, 150.0)
 	}
 	
 	// Play Plague sound

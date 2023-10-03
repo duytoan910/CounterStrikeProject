@@ -60,7 +60,6 @@ public plugin_precache()
 public Event_RoundStart()
 {
 	current_mode = -1
-
 }
 public zp_cso_round_start()
 {

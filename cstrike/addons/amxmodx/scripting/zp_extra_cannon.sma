@@ -19,26 +19,26 @@
 #define WEAPON_MAX_CLIP				1
 #define WEAPON_DEFAULT_AMMO			30
 
-#define WEAPON_DAMAGE				random_float(60.0, 80.0) //FLOAT 
+#define WEAPON_DAMAGE				random_float(70.0, 80.0) //FLOAT 
 #define WEAPON_KNOCKBACK			2.0
 #define WEAPON_RADIUS_EXP			200.0
-#define WEAPON_DAMAGE_EXP			random_float(1000.0, 1500.0)
+#define WEAPON_DAMAGE_EXP			random_float(4000.0, 5500.0)
 
 #define WEAPON_TIME_NEXT_IDLE 			10.0
 #define WEAPON_TIME_DELAY_DEPLOY 		1.4
 
 #define ZP_ITEM_NAME				"Black Dragon Cannon" 
-#define ZP_ITEM_COST				15000
+#define ZP_ITEM_COST				35000
 
 // Models
 #define MODEL_WORLD 				"models/w_cannon_6.mdl"
 #define MODEL_VIEW					"models/v_cannon_6.mdl"
-#define MODEL_VIEWB					"models/v_cannon_6b.mdl"
+#define MODEL_VIEWB					"models/v_cannon_6.mdl"
 #define MODEL_PLAYER				"models/p_cannon_6.mdl"
 #define MODEL_MISSIL				"models/DragonModel.mdl"
 
 #define MODEL_BALL				"sprites/flame_puff01.spr"
-#define MODEL_BALLB				"sprites/flame_puff01_blue.spr"
+#define MODEL_BALLB				"sprites/flame_puff01.spr"
 #define MODEL_EXP				"sprites/ef_cannon6_explotion.spr"
 
 // Sounds
@@ -321,7 +321,7 @@ Weapon_OnShoot(const iItem, const iPlayer, bool:iType)
 
 	new enemy, body
 	get_user_aiming(iPlayer, enemy, body)
-	if ((1 <= enemy <= 32) && zp_get_user_zombie(enemy) && is_user_bot(iPlayer))
+	if (pev_valid(enemy) && is_user_alive(enemy) && zp_get_user_zombie(enemy) && is_user_bot(iPlayer))
 	{
 		new origin1[3] ,origin2[3],range
 		get_user_origin(iPlayer,origin1)

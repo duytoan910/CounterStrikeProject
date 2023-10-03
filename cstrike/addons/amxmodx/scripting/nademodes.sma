@@ -5,6 +5,7 @@
 #include <fakemeta>
 #include <hamsandwich>
 #include <xs>
+#include <zombieplague>
 
 #define VERSION "11.2"
 
@@ -115,6 +116,12 @@ enum NadeRace
 	GRENADE_EXPLOSIVE = 0,
 	GRENADE_FLASHBANG,
 	GRENADE_SMOKEGREN,
+}
+enum 
+{
+	TEAM_NO = 0,
+	TEAM_HUMAN,
+	TEAM_ZOMBIE,
 }
 
 new const NADE_MODEL[][] = 
@@ -320,7 +327,7 @@ new g_maxplayers
 new cl_is_bot = 0
 new cl_is_alive = 0
 new cl_weapon[MAX_PLAYERS + 1]
-new CsTeams:cl_team[MAX_PLAYERS + 1]
+new cl_team[MAX_PLAYERS + 1]
 
 // Limit system counter/blocker
 new cl_counter[MAX_PLAYERS + 1][NadeRace][NadeType]
@@ -659,7 +666,7 @@ public plugin_end()
 	free_tr2(g_ptrace[TH_TRIP])
 	free_tr2(g_ptrace[TH_BOT])
 	
-	save_cfg()
+	//save_cfg()
 }
 
 register_option(Option:option, const name[300], const string[], OptionType:type = TOPTION_TOGGLE, flags = 0, Float:value = 0.0)
@@ -1417,7 +1424,7 @@ public client_disconnect(id)
 	
 	cl_nextusetime[id] = 0.0
 	
-	cl_team[id] = CS_TEAM_UNASSIGNED
+	cl_team[id] = TEAM_NO
 }
 
 /* -------------------------------
@@ -1685,10 +1692,10 @@ public fw_playerprethink(id)
 	if (!is_user_connected(id) || is_user_connecting(id) || is_user_hltv(id))
 		return HAM_IGNORED
 	
-	switch (cs_get_user_team(id))
+	switch (zp_get_user_zombie(id))
 	{
-		case CS_TEAM_T: cl_team[id] = CS_TEAM_T
-		case CS_TEAM_CT: cl_team[id] = CS_TEAM_CT
+		case false: cl_team[id] = TEAM_HUMAN
+		case true: cl_team[id] = TEAM_ZOMBIE
 		default: return HAM_IGNORED
 	}
 	
@@ -2026,7 +2033,7 @@ public fw_track_explosion(grenade)
 	owner = entity_get_edict(grenade, EV_ENT_owner)
 	type = get_grenade_type(grenade)
 	
-	if (!is_user_connected(owner) || is_user_connecting(owner) || cl_team[owner] == CS_TEAM_UNASSIGNED)
+	if (!is_user_connected(owner) || is_user_connecting(owner) || cl_team[owner] == TEAM_NO)
 	{
 		entity_set_int(grenade, EV_INT_flags, entity_get_int(grenade, EV_INT_flags) | FL_KILLME)
 		return HAM_IGNORED
@@ -2159,7 +2166,7 @@ public fw_think(ent)
 	
 	owner = entity_get_edict(ent, EV_ENT_owner)
 	
-	if (!is_user_connected(owner) || is_user_connecting(owner) || cl_team[owner] == CS_TEAM_UNASSIGNED)
+	if (!is_user_connected(owner) || is_user_connecting(owner) || cl_team[owner] == TEAM_NO)
 	{
 		entity_set_int(ent, EV_INT_flags, entity_get_int(ent, EV_INT_flags) | FL_KILLME)
 		return HAM_IGNORED
@@ -2780,7 +2787,7 @@ public fw_think_post(ent)
 	entity_get_vector(ent, EV_VEC_origin, origin)
 	owner = entity_get_edict(ent, EV_ENT_owner)
 	
-	if (!is_user_connected(owner) || is_user_connecting(owner) || cl_team[owner] == CS_TEAM_UNASSIGNED)
+	if (!is_user_connected(owner) || is_user_connecting(owner) || cl_team[owner] == TEAM_NO)
 	{
 		entity_set_int(ent, EV_INT_flags, entity_get_int(ent, EV_INT_flags) | FL_KILLME)
 		return HAM_IGNORED

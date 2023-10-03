@@ -7,6 +7,8 @@
 #include <fun>
 #include <zombieplague>
 
+#define DAMAGE_MULTI	2.0
+
 #define ENG_NULLENT			-1
 #define EV_INT_WEAPONKEY	EV_INT_impulse
 #define sfpistol_WEAPONKEY 	625
@@ -34,26 +36,20 @@ const OFFSET_LINUX_WEAPONS = 4
 #define sfpistol_RELOAD_TIME 2.7
 #define write_coord_f(%1)	engfunc(EngFunc_WriteCoord,%1)
 
-new const Fire_Sounds[][] = { "weapons/sfpistol_shoot5.wav", "weapons/sfpistol_shoot5.wav" }
+new const Fire_Sounds[][] = { "weapons/sfpistol_shoot1.wav"}
 new sfpistol_V_MODEL[64] = "models/v_sfpistol.mdl"
 new sfpistol_P_MODEL[64] = "models/p_sfpistol.mdl"
 new sfpistol_W_MODEL[64] = "models/w_sfpistol.mdl"
 
-new g_iEntity, g_bitsMuzzleFlash;
-#define get_bit(%1,%2)		(%1 & (1 << (%2 & 31)))
-#define set_bit(%1,%2)		%1 |= (1 << (%2 & 31))
-#define reset_bit(%1,%2)	%1 &= ~(1 << (%2 & 31))
-
 const m_iShotsFired = 64
 
-new cvar_dmg_sfpistol, cvar_clip_sfpistol, cvar_sfpistol_ammo
 new g_MaxPlayers, g_orig_event_sfpistol, g_IsInPrimaryAttack, g_iClip, g_smokepuff_id
 new Float:cl_pushangle[MAX_PLAYERS + 1][3]
 new g_has_sfpistol[33], g_clip_ammo[33], oldweap[33],g_sfpistol_TmpClip[33], zz[33], udah[33]
-new setrum, item_cyclone
+new setrum
 
 const SECONDARY_WEAPONS_BIT_SUM = (1<<CSW_P228)|(1<<CSW_ELITE)|(1<<CSW_FIVESEVEN)|(1<<CSW_USP)|(1<<CSW_GLOCK18)|(1<<CSW_DEAGLE)
-new const WEAPONENTNAMES[][] = { "", "weapon_p228", "", "weapon_scout", "weapon_hegrenade", "weapon_xm1014", "weapon_c4", "weapon_mac10", "weapon_aug", "weapon_smokegrenade", "weapon_elite", "weapon_fiveseven", "weapon_ump45", "weapon_sg550", "weapon_p228", "weapon_famas", "weapon_usp", "weapon_glock18", "weapon_awp", "weapon_mp5navy", "weapon_m249",
+new const WEAPONENTNAMES[][] = { "", "weapon_p228", "", "weapon_scout", "weapon_hegrenade", "weapon_xm1014", "weapon_c4", "weapon_mac10", "weapon_aug", "weapon_smokegrenade", "weapon_elite", "weapon_fiveseven", "weapon_ump45", "weapon_sg550", "weapon_usp", "weapon_famas", "weapon_usp", "weapon_glock18", "weapon_awp", "weapon_mp5navy", "weapon_m249",
 "weapon_m3", "weapon_m4a1", "weapon_tmp", "weapon_g3sg1", "weapon_flashbang", "weapon_deagle", "weapon_sg552",
 "weapon_ak47", "weapon_knife", "weapon_p90" }
 
@@ -62,23 +58,23 @@ public plugin_init()
 	register_plugin("Cyclone", "1.0", "m4m3ts")
 	register_cvar("cyclone_version", "m4m3ts", FCVAR_SERVER|FCVAR_SPONLY)
 	register_event("CurWeapon","CurrentWeapon","be","1=1")
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_p228", "fw_sfpistol_AddToPlayer")
+	register_message(get_user_msgid("DeathMsg"), "Message_DeathMsg")
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_usp", "fw_sfpistol_AddToPlayer")
+	RegisterHam(Ham_Item_Holster, "weapon_usp", "fw_sfpistol_Holster")
 	for (new i = 1; i < sizeof WEAPONENTNAMES; i++)
 	if (WEAPONENTNAMES[i][0]) RegisterHam(Ham_Item_Deploy, WEAPONENTNAMES[i], "fw_Item_Deploy_Post", 1)
-	RegisterHam(Ham_Item_PostFrame, "weapon_p228", "sfpistol_ItemPostFrame")
-	RegisterHam(Ham_Weapon_Reload, "weapon_p228", "sfpistol_Reload")
-	RegisterHam(Ham_Weapon_Reload, "weapon_p228", "sfpistol_Reload_Post", 1)
-	RegisterHam(Ham_Weapon_PrimaryAttack, "weapon_p228", "fw_sfpistol_PrimaryAttack")
-	RegisterHam(Ham_Weapon_PrimaryAttack, "weapon_p228", "fw_sfpistol_PrimaryAttack_Post", 1)
-	RegisterHam(Ham_Weapon_WeaponIdle, "weapon_p228", "fw_cycloneidleanim", 1)
+	RegisterHam(Ham_Item_PostFrame, "weapon_usp", "sfpistol_ItemPostFrame")
+	RegisterHam(Ham_Weapon_Reload, "weapon_usp", "sfpistol_Reload")
+	RegisterHam(Ham_Weapon_Reload, "weapon_usp", "sfpistol_Reload_Post", 1)
+	RegisterHam(Ham_Weapon_PrimaryAttack, "weapon_usp", "fw_sfpistol_PrimaryAttack")
+	RegisterHam(Ham_Weapon_PrimaryAttack, "weapon_usp", "fw_sfpistol_PrimaryAttack_Post", 1)
+	RegisterHam(Ham_Weapon_WeaponIdle, "weapon_usp", "fw_cycloneidleanim", 1)
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage")
 	RegisterHam(Ham_Spawn, "player", "Player_Spawn", 1)
 	register_forward(FM_SetModel, "fw_SetModel")
 	register_forward(FM_CmdStart, "fw_CmdStart")
 	register_forward(FM_UpdateClientData, "fw_UpdateClientData_Post", 1)
 	register_forward(FM_PlaybackEvent, "fwPlaybackEvent")
-	register_forward(FM_AddToFullPack, "CPlayer_AddToFullPack_post", 1);	
-	register_forward(FM_CheckVisibility, "CEntity_CheckVisibility");
 	
 	RegisterHam(Ham_TraceAttack, "worldspawn", "fw_TraceAttack", 1)
 	RegisterHam(Ham_TraceAttack, "func_breakable", "fw_TraceAttack", 1)
@@ -88,21 +84,15 @@ public plugin_init()
 	RegisterHam(Ham_TraceAttack, "func_plat", "fw_TraceAttack", 1)
 	RegisterHam(Ham_TraceAttack, "func_rotating", "fw_TraceAttack", 1)
 	
-	//item_cyclone = zp_register_extra_item("Cyclone", 20, ZP_TEAM_HUMAN)
-	
 	new const weaponIdentifiers[][] = 
 	{
-		"weapon_p228"
+		"weapon_usp"
 	}
 	
 	for( new i = 0; i < sizeof weaponIdentifiers; i++ )
 	{
 		RegisterHam( Ham_Weapon_PrimaryAttack, weaponIdentifiers[ i ], "Pistols_PrimaryAttack_Pre", false )
 	}
-
-	cvar_dmg_sfpistol = register_cvar("zp_sfpistol_dmg", "0.88")
-	cvar_clip_sfpistol = register_cvar("zp_sfpistol_clip", "50")
-	cvar_sfpistol_ammo = register_cvar("zp_sfpistol_ammo", "300")
 
 	g_MaxPlayers = get_maxplayers()
 }
@@ -113,28 +103,15 @@ public plugin_precache()
 	precache_model(sfpistol_W_MODEL)
 	for(new i = 0; i < sizeof Fire_Sounds; i++)
 	precache_sound(Fire_Sounds[i])	
-	precache_sound("weapons/sfpistol_clipin.wav")
-	precache_sound("weapons/sfpistol_clipout.wav")
-	precache_sound("weapons/sfpistol_draw.wav")
-	precache_sound("weapons/sfpistol_idle.wav")
-	precache_sound("weapons/sfpistol_shoot_end.wav")
 	setrum = precache_model("sprites/laserbeam.spr")
 	g_smokepuff_id = engfunc(EngFunc_PrecacheModel, "sprites/ef_smoke_poison.spr")
 	
 	register_forward(FM_PrecacheEvent, "fwPrecacheEvent_Post", 1)
-	
-	precache_model("sprites/custommuzzleflash/muzzleflash27.spr")
-	g_iEntity = create_entity("info_target")
-	entity_set_model(g_iEntity, "sprites/custommuzzleflash/muzzleflash27.spr")
-	entity_set_float(g_iEntity, EV_FL_scale, 0.1)
-	
-	entity_set_int(g_iEntity, EV_INT_rendermode, kRenderTransTexture)
-	entity_set_float(g_iEntity, EV_FL_renderamt, 0.0)
 }
 
 public weapon_hook(id)
 {
-    engclient_cmd(id, "weapon_p228")
+    engclient_cmd(id, "weapon_usp")
     return PLUGIN_HANDLED
 }
 
@@ -151,7 +128,7 @@ public client_putinserver(id)
 
 public Do_RegisterHam_Bot(id)
 {
-	RegisterHamFromEntity(Ham_TakeDamage, id, "fw_TakeDamage")
+	RegisterHamFromEntity(Ham_TakeDamage, id, "fw_TakeDamage", 1)
 	RegisterHamFromEntity(Ham_TraceAttack, id, "fw_TraceAttack", 1)
 }
 public Player_Spawn(id)
@@ -171,7 +148,7 @@ public fw_TraceAttack(iEnt, iAttacker, Float:flDamage, Float:fDir[3], ptr, iDama
 
 	new g_currentweapon = get_user_weapon(iAttacker)
 
-	if(g_currentweapon != CSW_P228) return
+	if(g_currentweapon != CSW_USP) return
 	
 	if(!g_has_sfpistol[iAttacker]) return
 
@@ -203,10 +180,6 @@ public native_give_sfpistol(id)
 	give_sfpistol(id)
 }
 
-public zp_extra_item_selected(id, itemid)
-{
-	if(itemid == item_cyclone) give_sfpistol(id)
-}
 public fwPrecacheEvent_Post(type, const name[])
 {
 	if (equal("events/p228.sc", name))
@@ -253,7 +226,7 @@ public fw_SetModel(entity, model[])
 	{
 		static iStoredAugID
 		
-		iStoredAugID = find_ent_by_owner(ENG_NULLENT, "weapon_p228", entity)
+		iStoredAugID = find_ent_by_owner(ENG_NULLENT, "weapon_usp", entity)
 	
 		if(!is_valid_ent(iStoredAugID))
 			return FMRES_IGNORED
@@ -275,13 +248,13 @@ public fw_SetModel(entity, model[])
 public give_sfpistol(id)
 {
 	drop_weapons(id, 2)
-	new iWep2 = fm_give_item(id,"weapon_p228")
+	new iWep2 = fm_give_item(id,"weapon_usp")
 	if( iWep2 > 0 )
 	{
-		cs_set_weapon_ammo(iWep2, get_pcvar_num(cvar_clip_sfpistol))
-		cs_set_user_bpammo (id, CSW_P228, get_pcvar_num(cvar_sfpistol_ammo))	
+		cs_set_weapon_ammo(iWep2, 50)
+		cs_set_user_bpammo (id, CSW_USP, 200)	
 		
-		set_weapons_timeidle(id, CSW_P228, 1.0)
+		set_weapons_timeidle(id, CSW_USP, 1.0)
 		set_player_nextattackx(id, 1.0)
 	}
 	g_has_sfpistol[id] = true
@@ -318,10 +291,10 @@ public fw_CmdStart(id, uc_handle, seed)
 {
 	if(!is_user_alive(id) || !is_user_connected(id))
 		return
-	if(get_user_weapon(id) != CSW_P228 || !g_has_sfpistol[id])
+	if(get_user_weapon(id) != CSW_USP || !g_has_sfpistol[id])
 		return
 	
-	static ent; ent = fm_get_user_weapon_entity(id, CSW_P228)
+	static ent; ent = fm_get_user_weapon_entity(id, CSW_USP)
 	if(!pev_valid(ent))
 		return
 	if(get_pdata_float(ent, 46, WEAP_LINUX_XTRA_OFF) > 0.0 || get_pdata_float(ent, 47, WEAP_LINUX_XTRA_OFF) > 0.0) 
@@ -335,8 +308,8 @@ public fw_CmdStart(id, uc_handle, seed)
 			udah[id] = 0
 			emit_sound(id, CHAN_WEAPON, "common/null.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)
 			UTIL_PlayWeaponAnimation(id, sfpistol_SHOOTEND)
-			set_weapons_timeidle(id, CSW_P228, 0.5)
-			set_player_nextattackx(id, 0.5)
+			set_weapons_timeidle(id, CSW_USP, is_user_bot(id)?0.1:0.5)
+			set_player_nextattackx(id, is_user_bot(id)?0.1:0.5)
 		}
 	}
 }
@@ -344,7 +317,7 @@ public fw_cycloneidleanim(Weapon)
 {
 	new id = get_pdata_cbase(Weapon, 41, 4)
 
-	if(!is_user_alive(id) || zp_get_user_zombie(id) || !g_has_sfpistol[id] || get_user_weapon(id) != CSW_P228)
+	if(!is_user_alive(id) || zp_get_user_zombie(id) || !g_has_sfpistol[id] || get_user_weapon(id) != CSW_USP)
 		return HAM_IGNORED;
 
 	if(get_pdata_float(Weapon, 48, 4) <= 0.25)
@@ -368,10 +341,23 @@ public fw_sfpistol_AddToPlayer(sfpistol, id)
 		
 		entity_set_int(sfpistol, EV_INT_WEAPONKEY, 0)
 	}
-	else
-	{
-	}
 	return HAM_IGNORED
+}
+
+public fw_sfpistol_Holster(weapon_ent)
+{
+	static id
+	id = fm_cs_get_weapon_ent_owner(weapon_ent)
+	
+	if(!is_user_alive(id) || !is_user_connected(id))
+		return
+	if(get_user_weapon(id) != CSW_USP || !g_has_sfpistol[id])
+		return
+
+	zz[id] = 0
+	udah[id] = 0
+	
+	emit_sound(id, CHAN_WEAPON, "common/null.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)
 }
 
 public fw_Item_Deploy_Post(weapon_ent)
@@ -390,7 +376,7 @@ public CurrentWeapon(id)
 {
      replace_weapon_models(id, read_data(2))
 	 
-     if(read_data(2) != CSW_P228 || !g_has_sfpistol[id])
+     if(read_data(2) != CSW_USP || !g_has_sfpistol[id])
           return
 	 
      static Float:iSpeed
@@ -415,7 +401,7 @@ replace_weapon_models(id, weaponid)
 {
 	switch (weaponid)
 	{
-		case CSW_P228:
+		case CSW_USP:
 		{
 			if (zp_get_user_zombie(id) || zp_get_user_survivor(id))
 				return
@@ -424,10 +410,10 @@ replace_weapon_models(id, weaponid)
 			{
 				set_pev(id, pev_viewmodel2, sfpistol_V_MODEL)
 				set_pev(id, pev_weaponmodel2, sfpistol_P_MODEL)
-				if(oldweap[id] != CSW_P228) 
+				if(oldweap[id] != CSW_USP) 
 				{
 					UTIL_PlayWeaponAnimation(id, sfpistol_DRAW)
-					set_weapons_timeidle(id, CSW_P228, 1.0)
+					set_weapons_timeidle(id, CSW_USP, 1.0)
 					set_player_nextattackx(id, 1.0)
 				}
 			}
@@ -438,7 +424,7 @@ replace_weapon_models(id, weaponid)
 
 public fw_UpdateClientData_Post(Player, SendWeapons, CD_Handle)
 {
-	if(!is_user_alive(Player) || (get_user_weapon(Player) != CSW_P228 || !g_has_sfpistol[Player]))
+	if(!is_user_alive(Player) || (get_user_weapon(Player) != CSW_USP || !g_has_sfpistol[Player]))
 		return FMRES_IGNORED
 	
 	set_cd(CD_Handle, CD_flNextAttack, halflife_time () + 0.001)
@@ -496,65 +482,34 @@ public fw_sfpistol_PrimaryAttack_Post(Weapon)
 		xs_vec_mul_scalar(push,0.0,push)
 		xs_vec_add(push,cl_pushangle[Player],push)
 		set_pev(Player,pev_punchangle,push)
-		set_weapons_timeidle(Player, CSW_P228, 0.075)
+		set_weapons_timeidle(Player, CSW_USP, 0.075)
 		set_player_nextattackx(Player, 0.075)
 		UTIL_PlayWeaponAnimation(Player, sfpistol_SHOOT1)
 		entity_set_int(Player, EV_INT_sequence, 19)
 		zz[Player] = 1
-		set_bit(g_bitsMuzzleFlash, Player)
+		
 		fake_smoke(Player)
 		setrums(Player)
 		
 		if(!udah[Player])
 		{
-			emit_sound(Player, CHAN_WEAPON, Fire_Sounds[0], 1.0, ATTN_NORM, 0, PITCH_NORM)
+			emit_sound(Player, CHAN_WEAPON, "common/null.wav", 1.0, ATTN_NORM, 0, PITCH_NORM)
+			emit_sound(Weapon, CHAN_WEAPON, Fire_Sounds[0], 1.0, ATTN_NORM, 0, PITCH_NORM)
 			udah[Player] = 1
 		}
 	}
 }
 
-public CPlayer_AddToFullPack_post(esState, iE, iEnt, iHost, iHostFlags, iPlayer, pSet)
-{
-	if (iEnt != g_iEntity)
-		return;
-
-	if (get_bit(g_bitsMuzzleFlash, iHost))
-	{
-		set_es(esState, ES_Frame, float(random_num(0, 2)));
-			
-		set_es(esState, ES_RenderMode, kRenderTransAdd);
-		set_es(esState, ES_RenderAmt, 255.0);
-		
-		reset_bit(g_bitsMuzzleFlash, iHost);
-	}
-		
-	set_es(esState, ES_Skin, iHost);
-	set_es(esState, ES_Body, 1);
-	set_es(esState, ES_AimEnt, iHost);
-	set_es(esState, ES_MoveType, MOVETYPE_FOLLOW);
-}
-public CEntity_CheckVisibility(iEntity, pSet)
-{
-	if (iEntity != g_iEntity)
-		return FMRES_IGNORED;
-	
-	forward_return(FMV_CELL, 1);
-	
-	return FMRES_SUPERCEDE;
-}
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage)
 {
 	if (victim != attacker && is_user_connected(attacker))
 	{
-		if(get_user_weapon(attacker) == CSW_P228)
+		if(get_user_weapon(attacker) == CSW_USP)
 		{
 			if(g_has_sfpistol[attacker])
 			{	
-				if(is_user_bot(attacker))
-					SetHamParamFloat(4, damage * get_pcvar_float(cvar_dmg_sfpistol) + 30)
+				SetHamParamFloat(4, damage * DAMAGE_MULTI)
 			}
-			else
-			SetHamParamFloat(4, damage * get_pcvar_float(cvar_dmg_sfpistol))
 		}
 	}
 }
@@ -590,10 +545,10 @@ public sfpistol_ItemPostFrame(weapon_entity)
 
      static iClipExtra
      
-     iClipExtra = get_pcvar_num(cvar_clip_sfpistol)
+     iClipExtra = 50
      new Float:flNextAttack = get_pdata_float(id, m_flNextAttack, PLAYER_LINUX_XTRA_OFF)
 
-     new iBpAmmo = cs_get_user_bpammo(id, CSW_P228);
+     new iBpAmmo = cs_get_user_bpammo(id, CSW_USP);
      new iClip = get_pdata_int(weapon_entity, m_iClip, WEAP_LINUX_XTRA_OFF)
 
      new fInReload = get_pdata_int(weapon_entity, m_fInReload, WEAP_LINUX_XTRA_OFF) 
@@ -602,7 +557,7 @@ public sfpistol_ItemPostFrame(weapon_entity)
 	     new j = min(iClipExtra - iClip, iBpAmmo)
 	
 	     set_pdata_int(weapon_entity, m_iClip, iClip + j, WEAP_LINUX_XTRA_OFF)
-	     cs_set_user_bpammo(id, CSW_P228, iBpAmmo-j)
+	     cs_set_user_bpammo(id, CSW_USP, iBpAmmo-j)
 		
 	     set_pdata_int(weapon_entity, m_fInReload, 0, WEAP_LINUX_XTRA_OFF)
 	     fInReload = 0
@@ -622,11 +577,11 @@ public sfpistol_Reload(weapon_entity)
      static iClipExtra
 
      if(g_has_sfpistol[id])
-          iClipExtra = get_pcvar_num(cvar_clip_sfpistol)
+          iClipExtra = 50
 
      g_sfpistol_TmpClip[id] = -1
 
-     new iBpAmmo = cs_get_user_bpammo(id, CSW_P228)
+     new iBpAmmo = cs_get_user_bpammo(id, CSW_USP)
      new iClip = get_pdata_int(weapon_entity, m_iClip, WEAP_LINUX_XTRA_OFF)
 
      if (iBpAmmo <= 0)
@@ -653,7 +608,7 @@ public sfpistol_Reload_Post(weapon_entity)
 
 	set_pdata_int(weapon_entity, m_iClip, g_sfpistol_TmpClip[id], WEAP_LINUX_XTRA_OFF)
 
-	set_weapons_timeidle(id, CSW_P228, sfpistol_RELOAD_TIME)
+	set_weapons_timeidle(id, CSW_USP, sfpistol_RELOAD_TIME)
 	set_player_nextattackx(id, sfpistol_RELOAD_TIME)
 	zz[id] = 0
 	udah[id] = 0
@@ -769,4 +724,25 @@ stock drop_weapons(id, dropwhat)
                engclient_cmd(id, "drop", wname)
           }
      }
+}
+
+public Message_DeathMsg(msg_id, msg_dest, id)
+{
+	static szTruncatedWeapon[33], iAttacker, iVictim
+        
+	get_msg_arg_string(4, szTruncatedWeapon, charsmax(szTruncatedWeapon))
+        
+	iAttacker = get_msg_arg_int(1)
+	iVictim = get_msg_arg_int(2)
+        
+	if(!is_user_connected(iAttacker) || iAttacker == iVictim) return PLUGIN_CONTINUE
+        
+	if(get_user_weapon(iAttacker) == CSW_USP)
+	{
+		if(g_has_sfpistol[iAttacker]){
+			set_msg_arg_string(4, "sfpistol")
+		}
+	}
+                
+	return PLUGIN_CONTINUE
 }

@@ -66,16 +66,28 @@ new const EXP_MODELS[][] =
 }
 new const EXP_MODELS_EX[][] = 
 {
-	"sprites/ef_gungnir_aexploex.spr",
-	"sprites/ef_gungnir_bexploex.spr",
-	"sprites/ef_gungnir_chargeexploex.spr",
-	"sprites/ef_gungnir_lightline1ex.spr",
-	"sprites/ef_gungnir_lightline2ex.spr",
-	"sprites/ef_gungnir_missileex.spr",
-	"sprites/ef_gungnir_xbeamex.spr",
+	"sprites/ef_gungnir_aexplo.spr",
+	"sprites/ef_gungnir_bexplo.spr",
+	"sprites/ef_gungnir_chargeexplo.spr",
+	"sprites/ef_gungnir_lightline1.spr",
+	"sprites/ef_gungnir_lightline2.spr",
+	"sprites/ef_gungnir_missile.spr",
+	"sprites/ef_gungnir_xbeam.spr",
 	
 	"models/gungnir_missile.mdl"
 }
+// new const EXP_MODELS_EX[][] = 
+// {
+// 	"sprites/ef_gungnir_aexploex.spr",
+// 	"sprites/ef_gungnir_bexploex.spr",
+// 	"sprites/ef_gungnir_chargeexploex.spr",
+// 	"sprites/ef_gungnir_lightline1ex.spr",
+// 	"sprites/ef_gungnir_lightline2ex.spr",
+// 	"sprites/ef_gungnir_missileex.spr",
+// 	"sprites/ef_gungnir_xbeamex.spr",
+	
+// 	"models/gungnir_missile.mdl"
+// }
 // Weapon Config
 #define ACCURACY 23 // 0 - 100 ; -1 Default
 #define CLIP 70
@@ -139,7 +151,7 @@ public plugin_init() {
 
         // Cac
         register_clcmd("weapon_gungnir", "hook_weapon")
-        g_Dprd = zp_register_extra_item("Gungnir", 15000, ZP_TEAM_HUMAN)
+        g_Dprd = zp_register_extra_item("Gungnir", 35000, ZP_TEAM_HUMAN)
 }
 
 public hook_weapon(id) engclient_cmd(id, weapon_gungnir)
@@ -426,7 +438,7 @@ public WE_GUNGNIR(id, iEnt, iClip, bpammo, iButton) {
         new enemy, body;
         isModeA[id] = false
         get_user_aiming(id, enemy, body)
-        if ((1 <= enemy <= 32) && zp_get_user_zombie(enemy) && is_user_bot(id)) {
+        if (pev_valid(enemy) && is_user_alive(enemy) && zp_get_user_zombie(enemy) && is_user_bot(id)) {
                 new origin1[3], origin2[3], range
                 get_user_origin(id, origin1)
                 get_user_origin(enemy, origin2)

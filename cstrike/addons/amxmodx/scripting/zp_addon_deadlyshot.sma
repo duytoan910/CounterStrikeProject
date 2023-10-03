@@ -14,6 +14,7 @@
 new using_item[33]
 new waiting[33]
 new tasked[33]
+new roundstarted
 
 new sync_hud1,g_iBarTime
 new g_Ham_Bot
@@ -67,11 +68,20 @@ public fw_PlayerSpawn_Post(id)
 	using_item[id] = 0
 	waiting[id] = 1
 	remove_headshot_mode(id)
+	
+	message_begin(MSG_ONE_UNRELIABLE, g_iBarTime, .player=id)
+	write_short(0)
+	message_end() 
 }
 public zp_user_humanized_post(id)
 {
 	using_item[id] = 0
 	waiting[id] = 0
+	remove_headshot_mode(id)
+	
+	message_begin(MSG_ONE_UNRELIABLE, g_iBarTime, .player=id)
+	write_short(0)
+	message_end() 
 }
 public zp_user_infected_post(id)
 {
@@ -109,7 +119,7 @@ public client_PostThink(id)
 	
 	if(Button & IN_USE)
 	{
-		if(!using_item[id] && !waiting[id])
+		if(!using_item[id] && !waiting[id] && roundstarted)
 		{				
 			using_item[id] = 1
 			set_task(DS_TIME, "remove_headshot_mode",id)
@@ -130,12 +140,12 @@ public client_PostThink(id)
 	if(tasked[id]) return
 	new enemy, body
 	get_user_aiming(id, enemy, body)
-	if ((1 <= enemy <= 32) && zp_get_user_zombie(enemy))
+	if (pev_valid(enemy) && is_user_alive(enemy) && zp_get_user_zombie(enemy))
 	{
 		if(!using_item[id] && !waiting[id])
 		{			
 			tasked[id] = true	
-			set_task(random_float(3.0,10.0), "DO_DS", id)
+			set_task(random_float(6.0,15.0), "DO_DS", id)
 		}
 	}
 }
@@ -181,9 +191,15 @@ public enable_hs_mode(id)
 		
 	waiting[id] = 0
 	tasked[id] = false
+	roundstarted = true
 	set_hudmessage(0, 255, 0, -1.0, 0.3, 0, 15.0, 2.0)	
 	ShowSyncHudMsg(id, sync_hud1, "[E] -> Active Deadly Shot")
 }
+
+public zp_round_ended(){
+	roundstarted = false
+}
+
 public make_deadlyshoot_icon(id)
 {
 	if(!is_user_connected(id))
@@ -227,11 +243,11 @@ public make_ds_spr(id)
 	write_byte(255)
 	message_end()
 	
-	if(!is_user_bot(id)){
-		md_zb_skill(id,2)
-	}
+	// if(!is_user_bot(id)){
+	// 	md_zb_skill(id,2)
+	// }
 	
-	set_task(0.1, "make_ds_spr", id+TASK_DEADLYSHOT_ICON)
+	set_task(0.2, "make_ds_spr", id+TASK_DEADLYSHOT_ICON)
 }
 public remove_deadlyshot_icon(id)
 {

@@ -17,6 +17,8 @@
 #include <zombieplague>
 #include <zp50_class_human>
 #include <zp50_gamemodes>
+#include <zp50_class_survivor>
+#include <zp50_class_sniper>
 
 // Raptor Human Attributes
 new const humanclass2_name[] = "Medict Woman"
@@ -94,7 +96,11 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage)
 {
 	if (victim != attacker && is_user_connected(attacker))
 	{
-		if(is_user_alive(attacker) && !zp_get_user_zombie(attacker) && zp_class_human_get_current(attacker) == g_HumanClassID) 
+		if(is_user_alive(attacker)
+		 && !zp_get_user_zombie(attacker)
+		  && zp_class_human_get_current(attacker) == g_HumanClassID
+		  && !zp_class_survivor_get(attacker)
+		  && !zp_class_sniper_get(attacker)) 
 		{
 			g_DamageCount[attacker] += damage
 			if(g_DamageCount[attacker] >= DAMAGE_NEED && g_DropDelay[attacker] < get_gametime()){
@@ -134,6 +140,16 @@ public Create_MedBox(id){
 	
 	set_pev(ent, pev_fuser1, get_gametime() + 3.0)
 	set_pev(ent, pev_fuser2, get_gametime() + 15.0)
+
+	new Float:anglevec[3], Float:velocity[3]
+	pev(id, pev_v_angle, anglevec)
+	engfunc(EngFunc_MakeVectors, anglevec)
+	global_get(glb_v_forward, anglevec)
+	velocity[0] = anglevec[0] * 350
+	velocity[1] = anglevec[1] * 350
+	velocity[2] = anglevec[2] * 350
+	set_pev(ent, pev_velocity, velocity)
+
 	set_pev(ent, pev_nextthink, get_gametime() + 0.1)
 }
 public func_Medbox_Think(ent){

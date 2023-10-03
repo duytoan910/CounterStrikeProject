@@ -18,9 +18,9 @@ public plugin_init()
 	register_plugin(PLUGIN, VERSION, AUTHOR)	
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0")
 	g_msgScreenFade = get_user_msgid("ScreenFade");
-	cvar_optimize = register_cvar("zp_optimize", "0")
+	cvar_optimize = register_cvar("zp_optimize", "1")
 	
-	remove_entity_name("func_water")
+	//remove_entity_name("func_water")
 }
 
 public plugin_natives()

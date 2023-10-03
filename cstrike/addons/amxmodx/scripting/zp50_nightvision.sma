@@ -6,6 +6,8 @@
 #include <zp50_core_const>
 #include <zp50_class_nemesis>
 #include <zp50_class_survivor>
+#include <zp50_class_assassin>
+#include <zp50_class_sniper>
 #include <zp50_gamemodes>
 #include <zp50_items>
 
@@ -35,6 +37,8 @@ new cvar_vcolor_human_r, cvar_vcolor_human_g, cvar_vcolor_human_b
 new cvar_vcolor_zombie_r, cvar_vcolor_zombie_g, cvar_vcolor_zombie_b
 new cvar_vcolor_nemesis_r, cvar_vcolor_nemesis_g, cvar_vcolor_nemesis_b
 new cvar_vcolor_survivor_r, cvar_vcolor_survivor_g, cvar_vcolor_survivor_b
+new cvar_vcolor_assassin_r, cvar_vcolor_assassin_g, cvar_vcolor_assassin_b
+new cvar_vcolor_sniper_r, cvar_vcolor_sniper_g, cvar_vcolor_sniper_b
 
 public plugin_init() 
 {
@@ -80,6 +84,14 @@ public plugin_init()
     cvar_vcolor_survivor_r = register_cvar("zp_nvision_survivor_color_R", "150")
     cvar_vcolor_survivor_g = register_cvar("zp_nvision_survivor_color_G", "150")
     cvar_vcolor_survivor_b = register_cvar("zp_nvision_survivor_color_B", "150")
+    
+    cvar_vcolor_assassin_r = register_cvar("zp_nvision_assassin_color_R", "150")
+    cvar_vcolor_assassin_g = register_cvar("zp_nvision_assassin_color_G", "150")
+    cvar_vcolor_assassin_b = register_cvar("zp_nvision_assassin_color_B", "150")
+    
+    cvar_vcolor_sniper_r = register_cvar("zp_nvision_sniper_color_R", "150")
+    cvar_vcolor_sniper_g = register_cvar("zp_nvision_sniper_color_G", "150")
+    cvar_vcolor_sniper_b = register_cvar("zp_nvision_sniper_color_B", "150")
     
     register_message(g_msgScreenFade, "message_screenfade")
     g_msgScreenFade = get_user_msgid("ScreenFade")
@@ -168,6 +180,10 @@ public zp_fw_core_spawn_post(id)
 public zp_fw_core_cure_post(id, attacker)
 {
     if(zp_class_survivor_get(id))
+    {
+        g_item[id] = true
+        set_task(0.5, "set_vision_color", id)
+    }else if(zp_class_sniper_get(id))
     {
         g_item[id] = true
         set_task(0.5, "set_vision_color", id)
@@ -269,6 +285,9 @@ public set_vision_color(id)
         if(zp_class_nemesis_get(id))
         {
             set_vision_on(id, get_pcvar_num(cvar_vcolor_nemesis_r), get_pcvar_num(cvar_vcolor_nemesis_g), get_pcvar_num(cvar_vcolor_nemesis_b))
+        }else if(zp_class_assassin_get(id))
+        {
+            set_vision_on(id, get_pcvar_num(cvar_vcolor_assassin_r), get_pcvar_num(cvar_vcolor_assassin_g), get_pcvar_num(cvar_vcolor_assassin_b))
         }
         else
         {
@@ -281,6 +300,9 @@ public set_vision_color(id)
         if(zp_class_survivor_get(id))
         {
             set_vision_on(id, get_pcvar_num(cvar_vcolor_survivor_r), get_pcvar_num(cvar_vcolor_survivor_g), get_pcvar_num(cvar_vcolor_survivor_b))
+        }else if(zp_class_sniper_get(id))
+        {
+            set_vision_on(id, get_pcvar_num(cvar_vcolor_sniper_r), get_pcvar_num(cvar_vcolor_sniper_g), get_pcvar_num(cvar_vcolor_sniper_b))
         }
         else
         {
@@ -305,7 +327,7 @@ public set_vision_on(id, R, G, B)
         write_byte(R)
         write_byte(G)
         write_byte(B)
-        write_byte(50)
+        write_byte(70)
         message_end()
         
 

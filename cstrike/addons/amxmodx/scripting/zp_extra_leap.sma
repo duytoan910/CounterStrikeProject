@@ -16,7 +16,7 @@ new Float:g_last_LongJump_time[33]
 new g_itemid_long
 
 #define NAME "Long Jump"
-#define COST 2500
+#define COST 3500
 
 #define LJ_FORCE 600
 #define LJ_HEIGHT 320.0

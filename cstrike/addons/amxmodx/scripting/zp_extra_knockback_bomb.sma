@@ -3,6 +3,7 @@
 #include < engine >
 #include <fakemeta_util>
 #include < fun >
+#include < engine >
 #include < hamsandwich >
 #include < zombieplague >
 
@@ -70,11 +71,9 @@ public plugin_init ()
 	
 	register_forward(FM_SetModel, "fw_SetModel")
 	RegisterHam(Ham_Think, "grenade", "fw_ThinkGrenade")
+	
 	g_msgScreenShake = get_user_msgid("ScreenShake")
-	
-	
 	g_msgAmmoPickup = get_user_msgid("AmmoPickup")
-	
 	g_MaxPlayers = get_maxplayers ()
 }
 
@@ -84,6 +83,7 @@ public client_connect(id)
 }
 public plugin_natives(){
 	register_native("KnockbackNade", "get_JumpNade", 1)
+	register_native("is_max_KnockbackNade", "count_JumpNade", 1)
 }
 public zp_extra_item_selected(id, Item)
 {
@@ -99,7 +99,8 @@ public get_JumpNade (id)
 		return ZP_PLUGIN_HANDLED
 	}        
 	new iBpAmmo = cs_get_user_bpammo(id, CSW_SMOKEGRENADE)
-	
+
+ 	g_iJumpingNadeCount[id] = iBpAmmo
 	if(g_iJumpingNadeCount[id] >= 1)
 	{
 		cs_set_user_bpammo(id, CSW_SMOKEGRENADE, iBpAmmo+1)
@@ -120,6 +121,14 @@ public get_JumpNade (id)
 public zp_user_humanized_post (id)
 {
 	g_iJumpingNadeCount[id] = 0
+}
+
+public count_JumpNade (id)
+{
+	if(g_iJumpingNadeCount[id] >= MAXCARRY)
+		return true
+
+	return false
 }
 
 public EV_CurWeapon(id)
@@ -242,13 +251,13 @@ public jumping_explode(Entity)
 			set_pev(i, pev_velocity,flVelocity)
 			
 			message_begin(MSG_ONE_UNRELIABLE, g_msgScreenShake, _, i)
-			write_short(UNIT_SECOND*6) // amplitude             
-			write_short(UNIT_SECOND*10) // duration
-			write_short(UNIT_SECOND*10) // frequency
+			write_short(8<<12)
+			write_short(1<<12)
+			write_short(4<<12)
 			message_end()	
 			
 			//fm_fakedamage(i, "knockback-bomb", 100.0,  DMG_BLAST);
-			ExecuteHam(Ham_TakeDamage, i, id, id, 20.0, DMG_BLAST);
+			ExecuteHam(Ham_TakeDamage, i, id, id, 80.0, DMG_BLAST);
 		}
 	}
 	

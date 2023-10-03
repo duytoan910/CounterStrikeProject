@@ -92,6 +92,8 @@
 #include <zp50_class_zombie>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 
 /*================================================================================
  [Constants, Offsets, Macros]
@@ -189,9 +191,11 @@ public zp_fw_core_cure_post(id) g_bEnable[id] = false
 public zp_fw_core_infect_post(id, attacker)
 {
 	new nemesis = (LibraryExists(LIBRARY_NEMESIS, LibType_Library) && zp_class_nemesis_get(id)) ? 1 : 0;
+	new assassin = (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(id)) ? 1 : 0;
 	
-	if (nemesis && get_pcvar_num(cvar_Nemesis))
+	if (nemesis && get_pcvar_num(cvar_Nemesis) || assassin && get_pcvar_num(cvar_Nemesis) ){
 		g_bEnable[id] = 1
+	}
 	else if (!nemesis)
 		g_bEnable[id] = get_pcvar_num(cvar_Zombies)
 	else

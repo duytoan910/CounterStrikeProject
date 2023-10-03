@@ -453,7 +453,7 @@ Age=1459242027
 [zp50_extra_limiter.sma]
 Age=1458335009
 [zp50_human_default_weapon.sma]
-Age=1459239635
+Age=1463898576
 [zp_add_chain.sma]
 Age=1459190852
 [zp_add_custom_rifles.sma]
@@ -474,3 +474,5 @@ Age=1460236131
 Age=1461081304
 [zp_add_vulcanus9.sma]
 Age=1461088452
+[amx_gore_ultimate.sma]
+Age=1461861443

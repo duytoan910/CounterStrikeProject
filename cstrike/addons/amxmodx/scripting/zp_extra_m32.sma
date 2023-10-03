@@ -26,7 +26,7 @@
 #define WEAPON_SPECIAL_CODE 79483166
 #define WEAPON_REFERENCE "weapon_m3"
 #define WEAPON_ITEM_NAME "M32 MGL Venom"
-#define WEAPON_ITEM_COST 8000
+#define WEAPON_ITEM_COST 15000
 
 #define WEAPON_MODEL_VIEW "models/v_m32venom.mdl"
 #define WEAPON_MODEL_PLAYER "models/p_m32venom.mdl"

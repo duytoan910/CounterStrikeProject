@@ -163,6 +163,8 @@ d_skull8			640 640hud11	172	208	48	16
 d_skullaxe			640 640hud4	172	96	48	16
 d_winggun			640 640hud56	172	160	48	16
 d_sfmg				640 640hud6	172	224	48	16
+d_katana			640 640hud4	172	32	48	16
+d_sfpistol			640 640hud12	222	32	32	16
 
 d_dot				640 cross	1	63	1	1
 d_crosshair			640 cross	0	0	128	128

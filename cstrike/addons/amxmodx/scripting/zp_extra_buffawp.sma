@@ -38,13 +38,13 @@
 #define C7_Fire_Sound 	"weapons/zgun-1.wav"
 
 #define	BUFFAWP_NAME "AWP-Z"
-#define	BUFFAWP_COST	10000
+#define	BUFFAWP_COST	20000
 #define BUFFAWP_CLIP 20
 #define BUFFAWP_AMMO 200
 #define BUFFAWP_RECOIL 4.0
-#define BUFFAWP_DAMAGE 2.5
+#define BUFFAWP_DAMAGE 1.9
 #define CHARGE_EXPRADIUS 60.0
-#define WEAPONN_KRAKEN_DAMAGE			random_float(650.0, 700.0)
+#define WEAPONN_KRAKEN_DAMAGE			random_float(250.0, 400.0)
 
 #define m_iClip				51
 #define WEAP_LINUX_XTRA_OFF		4

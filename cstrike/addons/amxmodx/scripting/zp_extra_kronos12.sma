@@ -113,7 +113,7 @@ public plugin_init()
 	
 	g_Msg_CurWeapon = get_user_msgid("CurWeapon")
 	
-	x12 = zp_register_extra_item("Hunter Killer X-12", 10000, ZP_TEAM_HUMAN)
+	x12 = zp_register_extra_item("Hunter Killer X-12", 20000, ZP_TEAM_HUMAN)
 	register_clcmd("weapon_kronos12", "weapon_hook")
 
 	

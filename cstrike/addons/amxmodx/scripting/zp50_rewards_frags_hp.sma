@@ -19,8 +19,12 @@
 #include <zp50_gamemodes>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
+#define LIBRARY_ASSASSIN "zp50_class_assassin"
+#include <zp50_class_assassin>
 #define LIBRARY_SURVIVOR "zp50_class_survivor"
 #include <zp50_class_survivor>
+#define LIBRARY_SNIPER "zp50_class_sniper"
+#include <zp50_class_sniper>
 
 // CS Player PData Offsets (win32)
 const PDATA_SAFE = 2
@@ -33,6 +37,7 @@ new g_GameModeStarted
 new cvar_frags_zombie_killed
 new cvar_frags_human_killed, cvar_frags_human_infected
 new cvar_frags_nemesis_ignore, cvar_frags_survivor_ignore
+new cvar_frags_assassin_ignore, cvar_frags_sniper_ignore
 
 new cvar_infection_health_bonus
 new cvar_human_last_health_bonus
@@ -53,10 +58,18 @@ public plugin_init()
 	// Nemesis Class loaded?
 	if (LibraryExists(LIBRARY_NEMESIS, LibType_Library))
 		cvar_frags_nemesis_ignore = register_cvar("zp_frags_nemesis_ignore", "0")
-	
+
+	// Assassin Class loaded?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library))
+		cvar_frags_assassin_ignore = register_cvar("zp_frags_assassin_ignore", "0")
+
 	// Survivor Class loaded?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library))
 		cvar_frags_survivor_ignore = register_cvar("zp_frags_survivor_ignore", "0")
+
+	// Sniper Class loaded?
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library))
+		cvar_frags_sniper_ignore = register_cvar("zp_frags_sniper_ignore", "0")
 	
 	cvar_infection_health_bonus = register_cvar("zp_infection_health_bonus", "100")
 	cvar_human_last_health_bonus = register_cvar("zp_human_last_health_bonus", "50")
@@ -69,7 +82,7 @@ public plugin_natives()
 }
 public module_filter(const module[])
 {
-	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_SURVIVOR))
+	if (equal(module, LIBRARY_NEMESIS) || equal(module, LIBRARY_ASSASSIN) || equal(module, LIBRARY_SURVIVOR) || equal(module, LIBRARY_SNIPER))
 		return PLUGIN_HANDLED;
 	
 	return PLUGIN_CONTINUE;
@@ -96,9 +109,25 @@ public fw_PlayerKilled(victim, attacker, shouldgib)
 		RemoveFrags(attacker, victim)
 		return;
 	}
+
+	// Assassin Class loaded?
+	if (LibraryExists(LIBRARY_ASSASSIN, LibType_Library) && zp_class_assassin_get(attacker) && get_pcvar_num(cvar_frags_assassin_ignore))
+	{
+		// Ignore nemesis frags
+		RemoveFrags(attacker, victim)
+		return;
+	}
 	
 	// Survivor Class loaded?
 	if (LibraryExists(LIBRARY_SURVIVOR, LibType_Library) && zp_class_survivor_get(attacker) && get_pcvar_num(cvar_frags_survivor_ignore))
+	{
+		// Ignore survivor frags
+		RemoveFrags(attacker, victim)
+		return;
+	}
+
+	// Sniper Class loaded?
+	if (LibraryExists(LIBRARY_SNIPER, LibType_Library) && zp_class_sniper_get(attacker) && get_pcvar_num(cvar_frags_sniper_ignore))
 	{
 		// Ignore survivor frags
 		RemoveFrags(attacker, victim)
@@ -177,7 +206,7 @@ UpdateFrags(attacker, victim, frags, deaths, scoreboard)
 	}
 }
 
-// Remove Player Frags (when Nemesis/Survivor ignore_frags cvar is enabled)
+// Remove Player Frags (when Nemesis/Assassin/Survivor/Sniper ignore_frags cvar is enabled)
 RemoveFrags(attacker, victim)
 {
 	// Remove attacker frags

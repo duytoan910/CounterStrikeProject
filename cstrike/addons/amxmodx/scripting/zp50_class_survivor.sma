@@ -21,6 +21,7 @@
 #include <cs_ham_bots_api>
 #include <zp50_core>
 #include <zp50_gamemodes>
+#include <toan>
 
 // Settings file
 new const ZP_SETTINGS_FILE[] = "zombieplague.ini"

@@ -152,16 +152,16 @@ public Death()
 	new id = read_data(2)
 	reset_value_player(id)
 
-	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==idclass && !zp_get_user_nemesis(id))
+	if(zp_get_user_zombie(id) && zp_get_user_zombie_class(id)==idclass && !zp_get_user_nemesis(id) && !zp_get_user_assassin(id))
 	{
 		engfunc( EngFunc_EmitSound, id, CHAN_ITEM, g_sound[random_num(0,1)], 1.0, ATTN_NORM, 0, PITCH_NORM)
 	}
 }
 public fw_TakeDamage(id, iVictim, iInflictor, iAttacker, Float:flDamage, bitsDamage)
 {
-	if (zp_get_user_zombie_class(id)==idclass && zp_get_user_zombie(id) && !zp_get_user_nemesis(id))
+	if (zp_get_user_zombie_class(id)==idclass && zp_get_user_zombie(id) && !zp_get_user_assassin(id) && !zp_get_user_nemesis(id))
 	{
-		emit_sound(id, CHAN_WEAPON, g_sound[random_num(2,3)], 0.7, ATTN_NORM, 0, PITCH_LOW)
+		emit_sound(id, CHAN_WEAPON, g_sound[random_num(2,3)], 1.0, ATTN_NORM, 0, PITCH_LOW)
 	}
 } 
 public client_connect(id)
@@ -237,7 +237,7 @@ public fw_PlayerPostThink(id)
 	if(is_user_bot(id)){
 		new enemy, body
 		get_user_aiming(id, enemy, body)
-		if ((1 <= enemy <= 32) && !zp_get_user_zombie(enemy))
+		if (pev_valid(enemy) && is_user_alive(enemy) && !zp_get_user_zombie(enemy))
 		{
 			set_task(0.5 , "use_skill", id)
 		}
@@ -254,7 +254,7 @@ public use_skill(id)
 	if (!is_user_alive(id)) return PLUGIN_CONTINUE
 	
 		
-	if (idclass==zp_get_user_zombie_class(id) && zp_get_user_zombie(id)==1 && (!g_wait[id]) && !zp_get_user_nemesis(id) && get_user_weapon(id)==CSW_KNIFE)
+	if (idclass==zp_get_user_zombie_class(id) && zp_get_user_zombie(id)==1 && (!g_wait[id]) && !zp_get_user_nemesis(id)  && !zp_get_user_assassin(id) && get_user_weapon(id)==CSW_KNIFE)
 	{
 		if (is_user_bot(id)&&get_pcvar_num(cvar_debug))
 			return PLUGIN_CONTINUE

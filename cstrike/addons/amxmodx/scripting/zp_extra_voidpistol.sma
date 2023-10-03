@@ -15,8 +15,8 @@
 
 #define SHOOT_MAX 120
 #define DAMAGE_A 58.0
-#define DAMAGE_B 58.0
-#define DAMAGE_C 58.0
+#define DAMAGE_B 65.0
+#define DAMAGE_C 70.0
 #define DAMAGE_HOLE 45.0
 
 #define DEFAULT_CLIP 50
@@ -136,7 +136,7 @@ public plugin_init()
 	
 	register_concmd("wc_refill", "refill_ammo")
 	
-	g_itemid = zp_register_extra_item("Void Avenger", 15000, ZP_TEAM_HUMAN)
+	g_itemid = zp_register_extra_item("Void Avenger", 35000, ZP_TEAM_HUMAN)
 }
 
 public plugin_precache()
