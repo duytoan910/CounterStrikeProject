@@ -36,6 +36,8 @@ public fm_pthink(id)
 {
 	if (get_cvar_num("bot_stop"))
 		return FMRES_IGNORED
+	if (!pev_valid(id) || !is_user_connected(id))
+		return FMRES_IGNORED
 	if ( zp_get_user_nemesis(id) || zp_get_user_survivor(id))
 		return FMRES_IGNORED
 	if ( zp_get_user_assassin(id) || zp_get_user_sniper(id))

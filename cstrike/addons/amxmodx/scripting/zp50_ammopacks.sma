@@ -105,6 +105,8 @@ public event_reset_hud(id)
 	// Hide money?
 	if (get_pcvar_num(cvar_disable_money))
 		set_task(0.1, "task_hide_money", id+TASK_HIDEMONEY)
+
+	Player_Spawn(id)
 }
 
 // Hide Player's Money Task

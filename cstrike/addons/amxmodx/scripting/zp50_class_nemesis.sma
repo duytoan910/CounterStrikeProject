@@ -190,8 +190,8 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 		if (inflictor == attacker)
 		{
 			// Set nemesis damage
-			// SetHamParamFloat(4, damage * get_pcvar_float(cvar_nemesis_damage))
-			SetHamParamFloat(4, 1000.0)
+			SetHamParamFloat(4, damage * get_pcvar_float(cvar_nemesis_damage))
+			//SetHamParamFloat(4, 1000.0)
 			return HAM_HANDLED;
 		}
 	}

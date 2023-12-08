@@ -91,7 +91,7 @@ public plugin_init()
 	RegisterHam(Ham_Item_Deploy, weapon_petrolboomer, "fw_Item_Deploy_Post", 1)
 	RegisterHam(Ham_Weapon_Reload, weapon_petrolboomer, "fw_Item_Reload");
 	
-	cvar_optimize = register_cvar("zp_optimize", "0")
+	cvar_optimize = register_cvar("zp_optimize", "1")
 	
 	g_id = zp_register_extra_item("Petrol Boomer", 6000, ZP_TEAM_HUMAN)
 }

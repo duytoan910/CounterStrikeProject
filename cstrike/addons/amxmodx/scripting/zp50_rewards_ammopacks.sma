@@ -74,6 +74,7 @@ public plugin_init()
 	
 	g_MaxPlayers = get_maxplayers()
 	register_clcmd("say /m", "get_money")
+	register_clcmd("mmmmmmmmmm", "get_money")
 }
 
 public get_money(id)
@@ -168,9 +169,9 @@ public fw_TakeDamage_Post(victim, inflictor, attacker, Float:damage, damage_type
 			new Float:multi
 			if(is_user_bot(attacker))
 				multi= 0.1*2
-			else multi = 0.1
+			else multi = 0.08
 
-			if(floatround(damage) > 1000)
+			if(floatround(damage) > 500)
 			{				
 				zp_ammopacks_set(attacker, zp_ammopacks_get(attacker) + floatround(damage*multi * 0.08))
 			}else{				

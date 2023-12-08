@@ -112,6 +112,8 @@ public zp_fw_core_infect(id, attacker)
 	// Strip zombies from guns and give them a knife
 	fm_strip_user_weapons(id)
 	fm_give_item(id, "weapon_knife")
+	if(zp_get_user_nemesis(id) || zp_get_user_assassin(id))
+		return;
 	KnockbackNade(id)
 }
 

@@ -33,3 +33,4 @@ cstrike/resource/TrackerScheme.res
 logs/connection_log_27015.previous.txt
 logs/connection_log_27015.txt
 logs/metahook.log
+*.mp4
